@@ -212,8 +212,17 @@ class MultimodalReasoningEngine:
             }
         }
 
-        candidate_models = [self.model, "gemini-3.8-flash", "gemini-3.5-flash", "gemini-flash-latest", "gemini-3.1-flash-lite", "gemini-2.5-flash"]
-        candidate_models = list(dict.fromkeys(candidate_models))
+        candidate_models = [
+            self.model,
+            "gemini-3.5-flash",
+            "gemini-3.5-flash-lite",
+            "gemini-3.1-flash-lite",
+            "gemini-3-flash-preview",
+            "gemini-flash-latest",
+            "gemini-3.8-flash",
+            "gemma-4-31b-it"
+        ]
+        candidate_models = [m for m in dict.fromkeys(candidate_models) if m]
 
         last_error = None
         for model_name in candidate_models:

@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "document_id": "DOC_1EA84E",
+  "document_name": "resume.pdf",
+  "page_count": 1,
+  "evidence_count": 1,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_1EA84E",
+      "document_name": "resume.pdf",
+      "page": 1,
+      "section": "JESLIN J. P",
+      "type": "text",
+      "text": "JESLIN J. P\nFULL STACK DEVELOPER\njeslin3379@gmail.com\n|\n+91 7538805407\n|\ngithub.com/jeslin-star-14\n|\nlinkedin.com/in/jeslin-jp-9652b8371\nPROFESSIONAL SUMMARY\nFull Stack Developer with practical experience in building responsive web applications, mobile applications, database-\ndriven systems, and real-world client projects.\nStrong foundation in Java, Python, C, and C++, with hands-on\nexpertise in React, TypeScript, Tailwind CSS, PostgreSQL, MongoDB, UI/UX design, and Ubuntu-based deployment\nusing SSH. Experienced in developing solutions from requirements and interface design through backend integration,\ndatabase implementation, testing, and deployment. Passionate about creating scalable, intuitive, and user-focused\nsoftware solutions.\nEDUCATION\nKarunya Institute of Technology and Sciences\n2025 – 2029\nB.Tech in Computer Science and Engineering\nHoly Angels Matric Higher Secondary School\n2023 – 2025\nHigher Secondary Education\n82%\nEXPERIENCE\nCCS Info Tech\nMay 2026\nJava Full Stack Developer Intern\n• Gained practical experience in Java full stack application development and software engineering practices.\n• Worked with frontend and backend integration while developing application functionality.\n• Applied debugging, testing, and problem-solving techniques in a professional development environment.\nCodSoft\nFeb 2026 – Mar 2026\nMobile Application Developer Intern\n• Developed mobile application components and implemented core application functionality.\n• Worked on interface development, debugging, and application performance improvements.\n• Gained practical exposure to mobile application development and software development workflows.\nPROJECTS\nARK Kitchen — Full Stack Web Application\nJan 2026 – Apr 2026\n• Designed and developed a real-world full stack web application based on client and business requirements.\n• Developed the backend using Python and implemented responsive frontend interfaces with a strong focus on UI/UX.\n• Built responsive and user-focused interfaces to provide a consistent experience across devices.\n• Managed application deployment on Ubuntu using SSH and handled the project through development to deploy-\nment.\nER Hospital Scheduling System\n• Developed a database-driven hospital scheduling system with dedicated interfaces for Doctors, Nurses, and Patients.\n• Designed role-specific workflows to support scheduling and hospital management operations.\n• Applied database concepts and PostgreSQL for structured application data management.\nSmart India Hackathon — Rural Offline Learning Platform\n• Participated in Smart India Hackathon with a solution focused on improving education accessibility in rural areas.\n• Proposed an offline learning platform designed for students with limited or unreliable internet connectivity.\nSolar Cooker — Arduino Hardware Project\n• Developed a solar cooker prototype using Arduino and integrated hardware components with programmed control\nlogic.\nCERTIFICATIONS\n• Red Hat Linux Certification\n• Google Cloud Digital Leader\n• Cisco Introduction to Cybersecurity\n• Cisco HTML, CSS, JavaScript and Python\nTECHNICAL SKILLS\nProgramming\nLanguages\nJava, Python, C, C++\nFrontend & Backend\nReact, TypeScript (TSX), Tailwind CSS, Python, Java, API Integration\nDatabases,\nDeployment & Tools\nPostgreSQL, MongoDB, Ubuntu, SSH, Git, GitHub, UI/UX Design, OOP, Problem\nSolving, Debugging",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_1EA84E/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 3349
+      }
+    }
+  ]
+}

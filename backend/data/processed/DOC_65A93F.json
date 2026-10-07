@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "document_id": "DOC_65A93F",
+  "document_name": "annual_income_profile_b.pdf",
+  "page_count": 1,
+  "evidence_count": 2,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_65A93F",
+      "document_name": "annual_income_profile_b.pdf",
+      "page": 1,
+      "section": "Annual Income Report - Profile B",
+      "type": "text",
+      "text": "Annual Income Report - Profile B\nThis document contains the financial breakdown and annual income graph for testing Profile\nB. It represents standard baseline data structured for document comparison algorithms.\nSummary: Profile B demonstrates steady financial progress over a five-year period, with a\nminor contraction observed in 2025 followed by a strong recovery in 2026.",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_65A93F/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 374
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_65A93F",
+      "document_name": "annual_income_profile_b.pdf",
+      "page": 1,
+      "section": "Annual Income Report - Profile B",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_65A93F/page_1.png",
+      "metadata": {
+        "confidence": 0.8,
+        "detection_details": "Embedded image with chart keywords"
+      }
+    }
+  ]
+}

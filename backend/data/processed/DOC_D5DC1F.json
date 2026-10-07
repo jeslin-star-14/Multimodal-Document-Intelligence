@@ -1,0 +1,99 @@
+{
+  "success": true,
+  "document_id": "DOC_D5DC1F",
+  "document_name": "Graph-Distributional-Analysis-2024-11162023.pdf",
+  "page_count": 3,
+  "evidence_count": 6,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_D5DC1F",
+      "document_name": "Graph-Distributional-Analysis-2024-11162023.pdf",
+      "page": 1,
+      "section": "Graphs of Distribution of Current Law Tax Burden and Income by",
+      "type": "text",
+      "text": "Graphs of Distribution of Current Law Tax Burden and Income by\nSource\nAnnually, the Office of Tax Analysis releases baseline distribution tables of Federal Taxes (Table\n001) and Cash Income by Source (Table 002). These tables report estimates of income and taxes\nfor the first year of the ten-year budget period under current law and the Administration’s\neconomic forecast. Figures 1 and 2 below summarize the 2024 baseline estimates.1\nAVERAGE FEDERAL TAX RATES BY ADJUSTED FAMILY CASH INCOME, 2024\nFIGURE 1\nFigure 1 shows average tax rates for the individual income tax, payroll tax, corporate income\ntax, and excise taxes separately and in total.2 All refundable credits (including the advanced\nportion of the Premium Tax Credit) are included as negative taxes in U.S. Treasury distribution\ntables. As a result, individual income taxes are shown as negative, on average, for low-income\n1 The tables corresponding to these figures for 2024 are available here. For a summary explanation of the U.S. Treasury’s\ndistributional analysis methodology look here. For a detailed explanation of Treasury’s distributional analysis methodology, see\nOTA Technical Paper 8.\n2 Figure 1 corresponds to Distribution Table 2024 001, Distribution of Families, Cash Income, and Federal Taxes under 2024\nCurrent Law.\nU.S. Department of the Treasury\nOffice of Tax Analysis\nNovember, 2023",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_D5DC1F/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1367
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_D5DC1F",
+      "document_name": "Graph-Distributional-Analysis-2024-11162023.pdf",
+      "page": 1,
+      "section": "Graphs of Distribution of Current Law Tax Burden and Income by",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_D5DC1F/page_1.png",
+      "metadata": {
+        "confidence": 0.8,
+        "detection_details": "Embedded image with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_D5DC1F",
+      "document_name": "Graph-Distributional-Analysis-2024-11162023.pdf",
+      "page": 2,
+      "section": "DISTRIBUTION OF INCOME SHARES BY INCOME SOURCE, 2024",
+      "type": "text",
+      "text": "2\nfamilies in Figure 1. As also shown, the individual income tax is the largest federal tax only for\nhigh income families. Across the large majority of the income distribution, families pay more,\non average, in payroll tax than any other Federal tax. Average corporate income and average\nexcise taxes (including customs duties) are very low compared to average individual income and\naverage payroll taxes for almost all families.\nDISTRIBUTION OF INCOME SHARES BY INCOME SOURCE, 2024\nFIGURE 2\nFigure 2 shows the distribution of cash income.3 The height of each bar is the share of total cash\nincome received by each income decile. The sources of total income for each decile are shown\nby colored sections: transfer income (dark blue), labor income (red) and capital income (light\nblue). Detail for the top decile is shown on the right side of the figure (the sum of the 3 bars on\nthe right equal the bar for the top 10 percent and the sum of labor income, transfer income and\ncapital income on the right sum to the source shares for the top 10 percent).\nAs shown in the figure, families in the top decile of the income distribution receive 45 percent\nof total income and families in the top 1 percent receive 19 percent of total income. Families in\n3 Figure 2 corresponds to Distribution Table 2024 002, Distribution of Income by Source at 2024 Income Levels.\nU.S. Department of the Treasury\nOffice of Tax Analysis\nNovember, 2023",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_D5DC1F/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1428
+      }
+    },
+    {
+      "evidence_id": "E004",
+      "document_id": "DOC_D5DC1F",
+      "document_name": "Graph-Distributional-Analysis-2024-11162023.pdf",
+      "page": 2,
+      "section": "DISTRIBUTION OF INCOME SHARES BY INCOME SOURCE, 2024",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_D5DC1F/page_2.png",
+      "metadata": {
+        "confidence": 0.8,
+        "detection_details": "Embedded image with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E005",
+      "document_id": "DOC_D5DC1F",
+      "document_name": "Graph-Distributional-Analysis-2024-11162023.pdf",
+      "page": 3,
+      "section": "income.",
+      "type": "text",
+      "text": "3\nthe next highest income decile (80 to 90th percentile) receive 15 percent of total income.\nFamilies in the bottom 10 percent of the income distribution receive less than 1 percent of total\nincome.\nLabor income is the largest source of income for each decile (the red share of each bar is larger\nthan the dark blue or light blue). As a share of total income, labor income is over 75 percent of\ntotal income for families in the sixth decile (50-60th percentile) thru the ninth decile (80 to 90th\npercentile) of the income distribution.\nOnly families in the top decile have a significant share of their income from capital (light blue\nsection of each bar). For families in the bottom half of the distribution, income from capital is\nless than 5 percent of total income.\nTransfer income is only a significant share of total income for the lower income deciles. Notably\ntotal transfer income is higher for middle-income families than the lowest income families (the\ndark blue sections of each bar are tallest for middle-income families) because not all sources of\ntransfer income are means tested (e.g. social security benefits).\nU.S. Department of the Treasury\nOffice of Tax Analysis\nNovember, 2023",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_D5DC1F/page_3.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1196
+      }
+    },
+    {
+      "evidence_id": "E006",
+      "document_id": "DOC_D5DC1F",
+      "document_name": "Graph-Distributional-Analysis-2024-11162023.pdf",
+      "page": 3,
+      "section": "income.",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_D5DC1F/page_3.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      }
+    }
+  ]
+}

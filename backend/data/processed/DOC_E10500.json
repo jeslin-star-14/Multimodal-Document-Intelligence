@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "document_id": "DOC_E10500",
+  "document_name": "Operations_Q2_Performance.pdf",
+  "page_count": 2,
+  "evidence_count": 3,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_E10500",
+      "document_name": "Operations_Q2_Performance.pdf",
+      "page": 1,
+      "section": "Q2 Manufacturing & Operations Report",
+      "type": "text",
+      "text": "Q2 Manufacturing & Operations Report\nGlobal Production Audit & KPI Benchmark\nDate: June 30, 2026\nDoc ID: OPS-2026-Q2\nMultimodal Operations Benchmark | Confidential Internal Audit\n1. Executive Summary & Operational Baseline\nDuring the second quarter (Q2), factory operations exhibited strong baseline performance across all three\nmanufacturing hubs. Average production efficiency achieved 82.5%, supported by streamlined supply chain\nschedules and stable microcontroller inventory. Overall factory output reached 12,500 finished assemblies,\nwhile unplanned equipment downtime remained limited to 15 aggregate facility days.\nTable 1: Q2 Operational Metrics & Line Throughput\nFacility / Plant\nOutput (Units)\nOperating Efficiency\nDowntime (Days)\nOperating Expense\nPlant Alpha (Facility 1)\n4,200\n84.5%\n4 Days\n$1,250,000\nPlant Beta (Facility 2)\n3,800\n82.0%\n6 Days\n$1,100,000\nPlant Gamma (Facility 3)\n4,500\n81.0%\n5 Days\n$1,400,000\nTotal / Portfolio Average\n12,500\n82.5%\n15 Days\n$3,750,000\n2. Supply Chain Lead Times & Semiconductor Buffer\n- Microcontroller buffer inventory: 45 days of continuous operations maintained without disruption.\n- Supplier on-time delivery metric: 96.4% across tier-1 semiconductor and passive component vendors.\n- Average replenishment lead time: 3.2 days from warehouse dispatch to assembly line staging.\nFigure 1: Q2 Production Efficiency by Manufacturing Plant (%)\n0%\n25%\n50%\n75%\n100%\n84.5%\nAlpha\n82.0%\nBeta\n81.0%\nGamma\n80.0%\nTarget",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_E10500/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1456
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_E10500",
+      "document_name": "Operations_Q2_Performance.pdf",
+      "page": 1,
+      "section": "Q2 Manufacturing & Operations Report",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_E10500/page_1.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (17 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_E10500",
+      "document_name": "Operations_Q2_Performance.pdf",
+      "page": 2,
+      "section": "Q2 Equipment Maintenance & Reliability Audit",
+      "type": "text",
+      "text": "Q2 Equipment Maintenance & Reliability Audit\nSection 3: CNC Machining & Process Automation\nDate: June 30, 2026\nDoc ID: OPS-2026-Q2\nMultimodal Operations Benchmark | Confidential Internal Audit\n3. Equipment Availability & CNC Utilization Analysis\nPreventative maintenance protocols conducted during scheduled weekend windows prevented cascading\nline stoppages. All precision CNC units and automated optical inspection (AOI) cells operated above\nthe 98.5% uptime threshold with zero emergency hydraulic breakdowns.\nTable 2: Machine Group Maintenance & Availability (Q2)\nMachine Cell\nOperating Hours\nMaintenance (hrs)\nAvailability Uptime\nFailure Events\nCNC Milling Group Alpha\n1,420 hrs\n12 hrs\n99.1%\n0 Critical\nCNC Lathe Cell Beta\n1,380 hrs\n14 hrs\n98.9%\n0 Critical\nAutomated Optical (AOI)\n1,500 hrs\n8 hrs\n99.4%\n0 Critical\nComposite Machine Total\n4,300 hrs\n34 hrs\n99.2%\n0 Critical\n4. Mathematical Metrics & Efficiency Calculation Formulation\nProduction Efficiency is calculated using standard manufacturing OEE formulation:\n  Efficiency = (Actual Output / Theoretical Max Capacity) * (Operating Hours / Scheduled Hours) * 100%\n  Q2 Baseline Value = 82.5%\n  Q2 Aggregate Operating Cost = $3,750,000 for 12,500 Units ($300.00 / Unit cost baseline).",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_E10500/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1242
+      }
+    }
+  ]
+}

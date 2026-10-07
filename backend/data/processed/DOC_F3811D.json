@@ -1,0 +1,80 @@
+{
+  "success": true,
+  "document_id": "DOC_F3811D",
+  "document_name": "Operations_Q4_Performance.pdf",
+  "page_count": 2,
+  "evidence_count": 4,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_F3811D",
+      "document_name": "Operations_Q4_Performance.pdf",
+      "page": 1,
+      "section": "Q4 Manufacturing & Operations Report",
+      "type": "text",
+      "text": "Q4 Manufacturing & Operations Report\nGlobal Production Audit & Variance Analysis\nDate: December 31, 2026\nDoc ID: OPS-2026-Q4\nMultimodal Operations Benchmark | Confidential Internal Audit\n1. Executive Summary & Operational Variance\nFourth-quarter (Q4) operations experienced severe production headwinds resulting in an efficiency\ndecline from 82.5% in Q2 to 70.8% in Q4 (an absolute reduction of -11.7%, representing a relative drop\nof -14.18%). Total factory volume decreased to 10,500 assemblies, while operating expenses escalated\nto $4,150,000 due to expedited freight and overtime maintenance labor.\nTable 1: Q4 Operational Metrics & Line Throughput\nFacility / Plant\nOutput (Units)\nOperating Efficiency\nDowntime (Days)\nOperating Expense\nPlant Alpha (Facility 1)\n3,600\n72.0%\n12 Days\n$1,380,000\nPlant Beta (Facility 2)\n3,100\n69.5%\n15 Days\n$1,220,000\nPlant Gamma (Facility 3)\n3,800\n71.0%\n11 Days\n$1,550,000\nTotal / Portfolio Average\n10,500\n70.8%\n38 Days\n$4,150,000\n2. Root Cause 1: Semiconductor Delivery Delays\n- Critical microcontroller inventory depleted to 0 days during October and November.\n- 18 full facility days lost to idle staging waiting for expedited component shipments.\n- Expedited logistics costs added $185,000 in unbudgeted air freight surcharges.\nFigure 1: Q4 Production Efficiency Decline by Manufacturing Plant (%)\n0%\n25%\n50%\n75%\n100%\n72.0%\nAlpha\n69.5%\nBeta\n71.0%\nGamma\n80.0%\nTarget",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_F3811D/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1404
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_F3811D",
+      "document_name": "Operations_Q4_Performance.pdf",
+      "page": 1,
+      "section": "Q4 Manufacturing & Operations Report",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "rows": []
+      },
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_F3811D/page_1.png",
+      "metadata": {
+        "row_count": 0,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_F3811D",
+      "document_name": "Operations_Q4_Performance.pdf",
+      "page": 1,
+      "section": "Q4 Manufacturing & Operations Report",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_F3811D/page_1.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (17 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E004",
+      "document_id": "DOC_F3811D",
+      "document_name": "Operations_Q4_Performance.pdf",
+      "page": 2,
+      "section": "Q4 Equipment Failures & Root Cause Synthesis",
+      "type": "text",
+      "text": "Q4 Equipment Failures & Root Cause Synthesis\nSection 3: Downtime Breakdown & Corrective Plan\nDate: December 31, 2026\nDoc ID: OPS-2026-Q4\nMultimodal Operations Benchmark | Confidential Internal Audit\n3. Root Cause 2 & 3: CNC Hydraulic Failures & AOI Inspection Shifts\nPlant Beta (Facility 2) sustained 42 hours of unscheduled hydraulic fluid seal maintenance in November,\nforcing an emergency shutdown of CNC Milling cells. Concurrently, the introduction of a new automated optical\ninspection (AOI) sensor array required extensive recalibration, slowing line throughput by 14%.\nTable 2: Machine Group Maintenance & Availability (Q4)\nMachine Cell\nOperating Hours\nMaintenance (hrs)\nAvailability Uptime\nFailure Events\nCNC Milling Group Alpha\n1,180 hrs\n56 hrs\n95.4%\n2 Hydraulic\nCNC Lathe Cell Beta\n1,120 hrs\n48 hrs\n95.9%\n1 Electrical\nAutomated Optical (AOI)\n1,250 hrs\n38 hrs\n97.0%\n3 Sensor Drift\nComposite Machine Total\n3,550 hrs\n142 hrs\n96.1%\n6 Critical\n4. Mathematical Verification of Quarterly Variance (Q2 vs Q4)\nCross-Quarter Variance Calculations:\n  - Efficiency Drop: Delta = 70.8% - 82.5% = -11.7% (Absolute Decrease)\n  - Relative Efficiency Change = (-11.7% / 82.5%) * 100% = -14.18%\n  - Total Volume Reduction: 12,500 Units - 10,500 Units = -2,000 Units (-16.0%)\n  - Cost Inflation: $4,150,000 - $3,750,000 = +$400,000 (+10.67% increase in operating expenses)\n  - Unit Cost Spike: $4,150,000 / 10,500 = $395.24/unit (vs $300.00/unit in Q2, +31.75% increase).",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_F3811D/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1463
+      }
+    }
+  ]
+}

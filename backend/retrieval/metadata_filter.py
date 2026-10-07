@@ -16,7 +16,6 @@ def format_evidence_search_text(evidence_dict: Dict[str, Any]) -> str:
     """
     ev_type = evidence_dict.get("type", "text")
     section = evidence_dict.get("section") or ""
-    doc_name = evidence_dict.get("document_name") or ""
     
     parts = []
     if section:
@@ -31,7 +30,7 @@ def format_evidence_search_text(evidence_dict: Dict[str, Any]) -> str:
         if headers:
             table_text_lines.append(" | ".join(headers))
         for row in rows:
-            table_text_lines.append(" | ".join(row))
+            table_text_lines.append(" | ".join(map(str, row)))
         
         table_str = "\n".join(table_text_lines)
         parts.append(f"Table Data:\n{table_str}")
@@ -40,7 +39,6 @@ def format_evidence_search_text(evidence_dict: Dict[str, Any]) -> str:
         if text:
             parts.append(text)
         else:
-            # For image/chart/graph with no explicit text
             parts.append(f"[{ev_type.upper()} visual content on page {evidence_dict.get('page')}]")
 
     return "\n".join(parts)
@@ -52,21 +50,22 @@ def filter_evidence_list(
 ) -> List[Dict[str, Any]]:
     """
     Filters evidence items by document_ids (matching ID or filename) and/or types.
+    Gracefully falls back to all items if a filter yielded 0 results (e.g. temporary client IDs).
     """
     filtered = []
-    doc_tokens = set([d.lower().strip() for d in document_ids]) if document_ids else None
-    type_set = set([t.lower().strip() for t in types]) if types else None
+    # Filter out empty or null strings from doc tokens
+    doc_tokens = set([d.lower().strip() for d in document_ids if d and d.strip()]) if document_ids else None
+    type_set = set([t.lower().strip() for t in types if t and t.strip()]) if types else None
 
     for item in evidence_items:
         if doc_tokens:
             item_id = (item.get("document_id") or "").lower().strip()
             item_name = (item.get("document_name") or "").lower().strip()
-            # Match if document_id matches, or filename matches, or partial name match
             match_doc = (
                 item_id in doc_tokens or 
                 item_name in doc_tokens or 
-                any(t in item_name for t in doc_tokens) or 
-                any(item_name and item_name in t for t in doc_tokens)
+                any(t in item_name for t in doc_tokens if len(t) > 2) or 
+                any(item_name and len(item_name) > 2 and item_name in t for t in doc_tokens)
             )
             if not match_doc:
                 continue
@@ -78,13 +77,14 @@ def filter_evidence_list(
 
         filtered.append(item)
         
+    # If filtered is empty because document_id was unknown or client-side temporary, return all items
+    if not filtered and evidence_items:
+        logger.info("Filter returned 0 items. Falling back to all indexed evidence items.")
+        return evidence_items
+
     return filtered
 
 def get_evidence_page(evidence_id: str, processed_dir: str = "data/processed") -> Optional[Dict[str, Any]]:
-    """
-    Helper returning document name, page number, image path, type, section, and evidence ID
-    for frontend 'View Evidence' page rendering.
-    """
     pattern = os.path.join(processed_dir, "*.json")
     for file_path in glob.glob(pattern):
         try:

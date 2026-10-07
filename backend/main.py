@@ -362,43 +362,46 @@ async def query_documents_chat(request: FrontendQueryRequest):
 
     index = get_vector_index(str(INDEX_DIR))
 
-    # Cross-match query terms against document names in the index (e.g. 'practicum', 'practicum1', 'report')
+    # 1. Search for specific words/names from user query in all indexed evidence (e.g. "jeslin", "student", "receipt", "fee")
+    search_keywords = [w.lower() for w in re.findall(r'[a-zA-Z0-9]+', request.query) if len(w) > 2 and w.lower() not in [
+        "the", "and", "is", "are", "what", "which", "how", "who", "whom", "where", "there", "this", "that", "give", "tell", "explain", "about", "pdf", "docx", "image", "document", "file", "uploaded"
+    ]]
+    for ev in list(index.evidence_store.values()):
+        content_lower = (ev.get("text") or "").lower()
+        if ev.get("table"):
+            content_lower += " " + " ".join(ev["table"].get("headers", [])).lower()
+            for r in ev["table"].get("rows", []):
+                content_lower += " " + " ".join(map(str, r)).lower()
+        if any(kw in content_lower for kw in search_keywords):
+            if ev not in retrieved_evidence:
+                retrieved_evidence.insert(0, ev)
+
+    # 2. Cross-match query terms against document names in the index (e.g. 'practicum', 'portal', 'receipt')
     query_tokens = [t.lower() for t in re.findall(r'[a-zA-Z0-9]+', request.query) if len(t) > 2]
-    matched_by_query = []
     for ev in index.evidence_store.values():
         doc_name_clean = (ev.get("document_name") or "").lower()
         if any(tok in doc_name_clean for tok in query_tokens):
-            matched_by_query.append(ev)
-    if matched_by_query:
-        for ev in matched_by_query:
             if ev not in retrieved_evidence:
                 retrieved_evidence.append(ev)
 
-    # If still empty for generic queries ("explain", "summarize"), retrieve top chunks from active or all docs
-    if not retrieved_evidence and index.evidence_store:
-        matched = []
-        if request.document_id:
-            req_d = request.document_id.lower().strip()
-            for ev in index.evidence_store.values():
-                ev_id = (ev.get("document_id") or "").lower().strip()
-                ev_nm = (ev.get("document_name") or "").lower().strip()
-                if req_d in ev_id or req_d in ev_nm or ev_nm in req_d:
-                    matched.append(ev)
-        retrieved_evidence = (matched if matched else list(index.evidence_store.values()))[:8]
-
-    # If user asks to extract data/tables/metrics, explicitly inject all table and visual chunks
+    # 3. If query asks to explain, summarize, or extract, ensure all chunks of the target or latest doc are present
     q_lower = request.query.lower()
-    if any(k in q_lower for k in ["extract", "table", "data", "metric", "chart", "figure", "numbers", "all", "what"]):
+    is_general_query = any(k in q_lower for k in ["explain", "summarize", "what", "extract", "table", "data", "image", "content", "tell", "all", "overview"])
+    if is_general_query or not retrieved_evidence:
+        matched = []
         for ev in list(index.evidence_store.values()):
             if request.document_id:
                 req_d = request.document_id.lower().strip()
                 ev_id = (ev.get("document_id") or "").lower().strip()
                 ev_nm = (ev.get("document_name") or "").lower().strip()
-                if not (req_d in ev_id or req_d in ev_nm or ev_nm in req_d):
-                    continue
-            if ev.get("type") in ["table", "chart", "graph"] or ev.get("table"):
+                if req_d in ev_id or req_d in ev_nm or ev_nm in req_d:
+                    matched.append(ev)
+        if matched:
+            for ev in matched:
                 if ev not in retrieved_evidence:
-                    retrieved_evidence.insert(0, ev)
+                    retrieved_evidence.append(ev)
+        elif not retrieved_evidence and index.evidence_store:
+            retrieved_evidence = list(index.evidence_store.values())[:8]
 
     # Convert retrieved evidence to frontend citation format
     frontend_citations: List[FrontendCitation] = []

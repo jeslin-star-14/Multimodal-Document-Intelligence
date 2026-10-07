@@ -17,7 +17,7 @@ export const mockPageSvgPreview = (pageNumber: number, title: string, subtitle: 
       <text x="215" y="510" fill="#cbd5e1" font-size="13">Q2</text>
 
       <rect x="300" y="300" width="60" height="190" rx="4" fill="#10b981"/>
-      <text x="300" y="290" fill="#34d399" font-size="13" font-weight="bold">Q3: ₹4.2M ★</text>
+      <text x="300" y="290" fill="#34d399" font-size="13" font-weight="bold">Q3: ₹4.2M (Peak)</text>
       <text x="315" y="510" fill="#cbd5e1" font-size="13" font-weight="bold">Q3</text>
 
       <rect x="400" y="330" width="60" height="160" rx="4" fill="#6366f1"/>

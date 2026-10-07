@@ -1,0 +1,98 @@
+export type DocumentStatus = 'Uploading' | 'Parsing' | 'OCR' | 'Embedding' | 'Ready' | 'Error';
+
+export type ChunkType = 'text' | 'table' | 'image' | 'chart';
+
+export interface BoundingBox {
+  id: string;
+  x: number; // percentage 0-100
+  y: number; // percentage 0-100
+  width: number; // percentage 0-100
+  height: number; // percentage 0-100
+  label?: string;
+  type: ChunkType;
+  color?: string;
+}
+
+export interface DocumentChunk {
+  id: string;
+  documentId: string;
+  documentName: string;
+  pageNumber: number;
+  type: ChunkType;
+  content: string; // text content, or markdown table, or image description/base64
+  rawTableData?: {
+    headers: string[];
+    rows: string[][];
+  };
+  imageUrl?: string;
+  similarityScore: number;
+  boundingBox?: BoundingBox;
+}
+
+export interface DocumentInsights {
+  summary: string;
+  keyEntities: {
+    category: 'Org' | 'Date' | 'Financial' | 'Metric' | 'Location' | 'Person';
+    value: string;
+  }[];
+  suggestedQuestions: string[];
+}
+
+export interface DocumentItem {
+  id: string;
+  name: string;
+  size: string;
+  type: 'pdf' | 'docx' | 'pptx' | 'image';
+  pageCount: number;
+  uploadedAt: string;
+  status: DocumentStatus;
+  progress: number; // 0-100
+  currentStepDescription?: string;
+  insights?: DocumentInsights;
+  pageImages?: string[]; // preview URLs/base64 for pages
+}
+
+export interface Citation {
+  id: string;
+  documentId: string;
+  documentName: string;
+  pageNumber: number;
+  chunkType: ChunkType;
+  label: string; // e.g. "Page 5 · Chart 2"
+  chunkId: string;
+  similarityScore: number;
+  boundingBox?: BoundingBox;
+}
+
+export interface ConflictRecord {
+  id: string;
+  topic: string;
+  claimA: {
+    documentName: string;
+    pageNumber: number;
+    statement: string;
+    citationId: string;
+  };
+  claimB: {
+    documentName: string;
+    pageNumber: number;
+    statement: string;
+    citationId: string;
+  };
+  variance: string;
+  severity: 'high' | 'medium' | 'low';
+}
+
+export interface ChatMessage {
+  id: string;
+  sender: 'user' | 'assistant';
+  timestamp: string;
+  text: string;
+  isStreaming?: boolean;
+  confidenceScore?: number; // 0 - 100
+  citations?: Citation[];
+  notFound?: boolean;
+  conflicts?: ConflictRecord[];
+}
+
+export type LanguageCode = 'en' | 'ta' | 'hi';

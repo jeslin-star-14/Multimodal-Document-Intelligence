@@ -108,7 +108,6 @@ export const App: React.FC = () => {
     )
     .map((c) => c.boundingBox!);
 
-
   // Handle Dragging Left / Right dividers
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -518,7 +517,6 @@ export const App: React.FC = () => {
             />
           </div>
         )}
-
 
         {/* Left Drag Resize Splitter Handle */}
         {isLeftPanelOpen && (

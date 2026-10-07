@@ -186,12 +186,19 @@ class MultimodalReasoningEngine:
         # deduplicate while keeping order
         candidate_models = list(dict.fromkeys(candidate_models))
 
+        headers = {
+            "Content-Type": "application/json",
+            "x-goog-api-key": key_to_use
+        }
+        if key_to_use.startswith("ya29.") or key_to_use.startswith("AQ."):
+            headers["Authorization"] = f"Bearer {key_to_use}"
+
         last_error = None
         for model_name in candidate_models:
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={key_to_use}"
             try:
                 async with httpx.AsyncClient(timeout=35.0) as client:
-                    resp = await client.post(url, headers={"Content-Type": "application/json"}, json=payload)
+                    resp = await client.post(url, headers=headers, json=payload)
                     resp.raise_for_status()
                     data = resp.json()
 

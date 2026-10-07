@@ -105,4 +105,13 @@ export interface ChatMessage {
   conflicts?: ConflictRecord[];
 }
 
+export interface ChatSession {
+  id: string;
+  title: string;
+  createdAt: string;
+  messages: ChatMessage[];
+  lastUpdated: string;
+}
+
 export type LanguageCode = 'en' | 'ta' | 'hi';
+

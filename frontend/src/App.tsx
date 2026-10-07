@@ -13,7 +13,8 @@ import type {
   DocumentChunk, 
   LanguageCode, 
   ConflictRecord,
-  ChatAttachment
+  ChatAttachment,
+  ChatSession
 } from './types';
 
 export const App: React.FC = () => {
@@ -24,6 +25,55 @@ export const App: React.FC = () => {
   const [chunks, setChunks] = useState<DocumentChunk[]>([]);
   const [isLoadingAnswer, setIsLoadingAnswer] = useState<boolean>(false);
   const [language, setLanguage] = useState<LanguageCode>('en');
+
+  // Chat Sessions History State (Persisted in localStorage)
+  const [chatSessions, setChatSessions] = useState<ChatSession[]>(() => {
+    try {
+      const saved = localStorage.getItem('verity_chat_sessions');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [activeSessionId, setActiveSessionId] = useState<string | null>(null);
+
+  // Sync chatSessions to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('verity_chat_sessions', JSON.stringify(chatSessions));
+    } catch {
+      // ignore storage errors
+    }
+  }, [chatSessions]);
+
+  // Handle Starting a New Chat Conversation
+  const handleNewChat = () => {
+    setActiveSessionId(null);
+    setMessages([]);
+    setSelectedCitation(null);
+    setActiveBoxId(undefined);
+    setActiveChunkId(undefined);
+  };
+
+  // Handle Switching to an Old / Past Chat Session
+  const handleSelectSession = (sessionId: string) => {
+    const session = chatSessions.find((s) => s.id === sessionId);
+    if (session) {
+      setActiveSessionId(session.id);
+      setMessages(session.messages || []);
+      setSelectedCitation(null);
+      setActiveBoxId(undefined);
+      setActiveChunkId(undefined);
+    }
+  };
+
+  // Handle Deleting a Chat Session
+  const handleDeleteSession = (sessionId: string) => {
+    setChatSessions((prev) => prev.filter((s) => s.id !== sessionId));
+    if (activeSessionId === sessionId) {
+      handleNewChat();
+    }
+  };
 
   // Staged In-Chat File Attachments
   const [stagedAttachments, setStagedAttachments] = useState<ChatAttachment[]>([]);
@@ -57,6 +107,7 @@ export const App: React.FC = () => {
         c.boundingBox
     )
     .map((c) => c.boundingBox!);
+
 
   // Handle Dragging Left / Right dividers
   useEffect(() => {
@@ -309,9 +360,37 @@ export const App: React.FC = () => {
       attachments: attachments && attachments.length > 0 ? attachments : undefined
     };
 
-    setMessages((prev) => [...prev, userMsg]);
+    const updatedMessagesWithUser = [...messages, userMsg];
+    setMessages(updatedMessagesWithUser);
     setStagedAttachments([]);
     setIsLoadingAnswer(true);
+
+    // Track or create current session
+    let currentSessionId = activeSessionId;
+    if (!currentSessionId) {
+      currentSessionId = `session-${Date.now()}`;
+      setActiveSessionId(currentSessionId);
+      const newSession: ChatSession = {
+        id: currentSessionId,
+        title: queryText.length > 32 ? queryText.slice(0, 32) + '...' : queryText,
+        createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        lastUpdated: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        messages: updatedMessagesWithUser
+      };
+      setChatSessions((prev) => [newSession, ...prev]);
+    } else {
+      setChatSessions((prev) =>
+        prev.map((s) =>
+          s.id === currentSessionId
+            ? {
+                ...s,
+                lastUpdated: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                messages: updatedMessagesWithUser
+              }
+            : s
+        )
+      );
+    }
 
     try {
       const response = await fetch('/api/chat/query', {
@@ -322,6 +401,8 @@ export const App: React.FC = () => {
           document_id: activeDocument?.name || null
         })
       });
+
+      let aiMsg: ChatMessage;
 
       if (response.ok) {
         const data = await response.json();
@@ -356,7 +437,7 @@ export const App: React.FC = () => {
           }
         }
 
-        const aiMsg: ChatMessage = {
+        aiMsg = {
           id: `msg-${Date.now() + 1}`,
           sender: 'assistant',
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -365,12 +446,22 @@ export const App: React.FC = () => {
           citations: citations,
           notFound: data.not_found
         };
-
-        setMessages((prev) => [...prev, aiMsg]);
       } else {
         throw new Error(`API error: ${response.statusText}`);
       }
-    } catch (err: any) {
+
+      const finalMessages = [...updatedMessagesWithUser, aiMsg];
+      setMessages(finalMessages);
+
+      // Update session with AI response
+      setChatSessions((prev) =>
+        prev.map((s) =>
+          s.id === currentSessionId
+            ? { ...s, messages: finalMessages }
+            : s
+        )
+      );
+    } catch {
       // Clean fallback response if backend API is not running
       const fallbackMsg: ChatMessage = {
         id: `msg-${Date.now() + 1}`,
@@ -379,7 +470,16 @@ export const App: React.FC = () => {
         text: `Unable to connect to the backend engine at \`/api/chat/query\`. Please make sure the backend FastAPI service is running on port 8000 (\`python backend/main.py\`).`,
         notFound: true
       };
-      setMessages((prev) => [...prev, fallbackMsg]);
+      const finalMessages = [...updatedMessagesWithUser, fallbackMsg];
+      setMessages(finalMessages);
+
+      setChatSessions((prev) =>
+        prev.map((s) =>
+          s.id === currentSessionId
+            ? { ...s, messages: finalMessages }
+            : s
+        )
+      );
     } finally {
       setIsLoadingAnswer(false);
     }
@@ -392,7 +492,6 @@ export const App: React.FC = () => {
         language={language}
         onLanguageChange={setLanguage}
       />
-
 
       {/* Main 3-Panel Workspace */}
       <main className="flex-1 flex flex-row overflow-hidden relative">
@@ -411,9 +510,15 @@ export const App: React.FC = () => {
               onAttachToChat={handleAttachDocumentToChat}
               onClosePanel={() => setIsLeftPanelOpen(false)}
               language={language}
+              chatSessions={chatSessions}
+              activeSessionId={activeSessionId}
+              onSelectSession={handleSelectSession}
+              onNewChat={handleNewChat}
+              onDeleteSession={handleDeleteSession}
             />
           </div>
         )}
+
 
         {/* Left Drag Resize Splitter Handle */}
         {isLeftPanelOpen && (

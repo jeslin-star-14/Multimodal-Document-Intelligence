@@ -119,7 +119,6 @@ class CounterfactualSimRequest(BaseModel):
 # -------------------------------------------------------------
 # Core Root & Health Endpoints
 # -------------------------------------------------------------
->>>>>>> 5e883f3169dff8698c7ff1ddbe1882acaca2837c
 
 @app.get("/")
 def read_root():
@@ -525,7 +524,6 @@ def list_documents():
         except Exception:
             continue
     return {"documents": docs}
->>>>>>> 5e883f3169dff8698c7ff1ddbe1882acaca2837c
 
 @app.get("/documents/{document_id}")
 def get_document_metadata(document_id: str = FastPath(..., description="Unique Document ID")):

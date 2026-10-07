@@ -73,6 +73,24 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
   const chunkType = selectedCitation?.chunkType || activeChunk?.type || 'Evidence';
   const matchScore = selectedCitation?.similarityScore ?? activeChunk?.similarityScore;
 
+  // Automatically load all extracted tables and visual figures for active document
+  const [docChunks, setDocChunks] = React.useState<DocumentChunk[]>([]);
+  React.useEffect(() => {
+    if (!activeDocument) return;
+    fetch(`/api/documents/${activeDocument.id}/chunks`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (data && data.chunks) {
+          setDocChunks(data.chunks);
+        }
+      })
+      .catch(() => {});
+  }, [activeDocument?.id]);
+
+  const allAvailableChunks = docChunks.length > 0 ? docChunks : chunks;
+  const allDocTables = allAvailableChunks.filter((c) => c.rawTableData && c.rawTableData.rows && c.rawTableData.rows.length > 0);
+  const visualFigures = allAvailableChunks.filter((c) => ['chart', 'graph', 'image'].includes(c.type));
+
   return (
     <div className="h-full flex flex-col bg-white p-6 overflow-y-auto relative select-none">
       {/* Top Header */}
@@ -126,7 +144,7 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
               : 'text-slate-500 hover:text-slate-900'
           }`}
         >
-          Extracted data
+          Extracted data ({allDocTables.length + visualFigures.length})
         </button>
         <button
           onClick={() => setActiveTab('text')}
@@ -155,48 +173,88 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
           />
         )}
 
-        {activeTab === 'data' && (() => {
-          const tableChunk = activeChunk?.rawTableData ? activeChunk : chunks.find((c) => (c.documentId === activeDocument.id || c.documentName === activeDocument.name) && c.rawTableData) || chunks.find((c) => c.rawTableData);
-          return (
-            <div className="rounded-lg border border-slate-200 p-4 bg-slate-50 text-xs space-y-3">
-              <div className="flex items-center justify-between">
-                <h4 className="font-semibold text-slate-800">Extracted Tabular & Numeric Data</h4>
-                {tableChunk && (
-                  <span className="text-[10px] text-slate-400">Page {tableChunk.pageNumber}</span>
-                )}
-              </div>
-              {tableChunk?.rawTableData ? (
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-[11px] bg-white rounded border border-slate-200">
-                    <thead>
-                      <tr className="bg-slate-100 border-b border-slate-200">
-                        {tableChunk.rawTableData.headers.map((h, i) => (
-                          <th key={i} className="p-2 font-semibold text-slate-700">{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {tableChunk.rawTableData.rows.map((row, rIdx) => (
-                        <tr key={rIdx} className="border-b border-slate-100 last:border-b-0">
-                          {row.map((cell, cIdx) => (
-                            <td key={cIdx} className="p-2 font-mono text-slate-800">{cell}</td>
+        {activeTab === 'data' && (
+          <div className="space-y-4">
+            {/* Extracted Tables Section */}
+            {allDocTables.length > 0 ? (
+              allDocTables.map((t, idx) => (
+                <div key={idx} className="rounded-lg border border-slate-200 p-4 bg-slate-50 text-xs space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-slate-800">
+                      Table {idx + 1} ({t.rawTableData?.rows.length || 0} rows)
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => onPageChange(t.pageNumber)}
+                      className="px-2 py-0.5 rounded bg-white border border-slate-200 text-[#0d5c4d] font-medium text-[11px] hover:bg-[#eaf5f2] cursor-pointer"
+                    >
+                      View on Page {t.pageNumber}
+                    </button>
+                  </div>
+                  {t.rawTableData && (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left border-collapse text-[11px] bg-white rounded border border-slate-200">
+                        <thead>
+                          <tr className="bg-slate-100 border-b border-slate-200">
+                            {t.rawTableData.headers.map((h, i) => (
+                              <th key={i} className="p-2 font-semibold text-slate-700">{h}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {t.rawTableData.rows.map((row, rIdx) => (
+                            <tr key={rIdx} className="border-b border-slate-100 last:border-b-0">
+                              {row.map((cell, cIdx) => (
+                                <td key={cIdx} className="p-2 font-mono text-slate-800">{cell}</td>
+                              ))}
+                            </tr>
                           ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <p className="text-slate-400 text-xs py-2">
-                  No structured table data detected for this section.
-                </p>
-              )}
-            </div>
-          );
-        })()}
+              ))
+            ) : null}
+
+            {/* Visual Figures & Diagrams Section */}
+            {visualFigures.length > 0 ? (
+              <div className="rounded-lg border border-slate-200 p-4 bg-slate-50 text-xs space-y-3">
+                <h4 className="font-semibold text-slate-800">Visual Figures & Plotted Diagrams Detected</h4>
+                <div className="space-y-2">
+                  {visualFigures.map((fig, idx) => (
+                    <div key={idx} className="p-2.5 bg-white rounded border border-slate-200 flex items-center justify-between">
+                      <div className="min-w-0 pr-2">
+                        <span className="font-medium text-slate-800 capitalize">
+                          {fig.type} on Page {fig.pageNumber}
+                        </span>
+                        <p className="text-[10px] text-slate-400 truncate mt-0.5">
+                          {fig.content || "Visual elements extracted by VLM"}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => onPageChange(fig.pageNumber)}
+                        className="px-2 py-1 rounded bg-[#eaf5f2] text-[#0d5c4d] text-[11px] font-medium shrink-0 hover:bg-[#d8efe8] cursor-pointer"
+                      >
+                        Jump to Page {fig.pageNumber}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {allDocTables.length === 0 && visualFigures.length === 0 && (
+              <div className="p-4 rounded-lg border border-slate-200 bg-slate-50 text-center text-slate-400 text-xs">
+                No structured tables or visual figures extracted for this document.
+              </div>
+            )}
+          </div>
+        )}
 
         {activeTab === 'text' && (() => {
-          const currentTextChunk = chunks.find((c) => (c.documentId === activeDocument.id || c.documentName === activeDocument.name) && c.pageNumber === currentPageNumber && c.content) || activeChunk;
+          const currentTextChunk = allAvailableChunks.find((c) => c.pageNumber === currentPageNumber && c.content) || activeChunk;
           return (
             <div className="rounded-lg border border-slate-200 p-4 bg-slate-50 text-xs space-y-2">
               <div className="flex items-center justify-between">

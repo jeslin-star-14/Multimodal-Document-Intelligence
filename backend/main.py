@@ -375,6 +375,20 @@ async def query_documents_chat(request: FrontendQueryRequest):
                 matched.append(ev)
         retrieved_evidence = (matched if matched else list(index.evidence_store.values()))[:6]
 
+    # If user asks to extract data/tables/metrics, explicitly inject all table and visual chunks
+    q_lower = request.query.lower()
+    if any(k in q_lower for k in ["extract", "table", "data", "metric", "chart", "figure", "numbers", "all", "what"]):
+        for ev in list(index.evidence_store.values()):
+            if request.document_id:
+                req_d = request.document_id.lower().strip()
+                ev_id = (ev.get("document_id") or "").lower().strip()
+                ev_nm = (ev.get("document_name") or "").lower().strip()
+                if not (req_d in ev_id or req_d in ev_nm or ev_nm in req_d):
+                    continue
+            if ev.get("type") in ["table", "chart", "graph"] or ev.get("table"):
+                if ev not in retrieved_evidence:
+                    retrieved_evidence.insert(0, ev)
+
     # Convert retrieved evidence to frontend citation format
     frontend_citations: List[FrontendCitation] = []
     
@@ -390,10 +404,18 @@ async def query_documents_chat(request: FrontendQueryRequest):
             
             # Map evidence to context
             snippet = ev.get("text", "")
+            table_obj = None
             if ev.get("table"):
                 tab = ev["table"]
                 headers = " | ".join(tab.get("headers", []))
-                snippet = f"Table Headers: {headers}"
+                rows_preview = "\n".join([" | ".join(map(str, r)) for r in tab.get("rows", [])[:6]])
+                snippet = f"Table Data:\nHeaders: {headers}\nRows:\n{rows_preview}"
+                table_obj = {
+                    "headers": tab.get("headers", []),
+                    "rows": tab.get("rows", [])
+                }
+            elif ev.get("type") in ["chart", "graph", "image"]:
+                snippet = f"Visual Content [{ev.get('type').upper()}]: {snippet or 'Embedded figure and plotted diagram'}"
 
             context_blocks.append(f"[{doc_name} Page {page_num} ({section})]: {snippet}")
 
@@ -411,6 +433,7 @@ async def query_documents_chat(request: FrontendQueryRequest):
                 label=f"Page {page_num} · {section}",
                 chunk_id=ev_id,
                 similarity_score=round(score, 3),
+                raw_table_data=table_obj,
                 bounding_box=FrontendBoundingBox(
                     id=f"bbox-{ev_id}",
                     x=10.0 + (idx * 5.0) % 20.0,

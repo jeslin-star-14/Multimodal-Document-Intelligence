@@ -14,7 +14,7 @@
       "type": "text",
       "text": "Receipt\nReceipt No. : E0734120\nRegister No. / Name : URK25CS1037 - J JERSHIN DEMETRIUS\nProgramme of study : B.Tech (CS1)\nSemester :\nReceipt Date: 07 Sep 2026\nTotal Paid : Rs.. 96.00\nPayment Type\nDD No./Tran.ID\nDD / Tran. Date\nBank Name\nBranch\nAmount\nADDON\n07 Sep 2026\n96.00\nFees Description\nAmount Paid\nProglint Industry-Academia Collaboration Programme\n96\nComputer Generated Receipt.SIGNATURE NOT REQUIRED",
       "table": null,
-      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_49BE03/page_1.png",
+      "image_path": "backend/data/pages/DOC_49BE03/page_1.png",
       "metadata": {
         "scanned": false,
         "char_count": 406
@@ -35,7 +35,7 @@
         ],
         "rows": []
       },
-      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_49BE03/page_1.png",
+      "image_path": "backend/data/pages/DOC_49BE03/page_1.png",
       "metadata": {
         "row_count": 0,
         "col_count": 2
@@ -69,7 +69,7 @@
           ]
         ]
       },
-      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_49BE03/page_1.png",
+      "image_path": "backend/data/pages/DOC_49BE03/page_1.png",
       "metadata": {
         "row_count": 1,
         "col_count": 6
@@ -95,7 +95,7 @@
           ]
         ]
       },
-      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_49BE03/page_1.png",
+      "image_path": "backend/data/pages/DOC_49BE03/page_1.png",
       "metadata": {
         "row_count": 1,
         "col_count": 2
@@ -110,7 +110,7 @@
       "type": "chart",
       "text": "",
       "table": null,
-      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_49BE03/page_1.png",
+      "image_path": "backend/data/pages/DOC_49BE03/page_1.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (65 paths) with chart keywords"

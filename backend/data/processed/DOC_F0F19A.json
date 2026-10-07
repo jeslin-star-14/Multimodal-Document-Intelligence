@@ -1,0 +1,3609 @@
+{
+  "success": true,
+  "document_id": "DOC_F0F19A",
+  "document_name": "Employee_and_Inventory_Directory.pdf",
+  "page_count": 10,
+  "evidence_count": 30,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 1,
+      "section": "Employee & Inventory Directory",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 1\nEmployee & Inventory Directory\nHeadcount, salary bands, performance and stock levels\nSummary by Department\nDepartment\nHeadcount\nAvg Monthly Pay\nAvg Rating\nEngineering\n16\nRs. 84,375\n3.77\nDesign\n16\nRs. 86,000\n3.86\nSales\n16\nRs. 82,438\n3.96\nSupport\n15\nRs. 82,800\n3.68\nFinance\n19\nRs. 87,526\n3.71\nHR\n21\nRs. 77,762\n3.67\nOperations\n15\nRs. 74,600\n4.01\nQA\n22\nRs. 83,091\n4.11\nTotal\n140\nRs. 82,357\n3.85\nHeadcount by Location and Department\nLocation\nEngineering\nDesign\nSales\nSupport\nFinance\nHR\nOperations\nQA\nChennai\n1\n1\n1\n2\n3\n5\n3\n0\nCoimbatore\n3\n2\n4\n3\n4\n4\n2\n5\nKochi\n5\n2\n1\n4\n2\n2\n3\n2\nBengaluru\n6\n4\n4\n5\n2\n1\n2\n3\nMadurai\n1\n3\n3\n0\n4\n6\n2\n4\nMysuru\n0\n4\n3\n1\n4\n3\n3\n8",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 692
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 1,
+      "section": "Employee & Inventory Directory",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Department",
+          "Headcount",
+          "Avg Monthly Pay",
+          "Avg Rating"
+        ],
+        "rows": [
+          [
+            "Engineering",
+            "16",
+            "Rs. 84,375",
+            "3.77"
+          ],
+          [
+            "Design",
+            "16",
+            "Rs. 86,000",
+            "3.86"
+          ],
+          [
+            "Sales",
+            "16",
+            "Rs. 82,438",
+            "3.96"
+          ],
+          [
+            "Support",
+            "15",
+            "Rs. 82,800",
+            "3.68"
+          ],
+          [
+            "Finance",
+            "19",
+            "Rs. 87,526",
+            "3.71"
+          ],
+          [
+            "HR",
+            "21",
+            "Rs. 77,762",
+            "3.67"
+          ],
+          [
+            "Operations",
+            "15",
+            "Rs. 74,600",
+            "4.01"
+          ],
+          [
+            "QA",
+            "22",
+            "Rs. 83,091",
+            "4.11"
+          ],
+          [
+            "Total",
+            "140",
+            "Rs. 82,357",
+            "3.85"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_1.png",
+      "metadata": {
+        "row_count": 9,
+        "col_count": 4
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 1,
+      "section": "Employee & Inventory Directory",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Location",
+          "Engineering",
+          "Design",
+          "Sales",
+          "Support",
+          "Finance",
+          "HR",
+          "Operations",
+          "QA"
+        ],
+        "rows": [
+          [
+            "Chennai",
+            "1",
+            "1",
+            "1",
+            "2",
+            "3",
+            "5",
+            "3",
+            "0"
+          ],
+          [
+            "Coimbatore",
+            "3",
+            "2",
+            "4",
+            "3",
+            "4",
+            "4",
+            "2",
+            "5"
+          ],
+          [
+            "Kochi",
+            "5",
+            "2",
+            "1",
+            "4",
+            "2",
+            "2",
+            "3",
+            "2"
+          ],
+          [
+            "Bengaluru",
+            "6",
+            "4",
+            "4",
+            "5",
+            "2",
+            "1",
+            "2",
+            "3"
+          ],
+          [
+            "Madurai",
+            "1",
+            "3",
+            "3",
+            "0",
+            "4",
+            "6",
+            "2",
+            "4"
+          ],
+          [
+            "Mysuru",
+            "0",
+            "4",
+            "3",
+            "1",
+            "4",
+            "3",
+            "3",
+            "8"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_1.png",
+      "metadata": {
+        "row_count": 6,
+        "col_count": 9
+      }
+    },
+    {
+      "evidence_id": "E004",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 1,
+      "section": "Employee & Inventory Directory",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_1.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (52 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E005",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 2,
+      "section": "1. Employee Directory (140 records)",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 2\n1. Employee Directory (140 records)\nID\nName\nDepartment\nLocation\nJoined\nMonthly Pay\nRating\nEMP1001\nAnitha Shetty\nHR\nMadurai\n15-12-2023\nRs. 36,000\n3.7\nEMP1002\nMeena Pillai\nDesign\nMadurai\n13-09-2019\nRs. 75,000\n4.6\nEMP1003\nMeena Reddy\nHR\nCoimbatore\n03-09-2019\nRs. 92,000\n3.9\nEMP1004\nDeepa Varma\nHR\nMysuru\n27-03-2021\nRs. 38,000\n3.1\nEMP1005\nAnitha Krishnan\nSupport\nCoimbatore\n25-11-2019\nRs. 47,000\n4.8\nEMP1006\nGanesh Shetty\nQA\nMadurai\n25-10-2025\nRs. 112,000\n4.7\nEMP1007\nAjay Reddy\nHR\nCoimbatore\n15-02-2025\nRs. 81,000\n4.1\nEMP1008\nSiva Kumar\nFinance\nKochi\n17-02-2022\nRs. 84,000\n3.7\nEMP1009\nDeepa Babu\nEngineering\nKochi\n03-11-2019\nRs. 103,000\n4.0\nEMP1010\nGanesh Krishnan\nOperations\nMadurai\n26-12-2018\nRs. 82,000\n4.7\nEMP1011\nNaveen Krishnan\nSupport\nBengaluru\n17-03-2018\nRs. 82,000\n3.0\nEMP1012\nBala Raj\nHR\nMadurai\n21-03-2018\nRs. 56,000\n4.3\nEMP1013\nPrakash Sharma\nQA\nMadurai\n06-06-2023\nRs. 61,000\n3.6\nEMP1014\nHarini Krishnan\nHR\nChennai\n26-11-2023\nRs. 33,000\n3.5\nEMP1015\nLakshmi Iyer\nOperations\nMysuru\n28-11-2020\nRs. 67,000\n3.0\nEMP1016\nDeepa Iyer\nSales\nMysuru\n23-11-2024\nRs. 41,000\n4.0\nEMP1017\nLakshmi Sharma\nDesign\nBengaluru\n21-06-2020\nRs. 110,000\n4.3\nEMP1018\nAjay Murugan\nDesign\nBengaluru\n17-06-2018\nRs. 71,000\n3.4\nEMP1019\nNaveen Shetty\nSupport\nBengaluru\n07-04-2020\nRs. 44,000\n3.0\nEMP1020\nPrakash Shetty\nDesign\nMadurai\n27-12-2026\nRs. 29,000\n4.2\nEMP1021\nNithya Pillai\nSales\nCoimbatore\n06-03-2020\nRs. 117,000\n3.7\nEMP1022\nDeepa Murugan\nOperations\nMysuru\n08-08-2022\nRs. 121,000\n4.4\nEMP1023\nMeena Sharma\nQA\nCoimbatore\n10-08-2021\nRs. 72,000\n4.2\nEMP1024\nGanesh Shetty\nQA\nKochi\n25-07-2026\nRs. 92,000\n3.7\nEMP1025\nVignesh Shetty\nSales\nMadurai\n05-05-2018\nRs. 107,000\n3.8\nEMP1026\nRevathi Raj\nHR\nMysuru\n28-09-2019\nRs. 61,000\n3.0\nEMP1027\nRahul Gowda\nSales\nMadurai\n05-07-2019\nRs. 53,000\n4.5\nEMP1028\nArun Pillai\nHR\nChennai\n13-09-2023\nRs. 55,000\n3.6\nEMP1029\nDeepa Menon\nDesign\nChennai\n11-02-2023\nRs. 126,000\n3.1\nEMP1030\nLakshmi Babu\nEngineering\nBengaluru\n23-03-2025\nRs. 82,000\n4.1\nEMP1031\nArun Iyer\nDesign\nCoimbatore\n27-03-2026\nRs. 118,000\n4.1\nEMP1032\nDivya Shetty\nOperations\nKochi\n08-05-2019\nRs. 31,000\n3.3\nEMP1033\nKarthik Raj\nQA\nBengaluru\n20-09-2018\nRs. 105,000\n3.9\nEMP1034\nBala Nair\nSupport\nKochi\n14-01-2023\nRs. 55,000\n4.0\nEMP1035\nHarini Murugan\nSales\nChennai\n17-06-2019\nRs. 92,000\n3.9\nEMP1036\nManoj Babu\nEngineering\nBengaluru\n02-11-2024\nRs. 72,000\n3.3\nEMP1037\nDeepa Shetty\nEngineering\nChennai\n12-04-2019\nRs. 123,000\n4.0\nEMP1038\nSuresh Kumar\nHR\nKochi\n18-06-2020\nRs. 131,000\n4.4",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2504
+      }
+    },
+    {
+      "evidence_id": "E006",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 2,
+      "section": "1. Employee Directory (140 records)",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "ID",
+          "Name",
+          "Department",
+          "Location",
+          "Joined",
+          "Monthly Pay",
+          "Rating"
+        ],
+        "rows": [
+          [
+            "EMP1001",
+            "Anitha Shetty",
+            "HR",
+            "Madurai",
+            "15-12-2023",
+            "Rs. 36,000",
+            "3.7"
+          ],
+          [
+            "EMP1002",
+            "Meena Pillai",
+            "Design",
+            "Madurai",
+            "13-09-2019",
+            "Rs. 75,000",
+            "4.6"
+          ],
+          [
+            "EMP1003",
+            "Meena Reddy",
+            "HR",
+            "Coimbatore",
+            "03-09-2019",
+            "Rs. 92,000",
+            "3.9"
+          ],
+          [
+            "EMP1004",
+            "Deepa Varma",
+            "HR",
+            "Mysuru",
+            "27-03-2021",
+            "Rs. 38,000",
+            "3.1"
+          ],
+          [
+            "EMP1005",
+            "Anitha Krishnan",
+            "Support",
+            "Coimbatore",
+            "25-11-2019",
+            "Rs. 47,000",
+            "4.8"
+          ],
+          [
+            "EMP1006",
+            "Ganesh Shetty",
+            "QA",
+            "Madurai",
+            "25-10-2025",
+            "Rs. 112,000",
+            "4.7"
+          ],
+          [
+            "EMP1007",
+            "Ajay Reddy",
+            "HR",
+            "Coimbatore",
+            "15-02-2025",
+            "Rs. 81,000",
+            "4.1"
+          ],
+          [
+            "EMP1008",
+            "Siva Kumar",
+            "Finance",
+            "Kochi",
+            "17-02-2022",
+            "Rs. 84,000",
+            "3.7"
+          ],
+          [
+            "EMP1009",
+            "Deepa Babu",
+            "Engineering",
+            "Kochi",
+            "03-11-2019",
+            "Rs. 103,000",
+            "4.0"
+          ],
+          [
+            "EMP1010",
+            "Ganesh Krishnan",
+            "Operations",
+            "Madurai",
+            "26-12-2018",
+            "Rs. 82,000",
+            "4.7"
+          ],
+          [
+            "EMP1011",
+            "Naveen Krishnan",
+            "Support",
+            "Bengaluru",
+            "17-03-2018",
+            "Rs. 82,000",
+            "3.0"
+          ],
+          [
+            "EMP1012",
+            "Bala Raj",
+            "HR",
+            "Madurai",
+            "21-03-2018",
+            "Rs. 56,000",
+            "4.3"
+          ],
+          [
+            "EMP1013",
+            "Prakash Sharma",
+            "QA",
+            "Madurai",
+            "06-06-2023",
+            "Rs. 61,000",
+            "3.6"
+          ],
+          [
+            "EMP1014",
+            "Harini Krishnan",
+            "HR",
+            "Chennai",
+            "26-11-2023",
+            "Rs. 33,000",
+            "3.5"
+          ],
+          [
+            "EMP1015",
+            "Lakshmi Iyer",
+            "Operations",
+            "Mysuru",
+            "28-11-2020",
+            "Rs. 67,000",
+            "3.0"
+          ],
+          [
+            "EMP1016",
+            "Deepa Iyer",
+            "Sales",
+            "Mysuru",
+            "23-11-2024",
+            "Rs. 41,000",
+            "4.0"
+          ],
+          [
+            "EMP1017",
+            "Lakshmi Sharma",
+            "Design",
+            "Bengaluru",
+            "21-06-2020",
+            "Rs. 110,000",
+            "4.3"
+          ],
+          [
+            "EMP1018",
+            "Ajay Murugan",
+            "Design",
+            "Bengaluru",
+            "17-06-2018",
+            "Rs. 71,000",
+            "3.4"
+          ],
+          [
+            "EMP1019",
+            "Naveen Shetty",
+            "Support",
+            "Bengaluru",
+            "07-04-2020",
+            "Rs. 44,000",
+            "3.0"
+          ],
+          [
+            "EMP1020",
+            "Prakash Shetty",
+            "Design",
+            "Madurai",
+            "27-12-2026",
+            "Rs. 29,000",
+            "4.2"
+          ],
+          [
+            "EMP1021",
+            "Nithya Pillai",
+            "Sales",
+            "Coimbatore",
+            "06-03-2020",
+            "Rs. 117,000",
+            "3.7"
+          ],
+          [
+            "EMP1022",
+            "Deepa Murugan",
+            "Operations",
+            "Mysuru",
+            "08-08-2022",
+            "Rs. 121,000",
+            "4.4"
+          ],
+          [
+            "EMP1023",
+            "Meena Sharma",
+            "QA",
+            "Coimbatore",
+            "10-08-2021",
+            "Rs. 72,000",
+            "4.2"
+          ],
+          [
+            "EMP1024",
+            "Ganesh Shetty",
+            "QA",
+            "Kochi",
+            "25-07-2026",
+            "Rs. 92,000",
+            "3.7"
+          ],
+          [
+            "EMP1025",
+            "Vignesh Shetty",
+            "Sales",
+            "Madurai",
+            "05-05-2018",
+            "Rs. 107,000",
+            "3.8"
+          ],
+          [
+            "EMP1026",
+            "Revathi Raj",
+            "HR",
+            "Mysuru",
+            "28-09-2019",
+            "Rs. 61,000",
+            "3.0"
+          ],
+          [
+            "EMP1027",
+            "Rahul Gowda",
+            "Sales",
+            "Madurai",
+            "05-07-2019",
+            "Rs. 53,000",
+            "4.5"
+          ],
+          [
+            "EMP1028",
+            "Arun Pillai",
+            "HR",
+            "Chennai",
+            "13-09-2023",
+            "Rs. 55,000",
+            "3.6"
+          ],
+          [
+            "EMP1029",
+            "Deepa Menon",
+            "Design",
+            "Chennai",
+            "11-02-2023",
+            "Rs. 126,000",
+            "3.1"
+          ],
+          [
+            "EMP1030",
+            "Lakshmi Babu",
+            "Engineering",
+            "Bengaluru",
+            "23-03-2025",
+            "Rs. 82,000",
+            "4.1"
+          ],
+          [
+            "EMP1031",
+            "Arun Iyer",
+            "Design",
+            "Coimbatore",
+            "27-03-2026",
+            "Rs. 118,000",
+            "4.1"
+          ],
+          [
+            "EMP1032",
+            "Divya Shetty",
+            "Operations",
+            "Kochi",
+            "08-05-2019",
+            "Rs. 31,000",
+            "3.3"
+          ],
+          [
+            "EMP1033",
+            "Karthik Raj",
+            "QA",
+            "Bengaluru",
+            "20-09-2018",
+            "Rs. 105,000",
+            "3.9"
+          ],
+          [
+            "EMP1034",
+            "Bala Nair",
+            "Support",
+            "Kochi",
+            "14-01-2023",
+            "Rs. 55,000",
+            "4.0"
+          ],
+          [
+            "EMP1035",
+            "Harini Murugan",
+            "Sales",
+            "Chennai",
+            "17-06-2019",
+            "Rs. 92,000",
+            "3.9"
+          ],
+          [
+            "EMP1036",
+            "Manoj Babu",
+            "Engineering",
+            "Bengaluru",
+            "02-11-2024",
+            "Rs. 72,000",
+            "3.3"
+          ],
+          [
+            "EMP1037",
+            "Deepa Shetty",
+            "Engineering",
+            "Chennai",
+            "12-04-2019",
+            "Rs. 123,000",
+            "4.0"
+          ],
+          [
+            "EMP1038",
+            "Suresh Kumar",
+            "HR",
+            "Kochi",
+            "18-06-2020",
+            "Rs. 131,000",
+            "4.4"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_2.png",
+      "metadata": {
+        "row_count": 38,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E007",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 2,
+      "section": "1. Employee Directory (140 records)",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_2.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (88 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E008",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 3,
+      "section": "Name",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 3\nID\nName\nDepartment\nLocation\nJoined\nMonthly Pay\nRating\nEMP1039\nBala Gowda\nQA\nMysuru\n06-03-2019\nRs. 116,000\n4.4\nEMP1040\nPriya Iyer\nQA\nCoimbatore\n02-04-2018\nRs. 65,000\n4.8\nEMP1041\nRevathi Gowda\nOperations\nKochi\n02-11-2021\nRs. 61,000\n3.5\nEMP1042\nAjay Reddy\nEngineering\nKochi\n04-06-2024\nRs. 138,000\n3.6\nEMP1043\nManoj Reddy\nQA\nCoimbatore\n16-12-2025\nRs. 72,000\n4.7\nEMP1044\nKarthik Varma\nFinance\nBengaluru\n03-07-2020\nRs. 94,000\n3.4\nEMP1045\nKarthik Reddy\nDesign\nMysuru\n10-05-2025\nRs. 102,000\n4.3\nEMP1046\nBala Gowda\nSales\nKochi\n15-01-2023\nRs. 103,000\n4.9\nEMP1047\nAjay Shetty\nFinance\nChennai\n03-11-2024\nRs. 71,000\n3.9\nEMP1048\nArun Nair\nSales\nMadurai\n22-08-2018\nRs. 41,000\n2.9\nEMP1049\nDeepa Pillai\nHR\nMadurai\n02-10-2020\nRs. 111,000\n3.7\nEMP1050\nDeepa Gowda\nHR\nChennai\n19-03-2026\nRs. 71,000\n3.6\nEMP1051\nMeena Raj\nFinance\nChennai\n24-03-2025\nRs. 91,000\n3.6\nEMP1052\nRahul Shetty\nDesign\nKochi\n23-08-2021\nRs. 103,000\n3.4\nEMP1053\nVignesh Raj\nQA\nCoimbatore\n28-02-2025\nRs. 47,000\n4.7\nEMP1054\nKarthik Shetty\nQA\nMysuru\n28-06-2023\nRs. 115,000\n2.9\nEMP1055\nLakshmi Babu\nFinance\nCoimbatore\n23-12-2020\nRs. 126,000\n3.6\nEMP1056\nDivya Menon\nSupport\nCoimbatore\n08-08-2018\nRs. 71,000\n4.0\nEMP1057\nGanesh Shetty\nHR\nMadurai\n05-10-2019\nRs. 33,000\n3.4\nEMP1058\nPrakash Pillai\nQA\nBengaluru\n27-10-2019\nRs. 41,000\n4.8\nEMP1059\nGanesh Gowda\nDesign\nMysuru\n17-06-2020\nRs. 137,000\n4.5\nEMP1060\nDinesh Nair\nSales\nBengaluru\n17-01-2019\nRs. 91,000\n3.1\nEMP1061\nAnitha Reddy\nSales\nMysuru\n08-06-2026\nRs. 139,000\n3.4\nEMP1062\nRahul Menon\nDesign\nMysuru\n18-05-2020\nRs. 105,000\n3.4\nEMP1063\nPrakash Murugan\nDesign\nCoimbatore\n19-10-2020\nRs. 46,000\n4.2\nEMP1064\nSiva Kumar\nHR\nChennai\n03-01-2022\nRs. 108,000\n3.2\nEMP1065\nNithya Murugan\nOperations\nChennai\n16-11-2026\nRs. 62,000\n4.1\nEMP1066\nKavya Menon\nFinance\nMysuru\n13-05-2025\nRs. 34,000\n4.2\nEMP1067\nGanesh Pillai\nSales\nBengaluru\n15-04-2023\nRs. 102,000\n3.1\nEMP1068\nSwathi Babu\nHR\nKochi\n13-03-2023\nRs. 90,000\n4.0\nEMP1069\nMeena Gowda\nHR\nChennai\n09-08-2021\nRs. 43,000\n3.0\nEMP1070\nManoj Babu\nFinance\nMadurai\n14-04-2020\nRs. 129,000\n3.5\nEMP1071\nVignesh Shetty\nHR\nCoimbatore\n16-09-2025\nRs. 88,000\n4.6\nEMP1072\nArun Raj\nQA\nBengaluru\n17-08-2021\nRs. 52,000\n4.0\nEMP1073\nPriya Iyer\nEngineering\nBengaluru\n20-11-2025\nRs. 61,000\n3.9\nEMP1074\nSowmya Nair\nDesign\nKochi\n24-06-2024\nRs. 71,000\n2.9\nEMP1075\nSiva Sharma\nEngineering\nCoimbatore\n12-09-2022\nRs. 34,000\n3.6\nEMP1076\nDinesh Sharma\nQA\nKochi\n27-10-2019\nRs. 41,000\n4.8\nEMP1077\nDeepa Shetty\nOperations\nKochi\n18-06-2020\nRs. 50,000\n4.1",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_3.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2500
+      }
+    },
+    {
+      "evidence_id": "E009",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 3,
+      "section": "Name",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "ID",
+          "Name",
+          "Department",
+          "Location",
+          "Joined",
+          "Monthly Pay",
+          "Rating"
+        ],
+        "rows": [
+          [
+            "EMP1039",
+            "Bala Gowda",
+            "QA",
+            "Mysuru",
+            "06-03-2019",
+            "Rs. 116,000",
+            "4.4"
+          ],
+          [
+            "EMP1040",
+            "Priya Iyer",
+            "QA",
+            "Coimbatore",
+            "02-04-2018",
+            "Rs. 65,000",
+            "4.8"
+          ],
+          [
+            "EMP1041",
+            "Revathi Gowda",
+            "Operations",
+            "Kochi",
+            "02-11-2021",
+            "Rs. 61,000",
+            "3.5"
+          ],
+          [
+            "EMP1042",
+            "Ajay Reddy",
+            "Engineering",
+            "Kochi",
+            "04-06-2024",
+            "Rs. 138,000",
+            "3.6"
+          ],
+          [
+            "EMP1043",
+            "Manoj Reddy",
+            "QA",
+            "Coimbatore",
+            "16-12-2025",
+            "Rs. 72,000",
+            "4.7"
+          ],
+          [
+            "EMP1044",
+            "Karthik Varma",
+            "Finance",
+            "Bengaluru",
+            "03-07-2020",
+            "Rs. 94,000",
+            "3.4"
+          ],
+          [
+            "EMP1045",
+            "Karthik Reddy",
+            "Design",
+            "Mysuru",
+            "10-05-2025",
+            "Rs. 102,000",
+            "4.3"
+          ],
+          [
+            "EMP1046",
+            "Bala Gowda",
+            "Sales",
+            "Kochi",
+            "15-01-2023",
+            "Rs. 103,000",
+            "4.9"
+          ],
+          [
+            "EMP1047",
+            "Ajay Shetty",
+            "Finance",
+            "Chennai",
+            "03-11-2024",
+            "Rs. 71,000",
+            "3.9"
+          ],
+          [
+            "EMP1048",
+            "Arun Nair",
+            "Sales",
+            "Madurai",
+            "22-08-2018",
+            "Rs. 41,000",
+            "2.9"
+          ],
+          [
+            "EMP1049",
+            "Deepa Pillai",
+            "HR",
+            "Madurai",
+            "02-10-2020",
+            "Rs. 111,000",
+            "3.7"
+          ],
+          [
+            "EMP1050",
+            "Deepa Gowda",
+            "HR",
+            "Chennai",
+            "19-03-2026",
+            "Rs. 71,000",
+            "3.6"
+          ],
+          [
+            "EMP1051",
+            "Meena Raj",
+            "Finance",
+            "Chennai",
+            "24-03-2025",
+            "Rs. 91,000",
+            "3.6"
+          ],
+          [
+            "EMP1052",
+            "Rahul Shetty",
+            "Design",
+            "Kochi",
+            "23-08-2021",
+            "Rs. 103,000",
+            "3.4"
+          ],
+          [
+            "EMP1053",
+            "Vignesh Raj",
+            "QA",
+            "Coimbatore",
+            "28-02-2025",
+            "Rs. 47,000",
+            "4.7"
+          ],
+          [
+            "EMP1054",
+            "Karthik Shetty",
+            "QA",
+            "Mysuru",
+            "28-06-2023",
+            "Rs. 115,000",
+            "2.9"
+          ],
+          [
+            "EMP1055",
+            "Lakshmi Babu",
+            "Finance",
+            "Coimbatore",
+            "23-12-2020",
+            "Rs. 126,000",
+            "3.6"
+          ],
+          [
+            "EMP1056",
+            "Divya Menon",
+            "Support",
+            "Coimbatore",
+            "08-08-2018",
+            "Rs. 71,000",
+            "4.0"
+          ],
+          [
+            "EMP1057",
+            "Ganesh Shetty",
+            "HR",
+            "Madurai",
+            "05-10-2019",
+            "Rs. 33,000",
+            "3.4"
+          ],
+          [
+            "EMP1058",
+            "Prakash Pillai",
+            "QA",
+            "Bengaluru",
+            "27-10-2019",
+            "Rs. 41,000",
+            "4.8"
+          ],
+          [
+            "EMP1059",
+            "Ganesh Gowda",
+            "Design",
+            "Mysuru",
+            "17-06-2020",
+            "Rs. 137,000",
+            "4.5"
+          ],
+          [
+            "EMP1060",
+            "Dinesh Nair",
+            "Sales",
+            "Bengaluru",
+            "17-01-2019",
+            "Rs. 91,000",
+            "3.1"
+          ],
+          [
+            "EMP1061",
+            "Anitha Reddy",
+            "Sales",
+            "Mysuru",
+            "08-06-2026",
+            "Rs. 139,000",
+            "3.4"
+          ],
+          [
+            "EMP1062",
+            "Rahul Menon",
+            "Design",
+            "Mysuru",
+            "18-05-2020",
+            "Rs. 105,000",
+            "3.4"
+          ],
+          [
+            "EMP1063",
+            "Prakash Murugan",
+            "Design",
+            "Coimbatore",
+            "19-10-2020",
+            "Rs. 46,000",
+            "4.2"
+          ],
+          [
+            "EMP1064",
+            "Siva Kumar",
+            "HR",
+            "Chennai",
+            "03-01-2022",
+            "Rs. 108,000",
+            "3.2"
+          ],
+          [
+            "EMP1065",
+            "Nithya Murugan",
+            "Operations",
+            "Chennai",
+            "16-11-2026",
+            "Rs. 62,000",
+            "4.1"
+          ],
+          [
+            "EMP1066",
+            "Kavya Menon",
+            "Finance",
+            "Mysuru",
+            "13-05-2025",
+            "Rs. 34,000",
+            "4.2"
+          ],
+          [
+            "EMP1067",
+            "Ganesh Pillai",
+            "Sales",
+            "Bengaluru",
+            "15-04-2023",
+            "Rs. 102,000",
+            "3.1"
+          ],
+          [
+            "EMP1068",
+            "Swathi Babu",
+            "HR",
+            "Kochi",
+            "13-03-2023",
+            "Rs. 90,000",
+            "4.0"
+          ],
+          [
+            "EMP1069",
+            "Meena Gowda",
+            "HR",
+            "Chennai",
+            "09-08-2021",
+            "Rs. 43,000",
+            "3.0"
+          ],
+          [
+            "EMP1070",
+            "Manoj Babu",
+            "Finance",
+            "Madurai",
+            "14-04-2020",
+            "Rs. 129,000",
+            "3.5"
+          ],
+          [
+            "EMP1071",
+            "Vignesh Shetty",
+            "HR",
+            "Coimbatore",
+            "16-09-2025",
+            "Rs. 88,000",
+            "4.6"
+          ],
+          [
+            "EMP1072",
+            "Arun Raj",
+            "QA",
+            "Bengaluru",
+            "17-08-2021",
+            "Rs. 52,000",
+            "4.0"
+          ],
+          [
+            "EMP1073",
+            "Priya Iyer",
+            "Engineering",
+            "Bengaluru",
+            "20-11-2025",
+            "Rs. 61,000",
+            "3.9"
+          ],
+          [
+            "EMP1074",
+            "Sowmya Nair",
+            "Design",
+            "Kochi",
+            "24-06-2024",
+            "Rs. 71,000",
+            "2.9"
+          ],
+          [
+            "EMP1075",
+            "Siva Sharma",
+            "Engineering",
+            "Coimbatore",
+            "12-09-2022",
+            "Rs. 34,000",
+            "3.6"
+          ],
+          [
+            "EMP1076",
+            "Dinesh Sharma",
+            "QA",
+            "Kochi",
+            "27-10-2019",
+            "Rs. 41,000",
+            "4.8"
+          ],
+          [
+            "EMP1077",
+            "Deepa Shetty",
+            "Operations",
+            "Kochi",
+            "18-06-2020",
+            "Rs. 50,000",
+            "4.1"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_3.png",
+      "metadata": {
+        "row_count": 39,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E010",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 3,
+      "section": "Name",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_3.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (98 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E011",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 4,
+      "section": "Name",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 4\nID\nName\nDepartment\nLocation\nJoined\nMonthly Pay\nRating\nEMP1078\nPrakash Kumar\nOperations\nChennai\n02-03-2023\nRs. 127,000\n3.8\nEMP1079\nSuresh Krishnan\nQA\nMadurai\n05-06-2023\nRs. 45,000\n3.6\nEMP1080\nSiva Reddy\nFinance\nMadurai\n27-09-2026\nRs. 87,000\n4.3\nEMP1081\nKavya Babu\nFinance\nChennai\n12-06-2019\nRs. 78,000\n4.0\nEMP1082\nNithya Gowda\nEngineering\nKochi\n21-10-2021\nRs. 117,000\n2.9\nEMP1083\nAnitha Sharma\nQA\nMysuru\n24-10-2024\nRs. 43,000\n4.5\nEMP1084\nPriya Krishnan\nSupport\nMysuru\n04-04-2018\nRs. 81,000\n3.5\nEMP1085\nSowmya Varma\nSales\nCoimbatore\n14-09-2025\nRs. 136,000\n4.6\nEMP1086\nBala Nair\nEngineering\nMadurai\n07-09-2023\nRs. 109,000\n3.8\nEMP1087\nNaveen Nair\nOperations\nBengaluru\n18-06-2026\nRs. 70,000\n4.2\nEMP1088\nNithya Gowda\nFinance\nCoimbatore\n08-05-2026\nRs. 63,000\n3.3\nEMP1089\nDinesh Iyer\nFinance\nMysuru\n07-12-2025\nRs. 65,000\n3.8\nEMP1090\nLakshmi Raj\nFinance\nMadurai\n22-09-2024\nRs. 139,000\n4.9\nEMP1091\nDinesh Shetty\nHR\nCoimbatore\n10-01-2022\nRs. 116,000\n3.0\nEMP1092\nAjay Iyer\nQA\nMysuru\n16-04-2021\nRs. 130,000\n3.9\nEMP1093\nSuresh Raj\nFinance\nMadurai\n24-10-2021\nRs. 56,000\n2.9\nEMP1094\nAjay Menon\nSupport\nChennai\n04-07-2023\nRs. 116,000\n3.8\nEMP1095\nArun Sharma\nSales\nCoimbatore\n14-11-2025\nRs. 86,000\n4.2\nEMP1096\nNaveen Iyer\nFinance\nMysuru\n02-02-2021\nRs. 93,000\n4.4\nEMP1097\nAnitha Pillai\nEngineering\nCoimbatore\n02-07-2025\nRs. 48,000\n4.8\nEMP1098\nPriya Kumar\nFinance\nKochi\n19-10-2019\nRs. 67,000\n3.4\nEMP1099\nSuresh Babu\nQA\nMadurai\n15-05-2021\nRs. 128,000\n3.0\nEMP1100\nSwathi Gowda\nSales\nMysuru\n09-12-2020\nRs. 26,000\n4.3\nEMP1101\nSiva Murugan\nFinance\nCoimbatore\n06-10-2024\nRs. 130,000\n3.7\nEMP1102\nKarthik Pillai\nHR\nMysuru\n04-03-2020\nRs. 86,000\n3.5\nEMP1103\nArun Iyer\nSupport\nBengaluru\n08-08-2022\nRs. 67,000\n3.4\nEMP1104\nRahul Murugan\nEngineering\nKochi\n23-04-2018\nRs. 110,000\n3.0\nEMP1105\nAnitha Pillai\nFinance\nMysuru\n17-12-2022\nRs. 113,000\n3.0\nEMP1106\nDeepa Krishnan\nFinance\nCoimbatore\n08-03-2025\nRs. 44,000\n3.8\nEMP1107\nSowmya Varma\nHR\nMadurai\n16-09-2021\nRs. 122,000\n3.3\nEMP1108\nPrakash Gowda\nDesign\nMadurai\n23-06-2019\nRs. 97,000\n3.0\nEMP1109\nSiva Sharma\nSupport\nCoimbatore\n06-06-2026\nRs. 81,000\n3.0\nEMP1110\nBala Krishnan\nSupport\nBengaluru\n03-09-2025\nRs. 128,000\n2.9\nEMP1111\nPrakash Pillai\nSales\nBengaluru\n19-01-2026\nRs. 84,000\n4.2\nEMP1112\nSwathi Kumar\nFinance\nBengaluru\n09-01-2021\nRs. 99,000\n3.0\nEMP1113\nDeepa Varma\nOperations\nChennai\n18-01-2019\nRs. 85,000\n2.9\nEMP1114\nAnitha Shetty\nOperations\nCoimbatore\n25-11-2024\nRs. 72,000\n4.9\nEMP1115\nGanesh Babu\nOperations\nBengaluru\n13-02-2026\nRs. 42,000\n4.2\nEMP1116\nDivya Nair\nHR\nMadurai\n13-09-2020\nRs. 118,000\n4.9",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_4.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2575
+      }
+    },
+    {
+      "evidence_id": "E012",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 4,
+      "section": "Name",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "ID",
+          "Name",
+          "Department",
+          "Location",
+          "Joined",
+          "Monthly Pay",
+          "Rating"
+        ],
+        "rows": [
+          [
+            "EMP1078",
+            "Prakash Kumar",
+            "Operations",
+            "Chennai",
+            "02-03-2023",
+            "Rs. 127,000",
+            "3.8"
+          ],
+          [
+            "EMP1079",
+            "Suresh Krishnan",
+            "QA",
+            "Madurai",
+            "05-06-2023",
+            "Rs. 45,000",
+            "3.6"
+          ],
+          [
+            "EMP1080",
+            "Siva Reddy",
+            "Finance",
+            "Madurai",
+            "27-09-2026",
+            "Rs. 87,000",
+            "4.3"
+          ],
+          [
+            "EMP1081",
+            "Kavya Babu",
+            "Finance",
+            "Chennai",
+            "12-06-2019",
+            "Rs. 78,000",
+            "4.0"
+          ],
+          [
+            "EMP1082",
+            "Nithya Gowda",
+            "Engineering",
+            "Kochi",
+            "21-10-2021",
+            "Rs. 117,000",
+            "2.9"
+          ],
+          [
+            "EMP1083",
+            "Anitha Sharma",
+            "QA",
+            "Mysuru",
+            "24-10-2024",
+            "Rs. 43,000",
+            "4.5"
+          ],
+          [
+            "EMP1084",
+            "Priya Krishnan",
+            "Support",
+            "Mysuru",
+            "04-04-2018",
+            "Rs. 81,000",
+            "3.5"
+          ],
+          [
+            "EMP1085",
+            "Sowmya Varma",
+            "Sales",
+            "Coimbatore",
+            "14-09-2025",
+            "Rs. 136,000",
+            "4.6"
+          ],
+          [
+            "EMP1086",
+            "Bala Nair",
+            "Engineering",
+            "Madurai",
+            "07-09-2023",
+            "Rs. 109,000",
+            "3.8"
+          ],
+          [
+            "EMP1087",
+            "Naveen Nair",
+            "Operations",
+            "Bengaluru",
+            "18-06-2026",
+            "Rs. 70,000",
+            "4.2"
+          ],
+          [
+            "EMP1088",
+            "Nithya Gowda",
+            "Finance",
+            "Coimbatore",
+            "08-05-2026",
+            "Rs. 63,000",
+            "3.3"
+          ],
+          [
+            "EMP1089",
+            "Dinesh Iyer",
+            "Finance",
+            "Mysuru",
+            "07-12-2025",
+            "Rs. 65,000",
+            "3.8"
+          ],
+          [
+            "EMP1090",
+            "Lakshmi Raj",
+            "Finance",
+            "Madurai",
+            "22-09-2024",
+            "Rs. 139,000",
+            "4.9"
+          ],
+          [
+            "EMP1091",
+            "Dinesh Shetty",
+            "HR",
+            "Coimbatore",
+            "10-01-2022",
+            "Rs. 116,000",
+            "3.0"
+          ],
+          [
+            "EMP1092",
+            "Ajay Iyer",
+            "QA",
+            "Mysuru",
+            "16-04-2021",
+            "Rs. 130,000",
+            "3.9"
+          ],
+          [
+            "EMP1093",
+            "Suresh Raj",
+            "Finance",
+            "Madurai",
+            "24-10-2021",
+            "Rs. 56,000",
+            "2.9"
+          ],
+          [
+            "EMP1094",
+            "Ajay Menon",
+            "Support",
+            "Chennai",
+            "04-07-2023",
+            "Rs. 116,000",
+            "3.8"
+          ],
+          [
+            "EMP1095",
+            "Arun Sharma",
+            "Sales",
+            "Coimbatore",
+            "14-11-2025",
+            "Rs. 86,000",
+            "4.2"
+          ],
+          [
+            "EMP1096",
+            "Naveen Iyer",
+            "Finance",
+            "Mysuru",
+            "02-02-2021",
+            "Rs. 93,000",
+            "4.4"
+          ],
+          [
+            "EMP1097",
+            "Anitha Pillai",
+            "Engineering",
+            "Coimbatore",
+            "02-07-2025",
+            "Rs. 48,000",
+            "4.8"
+          ],
+          [
+            "EMP1098",
+            "Priya Kumar",
+            "Finance",
+            "Kochi",
+            "19-10-2019",
+            "Rs. 67,000",
+            "3.4"
+          ],
+          [
+            "EMP1099",
+            "Suresh Babu",
+            "QA",
+            "Madurai",
+            "15-05-2021",
+            "Rs. 128,000",
+            "3.0"
+          ],
+          [
+            "EMP1100",
+            "Swathi Gowda",
+            "Sales",
+            "Mysuru",
+            "09-12-2020",
+            "Rs. 26,000",
+            "4.3"
+          ],
+          [
+            "EMP1101",
+            "Siva Murugan",
+            "Finance",
+            "Coimbatore",
+            "06-10-2024",
+            "Rs. 130,000",
+            "3.7"
+          ],
+          [
+            "EMP1102",
+            "Karthik Pillai",
+            "HR",
+            "Mysuru",
+            "04-03-2020",
+            "Rs. 86,000",
+            "3.5"
+          ],
+          [
+            "EMP1103",
+            "Arun Iyer",
+            "Support",
+            "Bengaluru",
+            "08-08-2022",
+            "Rs. 67,000",
+            "3.4"
+          ],
+          [
+            "EMP1104",
+            "Rahul Murugan",
+            "Engineering",
+            "Kochi",
+            "23-04-2018",
+            "Rs. 110,000",
+            "3.0"
+          ],
+          [
+            "EMP1105",
+            "Anitha Pillai",
+            "Finance",
+            "Mysuru",
+            "17-12-2022",
+            "Rs. 113,000",
+            "3.0"
+          ],
+          [
+            "EMP1106",
+            "Deepa Krishnan",
+            "Finance",
+            "Coimbatore",
+            "08-03-2025",
+            "Rs. 44,000",
+            "3.8"
+          ],
+          [
+            "EMP1107",
+            "Sowmya Varma",
+            "HR",
+            "Madurai",
+            "16-09-2021",
+            "Rs. 122,000",
+            "3.3"
+          ],
+          [
+            "EMP1108",
+            "Prakash Gowda",
+            "Design",
+            "Madurai",
+            "23-06-2019",
+            "Rs. 97,000",
+            "3.0"
+          ],
+          [
+            "EMP1109",
+            "Siva Sharma",
+            "Support",
+            "Coimbatore",
+            "06-06-2026",
+            "Rs. 81,000",
+            "3.0"
+          ],
+          [
+            "EMP1110",
+            "Bala Krishnan",
+            "Support",
+            "Bengaluru",
+            "03-09-2025",
+            "Rs. 128,000",
+            "2.9"
+          ],
+          [
+            "EMP1111",
+            "Prakash Pillai",
+            "Sales",
+            "Bengaluru",
+            "19-01-2026",
+            "Rs. 84,000",
+            "4.2"
+          ],
+          [
+            "EMP1112",
+            "Swathi Kumar",
+            "Finance",
+            "Bengaluru",
+            "09-01-2021",
+            "Rs. 99,000",
+            "3.0"
+          ],
+          [
+            "EMP1113",
+            "Deepa Varma",
+            "Operations",
+            "Chennai",
+            "18-01-2019",
+            "Rs. 85,000",
+            "2.9"
+          ],
+          [
+            "EMP1114",
+            "Anitha Shetty",
+            "Operations",
+            "Coimbatore",
+            "25-11-2024",
+            "Rs. 72,000",
+            "4.9"
+          ],
+          [
+            "EMP1115",
+            "Ganesh Babu",
+            "Operations",
+            "Bengaluru",
+            "13-02-2026",
+            "Rs. 42,000",
+            "4.2"
+          ],
+          [
+            "EMP1116",
+            "Divya Nair",
+            "HR",
+            "Madurai",
+            "13-09-2020",
+            "Rs. 118,000",
+            "4.9"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_4.png",
+      "metadata": {
+        "row_count": 39,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E013",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 4,
+      "section": "Name",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_4.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (98 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E014",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 5,
+      "section": "Name",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 5\nID\nName\nDepartment\nLocation\nJoined\nMonthly Pay\nRating\nEMP1117\nDinesh Kumar\nEngineering\nKochi\n15-11-2026\nRs. 79,000\n3.9\nEMP1118\nMeena Gowda\nSupport\nKochi\n05-05-2021\nRs. 137,000\n4.3\nEMP1119\nPriya Shetty\nDesign\nMysuru\n14-10-2018\nRs. 55,000\n3.2\nEMP1120\nNithya Kumar\nDesign\nBengaluru\n20-11-2018\nRs. 56,000\n4.4\nEMP1121\nGanesh Menon\nOperations\nMadurai\n07-01-2020\nRs. 89,000\n4.9\nEMP1122\nSwathi Krishnan\nSupport\nKochi\n19-10-2023\nRs. 55,000\n3.4\nEMP1123\nHarini Sharma\nSales\nCoimbatore\n14-05-2022\nRs. 32,000\n4.0\nEMP1124\nAjay Murugan\nSales\nBengaluru\n18-08-2018\nRs. 69,000\n4.8\nEMP1125\nPrakash Reddy\nOperations\nMysuru\n14-07-2020\nRs. 63,000\n3.6\nEMP1126\nMeena Babu\nQA\nCoimbatore\n10-12-2020\nRs. 128,000\n3.8\nEMP1127\nRevathi Pillai\nEngineering\nBengaluru\n18-09-2020\nRs. 74,000\n3.3\nEMP1128\nNaveen Murugan\nSupport\nChennai\n15-06-2019\nRs. 93,000\n4.3\nEMP1129\nPriya Iyer\nSupport\nBengaluru\n22-10-2018\nRs. 136,000\n3.0\nEMP1130\nKavya Menon\nSupport\nKochi\n10-01-2021\nRs. 49,000\n4.8\nEMP1131\nSwathi Shetty\nDesign\nBengaluru\n08-12-2021\nRs. 75,000\n4.7\nEMP1132\nDinesh Iyer\nHR\nBengaluru\n15-09-2023\nRs. 64,000\n3.3\nEMP1133\nGanesh Raj\nQA\nMysuru\n16-06-2021\nRs. 72,000\n3.5\nEMP1134\nSiva Babu\nEngineering\nCoimbatore\n24-03-2018\nRs. 58,000\n4.0\nEMP1135\nLakshmi Nair\nOperations\nCoimbatore\n11-04-2024\nRs. 97,000\n4.6\nEMP1136\nRevathi Murugan\nQA\nMysuru\n11-05-2025\nRs. 117,000\n4.1\nEMP1137\nGanesh Nair\nQA\nMysuru\n26-06-2020\nRs. 42,000\n4.3\nEMP1138\nAnitha Sharma\nQA\nMysuru\n02-09-2018\nRs. 132,000\n4.6\nEMP1139\nDinesh Kumar\nEngineering\nBengaluru\n05-11-2021\nRs. 33,000\n4.3\nEMP1140\nVignesh Sharma\nEngineering\nBengaluru\n12-01-2025\nRs. 109,000\n3.8",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_5.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1632
+      }
+    },
+    {
+      "evidence_id": "E015",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 5,
+      "section": "Name",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "ID",
+          "Name",
+          "Department",
+          "Location",
+          "Joined",
+          "Monthly Pay",
+          "Rating"
+        ],
+        "rows": [
+          [
+            "EMP1117",
+            "Dinesh Kumar",
+            "Engineering",
+            "Kochi",
+            "15-11-2026",
+            "Rs. 79,000",
+            "3.9"
+          ],
+          [
+            "EMP1118",
+            "Meena Gowda",
+            "Support",
+            "Kochi",
+            "05-05-2021",
+            "Rs. 137,000",
+            "4.3"
+          ],
+          [
+            "EMP1119",
+            "Priya Shetty",
+            "Design",
+            "Mysuru",
+            "14-10-2018",
+            "Rs. 55,000",
+            "3.2"
+          ],
+          [
+            "EMP1120",
+            "Nithya Kumar",
+            "Design",
+            "Bengaluru",
+            "20-11-2018",
+            "Rs. 56,000",
+            "4.4"
+          ],
+          [
+            "EMP1121",
+            "Ganesh Menon",
+            "Operations",
+            "Madurai",
+            "07-01-2020",
+            "Rs. 89,000",
+            "4.9"
+          ],
+          [
+            "EMP1122",
+            "Swathi Krishnan",
+            "Support",
+            "Kochi",
+            "19-10-2023",
+            "Rs. 55,000",
+            "3.4"
+          ],
+          [
+            "EMP1123",
+            "Harini Sharma",
+            "Sales",
+            "Coimbatore",
+            "14-05-2022",
+            "Rs. 32,000",
+            "4.0"
+          ],
+          [
+            "EMP1124",
+            "Ajay Murugan",
+            "Sales",
+            "Bengaluru",
+            "18-08-2018",
+            "Rs. 69,000",
+            "4.8"
+          ],
+          [
+            "EMP1125",
+            "Prakash Reddy",
+            "Operations",
+            "Mysuru",
+            "14-07-2020",
+            "Rs. 63,000",
+            "3.6"
+          ],
+          [
+            "EMP1126",
+            "Meena Babu",
+            "QA",
+            "Coimbatore",
+            "10-12-2020",
+            "Rs. 128,000",
+            "3.8"
+          ],
+          [
+            "EMP1127",
+            "Revathi Pillai",
+            "Engineering",
+            "Bengaluru",
+            "18-09-2020",
+            "Rs. 74,000",
+            "3.3"
+          ],
+          [
+            "EMP1128",
+            "Naveen Murugan",
+            "Support",
+            "Chennai",
+            "15-06-2019",
+            "Rs. 93,000",
+            "4.3"
+          ],
+          [
+            "EMP1129",
+            "Priya Iyer",
+            "Support",
+            "Bengaluru",
+            "22-10-2018",
+            "Rs. 136,000",
+            "3.0"
+          ],
+          [
+            "EMP1130",
+            "Kavya Menon",
+            "Support",
+            "Kochi",
+            "10-01-2021",
+            "Rs. 49,000",
+            "4.8"
+          ],
+          [
+            "EMP1131",
+            "Swathi Shetty",
+            "Design",
+            "Bengaluru",
+            "08-12-2021",
+            "Rs. 75,000",
+            "4.7"
+          ],
+          [
+            "EMP1132",
+            "Dinesh Iyer",
+            "HR",
+            "Bengaluru",
+            "15-09-2023",
+            "Rs. 64,000",
+            "3.3"
+          ],
+          [
+            "EMP1133",
+            "Ganesh Raj",
+            "QA",
+            "Mysuru",
+            "16-06-2021",
+            "Rs. 72,000",
+            "3.5"
+          ],
+          [
+            "EMP1134",
+            "Siva Babu",
+            "Engineering",
+            "Coimbatore",
+            "24-03-2018",
+            "Rs. 58,000",
+            "4.0"
+          ],
+          [
+            "EMP1135",
+            "Lakshmi Nair",
+            "Operations",
+            "Coimbatore",
+            "11-04-2024",
+            "Rs. 97,000",
+            "4.6"
+          ],
+          [
+            "EMP1136",
+            "Revathi Murugan",
+            "QA",
+            "Mysuru",
+            "11-05-2025",
+            "Rs. 117,000",
+            "4.1"
+          ],
+          [
+            "EMP1137",
+            "Ganesh Nair",
+            "QA",
+            "Mysuru",
+            "26-06-2020",
+            "Rs. 42,000",
+            "4.3"
+          ],
+          [
+            "EMP1138",
+            "Anitha Sharma",
+            "QA",
+            "Mysuru",
+            "02-09-2018",
+            "Rs. 132,000",
+            "4.6"
+          ],
+          [
+            "EMP1139",
+            "Dinesh Kumar",
+            "Engineering",
+            "Bengaluru",
+            "05-11-2021",
+            "Rs. 33,000",
+            "4.3"
+          ],
+          [
+            "EMP1140",
+            "Vignesh Sharma",
+            "Engineering",
+            "Bengaluru",
+            "12-01-2025",
+            "Rs. 109,000",
+            "3.8"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_5.png",
+      "metadata": {
+        "row_count": 24,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E016",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 5,
+      "section": "Name",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_5.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (68 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E017",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 6,
+      "section": "2. Inventory Stock List (150 items)",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 6\n2. Inventory Stock List (150 items)\nSKU\nItem\nCategory\nStock\nReorder Lvl\nUnit Price\nValue\nStatus\nSKU5000\nLaptop Pro-117\nLaptops\n68\n27\nRs. 27,000\nRs. 1,836,000\nOK\nSKU5001\nFurniture Plus-925\nFurniture\n68\n19\nRs. 2,000\nRs. 136,000\nOK\nSKU5002\nNetworking Max-346\nNetworking\n13\n39\nRs. 7,000\nRs. 91,000\nLow\nSKU5003\nPeripheral Core-373\nPeripherals\n79\n26\nRs. 17,000\nRs. 1,343,000\nOK\nSKU5004\nPower Mini-678\nPower\n10\n21\nRs. 26,500\nRs. 265,000\nLow\nSKU5005\nPeripheral Lite-769\nPeripherals\n89\n17\nRs. 20,000\nRs. 1,780,000\nOK\nSKU5006\nLaptop Plus-665\nLaptops\n11\n22\nRs. 25,000\nRs. 275,000\nLow\nSKU5007\nSoftware Licence Max-184\nSoftware Licences\n7\n30\nRs. 1,500\nRs. 10,500\nLow\nSKU5008\nSoftware Licence Core-679\nSoftware Licences\n108\n23\nRs. 42,000\nRs. 4,536,000\nOK\nSKU5009\nMonitor Basic-316\nMonitors\n114\n26\nRs. 3,500\nRs. 399,000\nOK\nSKU5010\nSoftware Licence Elite-656\nSoftware Licences\n34\n11\nRs. 5,500\nRs. 187,000\nOK\nSKU5011\nLaptop Pro-312\nLaptops\n22\n39\nRs. 21,000\nRs. 462,000\nLow\nSKU5012\nNetworking Lite-406\nNetworking\n96\n36\nRs. 26,000\nRs. 2,496,000\nOK\nSKU5013\nNetworking Plus-793\nNetworking\n72\n17\nRs. 37,000\nRs. 2,664,000\nOK\nSKU5014\nStorage Lite-612\nStorage\n49\n34\nRs. 9,500\nRs. 465,500\nOK\nSKU5015\nStorage Basic-958\nStorage\n6\n13\nRs. 28,500\nRs. 171,000\nLow\nSKU5016\nMonitor Plus-892\nMonitors\n43\n29\nRs. 40,000\nRs. 1,720,000\nOK\nSKU5017\nStorage Mini-602\nStorage\n3\n30\nRs. 18,000\nRs. 54,000\nLow\nSKU5018\nPeripheral Plus-290\nPeripherals\n45\n27\nRs. 25,000\nRs. 1,125,000\nOK\nSKU5019\nPower Elite-917\nPower\n10\n34\nRs. 40,500\nRs. 405,000\nLow\nSKU5020\nPeripheral Elite-257\nPeripherals\n91\n12\nRs. 6,000\nRs. 546,000\nOK\nSKU5021\nPower Max-857\nPower\n91\n35\nRs. 41,500\nRs. 3,776,500\nOK\nSKU5022\nPower Lite-105\nPower\n40\n21\nRs. 7,500\nRs. 300,000\nOK\nSKU5023\nFurniture Lite-235\nFurniture\n56\n21\nRs. 18,000\nRs. 1,008,000\nOK\nSKU5024\nMonitor Plus-205\nMonitors\n23\n23\nRs. 29,500\nRs. 678,500\nOK\nSKU5025\nLaptop Lite-711\nLaptops\n11\n21\nRs. 36,000\nRs. 396,000\nLow\nSKU5026\nStorage Elite-523\nStorage\n110\n22\nRs. 1,500\nRs. 165,000\nOK\nSKU5027\nPower Basic-685\nPower\n99\n12\nRs. 36,500\nRs. 3,613,500\nOK\nSKU5028\nNetworking Max-375\nNetworking\n87\n22\nRs. 11,500\nRs. 1,000,500\nOK\nSKU5029\nFurniture Lite-271\nFurniture\n34\n25\nRs. 10,000\nRs. 340,000\nOK\nSKU5030\nPower Mini-901\nPower\n35\n23\nRs. 20,000\nRs. 700,000\nOK\nSKU5031\nMonitor Mini-708\nMonitors\n46\n18\nRs. 16,500\nRs. 759,000\nOK\nSKU5032\nPeripheral Elite-106\nPeripherals\n58\n13\nRs. 9,500\nRs. 551,000\nOK\nSKU5033\nPower Plus-923\nPower\n42\n36\nRs. 40,500\nRs. 1,701,000\nOK\nSKU5034\nStorage Max-407\nStorage\n56\n20\nRs. 28,500\nRs. 1,596,000\nOK\nSKU5035\nStorage Basic-590\nStorage\n77\n40\nRs. 45,000\nRs. 3,465,000\nOK\nSKU5036\nStorage Core-398\nStorage\n22\n40\nRs. 26,000\nRs. 572,000\nLow\nSKU5037\nSoftware Licence Core-485\nSoftware Licences\n73\n35\nRs. 16,500\nRs. 1,204,500\nOK",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_6.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2767
+      }
+    },
+    {
+      "evidence_id": "E018",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 6,
+      "section": "2. Inventory Stock List (150 items)",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "SKU",
+          "Item",
+          "Category",
+          "Stock",
+          "Reorder Lvl",
+          "Unit Price",
+          "Value",
+          "Status"
+        ],
+        "rows": [
+          [
+            "SKU5000",
+            "Laptop Pro-117",
+            "Laptops",
+            "68",
+            "27",
+            "Rs. 27,000",
+            "Rs. 1,836,000",
+            "OK"
+          ],
+          [
+            "SKU5001",
+            "Furniture Plus-925",
+            "Furniture",
+            "68",
+            "19",
+            "Rs. 2,000",
+            "Rs. 136,000",
+            "OK"
+          ],
+          [
+            "SKU5002",
+            "Networking Max-346",
+            "Networking",
+            "13",
+            "39",
+            "Rs. 7,000",
+            "Rs. 91,000",
+            "Low"
+          ],
+          [
+            "SKU5003",
+            "Peripheral Core-373",
+            "Peripherals",
+            "79",
+            "26",
+            "Rs. 17,000",
+            "Rs. 1,343,000",
+            "OK"
+          ],
+          [
+            "SKU5004",
+            "Power Mini-678",
+            "Power",
+            "10",
+            "21",
+            "Rs. 26,500",
+            "Rs. 265,000",
+            "Low"
+          ],
+          [
+            "SKU5005",
+            "Peripheral Lite-769",
+            "Peripherals",
+            "89",
+            "17",
+            "Rs. 20,000",
+            "Rs. 1,780,000",
+            "OK"
+          ],
+          [
+            "SKU5006",
+            "Laptop Plus-665",
+            "Laptops",
+            "11",
+            "22",
+            "Rs. 25,000",
+            "Rs. 275,000",
+            "Low"
+          ],
+          [
+            "SKU5007",
+            "Software Licence Max-184",
+            "Software Licences",
+            "7",
+            "30",
+            "Rs. 1,500",
+            "Rs. 10,500",
+            "Low"
+          ],
+          [
+            "SKU5008",
+            "Software Licence Core-679",
+            "Software Licences",
+            "108",
+            "23",
+            "Rs. 42,000",
+            "Rs. 4,536,000",
+            "OK"
+          ],
+          [
+            "SKU5009",
+            "Monitor Basic-316",
+            "Monitors",
+            "114",
+            "26",
+            "Rs. 3,500",
+            "Rs. 399,000",
+            "OK"
+          ],
+          [
+            "SKU5010",
+            "Software Licence Elite-656",
+            "Software Licences",
+            "34",
+            "11",
+            "Rs. 5,500",
+            "Rs. 187,000",
+            "OK"
+          ],
+          [
+            "SKU5011",
+            "Laptop Pro-312",
+            "Laptops",
+            "22",
+            "39",
+            "Rs. 21,000",
+            "Rs. 462,000",
+            "Low"
+          ],
+          [
+            "SKU5012",
+            "Networking Lite-406",
+            "Networking",
+            "96",
+            "36",
+            "Rs. 26,000",
+            "Rs. 2,496,000",
+            "OK"
+          ],
+          [
+            "SKU5013",
+            "Networking Plus-793",
+            "Networking",
+            "72",
+            "17",
+            "Rs. 37,000",
+            "Rs. 2,664,000",
+            "OK"
+          ],
+          [
+            "SKU5014",
+            "Storage Lite-612",
+            "Storage",
+            "49",
+            "34",
+            "Rs. 9,500",
+            "Rs. 465,500",
+            "OK"
+          ],
+          [
+            "SKU5015",
+            "Storage Basic-958",
+            "Storage",
+            "6",
+            "13",
+            "Rs. 28,500",
+            "Rs. 171,000",
+            "Low"
+          ],
+          [
+            "SKU5016",
+            "Monitor Plus-892",
+            "Monitors",
+            "43",
+            "29",
+            "Rs. 40,000",
+            "Rs. 1,720,000",
+            "OK"
+          ],
+          [
+            "SKU5017",
+            "Storage Mini-602",
+            "Storage",
+            "3",
+            "30",
+            "Rs. 18,000",
+            "Rs. 54,000",
+            "Low"
+          ],
+          [
+            "SKU5018",
+            "Peripheral Plus-290",
+            "Peripherals",
+            "45",
+            "27",
+            "Rs. 25,000",
+            "Rs. 1,125,000",
+            "OK"
+          ],
+          [
+            "SKU5019",
+            "Power Elite-917",
+            "Power",
+            "10",
+            "34",
+            "Rs. 40,500",
+            "Rs. 405,000",
+            "Low"
+          ],
+          [
+            "SKU5020",
+            "Peripheral Elite-257",
+            "Peripherals",
+            "91",
+            "12",
+            "Rs. 6,000",
+            "Rs. 546,000",
+            "OK"
+          ],
+          [
+            "SKU5021",
+            "Power Max-857",
+            "Power",
+            "91",
+            "35",
+            "Rs. 41,500",
+            "Rs. 3,776,500",
+            "OK"
+          ],
+          [
+            "SKU5022",
+            "Power Lite-105",
+            "Power",
+            "40",
+            "21",
+            "Rs. 7,500",
+            "Rs. 300,000",
+            "OK"
+          ],
+          [
+            "SKU5023",
+            "Furniture Lite-235",
+            "Furniture",
+            "56",
+            "21",
+            "Rs. 18,000",
+            "Rs. 1,008,000",
+            "OK"
+          ],
+          [
+            "SKU5024",
+            "Monitor Plus-205",
+            "Monitors",
+            "23",
+            "23",
+            "Rs. 29,500",
+            "Rs. 678,500",
+            "OK"
+          ],
+          [
+            "SKU5025",
+            "Laptop Lite-711",
+            "Laptops",
+            "11",
+            "21",
+            "Rs. 36,000",
+            "Rs. 396,000",
+            "Low"
+          ],
+          [
+            "SKU5026",
+            "Storage Elite-523",
+            "Storage",
+            "110",
+            "22",
+            "Rs. 1,500",
+            "Rs. 165,000",
+            "OK"
+          ],
+          [
+            "SKU5027",
+            "Power Basic-685",
+            "Power",
+            "99",
+            "12",
+            "Rs. 36,500",
+            "Rs. 3,613,500",
+            "OK"
+          ],
+          [
+            "SKU5028",
+            "Networking Max-375",
+            "Networking",
+            "87",
+            "22",
+            "Rs. 11,500",
+            "Rs. 1,000,500",
+            "OK"
+          ],
+          [
+            "SKU5029",
+            "Furniture Lite-271",
+            "Furniture",
+            "34",
+            "25",
+            "Rs. 10,000",
+            "Rs. 340,000",
+            "OK"
+          ],
+          [
+            "SKU5030",
+            "Power Mini-901",
+            "Power",
+            "35",
+            "23",
+            "Rs. 20,000",
+            "Rs. 700,000",
+            "OK"
+          ],
+          [
+            "SKU5031",
+            "Monitor Mini-708",
+            "Monitors",
+            "46",
+            "18",
+            "Rs. 16,500",
+            "Rs. 759,000",
+            "OK"
+          ],
+          [
+            "SKU5032",
+            "Peripheral Elite-106",
+            "Peripherals",
+            "58",
+            "13",
+            "Rs. 9,500",
+            "Rs. 551,000",
+            "OK"
+          ],
+          [
+            "SKU5033",
+            "Power Plus-923",
+            "Power",
+            "42",
+            "36",
+            "Rs. 40,500",
+            "Rs. 1,701,000",
+            "OK"
+          ],
+          [
+            "SKU5034",
+            "Storage Max-407",
+            "Storage",
+            "56",
+            "20",
+            "Rs. 28,500",
+            "Rs. 1,596,000",
+            "OK"
+          ],
+          [
+            "SKU5035",
+            "Storage Basic-590",
+            "Storage",
+            "77",
+            "40",
+            "Rs. 45,000",
+            "Rs. 3,465,000",
+            "OK"
+          ],
+          [
+            "SKU5036",
+            "Storage Core-398",
+            "Storage",
+            "22",
+            "40",
+            "Rs. 26,000",
+            "Rs. 572,000",
+            "Low"
+          ],
+          [
+            "SKU5037",
+            "Software Licence Core-485",
+            "Software Licences",
+            "73",
+            "35",
+            "Rs. 16,500",
+            "Rs. 1,204,500",
+            "OK"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_6.png",
+      "metadata": {
+        "row_count": 38,
+        "col_count": 8
+      }
+    },
+    {
+      "evidence_id": "E019",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 6,
+      "section": "2. Inventory Stock List (150 items)",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_6.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (89 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E020",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 7,
+      "section": "SKU",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 7\nSKU\nItem\nCategory\nStock\nReorder Lvl\nUnit Price\nValue\nStatus\nSKU5038\nFurniture Core-216\nFurniture\n104\n35\nRs. 26,000\nRs. 2,704,000\nOK\nSKU5039\nPeripheral Pro-844\nPeripherals\n75\n27\nRs. 12,500\nRs. 937,500\nOK\nSKU5040\nSoftware Licence Mini-916\nSoftware Licences\n120\n32\nRs. 14,000\nRs. 1,680,000\nOK\nSKU5041\nFurniture Plus-789\nFurniture\n106\n32\nRs. 5,000\nRs. 530,000\nOK\nSKU5042\nSoftware Licence Basic-358\nSoftware Licences\n17\n30\nRs. 20,000\nRs. 340,000\nLow\nSKU5043\nNetworking Lite-559\nNetworking\n91\n23\nRs. 25,000\nRs. 2,275,000\nOK\nSKU5044\nSoftware Licence Plus-656\nSoftware Licences\n74\n22\nRs. 35,000\nRs. 2,590,000\nOK\nSKU5045\nLaptop Lite-211\nLaptops\n101\n40\nRs. 24,000\nRs. 2,424,000\nOK\nSKU5046\nPeripheral Max-762\nPeripherals\n84\n31\nRs. 23,500\nRs. 1,974,000\nOK\nSKU5047\nLaptop Plus-870\nLaptops\n72\n30\nRs. 44,000\nRs. 3,168,000\nOK\nSKU5048\nStorage Pro-200\nStorage\n101\n23\nRs. 7,500\nRs. 757,500\nOK\nSKU5049\nFurniture Basic-556\nFurniture\n28\n26\nRs. 34,000\nRs. 952,000\nOK\nSKU5050\nStorage Max-453\nStorage\n50\n24\nRs. 44,000\nRs. 2,200,000\nOK\nSKU5051\nLaptop Plus-187\nLaptops\n61\n13\nRs. 19,500\nRs. 1,189,500\nOK\nSKU5052\nMonitor Core-419\nMonitors\n106\n40\nRs. 10,000\nRs. 1,060,000\nOK\nSKU5053\nStorage Mini-456\nStorage\n58\n35\nRs. 14,000\nRs. 812,000\nOK\nSKU5054\nSoftware Licence Core-168\nSoftware Licences\n12\n24\nRs. 29,500\nRs. 354,000\nLow\nSKU5055\nFurniture Pro-969\nFurniture\n5\n35\nRs. 8,000\nRs. 40,000\nLow\nSKU5056\nStorage Max-858\nStorage\n82\n13\nRs. 44,000\nRs. 3,608,000\nOK\nSKU5057\nPeripheral Max-438\nPeripherals\n66\n15\nRs. 36,000\nRs. 2,376,000\nOK\nSKU5058\nPower Max-290\nPower\n59\n17\nRs. 26,500\nRs. 1,563,500\nOK\nSKU5059\nPower Basic-560\nPower\n50\n10\nRs. 40,000\nRs. 2,000,000\nOK\nSKU5060\nPower Basic-385\nPower\n49\n10\nRs. 14,500\nRs. 710,500\nOK\nSKU5061\nMonitor Max-474\nMonitors\n73\n13\nRs. 35,000\nRs. 2,555,000\nOK\nSKU5062\nStorage Elite-786\nStorage\n25\n24\nRs. 8,000\nRs. 200,000\nOK\nSKU5063\nSoftware Licence Core-711\nSoftware Licences\n67\n40\nRs. 41,500\nRs. 2,780,500\nOK\nSKU5064\nPower Lite-456\nPower\n78\n22\nRs. 38,500\nRs. 3,003,000\nOK\nSKU5065\nStorage Max-933\nStorage\n108\n24\nRs. 40,500\nRs. 4,374,000\nOK\nSKU5066\nFurniture Lite-788\nFurniture\n117\n29\nRs. 38,500\nRs. 4,504,500\nOK\nSKU5067\nNetworking Elite-219\nNetworking\n40\n13\nRs. 16,000\nRs. 640,000\nOK\nSKU5068\nNetworking Plus-528\nNetworking\n47\n32\nRs. 10,000\nRs. 470,000\nOK\nSKU5069\nNetworking Max-598\nNetworking\n73\n22\nRs. 28,000\nRs. 2,044,000\nOK\nSKU5070\nNetworking Elite-243\nNetworking\n71\n15\nRs. 32,000\nRs. 2,272,000\nOK\nSKU5071\nNetworking Pro-986\nNetworking\n40\n36\nRs. 29,500\nRs. 1,180,000\nOK\nSKU5072\nStorage Basic-934\nStorage\n1\n25\nRs. 9,500\nRs. 9,500\nLow\nSKU5073\nPower Mini-518\nPower\n71\n26\nRs. 42,500\nRs. 3,017,500\nOK\nSKU5074\nSoftware Licence Mini-271\nSoftware Licences\n53\n32\nRs. 29,000\nRs. 1,537,000\nOK\nSKU5075\nMonitor Elite-133\nMonitors\n72\n10\nRs. 15,000\nRs. 1,080,000\nOK\nSKU5076\nFurniture Max-899\nFurniture\n28\n27\nRs. 19,000\nRs. 532,000\nOK",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_7.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2869
+      }
+    },
+    {
+      "evidence_id": "E021",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 7,
+      "section": "SKU",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "SKU",
+          "Item",
+          "Category",
+          "Stock",
+          "Reorder Lvl",
+          "Unit Price",
+          "Value",
+          "Status"
+        ],
+        "rows": [
+          [
+            "SKU5038",
+            "Furniture Core-216",
+            "Furniture",
+            "104",
+            "35",
+            "Rs. 26,000",
+            "Rs. 2,704,000",
+            "OK"
+          ],
+          [
+            "SKU5039",
+            "Peripheral Pro-844",
+            "Peripherals",
+            "75",
+            "27",
+            "Rs. 12,500",
+            "Rs. 937,500",
+            "OK"
+          ],
+          [
+            "SKU5040",
+            "Software Licence Mini-916",
+            "Software Licences",
+            "120",
+            "32",
+            "Rs. 14,000",
+            "Rs. 1,680,000",
+            "OK"
+          ],
+          [
+            "SKU5041",
+            "Furniture Plus-789",
+            "Furniture",
+            "106",
+            "32",
+            "Rs. 5,000",
+            "Rs. 530,000",
+            "OK"
+          ],
+          [
+            "SKU5042",
+            "Software Licence Basic-358",
+            "Software Licences",
+            "17",
+            "30",
+            "Rs. 20,000",
+            "Rs. 340,000",
+            "Low"
+          ],
+          [
+            "SKU5043",
+            "Networking Lite-559",
+            "Networking",
+            "91",
+            "23",
+            "Rs. 25,000",
+            "Rs. 2,275,000",
+            "OK"
+          ],
+          [
+            "SKU5044",
+            "Software Licence Plus-656",
+            "Software Licences",
+            "74",
+            "22",
+            "Rs. 35,000",
+            "Rs. 2,590,000",
+            "OK"
+          ],
+          [
+            "SKU5045",
+            "Laptop Lite-211",
+            "Laptops",
+            "101",
+            "40",
+            "Rs. 24,000",
+            "Rs. 2,424,000",
+            "OK"
+          ],
+          [
+            "SKU5046",
+            "Peripheral Max-762",
+            "Peripherals",
+            "84",
+            "31",
+            "Rs. 23,500",
+            "Rs. 1,974,000",
+            "OK"
+          ],
+          [
+            "SKU5047",
+            "Laptop Plus-870",
+            "Laptops",
+            "72",
+            "30",
+            "Rs. 44,000",
+            "Rs. 3,168,000",
+            "OK"
+          ],
+          [
+            "SKU5048",
+            "Storage Pro-200",
+            "Storage",
+            "101",
+            "23",
+            "Rs. 7,500",
+            "Rs. 757,500",
+            "OK"
+          ],
+          [
+            "SKU5049",
+            "Furniture Basic-556",
+            "Furniture",
+            "28",
+            "26",
+            "Rs. 34,000",
+            "Rs. 952,000",
+            "OK"
+          ],
+          [
+            "SKU5050",
+            "Storage Max-453",
+            "Storage",
+            "50",
+            "24",
+            "Rs. 44,000",
+            "Rs. 2,200,000",
+            "OK"
+          ],
+          [
+            "SKU5051",
+            "Laptop Plus-187",
+            "Laptops",
+            "61",
+            "13",
+            "Rs. 19,500",
+            "Rs. 1,189,500",
+            "OK"
+          ],
+          [
+            "SKU5052",
+            "Monitor Core-419",
+            "Monitors",
+            "106",
+            "40",
+            "Rs. 10,000",
+            "Rs. 1,060,000",
+            "OK"
+          ],
+          [
+            "SKU5053",
+            "Storage Mini-456",
+            "Storage",
+            "58",
+            "35",
+            "Rs. 14,000",
+            "Rs. 812,000",
+            "OK"
+          ],
+          [
+            "SKU5054",
+            "Software Licence Core-168",
+            "Software Licences",
+            "12",
+            "24",
+            "Rs. 29,500",
+            "Rs. 354,000",
+            "Low"
+          ],
+          [
+            "SKU5055",
+            "Furniture Pro-969",
+            "Furniture",
+            "5",
+            "35",
+            "Rs. 8,000",
+            "Rs. 40,000",
+            "Low"
+          ],
+          [
+            "SKU5056",
+            "Storage Max-858",
+            "Storage",
+            "82",
+            "13",
+            "Rs. 44,000",
+            "Rs. 3,608,000",
+            "OK"
+          ],
+          [
+            "SKU5057",
+            "Peripheral Max-438",
+            "Peripherals",
+            "66",
+            "15",
+            "Rs. 36,000",
+            "Rs. 2,376,000",
+            "OK"
+          ],
+          [
+            "SKU5058",
+            "Power Max-290",
+            "Power",
+            "59",
+            "17",
+            "Rs. 26,500",
+            "Rs. 1,563,500",
+            "OK"
+          ],
+          [
+            "SKU5059",
+            "Power Basic-560",
+            "Power",
+            "50",
+            "10",
+            "Rs. 40,000",
+            "Rs. 2,000,000",
+            "OK"
+          ],
+          [
+            "SKU5060",
+            "Power Basic-385",
+            "Power",
+            "49",
+            "10",
+            "Rs. 14,500",
+            "Rs. 710,500",
+            "OK"
+          ],
+          [
+            "SKU5061",
+            "Monitor Max-474",
+            "Monitors",
+            "73",
+            "13",
+            "Rs. 35,000",
+            "Rs. 2,555,000",
+            "OK"
+          ],
+          [
+            "SKU5062",
+            "Storage Elite-786",
+            "Storage",
+            "25",
+            "24",
+            "Rs. 8,000",
+            "Rs. 200,000",
+            "OK"
+          ],
+          [
+            "SKU5063",
+            "Software Licence Core-711",
+            "Software Licences",
+            "67",
+            "40",
+            "Rs. 41,500",
+            "Rs. 2,780,500",
+            "OK"
+          ],
+          [
+            "SKU5064",
+            "Power Lite-456",
+            "Power",
+            "78",
+            "22",
+            "Rs. 38,500",
+            "Rs. 3,003,000",
+            "OK"
+          ],
+          [
+            "SKU5065",
+            "Storage Max-933",
+            "Storage",
+            "108",
+            "24",
+            "Rs. 40,500",
+            "Rs. 4,374,000",
+            "OK"
+          ],
+          [
+            "SKU5066",
+            "Furniture Lite-788",
+            "Furniture",
+            "117",
+            "29",
+            "Rs. 38,500",
+            "Rs. 4,504,500",
+            "OK"
+          ],
+          [
+            "SKU5067",
+            "Networking Elite-219",
+            "Networking",
+            "40",
+            "13",
+            "Rs. 16,000",
+            "Rs. 640,000",
+            "OK"
+          ],
+          [
+            "SKU5068",
+            "Networking Plus-528",
+            "Networking",
+            "47",
+            "32",
+            "Rs. 10,000",
+            "Rs. 470,000",
+            "OK"
+          ],
+          [
+            "SKU5069",
+            "Networking Max-598",
+            "Networking",
+            "73",
+            "22",
+            "Rs. 28,000",
+            "Rs. 2,044,000",
+            "OK"
+          ],
+          [
+            "SKU5070",
+            "Networking Elite-243",
+            "Networking",
+            "71",
+            "15",
+            "Rs. 32,000",
+            "Rs. 2,272,000",
+            "OK"
+          ],
+          [
+            "SKU5071",
+            "Networking Pro-986",
+            "Networking",
+            "40",
+            "36",
+            "Rs. 29,500",
+            "Rs. 1,180,000",
+            "OK"
+          ],
+          [
+            "SKU5072",
+            "Storage Basic-934",
+            "Storage",
+            "1",
+            "25",
+            "Rs. 9,500",
+            "Rs. 9,500",
+            "Low"
+          ],
+          [
+            "SKU5073",
+            "Power Mini-518",
+            "Power",
+            "71",
+            "26",
+            "Rs. 42,500",
+            "Rs. 3,017,500",
+            "OK"
+          ],
+          [
+            "SKU5074",
+            "Software Licence Mini-271",
+            "Software Licences",
+            "53",
+            "32",
+            "Rs. 29,000",
+            "Rs. 1,537,000",
+            "OK"
+          ],
+          [
+            "SKU5075",
+            "Monitor Elite-133",
+            "Monitors",
+            "72",
+            "10",
+            "Rs. 15,000",
+            "Rs. 1,080,000",
+            "OK"
+          ],
+          [
+            "SKU5076",
+            "Furniture Max-899",
+            "Furniture",
+            "28",
+            "27",
+            "Rs. 19,000",
+            "Rs. 532,000",
+            "OK"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_7.png",
+      "metadata": {
+        "row_count": 39,
+        "col_count": 8
+      }
+    },
+    {
+      "evidence_id": "E022",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 7,
+      "section": "SKU",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_7.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (100 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E023",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 8,
+      "section": "SKU",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 8\nSKU\nItem\nCategory\nStock\nReorder Lvl\nUnit Price\nValue\nStatus\nSKU5077\nSoftware Licence Lite-686\nSoftware Licences\n72\n33\nRs. 32,500\nRs. 2,340,000\nOK\nSKU5078\nMonitor Core-655\nMonitors\n34\n34\nRs. 35,500\nRs. 1,207,000\nOK\nSKU5079\nLaptop Basic-535\nLaptops\n97\n33\nRs. 29,000\nRs. 2,813,000\nOK\nSKU5080\nMonitor Basic-404\nMonitors\n94\n36\nRs. 42,500\nRs. 3,995,000\nOK\nSKU5081\nLaptop Lite-549\nLaptops\n57\n18\nRs. 23,000\nRs. 1,311,000\nOK\nSKU5082\nMonitor Basic-930\nMonitors\n99\n35\nRs. 16,000\nRs. 1,584,000\nOK\nSKU5083\nStorage Plus-269\nStorage\n110\n32\nRs. 40,000\nRs. 4,400,000\nOK\nSKU5084\nNetworking Pro-683\nNetworking\n100\n16\nRs. 14,000\nRs. 1,400,000\nOK\nSKU5085\nStorage Max-431\nStorage\n68\n18\nRs. 39,000\nRs. 2,652,000\nOK\nSKU5086\nFurniture Lite-238\nFurniture\n37\n28\nRs. 18,000\nRs. 666,000\nOK\nSKU5087\nPower Max-818\nPower\n117\n11\nRs. 18,500\nRs. 2,164,500\nOK\nSKU5088\nNetworking Basic-879\nNetworking\n31\n14\nRs. 21,500\nRs. 666,500\nOK\nSKU5089\nPower Elite-742\nPower\n62\n14\nRs. 37,500\nRs. 2,325,000\nOK\nSKU5090\nPower Lite-512\nPower\n48\n24\nRs. 5,500\nRs. 264,000\nOK\nSKU5091\nFurniture Mini-599\nFurniture\n88\n39\nRs. 24,500\nRs. 2,156,000\nOK\nSKU5092\nStorage Mini-750\nStorage\n74\n10\nRs. 6,500\nRs. 481,000\nOK\nSKU5093\nStorage Plus-323\nStorage\n108\n12\nRs. 35,000\nRs. 3,780,000\nOK\nSKU5094\nPower Elite-430\nPower\n105\n16\nRs. 32,500\nRs. 3,412,500\nOK\nSKU5095\nFurniture Max-679\nFurniture\n43\n27\nRs. 37,500\nRs. 1,612,500\nOK\nSKU5096\nSoftware Licence Pro-147\nSoftware Licences\n100\n20\nRs. 44,500\nRs. 4,450,000\nOK\nSKU5097\nMonitor Pro-227\nMonitors\n80\n35\nRs. 30,000\nRs. 2,400,000\nOK\nSKU5098\nNetworking Plus-307\nNetworking\n56\n24\nRs. 1,000\nRs. 56,000\nOK\nSKU5099\nNetworking Max-995\nNetworking\n112\n30\nRs. 20,000\nRs. 2,240,000\nOK\nSKU5100\nFurniture Elite-184\nFurniture\n11\n30\nRs. 24,000\nRs. 264,000\nLow\nSKU5101\nStorage Max-153\nStorage\n85\n38\nRs. 42,500\nRs. 3,612,500\nOK\nSKU5102\nPower Plus-771\nPower\n80\n19\nRs. 15,500\nRs. 1,240,000\nOK\nSKU5103\nMonitor Basic-588\nMonitors\n90\n13\nRs. 1,000\nRs. 90,000\nOK\nSKU5104\nMonitor Mini-109\nMonitors\n16\n28\nRs. 15,000\nRs. 240,000\nLow\nSKU5105\nLaptop Plus-810\nLaptops\n89\n20\nRs. 8,500\nRs. 756,500\nOK\nSKU5106\nNetworking Plus-191\nNetworking\n61\n12\nRs. 15,500\nRs. 945,500\nOK\nSKU5107\nMonitor Elite-240\nMonitors\n13\n20\nRs. 24,500\nRs. 318,500\nLow\nSKU5108\nPower Max-170\nPower\n99\n36\nRs. 9,500\nRs. 940,500\nOK\nSKU5109\nLaptop Mini-459\nLaptops\n78\n30\nRs. 11,500\nRs. 897,000\nOK\nSKU5110\nPeripheral Plus-730\nPeripherals\n80\n33\nRs. 10,500\nRs. 840,000\nOK\nSKU5111\nSoftware Licence Lite-243\nSoftware Licences\n110\n16\nRs. 6,500\nRs. 715,000\nOK\nSKU5112\nMonitor Core-539\nMonitors\n75\n33\nRs. 25,500\nRs. 1,912,500\nOK\nSKU5113\nStorage Elite-760\nStorage\n101\n14\nRs. 16,500\nRs. 1,666,500\nOK\nSKU5114\nMonitor Elite-897\nMonitors\n31\n27\nRs. 39,000\nRs. 1,209,000\nOK\nSKU5115\nLaptop Elite-310\nLaptops\n108\n37\nRs. 43,000\nRs. 4,644,000\nOK",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_8.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2791
+      }
+    },
+    {
+      "evidence_id": "E024",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 8,
+      "section": "SKU",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "SKU",
+          "Item",
+          "Category",
+          "Stock",
+          "Reorder Lvl",
+          "Unit Price",
+          "Value",
+          "Status"
+        ],
+        "rows": [
+          [
+            "SKU5077",
+            "Software Licence Lite-686",
+            "Software Licences",
+            "72",
+            "33",
+            "Rs. 32,500",
+            "Rs. 2,340,000",
+            "OK"
+          ],
+          [
+            "SKU5078",
+            "Monitor Core-655",
+            "Monitors",
+            "34",
+            "34",
+            "Rs. 35,500",
+            "Rs. 1,207,000",
+            "OK"
+          ],
+          [
+            "SKU5079",
+            "Laptop Basic-535",
+            "Laptops",
+            "97",
+            "33",
+            "Rs. 29,000",
+            "Rs. 2,813,000",
+            "OK"
+          ],
+          [
+            "SKU5080",
+            "Monitor Basic-404",
+            "Monitors",
+            "94",
+            "36",
+            "Rs. 42,500",
+            "Rs. 3,995,000",
+            "OK"
+          ],
+          [
+            "SKU5081",
+            "Laptop Lite-549",
+            "Laptops",
+            "57",
+            "18",
+            "Rs. 23,000",
+            "Rs. 1,311,000",
+            "OK"
+          ],
+          [
+            "SKU5082",
+            "Monitor Basic-930",
+            "Monitors",
+            "99",
+            "35",
+            "Rs. 16,000",
+            "Rs. 1,584,000",
+            "OK"
+          ],
+          [
+            "SKU5083",
+            "Storage Plus-269",
+            "Storage",
+            "110",
+            "32",
+            "Rs. 40,000",
+            "Rs. 4,400,000",
+            "OK"
+          ],
+          [
+            "SKU5084",
+            "Networking Pro-683",
+            "Networking",
+            "100",
+            "16",
+            "Rs. 14,000",
+            "Rs. 1,400,000",
+            "OK"
+          ],
+          [
+            "SKU5085",
+            "Storage Max-431",
+            "Storage",
+            "68",
+            "18",
+            "Rs. 39,000",
+            "Rs. 2,652,000",
+            "OK"
+          ],
+          [
+            "SKU5086",
+            "Furniture Lite-238",
+            "Furniture",
+            "37",
+            "28",
+            "Rs. 18,000",
+            "Rs. 666,000",
+            "OK"
+          ],
+          [
+            "SKU5087",
+            "Power Max-818",
+            "Power",
+            "117",
+            "11",
+            "Rs. 18,500",
+            "Rs. 2,164,500",
+            "OK"
+          ],
+          [
+            "SKU5088",
+            "Networking Basic-879",
+            "Networking",
+            "31",
+            "14",
+            "Rs. 21,500",
+            "Rs. 666,500",
+            "OK"
+          ],
+          [
+            "SKU5089",
+            "Power Elite-742",
+            "Power",
+            "62",
+            "14",
+            "Rs. 37,500",
+            "Rs. 2,325,000",
+            "OK"
+          ],
+          [
+            "SKU5090",
+            "Power Lite-512",
+            "Power",
+            "48",
+            "24",
+            "Rs. 5,500",
+            "Rs. 264,000",
+            "OK"
+          ],
+          [
+            "SKU5091",
+            "Furniture Mini-599",
+            "Furniture",
+            "88",
+            "39",
+            "Rs. 24,500",
+            "Rs. 2,156,000",
+            "OK"
+          ],
+          [
+            "SKU5092",
+            "Storage Mini-750",
+            "Storage",
+            "74",
+            "10",
+            "Rs. 6,500",
+            "Rs. 481,000",
+            "OK"
+          ],
+          [
+            "SKU5093",
+            "Storage Plus-323",
+            "Storage",
+            "108",
+            "12",
+            "Rs. 35,000",
+            "Rs. 3,780,000",
+            "OK"
+          ],
+          [
+            "SKU5094",
+            "Power Elite-430",
+            "Power",
+            "105",
+            "16",
+            "Rs. 32,500",
+            "Rs. 3,412,500",
+            "OK"
+          ],
+          [
+            "SKU5095",
+            "Furniture Max-679",
+            "Furniture",
+            "43",
+            "27",
+            "Rs. 37,500",
+            "Rs. 1,612,500",
+            "OK"
+          ],
+          [
+            "SKU5096",
+            "Software Licence Pro-147",
+            "Software Licences",
+            "100",
+            "20",
+            "Rs. 44,500",
+            "Rs. 4,450,000",
+            "OK"
+          ],
+          [
+            "SKU5097",
+            "Monitor Pro-227",
+            "Monitors",
+            "80",
+            "35",
+            "Rs. 30,000",
+            "Rs. 2,400,000",
+            "OK"
+          ],
+          [
+            "SKU5098",
+            "Networking Plus-307",
+            "Networking",
+            "56",
+            "24",
+            "Rs. 1,000",
+            "Rs. 56,000",
+            "OK"
+          ],
+          [
+            "SKU5099",
+            "Networking Max-995",
+            "Networking",
+            "112",
+            "30",
+            "Rs. 20,000",
+            "Rs. 2,240,000",
+            "OK"
+          ],
+          [
+            "SKU5100",
+            "Furniture Elite-184",
+            "Furniture",
+            "11",
+            "30",
+            "Rs. 24,000",
+            "Rs. 264,000",
+            "Low"
+          ],
+          [
+            "SKU5101",
+            "Storage Max-153",
+            "Storage",
+            "85",
+            "38",
+            "Rs. 42,500",
+            "Rs. 3,612,500",
+            "OK"
+          ],
+          [
+            "SKU5102",
+            "Power Plus-771",
+            "Power",
+            "80",
+            "19",
+            "Rs. 15,500",
+            "Rs. 1,240,000",
+            "OK"
+          ],
+          [
+            "SKU5103",
+            "Monitor Basic-588",
+            "Monitors",
+            "90",
+            "13",
+            "Rs. 1,000",
+            "Rs. 90,000",
+            "OK"
+          ],
+          [
+            "SKU5104",
+            "Monitor Mini-109",
+            "Monitors",
+            "16",
+            "28",
+            "Rs. 15,000",
+            "Rs. 240,000",
+            "Low"
+          ],
+          [
+            "SKU5105",
+            "Laptop Plus-810",
+            "Laptops",
+            "89",
+            "20",
+            "Rs. 8,500",
+            "Rs. 756,500",
+            "OK"
+          ],
+          [
+            "SKU5106",
+            "Networking Plus-191",
+            "Networking",
+            "61",
+            "12",
+            "Rs. 15,500",
+            "Rs. 945,500",
+            "OK"
+          ],
+          [
+            "SKU5107",
+            "Monitor Elite-240",
+            "Monitors",
+            "13",
+            "20",
+            "Rs. 24,500",
+            "Rs. 318,500",
+            "Low"
+          ],
+          [
+            "SKU5108",
+            "Power Max-170",
+            "Power",
+            "99",
+            "36",
+            "Rs. 9,500",
+            "Rs. 940,500",
+            "OK"
+          ],
+          [
+            "SKU5109",
+            "Laptop Mini-459",
+            "Laptops",
+            "78",
+            "30",
+            "Rs. 11,500",
+            "Rs. 897,000",
+            "OK"
+          ],
+          [
+            "SKU5110",
+            "Peripheral Plus-730",
+            "Peripherals",
+            "80",
+            "33",
+            "Rs. 10,500",
+            "Rs. 840,000",
+            "OK"
+          ],
+          [
+            "SKU5111",
+            "Software Licence Lite-243",
+            "Software Licences",
+            "110",
+            "16",
+            "Rs. 6,500",
+            "Rs. 715,000",
+            "OK"
+          ],
+          [
+            "SKU5112",
+            "Monitor Core-539",
+            "Monitors",
+            "75",
+            "33",
+            "Rs. 25,500",
+            "Rs. 1,912,500",
+            "OK"
+          ],
+          [
+            "SKU5113",
+            "Storage Elite-760",
+            "Storage",
+            "101",
+            "14",
+            "Rs. 16,500",
+            "Rs. 1,666,500",
+            "OK"
+          ],
+          [
+            "SKU5114",
+            "Monitor Elite-897",
+            "Monitors",
+            "31",
+            "27",
+            "Rs. 39,000",
+            "Rs. 1,209,000",
+            "OK"
+          ],
+          [
+            "SKU5115",
+            "Laptop Elite-310",
+            "Laptops",
+            "108",
+            "37",
+            "Rs. 43,000",
+            "Rs. 4,644,000",
+            "OK"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_8.png",
+      "metadata": {
+        "row_count": 39,
+        "col_count": 8
+      }
+    },
+    {
+      "evidence_id": "E025",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 8,
+      "section": "SKU",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_8.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (100 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E026",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 9,
+      "section": "SKU",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 9\nSKU\nItem\nCategory\nStock\nReorder Lvl\nUnit Price\nValue\nStatus\nSKU5116\nPeripheral Pro-902\nPeripherals\n95\n22\nRs. 19,500\nRs. 1,852,500\nOK\nSKU5117\nPeripheral Basic-611\nPeripherals\n63\n22\nRs. 8,000\nRs. 504,000\nOK\nSKU5118\nMonitor Core-424\nMonitors\n67\n38\nRs. 1,500\nRs. 100,500\nOK\nSKU5119\nNetworking Plus-474\nNetworking\n49\n37\nRs. 37,000\nRs. 1,813,000\nOK\nSKU5120\nNetworking Pro-701\nNetworking\n97\n25\nRs. 5,500\nRs. 533,500\nOK\nSKU5121\nMonitor Pro-161\nMonitors\n1\n18\nRs. 14,500\nRs. 14,500\nLow\nSKU5122\nPower Plus-533\nPower\n64\n19\nRs. 41,000\nRs. 2,624,000\nOK\nSKU5123\nPower Max-384\nPower\n10\n30\nRs. 35,000\nRs. 350,000\nLow\nSKU5124\nMonitor Basic-927\nMonitors\n39\n12\nRs. 33,500\nRs. 1,306,500\nOK\nSKU5125\nNetworking Lite-417\nNetworking\n68\n20\nRs. 26,000\nRs. 1,768,000\nOK\nSKU5126\nPower Pro-350\nPower\n93\n40\nRs. 16,000\nRs. 1,488,000\nOK\nSKU5127\nMonitor Mini-726\nMonitors\n118\n23\nRs. 8,000\nRs. 944,000\nOK\nSKU5128\nLaptop Max-222\nLaptops\n39\n31\nRs. 43,000\nRs. 1,677,000\nOK\nSKU5129\nLaptop Max-608\nLaptops\n90\n14\nRs. 1,500\nRs. 135,000\nOK\nSKU5130\nStorage Max-480\nStorage\n66\n26\nRs. 17,500\nRs. 1,155,000\nOK\nSKU5131\nNetworking Lite-889\nNetworking\n95\n34\nRs. 18,000\nRs. 1,710,000\nOK\nSKU5132\nLaptop Elite-636\nLaptops\n42\n35\nRs. 28,000\nRs. 1,176,000\nOK\nSKU5133\nMonitor Lite-608\nMonitors\n33\n32\nRs. 37,500\nRs. 1,237,500\nOK\nSKU5134\nSoftware Licence Mini-979\nSoftware Licences\n65\n21\nRs. 4,500\nRs. 292,500\nOK\nSKU5135\nNetworking Lite-687\nNetworking\n47\n15\nRs. 17,000\nRs. 799,000\nOK\nSKU5136\nMonitor Pro-145\nMonitors\n29\n33\nRs. 33,500\nRs. 971,500\nLow\nSKU5137\nLaptop Core-492\nLaptops\n31\n11\nRs. 31,000\nRs. 961,000\nOK\nSKU5138\nNetworking Plus-329\nNetworking\n22\n39\nRs. 3,000\nRs. 66,000\nLow\nSKU5139\nStorage Elite-945\nStorage\n31\n23\nRs. 21,000\nRs. 651,000\nOK\nSKU5140\nMonitor Pro-283\nMonitors\n73\n21\nRs. 8,500\nRs. 620,500\nOK\nSKU5141\nPeripheral Plus-170\nPeripherals\n102\n26\nRs. 3,500\nRs. 357,000\nOK\nSKU5142\nSoftware Licence Core-188\nSoftware Licences\n110\n19\nRs. 20,500\nRs. 2,255,000\nOK\nSKU5143\nSoftware Licence Elite-677\nSoftware Licences\n1\n21\nRs. 13,500\nRs. 13,500\nLow\nSKU5144\nFurniture Mini-477\nFurniture\n94\n29\nRs. 16,500\nRs. 1,551,000\nOK\nSKU5145\nSoftware Licence Basic-254\nSoftware Licences\n98\n34\nRs. 13,500\nRs. 1,323,000\nOK\nSKU5146\nLaptop Basic-654\nLaptops\n119\n23\nRs. 2,500\nRs. 297,500\nOK\nSKU5147\nStorage Pro-443\nStorage\n81\n36\nRs. 45,000\nRs. 3,645,000\nOK\nSKU5148\nLaptop Elite-206\nLaptops\n97\n31\nRs. 25,000\nRs. 2,425,000\nOK\nSKU5149\nPeripheral Mini-161\nPeripherals\n67\n17\nRs. 27,500\nRs. 1,842,500\nOK",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_9.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2479
+      }
+    },
+    {
+      "evidence_id": "E027",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 9,
+      "section": "SKU",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "SKU",
+          "Item",
+          "Category",
+          "Stock",
+          "Reorder Lvl",
+          "Unit Price",
+          "Value",
+          "Status"
+        ],
+        "rows": [
+          [
+            "SKU5116",
+            "Peripheral Pro-902",
+            "Peripherals",
+            "95",
+            "22",
+            "Rs. 19,500",
+            "Rs. 1,852,500",
+            "OK"
+          ],
+          [
+            "SKU5117",
+            "Peripheral Basic-611",
+            "Peripherals",
+            "63",
+            "22",
+            "Rs. 8,000",
+            "Rs. 504,000",
+            "OK"
+          ],
+          [
+            "SKU5118",
+            "Monitor Core-424",
+            "Monitors",
+            "67",
+            "38",
+            "Rs. 1,500",
+            "Rs. 100,500",
+            "OK"
+          ],
+          [
+            "SKU5119",
+            "Networking Plus-474",
+            "Networking",
+            "49",
+            "37",
+            "Rs. 37,000",
+            "Rs. 1,813,000",
+            "OK"
+          ],
+          [
+            "SKU5120",
+            "Networking Pro-701",
+            "Networking",
+            "97",
+            "25",
+            "Rs. 5,500",
+            "Rs. 533,500",
+            "OK"
+          ],
+          [
+            "SKU5121",
+            "Monitor Pro-161",
+            "Monitors",
+            "1",
+            "18",
+            "Rs. 14,500",
+            "Rs. 14,500",
+            "Low"
+          ],
+          [
+            "SKU5122",
+            "Power Plus-533",
+            "Power",
+            "64",
+            "19",
+            "Rs. 41,000",
+            "Rs. 2,624,000",
+            "OK"
+          ],
+          [
+            "SKU5123",
+            "Power Max-384",
+            "Power",
+            "10",
+            "30",
+            "Rs. 35,000",
+            "Rs. 350,000",
+            "Low"
+          ],
+          [
+            "SKU5124",
+            "Monitor Basic-927",
+            "Monitors",
+            "39",
+            "12",
+            "Rs. 33,500",
+            "Rs. 1,306,500",
+            "OK"
+          ],
+          [
+            "SKU5125",
+            "Networking Lite-417",
+            "Networking",
+            "68",
+            "20",
+            "Rs. 26,000",
+            "Rs. 1,768,000",
+            "OK"
+          ],
+          [
+            "SKU5126",
+            "Power Pro-350",
+            "Power",
+            "93",
+            "40",
+            "Rs. 16,000",
+            "Rs. 1,488,000",
+            "OK"
+          ],
+          [
+            "SKU5127",
+            "Monitor Mini-726",
+            "Monitors",
+            "118",
+            "23",
+            "Rs. 8,000",
+            "Rs. 944,000",
+            "OK"
+          ],
+          [
+            "SKU5128",
+            "Laptop Max-222",
+            "Laptops",
+            "39",
+            "31",
+            "Rs. 43,000",
+            "Rs. 1,677,000",
+            "OK"
+          ],
+          [
+            "SKU5129",
+            "Laptop Max-608",
+            "Laptops",
+            "90",
+            "14",
+            "Rs. 1,500",
+            "Rs. 135,000",
+            "OK"
+          ],
+          [
+            "SKU5130",
+            "Storage Max-480",
+            "Storage",
+            "66",
+            "26",
+            "Rs. 17,500",
+            "Rs. 1,155,000",
+            "OK"
+          ],
+          [
+            "SKU5131",
+            "Networking Lite-889",
+            "Networking",
+            "95",
+            "34",
+            "Rs. 18,000",
+            "Rs. 1,710,000",
+            "OK"
+          ],
+          [
+            "SKU5132",
+            "Laptop Elite-636",
+            "Laptops",
+            "42",
+            "35",
+            "Rs. 28,000",
+            "Rs. 1,176,000",
+            "OK"
+          ],
+          [
+            "SKU5133",
+            "Monitor Lite-608",
+            "Monitors",
+            "33",
+            "32",
+            "Rs. 37,500",
+            "Rs. 1,237,500",
+            "OK"
+          ],
+          [
+            "SKU5134",
+            "Software Licence Mini-979",
+            "Software Licences",
+            "65",
+            "21",
+            "Rs. 4,500",
+            "Rs. 292,500",
+            "OK"
+          ],
+          [
+            "SKU5135",
+            "Networking Lite-687",
+            "Networking",
+            "47",
+            "15",
+            "Rs. 17,000",
+            "Rs. 799,000",
+            "OK"
+          ],
+          [
+            "SKU5136",
+            "Monitor Pro-145",
+            "Monitors",
+            "29",
+            "33",
+            "Rs. 33,500",
+            "Rs. 971,500",
+            "Low"
+          ],
+          [
+            "SKU5137",
+            "Laptop Core-492",
+            "Laptops",
+            "31",
+            "11",
+            "Rs. 31,000",
+            "Rs. 961,000",
+            "OK"
+          ],
+          [
+            "SKU5138",
+            "Networking Plus-329",
+            "Networking",
+            "22",
+            "39",
+            "Rs. 3,000",
+            "Rs. 66,000",
+            "Low"
+          ],
+          [
+            "SKU5139",
+            "Storage Elite-945",
+            "Storage",
+            "31",
+            "23",
+            "Rs. 21,000",
+            "Rs. 651,000",
+            "OK"
+          ],
+          [
+            "SKU5140",
+            "Monitor Pro-283",
+            "Monitors",
+            "73",
+            "21",
+            "Rs. 8,500",
+            "Rs. 620,500",
+            "OK"
+          ],
+          [
+            "SKU5141",
+            "Peripheral Plus-170",
+            "Peripherals",
+            "102",
+            "26",
+            "Rs. 3,500",
+            "Rs. 357,000",
+            "OK"
+          ],
+          [
+            "SKU5142",
+            "Software Licence Core-188",
+            "Software Licences",
+            "110",
+            "19",
+            "Rs. 20,500",
+            "Rs. 2,255,000",
+            "OK"
+          ],
+          [
+            "SKU5143",
+            "Software Licence Elite-677",
+            "Software Licences",
+            "1",
+            "21",
+            "Rs. 13,500",
+            "Rs. 13,500",
+            "Low"
+          ],
+          [
+            "SKU5144",
+            "Furniture Mini-477",
+            "Furniture",
+            "94",
+            "29",
+            "Rs. 16,500",
+            "Rs. 1,551,000",
+            "OK"
+          ],
+          [
+            "SKU5145",
+            "Software Licence Basic-254",
+            "Software Licences",
+            "98",
+            "34",
+            "Rs. 13,500",
+            "Rs. 1,323,000",
+            "OK"
+          ],
+          [
+            "SKU5146",
+            "Laptop Basic-654",
+            "Laptops",
+            "119",
+            "23",
+            "Rs. 2,500",
+            "Rs. 297,500",
+            "OK"
+          ],
+          [
+            "SKU5147",
+            "Storage Pro-443",
+            "Storage",
+            "81",
+            "36",
+            "Rs. 45,000",
+            "Rs. 3,645,000",
+            "OK"
+          ],
+          [
+            "SKU5148",
+            "Laptop Elite-206",
+            "Laptops",
+            "97",
+            "31",
+            "Rs. 25,000",
+            "Rs. 2,425,000",
+            "OK"
+          ],
+          [
+            "SKU5149",
+            "Peripheral Mini-161",
+            "Peripherals",
+            "67",
+            "17",
+            "Rs. 27,500",
+            "Rs. 1,842,500",
+            "OK"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_9.png",
+      "metadata": {
+        "row_count": 34,
+        "col_count": 8
+      }
+    },
+    {
+      "evidence_id": "E028",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 9,
+      "section": "SKU",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_9.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (90 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E029",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 10,
+      "section": "3. Monthly Attendance Summary",
+      "type": "text",
+      "text": "Employee & Inventory Directory (sample data)\nPage 10\n3. Monthly Attendance Summary\nDepartment\nJan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug\nSep\nOct\nNov\nDec\nAvg %\nEngineering\n92%\n94%\n91%\n90%\n93%\n98%\n96%\n95%\n97%\n91%\n99%\n91%\n93.9%\nDesign\n98%\n92%\n96%\n91%\n99%\n99%\n90%\n96%\n92%\n93%\n94%\n94%\n94.5%\nSales\n95%\n96%\n95%\n95%\n97%\n94%\n93%\n91%\n93%\n92%\n99%\n91%\n94.2%\nSupport\n92%\n91%\n92%\n97%\n97%\n95%\n96%\n91%\n98%\n95%\n93%\n97%\n94.5%\nFinance\n94%\n97%\n94%\n91%\n91%\n92%\n94%\n99%\n90%\n93%\n95%\n92%\n93.5%\nHR\n91%\n93%\n95%\n96%\n98%\n90%\n94%\n94%\n92%\n90%\n96%\n97%\n93.8%\nOperations\n98%\n98%\n93%\n91%\n97%\n91%\n92%\n91%\n90%\n90%\n93%\n92%\n93.0%\nQA\n93%\n96%\n95%\n91%\n99%\n99%\n94%\n91%\n90%\n91%\n93%\n97%\n94.1%",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_10.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 637
+      }
+    },
+    {
+      "evidence_id": "E030",
+      "document_id": "DOC_F0F19A",
+      "document_name": "Employee_and_Inventory_Directory.pdf",
+      "page": 10,
+      "section": "3. Monthly Attendance Summary",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Department",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+          "Avg %"
+        ],
+        "rows": [
+          [
+            "Engineering",
+            "92%",
+            "94%",
+            "91%",
+            "90%",
+            "93%",
+            "98%",
+            "96%",
+            "95%",
+            "97%",
+            "91%",
+            "99%",
+            "91%",
+            "93.9%"
+          ],
+          [
+            "Design",
+            "98%",
+            "92%",
+            "96%",
+            "91%",
+            "99%",
+            "99%",
+            "90%",
+            "96%",
+            "92%",
+            "93%",
+            "94%",
+            "94%",
+            "94.5%"
+          ],
+          [
+            "Sales",
+            "95%",
+            "96%",
+            "95%",
+            "95%",
+            "97%",
+            "94%",
+            "93%",
+            "91%",
+            "93%",
+            "92%",
+            "99%",
+            "91%",
+            "94.2%"
+          ],
+          [
+            "Support",
+            "92%",
+            "91%",
+            "92%",
+            "97%",
+            "97%",
+            "95%",
+            "96%",
+            "91%",
+            "98%",
+            "95%",
+            "93%",
+            "97%",
+            "94.5%"
+          ],
+          [
+            "Finance",
+            "94%",
+            "97%",
+            "94%",
+            "91%",
+            "91%",
+            "92%",
+            "94%",
+            "99%",
+            "90%",
+            "93%",
+            "95%",
+            "92%",
+            "93.5%"
+          ],
+          [
+            "HR",
+            "91%",
+            "93%",
+            "95%",
+            "96%",
+            "98%",
+            "90%",
+            "94%",
+            "94%",
+            "92%",
+            "90%",
+            "96%",
+            "97%",
+            "93.8%"
+          ],
+          [
+            "Operations",
+            "98%",
+            "98%",
+            "93%",
+            "91%",
+            "97%",
+            "91%",
+            "92%",
+            "91%",
+            "90%",
+            "90%",
+            "93%",
+            "92%",
+            "93.0%"
+          ],
+          [
+            "QA",
+            "93%",
+            "96%",
+            "95%",
+            "91%",
+            "99%",
+            "99%",
+            "94%",
+            "91%",
+            "90%",
+            "91%",
+            "93%",
+            "97%",
+            "94.1%"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_F0F19A/page_10.png",
+      "metadata": {
+        "row_count": 8,
+        "col_count": 14
+      }
+    }
+  ]
+}

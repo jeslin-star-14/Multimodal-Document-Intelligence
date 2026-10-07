@@ -6,9 +6,12 @@ from typing import List, Dict, Any, Tuple
 from PIL import Image
 
 try:
-    import pymupdf  # PyMuPDF
+    import fitz
 except ImportError:
-    fitz = None
+    try:
+        import pymupdf as fitz
+    except ImportError:
+        fitz = None
 
 from app.config import CROPS_DIR, PAGES_DIR, UPLOAD_DIR, GEMINI_API_KEY, VLM_MODEL
 from app.models import DocumentChunk

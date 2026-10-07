@@ -4,11 +4,15 @@ from typing import List, Dict, Any, Optional
 logger = logging.getLogger(__name__)
 
 try:
-    import pymupdf
+    import fitz
     HAS_FITZ = True
 except ImportError:
-    fitz = None
-    HAS_FITZ = False
+    try:
+        import pymupdf as fitz
+        HAS_FITZ = True
+    except ImportError:
+        fitz = None
+        HAS_FITZ = False
 
 def extract_tables_pdfplumber(pdf_path: str, page_number_1based: int) -> List[Dict[str, Any]]:
     tables_data = []

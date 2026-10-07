@@ -4,14 +4,17 @@ from typing import Dict, Any, Optional, List
 
 logger = logging.getLogger(__name__)
 
-# Try importing fitz (PyMuPDF)
 try:
-    import pymupdf
+    import fitz
     HAS_FITZ = True
 except ImportError:
-    fitz = None
-    HAS_FITZ = False
-    logger.warning("PyMuPDF (fitz) not yet installed. Falling back to pypdf engine.")
+    try:
+        import pymupdf as fitz
+        HAS_FITZ = True
+    except ImportError:
+        fitz = None
+        HAS_FITZ = False
+        logger.warning("PyMuPDF (fitz) not yet installed. Falling back to pypdf engine.")
 
 try:
     from pypdf import PdfReader

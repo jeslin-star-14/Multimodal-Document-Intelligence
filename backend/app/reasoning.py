@@ -4,7 +4,7 @@ import time
 import base64
 import json
 import httpx
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any, Tuple, Optional
 from pathlib import Path
 from app.config import GEMINI_API_KEY, VLM_MODEL, BASE_DIR, DEMO_MODE
 from app.models import DocumentChunk, Citation, QueryResponse
@@ -213,6 +213,137 @@ class MultimodalReasoningEngine:
                     break
         return steps[:5]
 
+    def _try_deterministic_math(self, query: str, chunks: List[DocumentChunk]) -> Tuple[Optional[str], List[str]]:
+        """
+        Attempts deterministic Python table parsing & mathematical calculation
+        for aggregation queries (sum, total, add, average, count, etc.).
+        """
+        query_l = query.lower()
+        is_math_req = any(k in query_l for k in ["add", "sum", "total", "average", "avg", "calculate", "count", "monthly pay", "pay", "headcount", "revenue", "amount", "salary", "spend"])
+        if not is_math_req:
+            return None, []
+
+        best_result = None
+        best_score = -1
+
+        for chunk in chunks:
+            raw_t = chunk.raw_table_data
+            headers = []
+            rows = []
+            if raw_t:
+                if isinstance(raw_t, dict):
+                    headers = raw_t.get("headers", [])
+                    rows = raw_t.get("rows", [])
+                elif hasattr(raw_t, "headers"):
+                    headers = getattr(raw_t, "headers", [])
+                    rows = getattr(raw_t, "rows", [])
+            
+            # Fallback: parse table text from content if raw_table_data is empty
+            if not headers and "Table Data:" in chunk.content:
+                lines = chunk.content.split("\n")
+                for line in lines:
+                    if line.startswith("Headers:"):
+                        headers = [h.strip() for h in line.replace("Headers:", "").split("|")]
+                    elif line.startswith("Rows:"):
+                        pass
+                    elif "|" in line and headers:
+                        r = [cell.strip() for cell in line.split("|")]
+                        if len(r) == len(headers):
+                            rows.append(r)
+
+            if not headers or not rows:
+                continue
+
+            # Score each column by match quality
+            for idx, h in enumerate(headers):
+                h_clean = h.strip()
+                h_l = h_clean.lower()
+                if not h_l:
+                    continue
+
+                # Match score:
+                # 3 = Exact multi-word header match (e.g. "avg monthly pay")
+                # 2 = Substring match in query
+                # 1 = Generic numeric math column
+                score = 0
+                if h_l in query_l:
+                    score = 3 if len(h_l.split()) > 1 else 2
+                elif any(term in h_l for term in ["pay", "salary", "headcount", "amount", "revenue", "spend", "cost"]):
+                    score = 1
+
+                if score > best_score:
+                    target_col_idx = idx
+                    target_col_name = h_clean
+                    label_col_idx = 0 if target_col_idx != 0 else 1
+                    items = []
+                    numeric_vals = []
+                    prefix = ""
+
+                    for r in rows:
+                        if target_col_idx >= len(r):
+                            continue
+                        lbl = r[label_col_idx].strip() if label_col_idx < len(r) else f"Row {len(items)+1}"
+                        val_str = str(r[target_col_idx]).strip()
+                        
+                        if "total" in lbl.lower() or "summary" in lbl.lower() or "total" in val_str.lower():
+                            continue
+
+                        curr_match = re.search(r'^(Rs\.|[\$\€\£\₹])\s*', val_str, re.IGNORECASE)
+                        if curr_match and not prefix:
+                            prefix = curr_match.group(0)
+
+                        val_clean = re.sub(r'^[^\d]+', '', val_str).replace(',', '')
+                        match = re.search(r'[\d\.]+', val_clean)
+                        if match:
+                            try:
+                                num = float(match.group(0))
+                                numeric_vals.append(num)
+                                items.append((lbl, val_str, num))
+                            except ValueError:
+                                pass
+
+                    if numeric_vals:
+                        total_sum = sum(numeric_vals)
+                        avg_val = total_sum / len(numeric_vals)
+                        formatted_total = f"{prefix}{total_sum:,.2f}".rstrip('0').rstrip('.') if '.' in f"{total_sum:,.2f}" else f"{prefix}{total_sum:,.0f}"
+                        formatted_avg = f"{prefix}{avg_val:,.2f}"
+
+                        doc_tag = f"[Doc: {chunk.doc_name}, Page: {chunk.page_number}, Section: {chunk.chunk_type.upper()}]"
+
+                        ans = (
+                            f"### Executive Summary\n"
+                            f"The total sum of **{target_col_name}** across all {len(items)} items in **{chunk.doc_name}** is **{formatted_total}** {doc_tag}.\n\n"
+                            f"### Itemized Breakdown ({target_col_name})\n"
+                            f"| {headers[label_col_idx]} | {target_col_name} | Grounded Citation |\n"
+                            f"|---|---|---|\n"
+                        )
+                        for item_lbl, orig_val, _ in items:
+                            ans += f"| {item_lbl} | {orig_val} | [Doc: {chunk.doc_name}, Page: {chunk.page_number}] |\n"
+
+                        ans += f"| **Total** | **{formatted_total}** | {doc_tag} |\n\n"
+                        ans += f"### Deterministic Mathematical Verification\n"
+                        
+                        math_expr = " + ".join([f"{num:,.0f}" if num.is_integer() else f"{num:,.2f}" for num in numeric_vals[:8]])
+                        if len(numeric_vals) > 8:
+                            math_expr += f" + ... ({len(numeric_vals)-8} more items)"
+
+                        ans += f"- **Formula**: `Sum({target_col_name}) = {math_expr}`\n"
+                        ans += f"- **Calculated Total**: **{formatted_total}**\n"
+                        ans += f"- **Calculated Average**: **{formatted_avg}** across {len(items)} entries.\n"
+
+                        steps = [
+                            f"Table Column Extracted: {target_col_name} ({len(items)} rows)",
+                            f"Sum Formula: {math_expr} = {formatted_total}",
+                            f"Average: {formatted_total} / {len(items)} = {formatted_avg}"
+                        ]
+
+                        best_result = (ans, steps)
+                        best_score = score
+
+        if best_result:
+            return best_result
+        return None, []
+
     def _synthesize_local_response(
         self, 
         query: str, 
@@ -224,6 +355,19 @@ class MultimodalReasoningEngine:
         primary = chunks[0] if chunks else None
         doc_ref = primary.doc_name if primary else "Document"
         page_ref = primary.page_number if primary else 1
+
+        # Check if query requests deterministic table aggregation math
+        math_ans, math_steps = self._try_deterministic_math(query, chunks)
+        if math_ans:
+            return QueryResponse(
+                query=query,
+                answer=math_ans,
+                confidence_score=0.98,
+                math_steps=math_steps,
+                citations=citations,
+                evidence=citations,
+                processing_time_ms=round(elapsed_ms, 2)
+            )
 
         answer = (
             f"### Executive Summary\n"

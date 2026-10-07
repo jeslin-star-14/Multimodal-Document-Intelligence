@@ -6,11 +6,15 @@ from PIL import Image, ImageDraw, ImageFont
 logger = logging.getLogger(__name__)
 
 try:
-    import pymupdf
+    import fitz
     HAS_FITZ = True
 except ImportError:
-    fitz = None
-    HAS_FITZ = False
+    try:
+        import pymupdf as fitz
+        HAS_FITZ = True
+    except ImportError:
+        fitz = None
+        HAS_FITZ = False
 
 def render_page_to_image(page: Any, output_dir: str, page_number: int, dpi: int = 200) -> str:
     """

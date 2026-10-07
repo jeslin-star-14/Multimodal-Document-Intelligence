@@ -5,11 +5,15 @@ from typing import List, Literal, Dict, Any
 logger = logging.getLogger(__name__)
 
 try:
-    import pymupdf
+    import fitz
     HAS_FITZ = True
 except ImportError:
-    fitz = None
-    HAS_FITZ = False
+    try:
+        import pymupdf as fitz
+        HAS_FITZ = True
+    except ImportError:
+        fitz = None
+        HAS_FITZ = False
 
 VisualContentType = Literal["chart", "graph", "image", "table"]
 

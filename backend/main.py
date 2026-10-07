@@ -172,16 +172,18 @@ async def list_documents():
         if doc_id not in docs_map:
             pages_folder = PAGES_DIR / doc_id
             page_files = sorted(list(pages_folder.glob("page_*.png")), key=lambda p: p.name) if pages_folder.exists() else []
-            page_count = len(page_files) if page_files else 1
+            page_count = len(page_files)
+            page_imgs = [f"/data/pages/{doc_id}/{p.name}" for p in page_files]
+            
             docs_map[doc_id] = {
                 "id": doc_id,
                 "name": doc_name,
                 "size": "1.8 MB",
                 "type": "pdf",
-                "page_count": page_count,
+                "page_count": max(page_count, 1),
                 "status": "Ready",
                 "uploaded_at": "Today",
-                "page_images": [f"/data/pages/{doc_id}/page_{p+1}.png" for p in range(page_count)],
+                "page_images": page_imgs,
                 "evidence_count": 0
             }
         docs_map[doc_id]["evidence_count"] += 1
@@ -432,7 +434,7 @@ async def query_documents_chat(request: FrontendQueryRequest):
                 headers_str = " | ".join(headers) if isinstance(headers, list) else str(headers)
                 rows_str = "\n".join([" | ".join(map(str, r)) if isinstance(r, list) else str(r) for r in rows[:6]])
                 snippet = f"Table Data:\nHeaders: {headers_str}\nRows:\n{rows_str}"
-                table_obj = TableData(headers=headers, rows=rows)
+                table_obj = {"headers": headers, "rows": rows}
             elif ev.get("type") in ["chart", "graph", "image"]:
                 snippet = f"Visual Content [{ev.get('type').upper()}]: {snippet or 'Embedded figure and plotted diagram'}"
 

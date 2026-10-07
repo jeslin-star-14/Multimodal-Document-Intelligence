@@ -14,7 +14,7 @@
       "type": "text",
       "text": "Production Efficiency Report Q4\nProduction efficiency increased from 71% in Q2 to 84% in Q4.",
       "table": null,
-      "image_path": "data/pages/DOC_62C934/page_1.png",
+      "image_path": "backend/data/pages/DOC_62C934/page_1.png",
       "metadata": {
         "scanned": false,
         "char_count": 92
@@ -29,7 +29,7 @@
       "type": "text",
       "text": "Factory Throughput & Cost Analysis\nQ4 total output reached 12,200 units with operating expenses at $4,250,000.",
       "table": null,
-      "image_path": "data/pages/DOC_62C934/page_2.png",
+      "image_path": "backend/data/pages/DOC_62C934/page_2.png",
       "metadata": {
         "scanned": false,
         "char_count": 110

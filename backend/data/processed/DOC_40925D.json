@@ -1,0 +1,2440 @@
+{
+  "success": true,
+  "document_id": "DOC_40925D",
+  "document_name": "Sales_Report_2026.pdf",
+  "page_count": 10,
+  "evidence_count": 30,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 1,
+      "section": "Annual Sales Report 2026",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 1\nAnnual Sales Report 2026\nRevenue, regional performance, product trends and top accounts\nKey Highlights\nMetric\nValue\nTotal revenue\nRs. 84,516,000\nAverage monthly revenue\nRs. 7,043,000\nBest month\nMar (Rs. 7,825,000)\nWeakest month\nFeb (Rs. 5,918,000)\nProducts tracked\n8\nRegions covered\n6",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 330
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 1,
+      "section": "Annual Sales Report 2026",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Metric",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Total revenue",
+            "Rs. 84,516,000"
+          ],
+          [
+            "Average monthly revenue",
+            "Rs. 7,043,000"
+          ],
+          [
+            "Best month",
+            "Mar (Rs. 7,825,000)"
+          ],
+          [
+            "Weakest month",
+            "Feb (Rs. 5,918,000)"
+          ],
+          [
+            "Products tracked",
+            "8"
+          ],
+          [
+            "Regions covered",
+            "6"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_1.png",
+      "metadata": {
+        "row_count": 6,
+        "col_count": 2
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 1,
+      "section": "Annual Sales Report 2026",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_1.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (19 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E004",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 2,
+      "section": "1. Monthly Revenue",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 2\n1. Monthly Revenue\nJan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug\nSep\nOct\nNov\nDec\n0\n2000\n4000\n6000\nValues in Rs. thousands.\nMonth\nRevenue\nMoM %\nShare %\nJan\nRs. 7,017,000\n-\n8.3%\nFeb\nRs. 5,918,000\n-15.7%\n7.0%\nMar\nRs. 7,825,000\n+32.2%\n9.3%\nApr\nRs. 7,227,000\n-7.6%\n8.6%\nMay\nRs. 7,295,000\n+0.9%\n8.6%\nJun\nRs. 6,807,000\n-6.7%\n8.1%\nJul\nRs. 6,512,000\n-4.3%\n7.7%\nAug\nRs. 7,059,000\n+8.4%\n8.4%\nSep\nRs. 6,886,000\n-2.5%\n8.1%\nOct\nRs. 7,569,000\n+9.9%\n9.0%\nNov\nRs. 6,877,000\n-9.1%\n8.1%\nDec\nRs. 7,524,000\n+9.4%\n8.9%\nTotal\nRs. 84,516,000\n100%",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 554
+      }
+    },
+    {
+      "evidence_id": "E005",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 2,
+      "section": "1. Monthly Revenue",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Month",
+          "Revenue",
+          "MoM %",
+          "Share %"
+        ],
+        "rows": [
+          [
+            "Jan",
+            "Rs. 7,017,000",
+            "-",
+            "8.3%"
+          ],
+          [
+            "Feb",
+            "Rs. 5,918,000",
+            "-15.7%",
+            "7.0%"
+          ],
+          [
+            "Mar",
+            "Rs. 7,825,000",
+            "+32.2%",
+            "9.3%"
+          ],
+          [
+            "Apr",
+            "Rs. 7,227,000",
+            "-7.6%",
+            "8.6%"
+          ],
+          [
+            "May",
+            "Rs. 7,295,000",
+            "+0.9%",
+            "8.6%"
+          ],
+          [
+            "Jun",
+            "Rs. 6,807,000",
+            "-6.7%",
+            "8.1%"
+          ],
+          [
+            "Jul",
+            "Rs. 6,512,000",
+            "-4.3%",
+            "7.7%"
+          ],
+          [
+            "Aug",
+            "Rs. 7,059,000",
+            "+8.4%",
+            "8.4%"
+          ],
+          [
+            "Sep",
+            "Rs. 6,886,000",
+            "-2.5%",
+            "8.1%"
+          ],
+          [
+            "Oct",
+            "Rs. 7,569,000",
+            "+9.9%",
+            "9.0%"
+          ],
+          [
+            "Nov",
+            "Rs. 6,877,000",
+            "-9.1%",
+            "8.1%"
+          ],
+          [
+            "Dec",
+            "Rs. 7,524,000",
+            "+9.4%",
+            "8.9%"
+          ],
+          [
+            "Total",
+            "Rs. 84,516,000",
+            "",
+            "100%"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_2.png",
+      "metadata": {
+        "row_count": 13,
+        "col_count": 4
+      }
+    },
+    {
+      "evidence_id": "E006",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 2,
+      "section": "1. Monthly Revenue",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_2.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (66 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E007",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 3,
+      "section": "2. Revenue by Region",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 3\n2. Revenue by Region\nRs. thousands\nRegion\nJan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug\nSep\nOct\nNov\nDec\nTotal\nTamil Nadu\n1,338\n845\n1,055\n1,291\n1,101\n1,161\n1,027\n1,273\n1,407\n1,029\n1,176\n1,045\n13,748\nKerala\n1,337\n878\n1,523\n939\n1,149\n1,001\n837\n1,230\n826\n1,221\n1,165\n1,216\n13,322\nKarnataka\n1,263\n1,030\n1,530\n1,418\n1,156\n1,249\n1,185\n1,064\n1,162\n1,728\n965\n1,355\n15,105\nAndhra Pradesh\n1,325\n1,295\n1,158\n1,169\n1,401\n939\n1,114\n1,184\n1,320\n1,225\n1,143\n1,245\n14,518\nTelangana\n768\n809\n1,237\n1,119\n1,441\n1,278\n1,308\n1,321\n963\n1,437\n1,128\n1,395\n14,204\nMaharashtra\n986\n1,061\n1,322\n1,291\n1,047\n1,179\n1,041\n987\n1,208\n929\n1,300\n1,268\n13,619\n3. Revenue by Product\nRs. thousands\nProduct\nJan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug\nSep\nOct\nNov\nDec\nTotal\nCloud Suite\n829\n694\n914\n863\n786\n913\n677\n823\n867\n964\n1,064\n1,006\n10,400\nAnalytics Pro\n692\n774\n1,111\n836\n914\n1,163\n828\n800\n710\n840\n977\n1,082\n10,727\nBilling Manager\n961\n776\n935\n990\n1,292\n681\n926\n1,020\n840\n916\n691\n1,122\n11,150\nHR Portal\n730\n567\n1,126\n732\n739\n696\n583\n1,004\n1,151\n985\n788\n954\n10,055\nInventory Hub\n905\n687\n998\n1,112\n837\n965\n680\n792\n842\n929\n866\n958\n10,571\nCRM Lite\n797\n849\n749\n1,019\n815\n701\n1,027\n651\n842\n1,069\n943\n1,073\n10,535\nSupport Desk\n1,201\n744\n898\n747\n848\n969\n685\n973\n703\n879\n905\n680\n10,232\nMobile SDK\n902\n827\n1,094\n928\n1,064\n719\n1,106\n996\n931\n987\n643\n649\n10,846",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_3.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1331
+      }
+    },
+    {
+      "evidence_id": "E008",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 3,
+      "section": "2. Revenue by Region",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Region",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Tamil Nadu",
+            "1,338",
+            "845",
+            "1,055",
+            "1,291",
+            "1,101",
+            "1,161",
+            "1,027",
+            "1,273",
+            "1,407",
+            "1,029",
+            "1,176",
+            "1,045",
+            "13,748"
+          ],
+          [
+            "Kerala",
+            "1,337",
+            "878",
+            "1,523",
+            "939",
+            "1,149",
+            "1,001",
+            "837",
+            "1,230",
+            "826",
+            "1,221",
+            "1,165",
+            "1,216",
+            "13,322"
+          ],
+          [
+            "Karnataka",
+            "1,263",
+            "1,030",
+            "1,530",
+            "1,418",
+            "1,156",
+            "1,249",
+            "1,185",
+            "1,064",
+            "1,162",
+            "1,728",
+            "965",
+            "1,355",
+            "15,105"
+          ],
+          [
+            "Andhra Pradesh",
+            "1,325",
+            "1,295",
+            "1,158",
+            "1,169",
+            "1,401",
+            "939",
+            "1,114",
+            "1,184",
+            "1,320",
+            "1,225",
+            "1,143",
+            "1,245",
+            "14,518"
+          ],
+          [
+            "Telangana",
+            "768",
+            "809",
+            "1,237",
+            "1,119",
+            "1,441",
+            "1,278",
+            "1,308",
+            "1,321",
+            "963",
+            "1,437",
+            "1,128",
+            "1,395",
+            "14,204"
+          ],
+          [
+            "Maharashtra",
+            "986",
+            "1,061",
+            "1,322",
+            "1,291",
+            "1,047",
+            "1,179",
+            "1,041",
+            "987",
+            "1,208",
+            "929",
+            "1,300",
+            "1,268",
+            "13,619"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_3.png",
+      "metadata": {
+        "row_count": 6,
+        "col_count": 14
+      }
+    },
+    {
+      "evidence_id": "E009",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 3,
+      "section": "2. Revenue by Region",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Product",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Cloud Suite",
+            "829",
+            "694",
+            "914",
+            "863",
+            "786",
+            "913",
+            "677",
+            "823",
+            "867",
+            "964",
+            "1,064",
+            "1,006",
+            "10,400"
+          ],
+          [
+            "Analytics Pro",
+            "692",
+            "774",
+            "1,111",
+            "836",
+            "914",
+            "1,163",
+            "828",
+            "800",
+            "710",
+            "840",
+            "977",
+            "1,082",
+            "10,727"
+          ],
+          [
+            "Billing Manager",
+            "961",
+            "776",
+            "935",
+            "990",
+            "1,292",
+            "681",
+            "926",
+            "1,020",
+            "840",
+            "916",
+            "691",
+            "1,122",
+            "11,150"
+          ],
+          [
+            "HR Portal",
+            "730",
+            "567",
+            "1,126",
+            "732",
+            "739",
+            "696",
+            "583",
+            "1,004",
+            "1,151",
+            "985",
+            "788",
+            "954",
+            "10,055"
+          ],
+          [
+            "Inventory Hub",
+            "905",
+            "687",
+            "998",
+            "1,112",
+            "837",
+            "965",
+            "680",
+            "792",
+            "842",
+            "929",
+            "866",
+            "958",
+            "10,571"
+          ],
+          [
+            "CRM Lite",
+            "797",
+            "849",
+            "749",
+            "1,019",
+            "815",
+            "701",
+            "1,027",
+            "651",
+            "842",
+            "1,069",
+            "943",
+            "1,073",
+            "10,535"
+          ],
+          [
+            "Support Desk",
+            "1,201",
+            "744",
+            "898",
+            "747",
+            "848",
+            "969",
+            "685",
+            "973",
+            "703",
+            "879",
+            "905",
+            "680",
+            "10,232"
+          ],
+          [
+            "Mobile SDK",
+            "902",
+            "827",
+            "1,094",
+            "928",
+            "1,064",
+            "719",
+            "1,106",
+            "996",
+            "931",
+            "987",
+            "643",
+            "649",
+            "10,846"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_3.png",
+      "metadata": {
+        "row_count": 8,
+        "col_count": 14
+      }
+    },
+    {
+      "evidence_id": "E010",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 3,
+      "section": "2. Revenue by Region",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_3.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (65 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E011",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 4,
+      "section": "4. Product x Region Matrix (Annual, Rs. thousands)",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 4\n4. Product x Region Matrix (Annual, Rs. thousands)\nProduct\nTamil Nadu\nKerala\nKarnataka\nAndhra PradeshTelangana\nMaharashtra\nTotal\nCloud Suite\n1,666\n1,341\n2,045\n1,740\n1,669\n1,939\n10,400\nAnalytics Pro\n1,679\n1,706\n1,869\n2,168\n1,624\n1,681\n10,727\nBilling Manager\n1,840\n1,805\n1,850\n1,925\n1,755\n1,975\n11,150\nHR Portal\n1,656\n1,803\n1,672\n2,125\n1,407\n1,392\n10,055\nInventory Hub\n1,792\n1,788\n1,921\n1,516\n2,015\n1,539\n10,571\nCRM Lite\n1,847\n1,865\n1,722\n1,649\n1,774\n1,678\n10,535\nSupport Desk\n1,593\n1,386\n2,275\n1,419\n1,949\n1,610\n10,232\nMobile SDK\n1,675\n1,628\n1,751\n1,976\n2,011\n1,805\n10,846\n5. Quarterly Summary\nQuarter\nRevenue\nOrders\nAvg Order Value\nGrowth vs prev Q\nQ1\nRs. 20,760,000\n1,258\nRs. 16,502\n-\nQ2\nRs. 21,329,000\n1,212\nRs. 17,598\n+2.7%\nQ3\nRs. 20,457,000\n1,133\nRs. 18,056\n-4.1%\nQ4\nRs. 21,970,000\n1,128\nRs. 19,477\n+7.4%",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_4.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 854
+      }
+    },
+    {
+      "evidence_id": "E012",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 4,
+      "section": "4. Product x Region Matrix (Annual, Rs. thousands)",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Product",
+          "Tamil Nadu",
+          "Kerala",
+          "Karnataka",
+          "Andhra Prades",
+          "hTelangana",
+          "Maharashtra",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Cloud Suite",
+            "1,666",
+            "1,341",
+            "2,045",
+            "1,740",
+            "1,669",
+            "1,939",
+            "10,400"
+          ],
+          [
+            "Analytics Pro",
+            "1,679",
+            "1,706",
+            "1,869",
+            "2,168",
+            "1,624",
+            "1,681",
+            "10,727"
+          ],
+          [
+            "Billing Manager",
+            "1,840",
+            "1,805",
+            "1,850",
+            "1,925",
+            "1,755",
+            "1,975",
+            "11,150"
+          ],
+          [
+            "HR Portal",
+            "1,656",
+            "1,803",
+            "1,672",
+            "2,125",
+            "1,407",
+            "1,392",
+            "10,055"
+          ],
+          [
+            "Inventory Hub",
+            "1,792",
+            "1,788",
+            "1,921",
+            "1,516",
+            "2,015",
+            "1,539",
+            "10,571"
+          ],
+          [
+            "CRM Lite",
+            "1,847",
+            "1,865",
+            "1,722",
+            "1,649",
+            "1,774",
+            "1,678",
+            "10,535"
+          ],
+          [
+            "Support Desk",
+            "1,593",
+            "1,386",
+            "2,275",
+            "1,419",
+            "1,949",
+            "1,610",
+            "10,232"
+          ],
+          [
+            "Mobile SDK",
+            "1,675",
+            "1,628",
+            "1,751",
+            "1,976",
+            "2,011",
+            "1,805",
+            "10,846"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_4.png",
+      "metadata": {
+        "row_count": 8,
+        "col_count": 8
+      }
+    },
+    {
+      "evidence_id": "E013",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 4,
+      "section": "4. Product x Region Matrix (Annual, Rs. thousands)",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Quarter",
+          "Revenue",
+          "Orders",
+          "Avg Order Value",
+          "Growth vs prev Q"
+        ],
+        "rows": [
+          [
+            "Q1",
+            "Rs. 20,760,000",
+            "1,258",
+            "Rs. 16,502",
+            "-"
+          ],
+          [
+            "Q2",
+            "Rs. 21,329,000",
+            "1,212",
+            "Rs. 17,598",
+            "+2.7%"
+          ],
+          [
+            "Q3",
+            "Rs. 20,457,000",
+            "1,133",
+            "Rs. 18,056",
+            "-4.1%"
+          ],
+          [
+            "Q4",
+            "Rs. 21,970,000",
+            "1,128",
+            "Rs. 19,477",
+            "+7.4%"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_4.png",
+      "metadata": {
+        "row_count": 4,
+        "col_count": 5
+      }
+    },
+    {
+      "evidence_id": "E014",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 4,
+      "section": "4. Product x Region Matrix (Annual, Rs. thousands)",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_4.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (46 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E015",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 5,
+      "section": "6. Top 40 Accounts",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 5\n6. Top 40 Accounts\n#\nAccount\nRegion\nMain Product\nAnnual Value\nShare %\n1\nWestern Ghats Pharma\nKerala\nCloud Suite\nRs. 590,000\n0.70%\n2\nLotus Constructions\nAndhra Pradesh\nCloud Suite\nRs. 560,000\n0.66%\n3\nPioneer Agro\nTelangana\nSupport Desk\nRs. 550,000\n0.65%\n4\nEverest Traders\nKarnataka\nAnalytics Pro\nRs. 540,000\n0.64%\n5\nMalabar Foods\nAndhra Pradesh\nBilling Manager\nRs. 530,000\n0.63%\n6\nSagar Hospitals\nTelangana\nCRM Lite\nRs. 500,000\n0.59%\n7\nLotus Agro\nAndhra Pradesh\nInventory Hub\nRs. 500,000\n0.59%\n8\nPioneer Hospitals\nAndhra Pradesh\nBilling Manager\nRs. 490,000\n0.58%\n9\nKaveri Traders\nAndhra Pradesh\nCRM Lite\nRs. 480,000\n0.57%\n10\nMalabar Motors\nAndhra Pradesh\nAnalytics Pro\nRs. 470,000\n0.56%\n11\nMalabar Constructions\nMaharashtra\nBilling Manager\nRs. 470,000\n0.56%\n12\nDeccan Constructions\nKarnataka\nSupport Desk\nRs. 460,000\n0.54%\n13\nLotus Foods\nKarnataka\nCRM Lite\nRs. 430,000\n0.51%\n14\nMalabar Motors\nTelangana\nMobile SDK\nRs. 420,000\n0.50%\n15\nWestern Ghats Foods\nMaharashtra\nCRM Lite\nRs. 410,000\n0.49%\n16\nVijay Constructions\nMaharashtra\nBilling Manager\nRs. 410,000\n0.49%\n17\nOrchid Hospitals\nAndhra Pradesh\nCloud Suite\nRs. 370,000\n0.44%\n18\nCoastal Motors\nAndhra Pradesh\nSupport Desk\nRs. 360,000\n0.43%\n19\nCoastal Foods\nMaharashtra\nInventory Hub\nRs. 340,000\n0.40%\n20\nSagar Agro\nMaharashtra\nHR Portal\nRs. 340,000\n0.40%\n21\nWestern Ghats Traders\nKerala\nSupport Desk\nRs. 330,000\n0.39%\n22\nDeccan Pharma\nAndhra Pradesh\nCRM Lite\nRs. 310,000\n0.37%\n23\nMalabar Agro\nTelangana\nAnalytics Pro\nRs. 310,000\n0.37%\n24\nDeccan Hospitals\nKerala\nHR Portal\nRs. 280,000\n0.33%\n25\nOrchid Retail\nAndhra Pradesh\nAnalytics Pro\nRs. 260,000\n0.31%\n26\nBharath Constructions\nTamil Nadu\nHR Portal\nRs. 250,000\n0.30%\n27\nMalabar Foods\nAndhra Pradesh\nSupport Desk\nRs. 230,000\n0.27%\n28\nDeccan Pharma\nKarnataka\nCRM Lite\nRs. 220,000\n0.26%\n29\nAnnapurna Motors\nAndhra Pradesh\nCloud Suite\nRs. 210,000\n0.25%\n30\nSagar Logistics\nMaharashtra\nAnalytics Pro\nRs. 200,000\n0.24%\n31\nSri Lakshmi Pharma\nAndhra Pradesh\nCRM Lite\nRs. 190,000\n0.22%\n32\nOrchid Pharma\nMaharashtra\nInventory Hub\nRs. 160,000\n0.19%\n33\nEverest Agro\nAndhra Pradesh\nCloud Suite\nRs. 150,000\n0.18%\n34\nOrchid Foods\nAndhra Pradesh\nHR Portal\nRs. 130,000\n0.15%\n35\nPioneer Hospitals\nTamil Nadu\nBilling Manager\nRs. 110,000\n0.13%\n36\nKaveri Motors\nKerala\nInventory Hub\nRs. 40,000\n0.05%\n37\nPioneer Traders\nKerala\nInventory Hub\nRs. 40,000\n0.05%\n38\nOrchid Pharma\nKerala\nCloud Suite\nRs. 40,000\n0.05%",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_5.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2435
+      }
+    },
+    {
+      "evidence_id": "E016",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 5,
+      "section": "6. Top 40 Accounts",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "#",
+          "Account",
+          "Region",
+          "Main Product",
+          "Annual Value",
+          "Share %"
+        ],
+        "rows": [
+          [
+            "1",
+            "Western Ghats Pharma",
+            "Kerala",
+            "Cloud Suite",
+            "Rs. 590,000",
+            "0.70%"
+          ],
+          [
+            "2",
+            "Lotus Constructions",
+            "Andhra Pradesh",
+            "Cloud Suite",
+            "Rs. 560,000",
+            "0.66%"
+          ],
+          [
+            "3",
+            "Pioneer Agro",
+            "Telangana",
+            "Support Desk",
+            "Rs. 550,000",
+            "0.65%"
+          ],
+          [
+            "4",
+            "Everest Traders",
+            "Karnataka",
+            "Analytics Pro",
+            "Rs. 540,000",
+            "0.64%"
+          ],
+          [
+            "5",
+            "Malabar Foods",
+            "Andhra Pradesh",
+            "Billing Manager",
+            "Rs. 530,000",
+            "0.63%"
+          ],
+          [
+            "6",
+            "Sagar Hospitals",
+            "Telangana",
+            "CRM Lite",
+            "Rs. 500,000",
+            "0.59%"
+          ],
+          [
+            "7",
+            "Lotus Agro",
+            "Andhra Pradesh",
+            "Inventory Hub",
+            "Rs. 500,000",
+            "0.59%"
+          ],
+          [
+            "8",
+            "Pioneer Hospitals",
+            "Andhra Pradesh",
+            "Billing Manager",
+            "Rs. 490,000",
+            "0.58%"
+          ],
+          [
+            "9",
+            "Kaveri Traders",
+            "Andhra Pradesh",
+            "CRM Lite",
+            "Rs. 480,000",
+            "0.57%"
+          ],
+          [
+            "10",
+            "Malabar Motors",
+            "Andhra Pradesh",
+            "Analytics Pro",
+            "Rs. 470,000",
+            "0.56%"
+          ],
+          [
+            "11",
+            "Malabar Constructions",
+            "Maharashtra",
+            "Billing Manager",
+            "Rs. 470,000",
+            "0.56%"
+          ],
+          [
+            "12",
+            "Deccan Constructions",
+            "Karnataka",
+            "Support Desk",
+            "Rs. 460,000",
+            "0.54%"
+          ],
+          [
+            "13",
+            "Lotus Foods",
+            "Karnataka",
+            "CRM Lite",
+            "Rs. 430,000",
+            "0.51%"
+          ],
+          [
+            "14",
+            "Malabar Motors",
+            "Telangana",
+            "Mobile SDK",
+            "Rs. 420,000",
+            "0.50%"
+          ],
+          [
+            "15",
+            "Western Ghats Foods",
+            "Maharashtra",
+            "CRM Lite",
+            "Rs. 410,000",
+            "0.49%"
+          ],
+          [
+            "16",
+            "Vijay Constructions",
+            "Maharashtra",
+            "Billing Manager",
+            "Rs. 410,000",
+            "0.49%"
+          ],
+          [
+            "17",
+            "Orchid Hospitals",
+            "Andhra Pradesh",
+            "Cloud Suite",
+            "Rs. 370,000",
+            "0.44%"
+          ],
+          [
+            "18",
+            "Coastal Motors",
+            "Andhra Pradesh",
+            "Support Desk",
+            "Rs. 360,000",
+            "0.43%"
+          ],
+          [
+            "19",
+            "Coastal Foods",
+            "Maharashtra",
+            "Inventory Hub",
+            "Rs. 340,000",
+            "0.40%"
+          ],
+          [
+            "20",
+            "Sagar Agro",
+            "Maharashtra",
+            "HR Portal",
+            "Rs. 340,000",
+            "0.40%"
+          ],
+          [
+            "21",
+            "Western Ghats Traders",
+            "Kerala",
+            "Support Desk",
+            "Rs. 330,000",
+            "0.39%"
+          ],
+          [
+            "22",
+            "Deccan Pharma",
+            "Andhra Pradesh",
+            "CRM Lite",
+            "Rs. 310,000",
+            "0.37%"
+          ],
+          [
+            "23",
+            "Malabar Agro",
+            "Telangana",
+            "Analytics Pro",
+            "Rs. 310,000",
+            "0.37%"
+          ],
+          [
+            "24",
+            "Deccan Hospitals",
+            "Kerala",
+            "HR Portal",
+            "Rs. 280,000",
+            "0.33%"
+          ],
+          [
+            "25",
+            "Orchid Retail",
+            "Andhra Pradesh",
+            "Analytics Pro",
+            "Rs. 260,000",
+            "0.31%"
+          ],
+          [
+            "26",
+            "Bharath Constructions",
+            "Tamil Nadu",
+            "HR Portal",
+            "Rs. 250,000",
+            "0.30%"
+          ],
+          [
+            "27",
+            "Malabar Foods",
+            "Andhra Pradesh",
+            "Support Desk",
+            "Rs. 230,000",
+            "0.27%"
+          ],
+          [
+            "28",
+            "Deccan Pharma",
+            "Karnataka",
+            "CRM Lite",
+            "Rs. 220,000",
+            "0.26%"
+          ],
+          [
+            "29",
+            "Annapurna Motors",
+            "Andhra Pradesh",
+            "Cloud Suite",
+            "Rs. 210,000",
+            "0.25%"
+          ],
+          [
+            "30",
+            "Sagar Logistics",
+            "Maharashtra",
+            "Analytics Pro",
+            "Rs. 200,000",
+            "0.24%"
+          ],
+          [
+            "31",
+            "Sri Lakshmi Pharma",
+            "Andhra Pradesh",
+            "CRM Lite",
+            "Rs. 190,000",
+            "0.22%"
+          ],
+          [
+            "32",
+            "Orchid Pharma",
+            "Maharashtra",
+            "Inventory Hub",
+            "Rs. 160,000",
+            "0.19%"
+          ],
+          [
+            "33",
+            "Everest Agro",
+            "Andhra Pradesh",
+            "Cloud Suite",
+            "Rs. 150,000",
+            "0.18%"
+          ],
+          [
+            "34",
+            "Orchid Foods",
+            "Andhra Pradesh",
+            "HR Portal",
+            "Rs. 130,000",
+            "0.15%"
+          ],
+          [
+            "35",
+            "Pioneer Hospitals",
+            "Tamil Nadu",
+            "Billing Manager",
+            "Rs. 110,000",
+            "0.13%"
+          ],
+          [
+            "36",
+            "Kaveri Motors",
+            "Kerala",
+            "Inventory Hub",
+            "Rs. 40,000",
+            "0.05%"
+          ],
+          [
+            "37",
+            "Pioneer Traders",
+            "Kerala",
+            "Inventory Hub",
+            "Rs. 40,000",
+            "0.05%"
+          ],
+          [
+            "38",
+            "Orchid Pharma",
+            "Kerala",
+            "Cloud Suite",
+            "Rs. 40,000",
+            "0.05%"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_5.png",
+      "metadata": {
+        "row_count": 38,
+        "col_count": 6
+      }
+    },
+    {
+      "evidence_id": "E017",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 5,
+      "section": "6. Top 40 Accounts",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_5.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (87 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E018",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 6,
+      "section": "Account",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 6\n#\nAccount\nRegion\nMain Product\nAnnual Value\nShare %\n39\nEverest Constructions\nMaharashtra\nCRM Lite\nRs. 30,000\n0.04%\n40\nPioneer Traders\nAndhra Pradesh\nMobile SDK\nRs. 20,000\n0.02%",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_6.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 221
+      }
+    },
+    {
+      "evidence_id": "E019",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 6,
+      "section": "Account",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "#",
+          "Account",
+          "Region",
+          "Main Product",
+          "Annual Value",
+          "Share %"
+        ],
+        "rows": [
+          [
+            "39",
+            "Everest Constructions",
+            "Maharashtra",
+            "CRM Lite",
+            "Rs. 30,000",
+            "0.04%"
+          ],
+          [
+            "40",
+            "Pioneer Traders",
+            "Andhra Pradesh",
+            "Mobile SDK",
+            "Rs. 20,000",
+            "0.02%"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_6.png",
+      "metadata": {
+        "row_count": 2,
+        "col_count": 6
+      }
+    },
+    {
+      "evidence_id": "E020",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 7,
+      "section": "7. Transaction Log (Sample, 120 records)",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 7\n7. Transaction Log (Sample, 120 records)\nTxn ID\nDate\nAccount\nProduct\nQty\nAmount\nStatus\nTX26000\n24-12-2026\nOrchid Traders\nHR Portal\n18\nRs. 153,000\nPaid\nTX26001\n14-05-2026\nSri Lakshmi Constructions\nCRM Lite\n16\nRs. 112,000\nPaid\nTX26002\n05-08-2026\nEverest Textiles\nSupport Desk\n20\nRs. 20,000\nPaid\nTX26003\n14-11-2026\nLotus Agro\nBilling Manager\n5\nRs. 7,500\nPaid\nTX26004\n11-07-2026\nSagar Retail\nCRM Lite\n7\nRs. 49,000\nPaid\nTX26005\n09-07-2026\nSagar Textiles\nCloud Suite\n3\nRs. 19,500\nPaid\nTX26006\n03-11-2026\nVijay Textiles\nCloud Suite\n25\nRs. 112,500\nPaid\nTX26007\n20-01-2026\nMalabar Logistics\nMobile SDK\n5\nRs. 12,500\nOverdue\nTX26008\n15-04-2026\nDeccan Retail\nBilling Manager\n23\nRs. 57,500\nPaid\nTX26009\n04-05-2026\nSri Lakshmi Motors\nSupport Desk\n19\nRs. 133,000\nPaid\nTX26010\n19-02-2026\nLotus Pharma\nAnalytics Pro\n23\nRs. 126,500\nOverdue\nTX26011\n26-02-2026\nOrchid Textiles\nCRM Lite\n19\nRs. 142,500\nPaid\nTX26012\n17-02-2026\nCoastal Textiles\nSupport Desk\n21\nRs. 178,500\nPaid\nTX26013\n12-07-2026\nPioneer Agro\nBilling Manager\n21\nRs. 157,500\nPaid\nTX26014\n17-12-2026\nDeccan Traders\nMobile SDK\n21\nRs. 168,000\nPending\nTX26015\n19-12-2026\nCoastal Pharma\nAnalytics Pro\n9\nRs. 45,000\nPending\nTX26016\n25-04-2026\nAnnapurna Traders\nSupport Desk\n15\nRs. 90,000\nPaid\nTX26017\n28-08-2026\nNilgiri Agro\nHR Portal\n11\nRs. 71,500\nPaid\nTX26018\n09-06-2026\nBharath Motors\nCloud Suite\n20\nRs. 180,000\nPaid\nTX26019\n08-02-2026\nWestern Ghats Agro\nHR Portal\n24\nRs. 204,000\nPending\nTX26020\n26-08-2026\nKaveri Motors\nHR Portal\n1\nRs. 7,000\nPaid\nTX26021\n22-05-2026\nCoastal Agro\nCRM Lite\n19\nRs. 142,500\nOverdue\nTX26022\n12-06-2026\nSagar Motors\nInventory Hub\n23\nRs. 115,000\nPaid\nTX26023\n24-02-2026\nCoastal Foods\nBilling Manager\n7\nRs. 28,000\nPaid\nTX26024\n16-12-2026\nBharath Traders\nInventory Hub\n9\nRs. 22,500\nPaid\nTX26025\n08-05-2026\nNilgiri Motors\nCloud Suite\n12\nRs. 36,000\nPaid\nTX26026\n02-01-2026\nDeccan Logistics\nMobile SDK\n18\nRs. 45,000\nPaid\nTX26027\n10-10-2026\nSagar Agro\nCRM Lite\n16\nRs. 56,000\nPaid\nTX26028\n28-05-2026\nKaveri Foods\nSupport Desk\n16\nRs. 136,000\nPaid\nTX26029\n21-10-2026\nSri Lakshmi Logistics\nBilling Manager\n22\nRs. 121,000\nPaid\nTX26030\n04-04-2026\nOrchid Constructions\nHR Portal\n18\nRs. 162,000\nPending\nTX26031\n15-08-2026\nLotus Traders\nSupport Desk\n10\nRs. 55,000\nOverdue\nTX26032\n02-10-2026\nBharath Foods\nHR Portal\n20\nRs. 80,000\nPaid\nTX26033\n03-11-2026\nMalabar Logistics\nAnalytics Pro\n6\nRs. 21,000\nPaid\nTX26034\n15-07-2026\nAnnapurna Agro\nInventory Hub\n23\nRs. 34,500\nPaid\nTX26035\n23-05-2026\nBharath Agro\nAnalytics Pro\n10\nRs. 45,000\nPaid\nTX26036\n19-11-2026\nOrchid Pharma\nSupport Desk\n22\nRs. 55,000\nOverdue\nTX26037\n21-04-2026\nPioneer Motors\nBilling Manager\n5\nRs. 10,000\nPaid",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_7.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2667
+      }
+    },
+    {
+      "evidence_id": "E021",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 7,
+      "section": "7. Transaction Log (Sample, 120 records)",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Txn ID",
+          "Date",
+          "Account",
+          "Product",
+          "Qty",
+          "Amount",
+          "Status"
+        ],
+        "rows": [
+          [
+            "TX26000",
+            "24-12-2026",
+            "Orchid Traders",
+            "HR Portal",
+            "18",
+            "Rs. 153,000",
+            "Paid"
+          ],
+          [
+            "TX26001",
+            "14-05-2026",
+            "Sri Lakshmi Constructions",
+            "CRM Lite",
+            "16",
+            "Rs. 112,000",
+            "Paid"
+          ],
+          [
+            "TX26002",
+            "05-08-2026",
+            "Everest Textiles",
+            "Support Desk",
+            "20",
+            "Rs. 20,000",
+            "Paid"
+          ],
+          [
+            "TX26003",
+            "14-11-2026",
+            "Lotus Agro",
+            "Billing Manager",
+            "5",
+            "Rs. 7,500",
+            "Paid"
+          ],
+          [
+            "TX26004",
+            "11-07-2026",
+            "Sagar Retail",
+            "CRM Lite",
+            "7",
+            "Rs. 49,000",
+            "Paid"
+          ],
+          [
+            "TX26005",
+            "09-07-2026",
+            "Sagar Textiles",
+            "Cloud Suite",
+            "3",
+            "Rs. 19,500",
+            "Paid"
+          ],
+          [
+            "TX26006",
+            "03-11-2026",
+            "Vijay Textiles",
+            "Cloud Suite",
+            "25",
+            "Rs. 112,500",
+            "Paid"
+          ],
+          [
+            "TX26007",
+            "20-01-2026",
+            "Malabar Logistics",
+            "Mobile SDK",
+            "5",
+            "Rs. 12,500",
+            "Overdue"
+          ],
+          [
+            "TX26008",
+            "15-04-2026",
+            "Deccan Retail",
+            "Billing Manager",
+            "23",
+            "Rs. 57,500",
+            "Paid"
+          ],
+          [
+            "TX26009",
+            "04-05-2026",
+            "Sri Lakshmi Motors",
+            "Support Desk",
+            "19",
+            "Rs. 133,000",
+            "Paid"
+          ],
+          [
+            "TX26010",
+            "19-02-2026",
+            "Lotus Pharma",
+            "Analytics Pro",
+            "23",
+            "Rs. 126,500",
+            "Overdue"
+          ],
+          [
+            "TX26011",
+            "26-02-2026",
+            "Orchid Textiles",
+            "CRM Lite",
+            "19",
+            "Rs. 142,500",
+            "Paid"
+          ],
+          [
+            "TX26012",
+            "17-02-2026",
+            "Coastal Textiles",
+            "Support Desk",
+            "21",
+            "Rs. 178,500",
+            "Paid"
+          ],
+          [
+            "TX26013",
+            "12-07-2026",
+            "Pioneer Agro",
+            "Billing Manager",
+            "21",
+            "Rs. 157,500",
+            "Paid"
+          ],
+          [
+            "TX26014",
+            "17-12-2026",
+            "Deccan Traders",
+            "Mobile SDK",
+            "21",
+            "Rs. 168,000",
+            "Pending"
+          ],
+          [
+            "TX26015",
+            "19-12-2026",
+            "Coastal Pharma",
+            "Analytics Pro",
+            "9",
+            "Rs. 45,000",
+            "Pending"
+          ],
+          [
+            "TX26016",
+            "25-04-2026",
+            "Annapurna Traders",
+            "Support Desk",
+            "15",
+            "Rs. 90,000",
+            "Paid"
+          ],
+          [
+            "TX26017",
+            "28-08-2026",
+            "Nilgiri Agro",
+            "HR Portal",
+            "11",
+            "Rs. 71,500",
+            "Paid"
+          ],
+          [
+            "TX26018",
+            "09-06-2026",
+            "Bharath Motors",
+            "Cloud Suite",
+            "20",
+            "Rs. 180,000",
+            "Paid"
+          ],
+          [
+            "TX26019",
+            "08-02-2026",
+            "Western Ghats Agro",
+            "HR Portal",
+            "24",
+            "Rs. 204,000",
+            "Pending"
+          ],
+          [
+            "TX26020",
+            "26-08-2026",
+            "Kaveri Motors",
+            "HR Portal",
+            "1",
+            "Rs. 7,000",
+            "Paid"
+          ],
+          [
+            "TX26021",
+            "22-05-2026",
+            "Coastal Agro",
+            "CRM Lite",
+            "19",
+            "Rs. 142,500",
+            "Overdue"
+          ],
+          [
+            "TX26022",
+            "12-06-2026",
+            "Sagar Motors",
+            "Inventory Hub",
+            "23",
+            "Rs. 115,000",
+            "Paid"
+          ],
+          [
+            "TX26023",
+            "24-02-2026",
+            "Coastal Foods",
+            "Billing Manager",
+            "7",
+            "Rs. 28,000",
+            "Paid"
+          ],
+          [
+            "TX26024",
+            "16-12-2026",
+            "Bharath Traders",
+            "Inventory Hub",
+            "9",
+            "Rs. 22,500",
+            "Paid"
+          ],
+          [
+            "TX26025",
+            "08-05-2026",
+            "Nilgiri Motors",
+            "Cloud Suite",
+            "12",
+            "Rs. 36,000",
+            "Paid"
+          ],
+          [
+            "TX26026",
+            "02-01-2026",
+            "Deccan Logistics",
+            "Mobile SDK",
+            "18",
+            "Rs. 45,000",
+            "Paid"
+          ],
+          [
+            "TX26027",
+            "10-10-2026",
+            "Sagar Agro",
+            "CRM Lite",
+            "16",
+            "Rs. 56,000",
+            "Paid"
+          ],
+          [
+            "TX26028",
+            "28-05-2026",
+            "Kaveri Foods",
+            "Support Desk",
+            "16",
+            "Rs. 136,000",
+            "Paid"
+          ],
+          [
+            "TX26029",
+            "21-10-2026",
+            "Sri Lakshmi Logistics",
+            "Billing Manager",
+            "22",
+            "Rs. 121,000",
+            "Paid"
+          ],
+          [
+            "TX26030",
+            "04-04-2026",
+            "Orchid Constructions",
+            "HR Portal",
+            "18",
+            "Rs. 162,000",
+            "Pending"
+          ],
+          [
+            "TX26031",
+            "15-08-2026",
+            "Lotus Traders",
+            "Support Desk",
+            "10",
+            "Rs. 55,000",
+            "Overdue"
+          ],
+          [
+            "TX26032",
+            "02-10-2026",
+            "Bharath Foods",
+            "HR Portal",
+            "20",
+            "Rs. 80,000",
+            "Paid"
+          ],
+          [
+            "TX26033",
+            "03-11-2026",
+            "Malabar Logistics",
+            "Analytics Pro",
+            "6",
+            "Rs. 21,000",
+            "Paid"
+          ],
+          [
+            "TX26034",
+            "15-07-2026",
+            "Annapurna Agro",
+            "Inventory Hub",
+            "23",
+            "Rs. 34,500",
+            "Paid"
+          ],
+          [
+            "TX26035",
+            "23-05-2026",
+            "Bharath Agro",
+            "Analytics Pro",
+            "10",
+            "Rs. 45,000",
+            "Paid"
+          ],
+          [
+            "TX26036",
+            "19-11-2026",
+            "Orchid Pharma",
+            "Support Desk",
+            "22",
+            "Rs. 55,000",
+            "Overdue"
+          ],
+          [
+            "TX26037",
+            "21-04-2026",
+            "Pioneer Motors",
+            "Billing Manager",
+            "5",
+            "Rs. 10,000",
+            "Paid"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_7.png",
+      "metadata": {
+        "row_count": 38,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E022",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 7,
+      "section": "7. Transaction Log (Sample, 120 records)",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_7.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (88 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E023",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 8,
+      "section": "Txn ID",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 8\nTxn ID\nDate\nAccount\nProduct\nQty\nAmount\nStatus\nTX26038\n26-03-2026\nAnnapurna Traders\nInventory Hub\n10\nRs. 80,000\nPaid\nTX26039\n23-08-2026\nBharath Constructions\nInventory Hub\n10\nRs. 90,000\nOverdue\nTX26040\n15-08-2026\nAnnapurna Textiles\nSupport Desk\n3\nRs. 18,000\nOverdue\nTX26041\n01-05-2026\nMalabar Traders\nCloud Suite\n3\nRs. 15,000\nOverdue\nTX26042\n25-01-2026\nNilgiri Agro\nMobile SDK\n25\nRs. 125,000\nPaid\nTX26043\n14-10-2026\nLotus Agro\nAnalytics Pro\n21\nRs. 178,500\nPaid\nTX26044\n11-07-2026\nVijay Foods\nBilling Manager\n11\nRs. 66,000\nPending\nTX26045\n16-12-2026\nVijay Constructions\nCloud Suite\n10\nRs. 80,000\nPaid\nTX26046\n09-06-2026\nKaveri Constructions\nCloud Suite\n11\nRs. 88,000\nPending\nTX26047\n07-01-2026\nCoastal Traders\nMobile SDK\n17\nRs. 136,000\nPaid\nTX26048\n09-04-2026\nNilgiri Motors\nMobile SDK\n18\nRs. 153,000\nPaid\nTX26049\n21-01-2026\nOrchid Pharma\nBilling Manager\n20\nRs. 110,000\nOverdue\nTX26050\n18-01-2026\nKaveri Pharma\nAnalytics Pro\n14\nRs. 112,000\nPaid\nTX26051\n27-11-2026\nSagar Motors\nInventory Hub\n5\nRs. 37,500\nPending\nTX26052\n08-08-2026\nEverest Logistics\nSupport Desk\n15\nRs. 60,000\nOverdue\nTX26053\n24-09-2026\nLotus Foods\nInventory Hub\n5\nRs. 37,500\nPaid\nTX26054\n09-09-2026\nDeccan Motors\nMobile SDK\n1\nRs. 3,000\nPending\nTX26055\n16-09-2026\nCoastal Hospitals\nSupport Desk\n12\nRs. 96,000\nPaid\nTX26056\n23-04-2026\nAnnapurna Constructions\nHR Portal\n8\nRs. 60,000\nPaid\nTX26057\n24-06-2026\nBharath Constructions\nSupport Desk\n16\nRs. 48,000\nPending\nTX26058\n05-01-2026\nAnnapurna Retail\nAnalytics Pro\n17\nRs. 136,000\nPaid\nTX26059\n15-09-2026\nBharath Logistics\nSupport Desk\n1\nRs. 3,000\nPaid\nTX26060\n26-08-2026\nCoastal Traders\nSupport Desk\n9\nRs. 18,000\nPaid\nTX26061\n28-11-2026\nWestern Ghats Retail\nMobile SDK\n18\nRs. 27,000\nOverdue\nTX26062\n08-02-2026\nVijay Motors\nHR Portal\n21\nRs. 42,000\nPending\nTX26063\n25-02-2026\nBharath Foods\nMobile SDK\n21\nRs. 73,500\nPaid\nTX26064\n02-01-2026\nOrchid Textiles\nInventory Hub\n11\nRs. 71,500\nPaid\nTX26065\n05-07-2026\nEverest Constructions\nBilling Manager\n8\nRs. 28,000\nPaid\nTX26066\n20-02-2026\nAnnapurna Pharma\nMobile SDK\n13\nRs. 39,000\nPaid\nTX26067\n21-08-2026\nSagar Motors\nCloud Suite\n9\nRs. 72,000\nPaid\nTX26068\n18-11-2026\nKaveri Agro\nCRM Lite\n6\nRs. 33,000\nPending\nTX26069\n09-12-2026\nLotus Motors\nHR Portal\n15\nRs. 105,000\nPending\nTX26070\n08-02-2026\nAnnapurna Retail\nInventory Hub\n13\nRs. 71,500\nPaid\nTX26071\n13-11-2026\nSri Lakshmi Traders\nCloud Suite\n9\nRs. 76,500\nPaid\nTX26072\n20-04-2026\nMalabar Pharma\nInventory Hub\n12\nRs. 36,000\nPaid\nTX26073\n21-11-2026\nDeccan Agro\nCloud Suite\n2\nRs. 13,000\nPaid\nTX26074\n10-02-2026\nBharath Constructions\nBilling Manager\n11\nRs. 44,000\nPaid\nTX26075\n12-09-2026\nEverest Motors\nBilling Manager\n17\nRs. 85,000\nPending\nTX26076\n24-05-2026\nOrchid Foods\nMobile SDK\n11\nRs. 22,000\nPaid",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_8.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2746
+      }
+    },
+    {
+      "evidence_id": "E024",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 8,
+      "section": "Txn ID",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Txn ID",
+          "Date",
+          "Account",
+          "Product",
+          "Qty",
+          "Amount",
+          "Status"
+        ],
+        "rows": [
+          [
+            "TX26038",
+            "26-03-2026",
+            "Annapurna Traders",
+            "Inventory Hub",
+            "10",
+            "Rs. 80,000",
+            "Paid"
+          ],
+          [
+            "TX26039",
+            "23-08-2026",
+            "Bharath Constructions",
+            "Inventory Hub",
+            "10",
+            "Rs. 90,000",
+            "Overdue"
+          ],
+          [
+            "TX26040",
+            "15-08-2026",
+            "Annapurna Textiles",
+            "Support Desk",
+            "3",
+            "Rs. 18,000",
+            "Overdue"
+          ],
+          [
+            "TX26041",
+            "01-05-2026",
+            "Malabar Traders",
+            "Cloud Suite",
+            "3",
+            "Rs. 15,000",
+            "Overdue"
+          ],
+          [
+            "TX26042",
+            "25-01-2026",
+            "Nilgiri Agro",
+            "Mobile SDK",
+            "25",
+            "Rs. 125,000",
+            "Paid"
+          ],
+          [
+            "TX26043",
+            "14-10-2026",
+            "Lotus Agro",
+            "Analytics Pro",
+            "21",
+            "Rs. 178,500",
+            "Paid"
+          ],
+          [
+            "TX26044",
+            "11-07-2026",
+            "Vijay Foods",
+            "Billing Manager",
+            "11",
+            "Rs. 66,000",
+            "Pending"
+          ],
+          [
+            "TX26045",
+            "16-12-2026",
+            "Vijay Constructions",
+            "Cloud Suite",
+            "10",
+            "Rs. 80,000",
+            "Paid"
+          ],
+          [
+            "TX26046",
+            "09-06-2026",
+            "Kaveri Constructions",
+            "Cloud Suite",
+            "11",
+            "Rs. 88,000",
+            "Pending"
+          ],
+          [
+            "TX26047",
+            "07-01-2026",
+            "Coastal Traders",
+            "Mobile SDK",
+            "17",
+            "Rs. 136,000",
+            "Paid"
+          ],
+          [
+            "TX26048",
+            "09-04-2026",
+            "Nilgiri Motors",
+            "Mobile SDK",
+            "18",
+            "Rs. 153,000",
+            "Paid"
+          ],
+          [
+            "TX26049",
+            "21-01-2026",
+            "Orchid Pharma",
+            "Billing Manager",
+            "20",
+            "Rs. 110,000",
+            "Overdue"
+          ],
+          [
+            "TX26050",
+            "18-01-2026",
+            "Kaveri Pharma",
+            "Analytics Pro",
+            "14",
+            "Rs. 112,000",
+            "Paid"
+          ],
+          [
+            "TX26051",
+            "27-11-2026",
+            "Sagar Motors",
+            "Inventory Hub",
+            "5",
+            "Rs. 37,500",
+            "Pending"
+          ],
+          [
+            "TX26052",
+            "08-08-2026",
+            "Everest Logistics",
+            "Support Desk",
+            "15",
+            "Rs. 60,000",
+            "Overdue"
+          ],
+          [
+            "TX26053",
+            "24-09-2026",
+            "Lotus Foods",
+            "Inventory Hub",
+            "5",
+            "Rs. 37,500",
+            "Paid"
+          ],
+          [
+            "TX26054",
+            "09-09-2026",
+            "Deccan Motors",
+            "Mobile SDK",
+            "1",
+            "Rs. 3,000",
+            "Pending"
+          ],
+          [
+            "TX26055",
+            "16-09-2026",
+            "Coastal Hospitals",
+            "Support Desk",
+            "12",
+            "Rs. 96,000",
+            "Paid"
+          ],
+          [
+            "TX26056",
+            "23-04-2026",
+            "Annapurna Constructions",
+            "HR Portal",
+            "8",
+            "Rs. 60,000",
+            "Paid"
+          ],
+          [
+            "TX26057",
+            "24-06-2026",
+            "Bharath Constructions",
+            "Support Desk",
+            "16",
+            "Rs. 48,000",
+            "Pending"
+          ],
+          [
+            "TX26058",
+            "05-01-2026",
+            "Annapurna Retail",
+            "Analytics Pro",
+            "17",
+            "Rs. 136,000",
+            "Paid"
+          ],
+          [
+            "TX26059",
+            "15-09-2026",
+            "Bharath Logistics",
+            "Support Desk",
+            "1",
+            "Rs. 3,000",
+            "Paid"
+          ],
+          [
+            "TX26060",
+            "26-08-2026",
+            "Coastal Traders",
+            "Support Desk",
+            "9",
+            "Rs. 18,000",
+            "Paid"
+          ],
+          [
+            "TX26061",
+            "28-11-2026",
+            "Western Ghats Retail",
+            "Mobile SDK",
+            "18",
+            "Rs. 27,000",
+            "Overdue"
+          ],
+          [
+            "TX26062",
+            "08-02-2026",
+            "Vijay Motors",
+            "HR Portal",
+            "21",
+            "Rs. 42,000",
+            "Pending"
+          ],
+          [
+            "TX26063",
+            "25-02-2026",
+            "Bharath Foods",
+            "Mobile SDK",
+            "21",
+            "Rs. 73,500",
+            "Paid"
+          ],
+          [
+            "TX26064",
+            "02-01-2026",
+            "Orchid Textiles",
+            "Inventory Hub",
+            "11",
+            "Rs. 71,500",
+            "Paid"
+          ],
+          [
+            "TX26065",
+            "05-07-2026",
+            "Everest Constructions",
+            "Billing Manager",
+            "8",
+            "Rs. 28,000",
+            "Paid"
+          ],
+          [
+            "TX26066",
+            "20-02-2026",
+            "Annapurna Pharma",
+            "Mobile SDK",
+            "13",
+            "Rs. 39,000",
+            "Paid"
+          ],
+          [
+            "TX26067",
+            "21-08-2026",
+            "Sagar Motors",
+            "Cloud Suite",
+            "9",
+            "Rs. 72,000",
+            "Paid"
+          ],
+          [
+            "TX26068",
+            "18-11-2026",
+            "Kaveri Agro",
+            "CRM Lite",
+            "6",
+            "Rs. 33,000",
+            "Pending"
+          ],
+          [
+            "TX26069",
+            "09-12-2026",
+            "Lotus Motors",
+            "HR Portal",
+            "15",
+            "Rs. 105,000",
+            "Pending"
+          ],
+          [
+            "TX26070",
+            "08-02-2026",
+            "Annapurna Retail",
+            "Inventory Hub",
+            "13",
+            "Rs. 71,500",
+            "Paid"
+          ],
+          [
+            "TX26071",
+            "13-11-2026",
+            "Sri Lakshmi Traders",
+            "Cloud Suite",
+            "9",
+            "Rs. 76,500",
+            "Paid"
+          ],
+          [
+            "TX26072",
+            "20-04-2026",
+            "Malabar Pharma",
+            "Inventory Hub",
+            "12",
+            "Rs. 36,000",
+            "Paid"
+          ],
+          [
+            "TX26073",
+            "21-11-2026",
+            "Deccan Agro",
+            "Cloud Suite",
+            "2",
+            "Rs. 13,000",
+            "Paid"
+          ],
+          [
+            "TX26074",
+            "10-02-2026",
+            "Bharath Constructions",
+            "Billing Manager",
+            "11",
+            "Rs. 44,000",
+            "Paid"
+          ],
+          [
+            "TX26075",
+            "12-09-2026",
+            "Everest Motors",
+            "Billing Manager",
+            "17",
+            "Rs. 85,000",
+            "Pending"
+          ],
+          [
+            "TX26076",
+            "24-05-2026",
+            "Orchid Foods",
+            "Mobile SDK",
+            "11",
+            "Rs. 22,000",
+            "Paid"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_8.png",
+      "metadata": {
+        "row_count": 39,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E025",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 8,
+      "section": "Txn ID",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_8.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (98 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E026",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 9,
+      "section": "Txn ID",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 9\nTxn ID\nDate\nAccount\nProduct\nQty\nAmount\nStatus\nTX26077\n28-04-2026\nBharath Constructions\nCRM Lite\n22\nRs. 44,000\nPending\nTX26078\n09-01-2026\nKaveri Agro\nCRM Lite\n18\nRs. 90,000\nOverdue\nTX26079\n27-07-2026\nCoastal Foods\nHR Portal\n21\nRs. 178,500\nPaid\nTX26080\n18-10-2026\nPioneer Traders\nHR Portal\n11\nRs. 22,000\nPending\nTX26081\n10-12-2026\nWestern Ghats Foods\nBilling Manager\n21\nRs. 31,500\nPaid\nTX26082\n16-05-2026\nKaveri Pharma\nBilling Manager\n4\nRs. 28,000\nPending\nTX26083\n22-06-2026\nBharath Hospitals\nSupport Desk\n24\nRs. 72,000\nPending\nTX26084\n04-11-2026\nAnnapurna Constructions\nInventory Hub\n16\nRs. 24,000\nPaid\nTX26085\n15-04-2026\nMalabar Retail\nAnalytics Pro\n15\nRs. 97,500\nOverdue\nTX26086\n12-11-2026\nWestern Ghats Motors\nHR Portal\n2\nRs. 5,000\nPending\nTX26087\n22-02-2026\nVijay Traders\nCloud Suite\n7\nRs. 10,500\nPaid\nTX26088\n05-04-2026\nMalabar Foods\nHR Portal\n19\nRs. 76,000\nPaid\nTX26089\n25-06-2026\nOrchid Traders\nCloud Suite\n5\nRs. 25,000\nPaid\nTX26090\n18-03-2026\nOrchid Logistics\nAnalytics Pro\n9\nRs. 9,000\nPaid\nTX26091\n12-01-2026\nAnnapurna Retail\nCloud Suite\n8\nRs. 28,000\nPaid\nTX26092\n05-01-2026\nWestern Ghats Hospitals\nAnalytics Pro\n24\nRs. 48,000\nPending\nTX26093\n25-08-2026\nEverest Traders\nAnalytics Pro\n12\nRs. 96,000\nOverdue\nTX26094\n20-04-2026\nBharath Hospitals\nInventory Hub\n2\nRs. 16,000\nPaid\nTX26095\n16-01-2026\nWestern Ghats Foods\nMobile SDK\n13\nRs. 104,000\nPaid\nTX26096\n11-02-2026\nNilgiri Foods\nBilling Manager\n20\nRs. 100,000\nOverdue\nTX26097\n19-11-2026\nBharath Retail\nSupport Desk\n18\nRs. 162,000\nPaid\nTX26098\n17-08-2026\nWestern Ghats Foods\nAnalytics Pro\n20\nRs. 80,000\nPending\nTX26099\n08-08-2026\nCoastal Agro\nSupport Desk\n14\nRs. 105,000\nPaid\nTX26100\n14-06-2026\nVijay Motors\nCRM Lite\n11\nRs. 33,000\nPending\nTX26101\n03-02-2026\nKaveri Constructions\nAnalytics Pro\n3\nRs. 19,500\nPaid\nTX26102\n02-09-2026\nEverest Hospitals\nCRM Lite\n19\nRs. 47,500\nPending\nTX26103\n28-06-2026\nOrchid Constructions\nCloud Suite\n22\nRs. 121,000\nOverdue\nTX26104\n12-05-2026\nAnnapurna Hospitals\nHR Portal\n4\nRs. 12,000\nPending\nTX26105\n28-04-2026\nCoastal Hospitals\nCRM Lite\n4\nRs. 10,000\nPaid\nTX26106\n08-10-2026\nLotus Hospitals\nCloud Suite\n14\nRs. 70,000\nPaid\nTX26107\n09-03-2026\nOrchid Motors\nCRM Lite\n23\nRs. 149,500\nPaid\nTX26108\n28-03-2026\nAnnapurna Constructions\nAnalytics Pro\n5\nRs. 15,000\nPaid\nTX26109\n24-02-2026\nMalabar Constructions\nSupport Desk\n17\nRs. 136,000\nPaid\nTX26110\n12-03-2026\nBharath Retail\nAnalytics Pro\n10\nRs. 15,000\nPaid\nTX26111\n25-03-2026\nSri Lakshmi Foods\nInventory Hub\n20\nRs. 160,000\nPending\nTX26112\n20-08-2026\nWestern Ghats Motors\nHR Portal\n15\nRs. 135,000\nPaid\nTX26113\n14-06-2026\nDeccan Traders\nMobile SDK\n4\nRs. 36,000\nPaid\nTX26114\n08-01-2026\nAnnapurna Textiles\nCloud Suite\n13\nRs. 52,000\nPaid\nTX26115\n25-04-2026\nOrchid Motors\nInventory Hub\n5\nRs. 30,000\nPaid",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_9.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2774
+      }
+    },
+    {
+      "evidence_id": "E027",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 9,
+      "section": "Txn ID",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Txn ID",
+          "Date",
+          "Account",
+          "Product",
+          "Qty",
+          "Amount",
+          "Status"
+        ],
+        "rows": [
+          [
+            "TX26077",
+            "28-04-2026",
+            "Bharath Constructions",
+            "CRM Lite",
+            "22",
+            "Rs. 44,000",
+            "Pending"
+          ],
+          [
+            "TX26078",
+            "09-01-2026",
+            "Kaveri Agro",
+            "CRM Lite",
+            "18",
+            "Rs. 90,000",
+            "Overdue"
+          ],
+          [
+            "TX26079",
+            "27-07-2026",
+            "Coastal Foods",
+            "HR Portal",
+            "21",
+            "Rs. 178,500",
+            "Paid"
+          ],
+          [
+            "TX26080",
+            "18-10-2026",
+            "Pioneer Traders",
+            "HR Portal",
+            "11",
+            "Rs. 22,000",
+            "Pending"
+          ],
+          [
+            "TX26081",
+            "10-12-2026",
+            "Western Ghats Foods",
+            "Billing Manager",
+            "21",
+            "Rs. 31,500",
+            "Paid"
+          ],
+          [
+            "TX26082",
+            "16-05-2026",
+            "Kaveri Pharma",
+            "Billing Manager",
+            "4",
+            "Rs. 28,000",
+            "Pending"
+          ],
+          [
+            "TX26083",
+            "22-06-2026",
+            "Bharath Hospitals",
+            "Support Desk",
+            "24",
+            "Rs. 72,000",
+            "Pending"
+          ],
+          [
+            "TX26084",
+            "04-11-2026",
+            "Annapurna Constructions",
+            "Inventory Hub",
+            "16",
+            "Rs. 24,000",
+            "Paid"
+          ],
+          [
+            "TX26085",
+            "15-04-2026",
+            "Malabar Retail",
+            "Analytics Pro",
+            "15",
+            "Rs. 97,500",
+            "Overdue"
+          ],
+          [
+            "TX26086",
+            "12-11-2026",
+            "Western Ghats Motors",
+            "HR Portal",
+            "2",
+            "Rs. 5,000",
+            "Pending"
+          ],
+          [
+            "TX26087",
+            "22-02-2026",
+            "Vijay Traders",
+            "Cloud Suite",
+            "7",
+            "Rs. 10,500",
+            "Paid"
+          ],
+          [
+            "TX26088",
+            "05-04-2026",
+            "Malabar Foods",
+            "HR Portal",
+            "19",
+            "Rs. 76,000",
+            "Paid"
+          ],
+          [
+            "TX26089",
+            "25-06-2026",
+            "Orchid Traders",
+            "Cloud Suite",
+            "5",
+            "Rs. 25,000",
+            "Paid"
+          ],
+          [
+            "TX26090",
+            "18-03-2026",
+            "Orchid Logistics",
+            "Analytics Pro",
+            "9",
+            "Rs. 9,000",
+            "Paid"
+          ],
+          [
+            "TX26091",
+            "12-01-2026",
+            "Annapurna Retail",
+            "Cloud Suite",
+            "8",
+            "Rs. 28,000",
+            "Paid"
+          ],
+          [
+            "TX26092",
+            "05-01-2026",
+            "Western Ghats Hospitals",
+            "Analytics Pro",
+            "24",
+            "Rs. 48,000",
+            "Pending"
+          ],
+          [
+            "TX26093",
+            "25-08-2026",
+            "Everest Traders",
+            "Analytics Pro",
+            "12",
+            "Rs. 96,000",
+            "Overdue"
+          ],
+          [
+            "TX26094",
+            "20-04-2026",
+            "Bharath Hospitals",
+            "Inventory Hub",
+            "2",
+            "Rs. 16,000",
+            "Paid"
+          ],
+          [
+            "TX26095",
+            "16-01-2026",
+            "Western Ghats Foods",
+            "Mobile SDK",
+            "13",
+            "Rs. 104,000",
+            "Paid"
+          ],
+          [
+            "TX26096",
+            "11-02-2026",
+            "Nilgiri Foods",
+            "Billing Manager",
+            "20",
+            "Rs. 100,000",
+            "Overdue"
+          ],
+          [
+            "TX26097",
+            "19-11-2026",
+            "Bharath Retail",
+            "Support Desk",
+            "18",
+            "Rs. 162,000",
+            "Paid"
+          ],
+          [
+            "TX26098",
+            "17-08-2026",
+            "Western Ghats Foods",
+            "Analytics Pro",
+            "20",
+            "Rs. 80,000",
+            "Pending"
+          ],
+          [
+            "TX26099",
+            "08-08-2026",
+            "Coastal Agro",
+            "Support Desk",
+            "14",
+            "Rs. 105,000",
+            "Paid"
+          ],
+          [
+            "TX26100",
+            "14-06-2026",
+            "Vijay Motors",
+            "CRM Lite",
+            "11",
+            "Rs. 33,000",
+            "Pending"
+          ],
+          [
+            "TX26101",
+            "03-02-2026",
+            "Kaveri Constructions",
+            "Analytics Pro",
+            "3",
+            "Rs. 19,500",
+            "Paid"
+          ],
+          [
+            "TX26102",
+            "02-09-2026",
+            "Everest Hospitals",
+            "CRM Lite",
+            "19",
+            "Rs. 47,500",
+            "Pending"
+          ],
+          [
+            "TX26103",
+            "28-06-2026",
+            "Orchid Constructions",
+            "Cloud Suite",
+            "22",
+            "Rs. 121,000",
+            "Overdue"
+          ],
+          [
+            "TX26104",
+            "12-05-2026",
+            "Annapurna Hospitals",
+            "HR Portal",
+            "4",
+            "Rs. 12,000",
+            "Pending"
+          ],
+          [
+            "TX26105",
+            "28-04-2026",
+            "Coastal Hospitals",
+            "CRM Lite",
+            "4",
+            "Rs. 10,000",
+            "Paid"
+          ],
+          [
+            "TX26106",
+            "08-10-2026",
+            "Lotus Hospitals",
+            "Cloud Suite",
+            "14",
+            "Rs. 70,000",
+            "Paid"
+          ],
+          [
+            "TX26107",
+            "09-03-2026",
+            "Orchid Motors",
+            "CRM Lite",
+            "23",
+            "Rs. 149,500",
+            "Paid"
+          ],
+          [
+            "TX26108",
+            "28-03-2026",
+            "Annapurna Constructions",
+            "Analytics Pro",
+            "5",
+            "Rs. 15,000",
+            "Paid"
+          ],
+          [
+            "TX26109",
+            "24-02-2026",
+            "Malabar Constructions",
+            "Support Desk",
+            "17",
+            "Rs. 136,000",
+            "Paid"
+          ],
+          [
+            "TX26110",
+            "12-03-2026",
+            "Bharath Retail",
+            "Analytics Pro",
+            "10",
+            "Rs. 15,000",
+            "Paid"
+          ],
+          [
+            "TX26111",
+            "25-03-2026",
+            "Sri Lakshmi Foods",
+            "Inventory Hub",
+            "20",
+            "Rs. 160,000",
+            "Pending"
+          ],
+          [
+            "TX26112",
+            "20-08-2026",
+            "Western Ghats Motors",
+            "HR Portal",
+            "15",
+            "Rs. 135,000",
+            "Paid"
+          ],
+          [
+            "TX26113",
+            "14-06-2026",
+            "Deccan Traders",
+            "Mobile SDK",
+            "4",
+            "Rs. 36,000",
+            "Paid"
+          ],
+          [
+            "TX26114",
+            "08-01-2026",
+            "Annapurna Textiles",
+            "Cloud Suite",
+            "13",
+            "Rs. 52,000",
+            "Paid"
+          ],
+          [
+            "TX26115",
+            "25-04-2026",
+            "Orchid Motors",
+            "Inventory Hub",
+            "5",
+            "Rs. 30,000",
+            "Paid"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_9.png",
+      "metadata": {
+        "row_count": 39,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E028",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 9,
+      "section": "Txn ID",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_9.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (98 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E029",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 10,
+      "section": "Txn ID",
+      "type": "text",
+      "text": "Annual Sales Report 2026 (sample data)\nPage 10\nTxn ID\nDate\nAccount\nProduct\nQty\nAmount\nStatus\nTX26116\n16-01-2026\nWestern Ghats Logistics\nBilling Manager\n24\nRs. 168,000\nOverdue\nTX26117\n08-12-2026\nEverest Retail\nAnalytics Pro\n17\nRs. 119,000\nPaid\nTX26118\n01-07-2026\nPioneer Foods\nCRM Lite\n15\nRs. 112,500\nOverdue\nTX26119\n23-07-2026\nWestern Ghats Motors\nAnalytics Pro\n21\nRs. 147,000\nPaid",
+      "table": null,
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_10.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 381
+      }
+    },
+    {
+      "evidence_id": "E030",
+      "document_id": "DOC_40925D",
+      "document_name": "Sales_Report_2026.pdf",
+      "page": 10,
+      "section": "Txn ID",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Txn ID",
+          "Date",
+          "Account",
+          "Product",
+          "Qty",
+          "Amount",
+          "Status"
+        ],
+        "rows": [
+          [
+            "TX26116",
+            "16-01-2026",
+            "Western Ghats Logistics",
+            "Billing Manager",
+            "24",
+            "Rs. 168,000",
+            "Overdue"
+          ],
+          [
+            "TX26117",
+            "08-12-2026",
+            "Everest Retail",
+            "Analytics Pro",
+            "17",
+            "Rs. 119,000",
+            "Paid"
+          ],
+          [
+            "TX26118",
+            "01-07-2026",
+            "Pioneer Foods",
+            "CRM Lite",
+            "15",
+            "Rs. 112,500",
+            "Overdue"
+          ],
+          [
+            "TX26119",
+            "23-07-2026",
+            "Western Ghats Motors",
+            "Analytics Pro",
+            "21",
+            "Rs. 147,000",
+            "Paid"
+          ]
+        ]
+      },
+      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_40925D/page_10.png",
+      "metadata": {
+        "row_count": 4,
+        "col_count": 7
+      }
+    }
+  ]
+}

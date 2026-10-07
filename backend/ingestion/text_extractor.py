@@ -5,11 +5,15 @@ from typing import Tuple, Optional, List, Dict, Any
 logger = logging.getLogger(__name__)
 
 try:
-    import pymupdf
+    import fitz
     HAS_FITZ = True
 except ImportError:
-    fitz = None
-    HAS_FITZ = False
+    try:
+        import pymupdf as fitz
+        HAS_FITZ = True
+    except ImportError:
+        fitz = None
+        HAS_FITZ = False
 
 def clean_extracted_text(text: str) -> str:
     """

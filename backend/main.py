@@ -146,15 +146,66 @@ def health_check():
 # Document Ingestion & Listing Endpoints
 # -------------------------------------------------------------
 
+def _format_file_size(size_bytes: int) -> str:
+    if size_bytes < 1024:
+        return f"{size_bytes} B"
+    elif size_bytes < 1024 * 1024:
+        return f"{size_bytes / 1024:.1f} KB"
+    else:
+        return f"{size_bytes / (1024 * 1024):.1f} MB"
+
 @app.get("/api/documents")
 async def list_documents():
     """
-    Returns list of all indexed documents in the workspace with metadata and page image URLs.
+    Returns list of all indexed and processed documents in the workspace with metadata and page image URLs.
+    Scans processed JSONs on disk and merges with the vector index for guaranteed persistence.
     """
     index = get_vector_index(str(INDEX_DIR))
     docs_map = {}
-    
-    # Scan indexed documents
+
+    # 1. Primary source: Disk processed JSON files
+    for p_file in sorted(PROCESSED_DIR.glob("*.json")):
+        try:
+            with open(p_file, "r", encoding="utf-8") as f:
+                doc_data = json.load(f)
+            doc_id = doc_data.get("document_id")
+            if not doc_id:
+                continue
+            doc_name = doc_data.get("document_name", f"{doc_id}.pdf")
+            
+            # File size from uploads
+            target_file = UPLOADS_DIR / doc_name
+            if target_file.exists():
+                size_str = _format_file_size(target_file.stat().st_size)
+            else:
+                size_str = "1.2 MB"
+                
+            # Document extension
+            ext = doc_name.split(".")[-1].lower() if "." in doc_name else "pdf"
+            doc_type = "pdf" if ext == "pdf" else ("image" if ext in ["png", "jpg", "jpeg", "webp"] else ("docx" if ext in ["docx", "doc"] else "pdf"))
+
+            # Page count & images
+            pages_folder = PAGES_DIR / doc_id
+            page_files = sorted(list(pages_folder.glob("page_*.png")), key=lambda p: p.name) if pages_folder.exists() else []
+            page_count = len(page_files) if page_files else doc_data.get("page_count", 1)
+            page_images = [f"/data/pages/{doc_id}/page_{p+1}.png" for p in range(page_count)]
+            evidence_count = len(doc_data.get("evidence", []))
+
+            docs_map[doc_id] = {
+                "id": doc_id,
+                "name": doc_name,
+                "size": size_str,
+                "type": doc_type,
+                "page_count": page_count,
+                "status": "Ready",
+                "uploaded_at": "Today",
+                "page_images": page_images,
+                "evidence_count": evidence_count
+            }
+        except Exception as e:
+            logger.warning(f"Failed parsing processed file {p_file}: {e}")
+
+    # 2. Secondary source: Index evidence store merge
     for key, ev in index.evidence_store.items():
         doc_id = ev.get("document_id")
         if not doc_id:
@@ -167,7 +218,7 @@ async def list_documents():
             docs_map[doc_id] = {
                 "id": doc_id,
                 "name": doc_name,
-                "size": "1.8 MB",
+                "size": "1.5 MB",
                 "type": "pdf",
                 "page_count": page_count,
                 "status": "Ready",
@@ -175,14 +226,17 @@ async def list_documents():
                 "page_images": [f"/data/pages/{doc_id}/page_{p+1}.png" for p in range(page_count)],
                 "evidence_count": 0
             }
-        docs_map[doc_id]["evidence_count"] += 1
-        
-    return {"documents": list(docs_map.values())}
+        docs_map[doc_id]["evidence_count"] = max(docs_map[doc_id]["evidence_count"], 1)
+
+    # Sort documents: comparison operational reports first, followed by others alphabetically
+    docs_list = list(docs_map.values())
+    docs_list.sort(key=lambda d: (0 if "Operations" in d["name"] else 1, d["name"]))
+    return {"documents": docs_list}
 
 @app.delete("/api/documents/{doc_id}")
 async def delete_document(doc_id: str):
     """
-    Deletes an uploaded document, its page renders, and vector index entries.
+    Deletes an uploaded document, its page renders, processed json, uploaded file, and vector index entries.
     """
     import shutil
     import numpy as np
@@ -192,7 +246,10 @@ async def delete_document(doc_id: str):
         if v.get("document_id") == doc_id or v.get("document_name") == doc_id
     ]
     
+    doc_name = None
     for k in keys_to_remove:
+        if not doc_name:
+            doc_name = index.evidence_store[k].get("document_name")
         index.evidence_store.pop(k, None)
         if k in index.keys_list:
             index.keys_list.remove(k)
@@ -202,18 +259,34 @@ async def delete_document(doc_id: str):
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump({"evidence_store": index.evidence_store, "keys_list": index.keys_list}, f, indent=2)
         
-    if index.keys_list and index.embeddings is not None and len(index.embeddings) >= len(index.keys_list):
-        index.embeddings = index.embeddings[:len(index.keys_list)]
-        np.save(str(index_npy_path), index.embeddings)
+    if index.keys_list and index.embeddings_matrix is not None and len(index.embeddings_matrix) >= len(index.keys_list):
+        index.embeddings_matrix = index.embeddings_matrix[:len(index.keys_list)]
+        np.save(str(index_npy_path), index.embeddings_matrix)
     elif not index.keys_list and index_npy_path.exists():
         index_npy_path.unlink()
+
+    # Clean up processed json
+    for pf in PROCESSED_DIR.glob(f"*{doc_id}*.json"):
+        try:
+            if not doc_name:
+                with open(pf, "r", encoding="utf-8") as jf:
+                    doc_name = json.load(jf).get("document_name")
+            pf.unlink(missing_ok=True)
+        except Exception:
+            pass
 
     # Clean up pages folder
     doc_pages_folder = PAGES_DIR / doc_id
     if doc_pages_folder.exists() and doc_pages_folder.is_dir():
         shutil.rmtree(doc_pages_folder, ignore_errors=True)
+
+    # Clean up upload file
+    if doc_name:
+        target_upload = UPLOADS_DIR / doc_name
+        if target_upload.exists():
+            target_upload.unlink(missing_ok=True)
         
-    logger.info(f"Deleted document {doc_id} and removed {len(keys_to_remove)} evidence entries.")
+    logger.info(f"Deleted document {doc_id} ({doc_name}) and removed {len(keys_to_remove)} evidence entries.")
     return {"success": True, "message": f"Document {doc_id} removed."}
 
 @app.get("/api/documents/{doc_id}/chunks")

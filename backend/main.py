@@ -44,7 +44,7 @@ from app.models.schemas import (
     OCRWord
 )
 from app.reasoning import reasoning_engine
-from app.ingestion.chart_decompiler import decompile_chart_image
+from ingestion.chart_decompiler import decompile_chart_image
 from app.consistency_checker import check_document_consistency
 from app.gap_analyzer import analyze_document_gaps
 

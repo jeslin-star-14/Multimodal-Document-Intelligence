@@ -85,10 +85,17 @@ app.mount("/api/assets/demo", StaticFiles(directory=str(DEMO_DIR)), name="demo")
 # -------------------------------------------------------------
 
 class SearchQueryRequest(BaseModel):
-    question: str = Field(..., description="User search query or question")
+    question: Optional[str] = Field(None, description="User search query or question")
+    query: Optional[str] = Field(None, description="User search query or question")
     top_k: int = Field(8, description="Maximum number of evidence results to return")
     document_ids: Optional[List[str]] = Field(None, description="Optional list of document IDs to filter by")
     types: Optional[List[str]] = Field(None, description="Optional list of evidence types to filter by")
+
+    def get_query_text(self) -> str:
+        return self.query or self.question or ""
+
+class IndexDocumentRequest(BaseModel):
+    document_id: str = Field(..., description="Document ID of an already processed document")
 
 class SpatialLassoQueryRequest(BaseModel):
     document_id: str = Field(..., description="Target document ID")
@@ -112,6 +119,7 @@ class CounterfactualSimRequest(BaseModel):
 # -------------------------------------------------------------
 # Core Root & Health Endpoints
 # -------------------------------------------------------------
+>>>>>>> 5e883f3169dff8698c7ff1ddbe1882acaca2837c
 
 @app.get("/")
 def read_root():
@@ -476,15 +484,28 @@ async def get_document_conflicts():
 
 @app.post("/search")
 def search_evidence(req: SearchQueryRequest):
-    """Direct hybrid multimodal retrieval across indexed evidence objects."""
-    results = retrieve(
-        question=req.question,
-        top_k=req.top_k,
-        document_ids=req.document_ids,
-        types=req.types,
-        index_dir=str(INDEX_DIR)
-    )
-    return {"success": True, "query": req.question, "results": results}
+    """
+    Executes hybrid multimodal retrieval across indexed evidence objects.
+    """
+    try:
+        query_text = req.get_query_text()
+        if not query_text:
+            raise HTTPException(status_code=400, detail="Query or question parameter must be provided.")
+        results = retrieve(
+            question=query_text,
+            top_k=req.top_k,
+            document_ids=req.document_ids,
+            types=req.types,
+            index_dir=str(INDEX_DIR)
+        )
+        return {
+            "success": True,
+            "query": query_text,
+            "results": results
+        }
+    except Exception as e:
+        logger.error(f"Search retrieval error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Search failed: {str(e)}")
 
 @app.get("/api/documents")
 def list_documents():
@@ -504,6 +525,7 @@ def list_documents():
         except Exception:
             continue
     return {"documents": docs}
+>>>>>>> 5e883f3169dff8698c7ff1ddbe1882acaca2837c
 
 @app.get("/documents/{document_id}")
 def get_document_metadata(document_id: str = FastPath(..., description="Unique Document ID")):

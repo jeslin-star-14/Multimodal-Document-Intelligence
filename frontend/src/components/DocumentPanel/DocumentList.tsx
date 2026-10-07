@@ -66,7 +66,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                     : 'bg-white border-slate-200/80 hover:border-slate-300'
                 }`}
               >
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2">
                   {/* File Badge */}
                   <div
                     className={`w-9 h-9 rounded-lg flex items-center justify-center font-bold text-[10px] uppercase border shrink-0 ${
@@ -91,7 +91,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                   </div>
 
                   {/* Action Buttons: Ask in Chat + Remove Document (X) */}
-                  <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center space-x-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
                     {onAttachToChat && isReady && (
                       <button
                         type="button"

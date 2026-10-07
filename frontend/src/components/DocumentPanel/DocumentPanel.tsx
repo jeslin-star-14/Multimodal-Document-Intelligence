@@ -3,7 +3,6 @@ import { PanelLeftClose, Plus } from 'lucide-react';
 import type { DocumentItem, LanguageCode, ChatSession } from '../../types';
 import { FileUploadZone } from './FileUploadZone';
 import { DocumentList } from './DocumentList';
-import { DocumentInsights } from './DocumentInsights';
 import { ChatHistory } from './ChatHistory';
 
 interface DocumentPanelProps {
@@ -11,7 +10,6 @@ interface DocumentPanelProps {
   selectedDocId: string | null;
   onSelectDocument: (id: string) => void;
   onFileUpload: (files: FileList | File[]) => void;
-  onSelectQuestion: (question: string) => void;
   onAttachToChat?: (doc: DocumentItem) => void;
   onDeleteDocument?: (id: string) => void;
   onClosePanel?: () => void;
@@ -28,7 +26,6 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
   selectedDocId,
   onSelectDocument,
   onFileUpload,
-  onSelectQuestion,
   onAttachToChat,
   onDeleteDocument,
   onClosePanel,
@@ -39,8 +36,6 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
   onNewChat = () => {},
   onDeleteSession = () => {},
 }) => {
-  const selectedDoc = documents.find((d) => d.id === selectedDocId) || documents[0];
-
   return (
     <div className="h-full flex flex-col bg-[#f8fafc] p-4 select-none overflow-hidden">
       {/* Top Header: Workspace Title + "+ New Chat" Button + Collapse Icon */}
@@ -71,7 +66,7 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
         </div>
       </div>
 
-      {/* Split Area Container: 50% Top Workspace + 50% Bottom Chat History */}
+      {/* Split Area Container: Top Workspace Documents + Bottom Chat History */}
       <div className="flex-1 flex flex-col min-h-0 pt-3">
         {/* Top Half: Document Upload Zone & Document List */}
         <div className="flex-1 min-h-0 overflow-y-auto space-y-3 pr-0.5">
@@ -83,12 +78,6 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
             onSelectDocument={onSelectDocument}
             onAttachToChat={onAttachToChat}
             onDeleteDocument={onDeleteDocument}
-          />
-
-          <DocumentInsights
-            insights={selectedDoc?.insights}
-            language={language}
-            onSelectQuestion={onSelectQuestion}
           />
         </div>
 
@@ -109,5 +98,3 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
     </div>
   );
 };
-
-

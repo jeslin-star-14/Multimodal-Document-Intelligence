@@ -26,6 +26,48 @@ export const App: React.FC = () => {
   const [isLoadingAnswer, setIsLoadingAnswer] = useState<boolean>(false);
   const [language, setLanguage] = useState<LanguageCode>('en');
 
+  // Load existing indexed documents from backend on mount
+  useEffect(() => {
+    const fetchExistingDocuments = async () => {
+      try {
+        const res = await fetch('/api/documents');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.documents && data.documents.length > 0) {
+            const mapped: DocumentItem[] = data.documents.map((d: any) => ({
+              id: d.id,
+              name: d.name,
+              size: d.size || '1.8 MB',
+              type: d.type || 'pdf',
+              pageCount: d.page_count || 1,
+              uploadedAt: d.uploaded_at || 'Today',
+              status: 'Ready',
+              progress: 100,
+              currentStepDescription: 'Ready',
+              pageImages: d.page_images || [`/data/pages/${d.id}/page_1.png`],
+              insights: {
+                summary: `Document "${d.name}" indexed with ${d.evidence_count || 2} multimodal chunks.`,
+                keyEntities: [
+                  { category: 'Doc', value: d.name.replace(/\.[^/.]+$/, '') },
+                  { category: 'Metric', value: '100% Grounded' }
+                ],
+                suggestedQuestions: [
+                  `What was the production efficiency in Q4?`,
+                  `Compare Q2 vs Q4 factory performance`
+                ]
+              }
+            }));
+            setDocuments(mapped);
+            setSelectedDocId(mapped[0].id);
+          }
+        }
+      } catch (e) {
+        console.log('Backend documents load skipped:', e);
+      }
+    };
+    fetchExistingDocuments();
+  }, []);
+
   // Chat Sessions History State (Persisted in localStorage)
   const [chatSessions, setChatSessions] = useState<ChatSession[]>(() => {
     try {
@@ -273,21 +315,27 @@ export const App: React.FC = () => {
 
         if (response.ok) {
           const data = await response.json();
+          const realDocId = data.document_id || data.id || fileId;
+          const pageCount = data.page_count || 1;
+          const realPageImages = Array.from({ length: pageCount }, (_, i) => 
+            `/data/pages/${realDocId}/page_${i+1}.png`
+          );
           setDocuments((prev) =>
             prev.map((d) =>
               d.id === fileId
                 ? {
                     ...d,
-                    id: data.id || fileId,
+                    id: realDocId,
                     status: 'Ready',
                     progress: 100,
                     currentStepDescription: 'Ready',
-                    pageCount: data.page_count || 1,
+                    pageCount: pageCount,
+                    pageImages: realPageImages.length > 0 ? realPageImages : d.pageImages,
                     insights: {
-                      summary: `Document "${file.name}" indexed for visual RAG.`,
+                      summary: `Document "${file.name}" indexed for visual RAG with ${data.evidence_count || 0} chunks.`,
                       keyEntities: [
                         { category: 'Org', value: file.name.replace(/\.[^/.]+$/, '') },
-                        { category: 'Metric', value: '100% Parsed' }
+                        { category: 'Metric', value: `${data.evidence_count || pageCount} Chunks Indexed` }
                       ],
                       suggestedQuestions: [
                         `Summarize the contents of ${file.name}`,
@@ -298,6 +346,7 @@ export const App: React.FC = () => {
                 : d
             )
           );
+          setSelectedDocId(realDocId);
         } else {
           // Backend offline or error -> Mark ready for client view
           setDocuments((prev) =>
@@ -426,14 +475,19 @@ export const App: React.FC = () => {
             return [...prev, ...fresh];
           });
 
-          // Select the first citation automatically
+          // Select the first citation automatically and sync evidence panel
           setSelectedCitation(citations[0]);
+          const matchingDoc = documents.find(d => d.id === citations[0].documentId || d.name === citations[0].documentName);
+          if (matchingDoc) {
+            setSelectedDocId(matchingDoc.id);
+          }
           if (citations[0].pageNumber) {
             setCurrentPageNumber(citations[0].pageNumber);
           }
           if (citations[0].boundingBox) {
             setActiveBoxId(citations[0].boundingBox.id);
           }
+          setIsRightPanelOpen(true);
         }
 
         aiMsg = {

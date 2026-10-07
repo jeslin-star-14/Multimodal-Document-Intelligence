@@ -391,11 +391,8 @@ export const App: React.FC = () => {
       <Header
         language={language}
         onLanguageChange={setLanguage}
-        isLeftPanelOpen={isLeftPanelOpen}
-        onToggleLeftPanel={() => setIsLeftPanelOpen((prev) => !prev)}
-        isRightPanelOpen={isRightPanelOpen}
-        onToggleRightPanel={() => setIsRightPanelOpen((prev) => !prev)}
       />
+
 
       {/* Main 3-Panel Workspace */}
       <main className="flex-1 flex flex-row overflow-hidden relative">

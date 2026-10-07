@@ -68,6 +68,34 @@ export const App: React.FC = () => {
     fetchExistingDocuments();
   }, []);
 
+  // Automatically load chunks, tables, and visual bounding boxes for selected document
+  useEffect(() => {
+    if (!selectedDocId) return;
+    const fetchDocChunks = async () => {
+      try {
+        const res = await fetch(`/api/documents/${selectedDocId}/chunks`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.chunks && data.chunks.length > 0) {
+            setChunks((prev) => {
+              const existingIds = new Set(prev.map((c) => c.id));
+              const fresh = data.chunks.filter((c: any) => !existingIds.has(c.id));
+              return [...prev, ...fresh];
+            });
+            const firstChunkWithBox = data.chunks.find((c: any) => c.boundingBox);
+            if (firstChunkWithBox) {
+              setActiveChunkId(firstChunkWithBox.id);
+              setActiveBoxId(firstChunkWithBox.boundingBox.id);
+            }
+          }
+        }
+      } catch (e) {
+        // ignore error
+      }
+    };
+    fetchDocChunks();
+  }, [selectedDocId]);
+
   // Chat Sessions History State (Persisted in localStorage)
   const [chatSessions, setChatSessions] = useState<ChatSession[]>(() => {
     try {
@@ -227,6 +255,23 @@ export const App: React.FC = () => {
 
   const handleRemoveAttachment = (attId: string) => {
     setStagedAttachments((prev) => prev.filter((a) => a.id !== attId));
+  };
+
+  // Handle Delete Document
+  const handleDeleteDocument = async (docId: string) => {
+    try {
+      await fetch(`/api/documents/${docId}`, { method: 'DELETE' });
+    } catch (e) {
+      console.log('Delete error:', e);
+    }
+    setDocuments((prev) => {
+      const updated = prev.filter((d) => d.id !== docId);
+      if (selectedDocId === docId) {
+        setSelectedDocId(updated.length > 0 ? updated[0].id : null);
+      }
+      return updated;
+    });
+    setChunks((prev) => prev.filter((c) => c.documentId !== docId));
   };
 
   // Handle Citation Click -> Synchronizes Evidence Panel & Page
@@ -559,7 +604,6 @@ export const App: React.FC = () => {
               selectedDocId={selectedDocId}
               onSelectDocument={handleSelectDocument}
               onFileUpload={handleFileUpload}
-              onSelectQuestion={(q) => handleSendMessage(q)}
               onAttachToChat={handleAttachDocumentToChat}
               onClosePanel={() => setIsLeftPanelOpen(false)}
               language={language}
@@ -568,6 +612,7 @@ export const App: React.FC = () => {
               onSelectSession={handleSelectSession}
               onNewChat={handleNewChat}
               onDeleteSession={handleDeleteSession}
+              onDeleteDocument={handleDeleteDocument}
             />
           </div>
         )}

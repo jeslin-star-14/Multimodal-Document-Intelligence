@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquarePlus } from 'lucide-react';
+import { MessageSquarePlus, Trash2 } from 'lucide-react';
 import type { DocumentItem } from '../../types';
 
 interface DocumentListProps {
@@ -7,6 +7,7 @@ interface DocumentListProps {
   selectedDocId: string | null;
   onSelectDocument: (id: string) => void;
   onAttachToChat?: (doc: DocumentItem) => void;
+  onDeleteDocument?: (id: string) => void;
 }
 
 export const DocumentList: React.FC<DocumentListProps> = ({
@@ -14,6 +15,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
   selectedDocId,
   onSelectDocument,
   onAttachToChat,
+  onDeleteDocument,
 }) => {
   const getBadgeLabel = (type: DocumentItem['type']) => {
     switch (type) {
@@ -64,7 +66,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                     : 'bg-white border-slate-200/80 hover:border-slate-300'
                 }`}
               >
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2">
                   {/* File Badge */}
                   <div
                     className={`w-9 h-9 rounded-lg flex items-center justify-center font-bold text-[10px] uppercase border shrink-0 ${
@@ -88,21 +90,40 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                     </p>
                   </div>
 
-                  {/* "Upload in Chat / Ask in Chat" Button */}
-                  {onAttachToChat && isReady && (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onAttachToChat(doc);
-                      }}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#0d5c4d] text-slate-500 hover:text-[#0d5c4d] shadow-xs cursor-pointer"
-                      title="Upload to Chat (Ask in chat)"
-                      aria-label="Upload to chat"
-                    >
-                      <MessageSquarePlus className="w-3.5 h-3.5" />
-                    </button>
-                  )}
+                  {/* Action Buttons: Add to Chat & Delete */}
+                  <div className="flex items-center space-x-1 shrink-0">
+                    {onAttachToChat && isReady && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onAttachToChat(doc);
+                        }}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#0d5c4d] text-slate-500 hover:text-[#0d5c4d] shadow-xs cursor-pointer"
+                        title="Upload to Chat (Ask in chat)"
+                        aria-label="Upload to chat"
+                      >
+                        <MessageSquarePlus className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+
+                    {onDeleteDocument && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (window.confirm(`Delete "${doc.name}" from workspace?`)) {
+                            onDeleteDocument(doc.id);
+                          }
+                        }}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-white border border-slate-200 hover:border-red-400 text-slate-400 hover:text-red-600 shadow-xs cursor-pointer"
+                        title="Delete document"
+                        aria-label="Delete document"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 {/* Progress bar for reading/parsing docs */}

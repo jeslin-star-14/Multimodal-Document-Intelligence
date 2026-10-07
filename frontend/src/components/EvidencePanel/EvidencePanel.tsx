@@ -155,46 +155,60 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
           />
         )}
 
-        {activeTab === 'data' && (
-          <div className="rounded-lg border border-slate-200 p-4 bg-slate-50 text-xs space-y-3">
-            <h4 className="font-semibold text-slate-800">Extracted Tabular & Numeric Data</h4>
-            {activeChunk?.rawTableData ? (
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse text-[11px] bg-white rounded border border-slate-200">
-                  <thead>
-                    <tr className="bg-slate-100 border-b border-slate-200">
-                      {activeChunk.rawTableData.headers.map((h, i) => (
-                        <th key={i} className="p-2 font-semibold text-slate-700">{h}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {activeChunk.rawTableData.rows.map((row, rIdx) => (
-                      <tr key={rIdx} className="border-b border-slate-100 last:border-b-0">
-                        {row.map((cell, cIdx) => (
-                          <td key={cIdx} className="p-2 font-mono text-slate-800">{cell}</td>
+        {activeTab === 'data' && (() => {
+          const tableChunk = activeChunk?.rawTableData ? activeChunk : chunks.find((c) => (c.documentId === activeDocument.id || c.documentName === activeDocument.name) && c.rawTableData) || chunks.find((c) => c.rawTableData);
+          return (
+            <div className="rounded-lg border border-slate-200 p-4 bg-slate-50 text-xs space-y-3">
+              <div className="flex items-center justify-between">
+                <h4 className="font-semibold text-slate-800">Extracted Tabular & Numeric Data</h4>
+                {tableChunk && (
+                  <span className="text-[10px] text-slate-400">Page {tableChunk.pageNumber}</span>
+                )}
+              </div>
+              {tableChunk?.rawTableData ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse text-[11px] bg-white rounded border border-slate-200">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200">
+                        {tableChunk.rawTableData.headers.map((h, i) => (
+                          <th key={i} className="p-2 font-semibold text-slate-700">{h}</th>
                         ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <p className="text-slate-400 text-xs py-2">
-                No structured table data detected for this section.
-              </p>
-            )}
-          </div>
-        )}
+                    </thead>
+                    <tbody>
+                      {tableChunk.rawTableData.rows.map((row, rIdx) => (
+                        <tr key={rIdx} className="border-b border-slate-100 last:border-b-0">
+                          {row.map((cell, cIdx) => (
+                            <td key={cIdx} className="p-2 font-mono text-slate-800">{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="text-slate-400 text-xs py-2">
+                  No structured table data detected for this section.
+                </p>
+              )}
+            </div>
+          );
+        })()}
 
-        {activeTab === 'text' && (
-          <div className="rounded-lg border border-slate-200 p-4 bg-slate-50 text-xs space-y-2">
-            <h4 className="font-semibold text-slate-800">Extracted Text Content</h4>
-            <p className="text-slate-600 leading-relaxed bg-white p-3 rounded border border-slate-200 text-[11px]">
-              {activeChunk?.content || activeDocument.insights?.summary || "No text content extracted for this chunk."}
-            </p>
-          </div>
-        )}
+        {activeTab === 'text' && (() => {
+          const currentTextChunk = chunks.find((c) => (c.documentId === activeDocument.id || c.documentName === activeDocument.name) && c.pageNumber === currentPageNumber && c.content) || activeChunk;
+          return (
+            <div className="rounded-lg border border-slate-200 p-4 bg-slate-50 text-xs space-y-2">
+              <div className="flex items-center justify-between">
+                <h4 className="font-semibold text-slate-800">Extracted Text Content</h4>
+                <span className="text-[10px] text-slate-400">Page {currentPageNumber}</span>
+              </div>
+              <p className="text-slate-700 whitespace-pre-wrap leading-relaxed bg-white p-3 rounded border border-slate-200 text-[11px] max-h-96 overflow-y-auto">
+                {currentTextChunk?.content || activeDocument.insights?.summary || "No text content extracted for this chunk."}
+              </p>
+            </div>
+          );
+        })()}
       </div>
 
       {/* Bottom Metadata Bar */}

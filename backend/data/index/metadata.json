@@ -31,10 +31,43 @@
         "detection_details": "Embedded bitmap image found (3 image(s))"
       },
       "_search_text": "Section: Jeslin JP\n[IMAGE visual content on page 1]"
+    },
+    "DOC_8747E8_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_8747E8",
+      "document_name": "artificial-intelligence-fundamentals.png",
+      "page": 1,
+      "section": "Scanned Image Text",
+      "type": "text",
+      "text": "Artificial Intelligence\nFundamentals\nIBM SkillsBuild\n17",
+      "table": null,
+      "image_path": "data/pages/DOC_8747E8/page_1.png",
+      "metadata": {
+        "source": "ocr",
+        "char_count": 55
+      },
+      "_search_text": "Section: Scanned Image Text\nArtificial Intelligence\nFundamentals\nIBM SkillsBuild\n17"
+    },
+    "DOC_8747E8_E002": {
+      "evidence_id": "E002",
+      "document_id": "DOC_8747E8",
+      "document_name": "artificial-intelligence-fundamentals.png",
+      "page": 1,
+      "section": "Visual Image",
+      "type": "image",
+      "text": "Artificial Intelligence\nFundamentals\nIBM SkillsBuild\n17",
+      "table": null,
+      "image_path": "data/pages/DOC_8747E8/page_1.png",
+      "metadata": {
+        "scanned": true
+      },
+      "_search_text": "Section: Visual Image\nArtificial Intelligence\nFundamentals\nIBM SkillsBuild\n17"
     }
   },
   "keys_list": [
     "DOC_E02F8A_E001",
-    "DOC_E02F8A_E002"
+    "DOC_E02F8A_E002",
+    "DOC_8747E8_E001",
+    "DOC_8747E8_E002"
   ]
 }

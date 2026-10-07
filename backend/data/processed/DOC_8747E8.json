@@ -3,18 +3,33 @@
   "document_id": "DOC_8747E8",
   "document_name": "artificial-intelligence-fundamentals.png",
   "page_count": 1,
-  "evidence_count": 1,
+  "evidence_count": 2,
   "evidence": [
     {
       "evidence_id": "E001",
       "document_id": "DOC_8747E8",
       "document_name": "artificial-intelligence-fundamentals.png",
       "page": 1,
+      "section": "Scanned Image Text",
+      "type": "text",
+      "text": "Artificial Intelligence\nFundamentals\nIBM SkillsBuild\n17",
+      "table": null,
+      "image_path": "data/pages/DOC_8747E8/page_1.png",
+      "metadata": {
+        "source": "ocr",
+        "char_count": 55
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_8747E8",
+      "document_name": "artificial-intelligence-fundamentals.png",
+      "page": 1,
       "section": "Visual Image",
       "type": "image",
-      "text": "Scanned visual content from artificial-intelligence-fundamentals.png",
+      "text": "Artificial Intelligence\nFundamentals\nIBM SkillsBuild\n17",
       "table": null,
-      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_8747E8/page_1.png",
+      "image_path": "data/pages/DOC_8747E8/page_1.png",
       "metadata": {
         "scanned": true
       }

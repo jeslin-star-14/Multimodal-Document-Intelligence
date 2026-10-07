@@ -470,13 +470,15 @@ export const App: React.FC = () => {
       );
     }
 
+    const targetDocName = (attachments && attachments.length > 0) ? attachments[0].name : (activeDocument?.name || null);
+
     try {
       const response = await fetch('/api/chat/query', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: queryText,
-          document_id: activeDocument?.name || null,
+          document_id: targetDocName,
           doc_names: documents.map((d) => d.name),
           role_mode: roleMode
         })

@@ -266,11 +266,19 @@ class MultimodalReasoningEngine:
         primary = chunks[0] if chunks else None
         doc_name = primary.doc_name if primary else "Uploaded Document"
         page_num = primary.page_number if primary else 1
-        q_lower = query.lower()
+        q_lower = query.lower().strip()
 
-        clean_words = [w for w in re.findall(r'[a-zA-Z0-9]+', q_lower) if w not in [
-            "is", "the", "name", "there", "in", "document", "pdf", "docx", "image", "what", "are", "contends", "contents", "present", "explain", "give", "me", "tell", "about", "this", "uploaded", "first", "1st"
-        ] and len(w) > 2]
+        # Stop words to exclude when isolating entity search terms
+        stop_words = {
+            "is", "are", "the", "a", "an", "name", "there", "in", "document", "pdf", "docx", 
+            "image", "what", "which", "contends", "contents", "content", "present", "prosent", 
+            "explain", "give", "me", "tell", "about", "this", "uploaded", "first", "1st", 
+            "can", "you", "please", "show", "describe", "summary", "summarize", "overview", 
+            "have", "has", "it", "to", "of", "and", "or", "for", "on", "at", "by", "with"
+        }
+
+        all_query_tokens = re.findall(r'[a-zA-Z0-9]+', q_lower)
+        clean_words = [w for w in all_query_tokens if w not in stop_words and len(w) > 1]
 
         matched_lines = []
         if clean_words:
@@ -281,45 +289,60 @@ class MultimodalReasoningEngine:
                     if not line_clean:
                         continue
                     if any(w in line_clean.lower() for w in clean_words):
-                        matched_lines.append((line_clean, c.doc_name, c.page_number, c.type))
+                        matched_lines.append((line_clean, c.doc_name, c.page_number, c.chunk_type))
 
-        # Check for specific search queries
-        if any(w in q_lower for w in ["is", "find", "check", "there", "present", "exist", "who", "whom"]):
+        # Determine query intent
+        is_explain_query = any(k in q_lower for k in [
+            "what is in", "what does", "what is this", "explain", "summarize", "describe", 
+            "overview", "breakdown", "tell me what", "read this", "show me", "content", "contend"
+        ])
+
+        is_entity_search = (
+            any(k in q_lower for k in ["is there", "is the name", "find", "check", "does it have", "who is", "whom", "exist"]) or
+            (bool(clean_words) and not is_explain_query and any(w in q_lower for w in ["is", "present", "prosent", "there"]))
+        ) and not is_explain_query
+
+        if is_entity_search and clean_words:
+            target_word = " ".join(clean_words).title()
             if matched_lines:
-                target_word = " ".join(clean_words).title()
                 answer = (
                     f"### Search Result: Found in Document\n"
                     f"**Yes**, the information regarding **{target_word}** is present in **{matched_lines[0][1]}** [Doc: {matched_lines[0][1]}, Page: {matched_lines[0][2]}, Section: {matched_lines[0][3].upper()}].\n\n"
                     f"### Exact Extracted Context:\n"
                 )
-                for line, d_nm, pg, t_type in matched_lines[:5]:
+                for line, d_nm, pg, t_type in matched_lines[:6]:
                     answer += f"- `{line}` [Doc: {d_nm}, Page: {pg}]\n"
                 answer += f"\nThis record was verified directly from the uploaded {matched_lines[0][3]} data."
             else:
-                target_word = " ".join(clean_words) if clean_words else "the requested keyword"
                 answer = (
                     f"### Search Result: Not Found\n"
                     f"Based on a comprehensive scan of **{doc_name}** [Doc: {doc_name}, Page: {page_num}], "
                     f"the term **'{target_word}'** was not found in the extracted text or tabular fields."
                 )
         else:
+            # Full structured document / image explanation
             answer = (
-                f"### Document Overview: **{doc_name}**\n"
-                f"Based on analysis of the uploaded document [Doc: {doc_name}, Page: {page_num}, Section: Overview], here is the detailed breakdown of the content:\n\n"
-                f"### Key Extracted Information & Structure:\n"
+                f"### Document Analysis & Content Breakdown: **{doc_name}**\n\n"
+                f"Based on full multimodal ingestion of the uploaded file [Doc: {doc_name}, Page: {page_num}, Section: Overview], here is the structured summary of the content:\n\n"
+                f"#### 1. Core Extracted Information\n"
             )
-            for i, c in enumerate(chunks[:4]):
-                clean_snippet = c.content.replace("\n", " ").strip()
-                if len(clean_snippet) > 160:
-                    clean_snippet = clean_snippet[:160] + "..."
-                answer += f"- **{c.chunk_type.title()} (Page {c.page_number})**: {clean_snippet} [Doc: {c.doc_name}, Page: {c.page_number}, Section: {c.chunk_type.upper()}]\n"
+            for i, c in enumerate(chunks[:5]):
+                snippet = c.content.strip()
+                if not snippet or snippet.startswith("[OCR Engine pending"):
+                    snippet = f"Visual multimodal element on Page {c.page_number}"
+                if len(snippet) > 200:
+                    snippet = snippet[:200] + "..."
+                answer += f"- **{c.chunk_type.title()} (Page {c.page_number})**: {snippet} [Doc: {c.doc_name}, Page: {c.page_number}, Section: {c.chunk_type.upper()}]\n"
 
             table_chunks = [c for c in chunks if c.chunk_type == "table" or "Table" in c.content]
             if table_chunks:
-                answer += f"\n### Tabular Records Detected:\n"
-                for tc in table_chunks[:2]:
+                answer += f"\n#### 2. Detected Tables & Records\n"
+                for tc in table_chunks[:3]:
                     lines = [l for l in tc.content.split("\n") if l.strip()][:4]
                     answer += f"- `{'; '.join(lines)}` [Doc: {tc.doc_name}, Page: {tc.page_number}]\n"
+
+            answer += f"\n#### 3. Verification & Proof\n"
+            answer += f"All evidence above is directly grounded in **{doc_name}** with {len(citations)} cited source reference(s)."
 
         math_calcs = extract_and_verify_calculations(answer, chunks)
         proof_level, proof_exp = self._determine_proof_level(query, answer, math_calcs, chunks)

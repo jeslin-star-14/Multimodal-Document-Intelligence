@@ -25,6 +25,13 @@ def get_easy_ocr():
     global _EASYOCR_READER
     if _EASYOCR_READER is None:
         try:
+            import ssl
+            import certifi
+            import urllib.request
+            ssl_context = ssl.create_default_context(cafile=certifi.where())
+            opener = urllib.request.build_opener(urllib.request.HTTPSHandler(context=ssl_context))
+            urllib.request.install_opener(opener)
+
             import easyocr
             _EASYOCR_READER = easyocr.Reader(['en'], gpu=False)
             logger.info("EasyOCR engine initialized successfully.")

@@ -141,9 +141,9 @@ class MultimodalReasoningEngine:
             img_target = chunk.crop_path or chunk.page_image_path
             if img_target:
                 resolved_p = self._resolve_image_path(img_target)
-                if resolved_p and resolved_p not in image_paths and len(image_paths) < 8:
+                if resolved_p and resolved_p not in image_paths and len(image_paths) < 4:
                     image_paths.append(resolved_p)
-                if len(image_parts) < 6:
+                if len(image_parts) < 4:
                     mime_type, b64_data = self._encode_image_to_base64(img_target)
                     if b64_data:
                         image_parts.append({
@@ -153,13 +153,13 @@ class MultimodalReasoningEngine:
                             }
                         })
 
-        # Scan and attach full document page images if not already included
+        # Attach key document page images if needed (up to 4 total)
         for doc_n in seen_docs:
             for p_folder in (BASE_DIR / "data" / "pages").glob("*"):
-                if p_folder.is_dir():
-                    for page_img in sorted(p_folder.glob("page_*.png")):
+                if p_folder.is_dir() and (doc_n.lower() in p_folder.name.lower() or any(c.doc_name.lower() == doc_n.lower() for c in chunks)):
+                    for page_img in sorted(p_folder.glob("page_*.png"))[:3]:
                         img_str = str(page_img)
-                        if img_str not in image_paths and len(image_paths) < 10:
+                        if img_str not in image_paths and len(image_paths) < 4:
                             image_paths.append(img_str)
 
         # Dynamic API key check from environment / .env
@@ -212,12 +212,11 @@ class MultimodalReasoningEngine:
 
         active_model = (os.getenv("VLM_MODEL") or os.getenv("GEMMA_MODEL") or self.model or "gemini-3.5-flash").strip()
         candidate_models = [
-            active_model,
             "gemini-3.5-flash",
+            active_model,
             "gemini-3.7-flash",
             "gemini-3.1-flash-lite",
-            "gemini-flash-latest",
-            "gemini-3.1-pro-preview"
+            "gemini-flash-latest"
         ]
         candidate_models = list(dict.fromkeys(candidate_models))
 
@@ -229,7 +228,7 @@ class MultimodalReasoningEngine:
             genai_contents: List[Any] = [prompt_text]
             if image_paths:
                 from PIL import Image as PIL_Img
-                for ip in image_paths[:8]:
+                for ip in image_paths[:4]:
                     if os.path.exists(ip):
                         try:
                             img = PIL_Img.open(ip)
@@ -240,14 +239,20 @@ class MultimodalReasoningEngine:
             for model_name in candidate_models:
                 try:
                     clean_model = model_name.replace("models/", "")
-                    response = await asyncio.to_thread(
-                        client.models.generate_content,
-                        model=clean_model,
-                        contents=genai_contents
+                    response = await asyncio.wait_for(
+                        asyncio.to_thread(
+                            client.models.generate_content,
+                            model=clean_model,
+                            contents=genai_contents
+                        ),
+                        timeout=14.0
                     )
                     if response and response.text:
                         math_steps = self._extract_math_steps(response.text)
                         return response.text, math_steps
+                except asyncio.TimeoutError:
+                    print(f"[Reasoning] Gemini model {model_name} timed out after 14s.")
+                    continue
                 except Exception as ex_m:
                     err_str = str(ex_m).lower()
                     if "401" in err_str or "unauthorized" in err_str or "api_key_invalid" in err_str:
@@ -260,7 +265,7 @@ class MultimodalReasoningEngine:
 
         # 2. REST HTTP Fallback
         parts = [{"text": prompt_text}]
-        parts.extend(image_parts)
+        parts.extend(image_parts[:3])
 
         payload = {
             "contents": [{"parts": parts}],
@@ -281,7 +286,7 @@ class MultimodalReasoningEngine:
             clean_m = model_name.replace("models/", "")
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{clean_m}:generateContent?key={key_to_use}"
             try:
-                async with httpx.AsyncClient(timeout=30.0) as http_client:
+                async with httpx.AsyncClient(timeout=12.0) as http_client:
                     resp = await http_client.post(url, headers=headers, json=payload)
                     if resp.status_code in [401, 403]:
                         raise ValueError(f"Google AI Studio API key unauthorized (HTTP {resp.status_code})")

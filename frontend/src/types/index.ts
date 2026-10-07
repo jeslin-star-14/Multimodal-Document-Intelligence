@@ -83,11 +83,21 @@ export interface ConflictRecord {
   severity: 'high' | 'medium' | 'low';
 }
 
+export interface ChatAttachment {
+  id: string;
+  name: string;
+  type: string;
+  size?: string;
+  previewUrl?: string;
+  isImage?: boolean;
+}
+
 export interface ChatMessage {
   id: string;
   sender: 'user' | 'assistant';
   timestamp: string;
   text: string;
+  attachments?: ChatAttachment[];
   isStreaming?: boolean;
   confidenceScore?: number; // 0 - 100
   citations?: Citation[];

@@ -11,6 +11,7 @@ interface DocumentPanelProps {
   onSelectDocument: (id: string) => void;
   onFileUpload: (files: FileList | File[]) => void;
   onSelectQuestion: (question: string) => void;
+  onAttachToChat?: (doc: DocumentItem) => void;
   onClosePanel?: () => void;
   language: LanguageCode;
 }
@@ -21,6 +22,7 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
   onSelectDocument,
   onFileUpload,
   onSelectQuestion,
+  onAttachToChat,
   onClosePanel,
   language,
 }) => {
@@ -51,6 +53,7 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
         documents={documents}
         selectedDocId={selectedDocId}
         onSelectDocument={onSelectDocument}
+        onAttachToChat={onAttachToChat}
       />
 
       {/* Try Asking Questions */}

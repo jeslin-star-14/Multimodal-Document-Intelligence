@@ -12,7 +12,8 @@ import type {
   BoundingBox, 
   DocumentChunk, 
   LanguageCode, 
-  ConflictRecord 
+  ConflictRecord,
+  ChatAttachment
 } from './types';
 import { 
   initialDocuments, 
@@ -29,6 +30,9 @@ export const App: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>(initialChatMessages);
   const [isLoadingAnswer, setIsLoadingAnswer] = useState<boolean>(false);
   const [language, setLanguage] = useState<LanguageCode>('en');
+
+  // Staged In-Chat File Attachments
+  const [stagedAttachments, setStagedAttachments] = useState<ChatAttachment[]>([]);
 
   // Resizable Panels State
   const [leftPanelWidth, setLeftPanelWidth] = useState<number>(260);
@@ -120,6 +124,27 @@ export const App: React.FC = () => {
     }
   };
 
+  // Handle "Upload / Insert Document into Chat"
+  const handleAttachDocumentToChat = (doc: DocumentItem) => {
+    const newAtt: ChatAttachment = {
+      id: `att-${Date.now()}-${doc.id}`,
+      name: doc.name,
+      type: doc.type,
+      size: doc.size,
+      isImage: doc.type === 'image'
+    };
+
+    setStagedAttachments((prev) => {
+      if (prev.some((a) => a.name === doc.name)) return prev;
+      return [...prev, newAtt];
+    });
+    setSelectedDocId(doc.id);
+  };
+
+  const handleRemoveAttachment = (attId: string) => {
+    setStagedAttachments((prev) => prev.filter((a) => a.id !== attId));
+  };
+
   // Handle Citation Click -> Synchronizes Evidence Panel & Page
   const handleCitationClick = (citation: Citation) => {
     setSelectedCitation(citation);
@@ -145,9 +170,22 @@ export const App: React.FC = () => {
     }
   };
 
-  // Handle File Upload Simulation
+  // Handle File Upload
   const handleFileUpload = (files: FileList | File[]) => {
-    Array.from(files).forEach((file, index) => {
+    const fileList = Array.from(files);
+
+    // 1. Stage attachments directly in the chat box so the user sees them immediately
+    const newAttachments: ChatAttachment[] = fileList.map((file, idx) => ({
+      id: `att-${Date.now()}-${idx}`,
+      name: file.name,
+      type: file.name.split('.').pop() || 'file',
+      size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
+      isImage: file.type.startsWith('image/')
+    }));
+    setStagedAttachments((prev) => [...prev, ...newAttachments]);
+
+    // 2. Add to Workspace Documents List
+    fileList.forEach((file, index) => {
       const fileId = `doc-${Date.now()}-${index}`;
       const ext = file.name.split('.').pop()?.toLowerCase() || 'pdf';
       const fileType = (['pdf', 'docx', 'pptx'].includes(ext) ? ext : 'image') as any;
@@ -169,11 +207,6 @@ export const App: React.FC = () => {
 
       setDocuments((prev) => [newDoc, ...prev]);
       setSelectedDocId(fileId);
-
-      // Auto-open left panel to show upload progress
-      if (!isLeftPanelOpen) {
-        setIsLeftPanelOpen(true);
-      }
 
       // Transition to Ready
       setTimeout(() => {
@@ -205,15 +238,17 @@ export const App: React.FC = () => {
   };
 
   // Handle Query Submission and AI Response Simulation
-  const handleSendMessage = (queryText: string) => {
+  const handleSendMessage = (queryText: string, attachments?: ChatAttachment[]) => {
     const userMsg: ChatMessage = {
       id: `msg-${Date.now()}`,
       sender: 'user',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       text: queryText,
+      attachments: attachments && attachments.length > 0 ? attachments : undefined
     };
 
     setMessages((prev) => [...prev, userMsg]);
+    setStagedAttachments([]); // clear staged attachments after sending
     setIsLoadingAnswer(true);
 
     setTimeout(() => {
@@ -223,7 +258,10 @@ export const App: React.FC = () => {
       let confidence = 94;
       let notFound = false;
 
-      if (lower.includes('penalty') || lower.includes('late delivery') || lower.includes('unrelated')) {
+      if (attachments && attachments.length > 0) {
+        const attNames = attachments.map(a => a.name).join(', ');
+        responseText = `Analyzed **${attNames}**: Visual OCR and table extraction complete. All figures have been indexed for multimodal visual grounding.`;
+      } else if (lower.includes('penalty') || lower.includes('late delivery') || lower.includes('unrelated')) {
         notFound = true;
         responseText = "I couldn't find a late-delivery penalty in the vendor contract. It is still being read, so try again in a moment.";
       } else if (lower.includes('operating cost') || lower.includes('cost')) {
@@ -336,7 +374,8 @@ export const App: React.FC = () => {
               selectedDocId={selectedDocId}
               onSelectDocument={handleSelectDocument}
               onFileUpload={handleFileUpload}
-              onSelectQuestion={handleSendMessage}
+              onSelectQuestion={(q) => handleSendMessage(q)}
+              onAttachToChat={handleAttachDocumentToChat}
               onClosePanel={() => setIsLeftPanelOpen(false)}
               language={language}
             />
@@ -386,6 +425,8 @@ export const App: React.FC = () => {
             onCitationClick={handleCitationClick}
             onSendMessage={handleSendMessage}
             onFileUpload={handleFileUpload}
+            stagedAttachments={stagedAttachments}
+            onRemoveAttachment={handleRemoveAttachment}
             onOpenConflicts={(conflicts) => {
               setActiveConflicts(conflicts);
               setIsConflictModalOpen(true);

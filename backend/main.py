@@ -169,37 +169,6 @@ def _format_file_size(size_bytes: int) -> str:
 
 @app.get("/api/documents")
 async def list_documents():
-<<<<<<< HEAD
-    """Returns list of all indexed documents in the workspace with metadata and page image URLs."""
-    index = get_vector_index(str(INDEX_DIR))
-    docs_map = {}
-    
-    # Check processed folder first
-    for p_file in PROCESSED_DIR.glob("*.json"):
-        try:
-            with open(p_file, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                d_id = data.get("document_id")
-                d_name = data.get("document_name", "Document.pdf")
-                p_cnt = data.get("page_count", 1)
-                ev_cnt = data.get("evidence_count", len(data.get("evidence", [])))
-                if d_id:
-                    docs_map[d_id] = {
-                        "id": d_id,
-                        "name": d_name,
-                        "size": "2.1 MB",
-                        "type": "pdf",
-                        "page_count": p_cnt,
-                        "status": "Ready",
-                        "uploaded_at": "Today",
-                        "page_images": [f"/data/pages/{d_id}/page_{p+1}.png" for p in range(p_cnt)],
-                        "evidence_count": ev_cnt
-                    }
-        except Exception:
-            continue
-
-    # Augment with vector index items
-=======
     """
     Returns list of all indexed and processed documents in the workspace with metadata and page image URLs.
     Scans processed JSONs on disk and merges with the vector index for guaranteed persistence.
@@ -250,7 +219,6 @@ async def list_documents():
             logger.warning(f"Failed parsing processed file {p_file}: {e}")
 
     # 2. Secondary source: Index evidence store merge
->>>>>>> origin/main
     for key, ev in index.evidence_store.items():
         doc_id = ev.get("document_id")
         if not doc_id:
@@ -280,13 +248,9 @@ async def list_documents():
 
 @app.delete("/api/documents/{doc_id}")
 async def delete_document(doc_id: str):
-<<<<<<< HEAD
-    """Deletes an uploaded document, its page renders, and vector index entries."""
-=======
     """
     Deletes an uploaded document, its page renders, processed json, uploaded file, and vector index entries.
     """
->>>>>>> origin/main
     import shutil
     import numpy as np
     index = get_vector_index(str(INDEX_DIR))
@@ -457,21 +421,8 @@ async def query_documents_chat(request: FrontendQueryRequest):
     Retrieves evidence across indexed documents, passes to VLM with role mode prompt,
     computes deterministic AST math verifications, and assigns proof levels.
     """
-<<<<<<< HEAD
-    retrieved_evidence = []
-    try:
-        retrieved_evidence = retrieve(
-            question=request.query,
-            top_k=request.top_k or 6,
-            document_ids=[request.document_id] if request.document_id else None,
-            index_dir=str(INDEX_DIR)
-        )
-    except Exception as e:
-        logger.warning(f"Retrieval error: {e}")
-=======
     index = get_vector_index(str(INDEX_DIR))
     q_lower = request.query.lower()
->>>>>>> origin/main
 
     # 1. Detect target documents intelligently
     target_docs = None
@@ -563,55 +514,24 @@ async def query_documents_chat(request: FrontendQueryRequest):
         except Exception:
             pass
 
-<<<<<<< HEAD
     index = get_vector_index(str(INDEX_DIR))
 
-    # Determine target document if specified
-    target_doc_id = (request.document_id or "").lower().strip()
-    candidate_items = list(index.evidence_store.values())
-    if target_doc_id:
-        doc_filtered = [
-            ev for ev in candidate_items 
-            if target_doc_id in (ev.get("document_id") or "").lower() or 
-               target_doc_id in (ev.get("document_name") or "").lower() or
-               (ev.get("document_name") or "").lower() in target_doc_id
-        ]
-        if doc_filtered:
-            candidate_items = doc_filtered
-
-    # 1. Search for specific words/names from user query in candidate indexed evidence (e.g. "jeslin", "student", "receipt", "fee")
+    # Keyword search augmentation for exact token matches
     search_keywords = [w.lower() for w in re.findall(r'[a-zA-Z0-9]+', request.query) if len(w) > 1 and w.lower() not in [
         "the", "and", "is", "are", "what", "which", "how", "who", "whom", "where", "there", "this", "that", "give", "tell", "explain", "about", "pdf", "docx", "image", "document", "file", "uploaded"
     ]]
-    for ev in candidate_items:
-        content_lower = (ev.get("text") or "").lower()
-        if ev.get("table"):
-            content_lower += " " + " ".join(ev["table"].get("headers", [])).lower()
-            for r in ev["table"].get("rows", []):
-                content_lower += " " + " ".join(map(str, r)).lower()
-        if any(kw in content_lower for kw in search_keywords):
-            if ev not in retrieved_evidence:
-                retrieved_evidence.insert(0, ev)
-
-    # 2. Cross-match query terms against document names in the index (e.g. 'practicum', 'portal', 'receipt')
-    query_tokens = [t.lower() for t in re.findall(r'[a-zA-Z0-9]+', request.query) if len(t) > 2]
-    for ev in candidate_items:
-        doc_name_clean = (ev.get("document_name") or "").lower()
-        if any(tok in doc_name_clean for tok in query_tokens):
-            if ev not in retrieved_evidence:
-                retrieved_evidence.append(ev)
-
-    # 3. If query asks to explain, summarize, or extract, ensure all chunks of the target or latest doc are present
-    q_lower = request.query.lower()
-    is_general_query = any(k in q_lower for k in ["explain", "summarize", "what", "extract", "table", "data", "image", "content", "tell", "all", "overview"])
-    if is_general_query or not retrieved_evidence:
-        if candidate_items:
-            for ev in candidate_items:
+    candidate_items = list(index.evidence_store.values())
+    if search_keywords:
+        for ev in candidate_items:
+            content_lower = (ev.get("text") or "").lower()
+            if ev.get("table"):
+                content_lower += " " + " ".join(ev["table"].get("headers", [])).lower()
+                for r in ev["table"].get("rows", []):
+                    content_lower += " " + " ".join(map(str, r)).lower()
+            if any(kw in content_lower for kw in search_keywords):
                 if ev not in retrieved_evidence:
-                    retrieved_evidence.append(ev)
-        elif not retrieved_evidence and index.evidence_store:
-            retrieved_evidence = list(index.evidence_store.values())[:8]
-=======
+                    retrieved_evidence.insert(0, ev)
+
     # 3. Deduplicate and cap at 8 chunks max to ensure concise, highly focused context for Gemini
     seen_keys = set()
     unique_evidence = []
@@ -621,7 +541,6 @@ async def query_documents_chat(request: FrontendQueryRequest):
             seen_keys.add(k)
             unique_evidence.append(ev)
     retrieved_evidence = unique_evidence[:8]
->>>>>>> origin/main
 
     # Convert retrieved evidence to frontend citation format
     frontend_citations: List[FrontendCitation] = []

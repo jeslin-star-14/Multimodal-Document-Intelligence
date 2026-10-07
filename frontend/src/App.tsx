@@ -470,8 +470,6 @@ export const App: React.FC = () => {
       );
     }
 
-    const targetDocName = (attachments && attachments.length > 0) ? attachments[0].name : (activeDocument?.name || null);
-
     try {
       const attachedDocNames = (attachments && attachments.length > 0)
         ? attachments.map((a) => a.name)
@@ -482,17 +480,12 @@ export const App: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: queryText,
-<<<<<<< HEAD
-          document_id: targetDocName,
-          doc_names: documents.map((d) => d.name),
-          role_mode: roleMode
-=======
           document_id: attachedDocNames && attachedDocNames.length === 1 
             ? attachedDocNames[0] 
             : (attachedDocNames ? null : (activeDocument?.name || null)),
           document_ids: attachedDocNames,
-          doc_names: documents.map((d) => d.name)
->>>>>>> origin/main
+          doc_names: documents.map((d) => d.name),
+          role_mode: roleMode
         })
       });
 

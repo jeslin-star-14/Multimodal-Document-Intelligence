@@ -13,6 +13,7 @@ interface DocumentPanelProps {
   onFileUpload: (files: FileList | File[]) => void;
   onSelectQuestion: (question: string) => void;
   onAttachToChat?: (doc: DocumentItem) => void;
+  onDeleteDocument?: (id: string) => void;
   onClosePanel?: () => void;
   language: LanguageCode;
   chatSessions?: ChatSession[];
@@ -29,6 +30,7 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
   onFileUpload,
   onSelectQuestion,
   onAttachToChat,
+  onDeleteDocument,
   onClosePanel,
   language,
   chatSessions = [],
@@ -80,6 +82,7 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
             selectedDocId={selectedDocId}
             onSelectDocument={onSelectDocument}
             onAttachToChat={onAttachToChat}
+            onDeleteDocument={onDeleteDocument}
           />
 
           <DocumentInsights

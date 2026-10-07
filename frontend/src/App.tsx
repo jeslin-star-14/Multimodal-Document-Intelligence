@@ -229,6 +229,19 @@ export const App: React.FC = () => {
     setStagedAttachments((prev) => prev.filter((a) => a.id !== attId));
   };
 
+  // Handle Removing / Deleting a Document from Workspace
+  const handleDeleteDocument = (docId: string) => {
+    setDocuments((prev) => {
+      const filtered = prev.filter((d) => d.id !== docId);
+      if (selectedDocId === docId) {
+        setSelectedDocId(filtered.length > 0 ? filtered[0].id : null);
+      }
+      return filtered;
+    });
+    // Also remove from staged attachments if present
+    setStagedAttachments((prev) => prev.filter((a) => !a.id.includes(docId)));
+  };
+
   // Handle Citation Click -> Synchronizes Evidence Panel & Page
   const handleCitationClick = (citation: Citation) => {
     setSelectedCitation(citation);
@@ -558,6 +571,7 @@ export const App: React.FC = () => {
               onFileUpload={handleFileUpload}
               onSelectQuestion={(q) => handleSendMessage(q)}
               onAttachToChat={handleAttachDocumentToChat}
+              onDeleteDocument={handleDeleteDocument}
               onClosePanel={() => setIsLeftPanelOpen(false)}
               language={language}
               chatSessions={chatSessions}

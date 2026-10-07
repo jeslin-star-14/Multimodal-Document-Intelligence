@@ -1,8 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Send, Filter } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Send, Mic } from 'lucide-react';
 import type { LanguageCode } from '../../types';
-import { VoiceRecorder } from './VoiceRecorder';
-import { translations } from '../../translations/i18n';
 
 interface ChatInputProps {
   onSendMessage: (query: string) => void;
@@ -14,12 +12,10 @@ interface ChatInputProps {
 export const ChatInput: React.FC<ChatInputProps> = ({
   onSendMessage,
   isLoading = false,
-  language,
-  selectedDocName,
 }) => {
   const [inputQuery, setInputQuery] = useState('');
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const t = translations[language];
+  const [isListening, setIsListening] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -28,77 +24,79 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     setInputQuery('');
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit();
-    }
-  };
+  const handleToggleMic = () => {
+    const SpeechRecognition =
+      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
-  const handleVoiceTranscript = (text: string) => {
-    setInputQuery((prev) => (prev ? `${prev} ${text}` : text));
-  };
-
-  // Auto resize textarea
-  useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 120)}px`;
+    if (!SpeechRecognition) {
+      alert('Speech Recognition is supported in Chrome, Edge, and Safari.');
+      return;
     }
-  }, [inputQuery]);
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = () => setIsListening(true);
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      if (transcript) {
+        setInputQuery((prev) => (prev ? `${prev} ${transcript}` : transcript));
+      }
+      setIsListening(false);
+    };
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+
+    recognition.start();
+  };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="p-3 border-t border-slate-800/80 bg-slate-950/80 backdrop-blur-md light:bg-white light:border-slate-200"
-    >
-      {/* Target scope pill */}
-      <div className="flex items-center justify-between text-[11px] text-slate-400 mb-2 px-1">
-        <div className="flex items-center space-x-1.5">
-          <Filter className="w-3 h-3 text-indigo-400" />
-          <span>Active Scope:</span>
-          <span className="font-semibold text-slate-200 light:text-slate-700">
-            {selectedDocName ? selectedDocName : t.filterAll}
-          </span>
-        </div>
-        <span className="hidden sm:inline text-slate-500 text-[10px]">
-          Press <kbd className="px-1 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-[9px]">Enter ↵</kbd> to ask
-        </span>
-      </div>
-
-      <div className="relative flex items-end gap-2 bg-slate-900 border border-slate-700/80 rounded-2xl p-1.5 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500/50 transition-all light:bg-slate-50 light:border-slate-300">
-        {/* Voice Input Button */}
-        <VoiceRecorder
-          language={language}
-          onTranscript={handleVoiceTranscript}
-        />
-
-        {/* Text Input */}
-        <textarea
-          ref={textareaRef}
-          rows={1}
+    <div className="p-4 bg-transparent sticky bottom-0">
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center bg-white border border-slate-200/90 rounded-2xl px-4 py-2 shadow-xs transition-all focus-within:border-slate-300"
+      >
+        <input
+          ref={inputRef}
+          type="text"
           value={inputQuery}
           onChange={(e) => setInputQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder={t.inputPlaceholder}
+          placeholder="Ask anything about your documents"
           disabled={isLoading}
-          className="flex-1 bg-transparent text-xs sm:text-sm text-slate-100 placeholder-slate-500 resize-none py-2 px-1 outline-none max-h-28 overflow-y-auto light:text-slate-800"
+          className="flex-1 bg-transparent text-xs sm:text-sm text-slate-800 placeholder-slate-400 outline-none pr-2"
         />
 
-        {/* Send Button */}
-        <button
-          type="submit"
-          disabled={!inputQuery.trim() || isLoading}
-          className={`p-2.5 rounded-xl font-semibold transition-all flex items-center justify-center ${
-            inputQuery.trim() && !isLoading
-              ? 'bg-indigo-600 text-white hover:bg-indigo-500 shadow-md shadow-indigo-600/30 cursor-pointer active:scale-95'
-              : 'bg-slate-800 text-slate-500 cursor-not-allowed light:bg-slate-200 light:text-slate-400'
-          }`}
-          title={t.send}
-        >
-          <Send className="w-4 h-4" />
-        </button>
-      </div>
-    </form>
+        <div className="flex items-center space-x-1.5 shrink-0">
+          {/* Mic Button */}
+          <button
+            type="button"
+            onClick={handleToggleMic}
+            className={`p-1.5 rounded-lg text-slate-500 hover:text-slate-800 transition-colors cursor-pointer ${
+              isListening ? 'text-rose-500 animate-pulse' : ''
+            }`}
+            title="Voice input"
+            aria-label="Voice input"
+          >
+            <Mic className="w-4 h-4" />
+          </button>
+
+          {/* Send Button */}
+          <button
+            type="submit"
+            disabled={!inputQuery.trim() || isLoading}
+            className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
+              inputQuery.trim() && !isLoading
+                ? 'bg-[#0d5c4d] text-white hover:bg-[#0a473b] cursor-pointer'
+                : 'bg-[#0d5c4d]/30 text-white/70 cursor-not-allowed'
+            }`}
+            title="Send"
+            aria-label="Send"
+          >
+            <Send className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };

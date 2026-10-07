@@ -12,5 +12,11 @@ from app.config import HOST, PORT
 
 if __name__ == "__main__":
     print(f"🚀 Starting Multimodal Document Intelligence Backend on http://{HOST}:{PORT}")
-    uvicorn.run("main:app", host=HOST, port=PORT, reload=True)
+    uvicorn.run(
+        "main:app", 
+        host=HOST, 
+        port=PORT, 
+        reload=True,
+        reload_excludes=[".venv*", "data*", "__pycache__*"]
+    )
 

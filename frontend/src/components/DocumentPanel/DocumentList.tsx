@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquarePlus, Trash2 } from 'lucide-react';
+import { MessageSquarePlus, X } from 'lucide-react';
 import type { DocumentItem } from '../../types';
 
 interface DocumentListProps {
@@ -90,8 +90,8 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                     </p>
                   </div>
 
-                  {/* Action Buttons: Add to Chat & Delete */}
-                  <div className="flex items-center space-x-1 shrink-0">
+                  {/* Action Buttons: Ask in Chat + Remove Document (X) */}
+                  <div className="flex items-center space-x-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
                     {onAttachToChat && isReady && (
                       <button
                         type="button"
@@ -99,7 +99,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                           e.stopPropagation();
                           onAttachToChat(doc);
                         }}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#0d5c4d] text-slate-500 hover:text-[#0d5c4d] shadow-xs cursor-pointer"
+                        className="p-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#0d5c4d] text-slate-500 hover:text-[#0d5c4d] shadow-2xs cursor-pointer"
                         title="Upload to Chat (Ask in chat)"
                         aria-label="Upload to chat"
                       >
@@ -112,15 +112,13 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (window.confirm(`Delete "${doc.name}" from workspace?`)) {
-                            onDeleteDocument(doc.id);
-                          }
+                          onDeleteDocument(doc.id);
                         }}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-white border border-slate-200 hover:border-red-400 text-slate-400 hover:text-red-600 shadow-xs cursor-pointer"
-                        title="Delete document"
-                        aria-label="Delete document"
+                        className="p-1.5 rounded-lg bg-white border border-slate-200 hover:border-red-400 text-slate-400 hover:text-red-500 hover:bg-red-50 shadow-2xs cursor-pointer transition-colors"
+                        title="Remove document"
+                        aria-label="Remove document"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <X className="w-3.5 h-3.5" />
                       </button>
                     )}
                   </div>

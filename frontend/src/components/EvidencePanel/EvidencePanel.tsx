@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PanelRightClose, FileSearch } from 'lucide-react';
 import type { DocumentChunk, BoundingBox, DocumentItem, LanguageCode, Citation } from '../../types';
 import { PageViewer } from './PageViewer';
@@ -32,6 +32,19 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
   selectedCitation,
 }) => {
   const [activeTab, setActiveTab] = useState<'page' | 'data' | 'text'>('page');
+  const [docChunks, setDocChunks] = useState<DocumentChunk[]>([]);
+
+  useEffect(() => {
+    if (!activeDocument) return;
+    fetch(`/api/documents/${activeDocument.id}/chunks`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (data && data.chunks) {
+          setDocChunks(data.chunks);
+        }
+      })
+      .catch(() => {});
+  }, [activeDocument?.id]);
 
   if (!activeDocument) {
     return (
@@ -72,20 +85,6 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
   const activeChunk = chunks.find((c) => c.id === activeChunkId) || chunks[0];
   const chunkType = selectedCitation?.chunkType || activeChunk?.type || 'Evidence';
   const matchScore = selectedCitation?.similarityScore ?? activeChunk?.similarityScore;
-
-  // Automatically load all extracted tables and visual figures for active document
-  const [docChunks, setDocChunks] = React.useState<DocumentChunk[]>([]);
-  React.useEffect(() => {
-    if (!activeDocument) return;
-    fetch(`/api/documents/${activeDocument.id}/chunks`)
-      .then((r) => r.ok ? r.json() : null)
-      .then((data) => {
-        if (data && data.chunks) {
-          setDocChunks(data.chunks);
-        }
-      })
-      .catch(() => {});
-  }, [activeDocument?.id]);
 
   const allAvailableChunks = docChunks.length > 0 ? docChunks : chunks;
   const allDocTables = allAvailableChunks.filter((c) => c.rawTableData && c.rawTableData.rows && c.rawTableData.rows.length > 0);

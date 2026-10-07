@@ -98,5 +98,3 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
     </div>
   );
 };
-
-

@@ -24,7 +24,7 @@ export const App: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [chunks, setChunks] = useState<DocumentChunk[]>([]);
   const [isLoadingAnswer, setIsLoadingAnswer] = useState<boolean>(false);
-  const [language, setLanguage] = useState<LanguageCode>('en');
+  const language: LanguageCode = 'en';
 
   // Load existing indexed documents from backend on mount
   useEffect(() => {
@@ -272,6 +272,7 @@ export const App: React.FC = () => {
       return updated;
     });
     setChunks((prev) => prev.filter((c) => c.documentId !== docId));
+    setStagedAttachments((prev) => prev.filter((a) => !a.id.includes(docId)));
   };
 
   // Handle Citation Click -> Synchronizes Evidence Panel & Page
@@ -586,10 +587,7 @@ export const App: React.FC = () => {
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#f8fafc] text-slate-900">
       {/* Header */}
-      <Header
-        language={language}
-        onLanguageChange={setLanguage}
-      />
+      <Header />
 
       {/* Main 3-Panel Workspace */}
       <main className="flex-1 flex flex-row overflow-hidden relative">
@@ -605,6 +603,7 @@ export const App: React.FC = () => {
               onSelectDocument={handleSelectDocument}
               onFileUpload={handleFileUpload}
               onAttachToChat={handleAttachDocumentToChat}
+              onDeleteDocument={handleDeleteDocument}
               onClosePanel={() => setIsLeftPanelOpen(false)}
               language={language}
               chatSessions={chatSessions}
@@ -612,7 +611,6 @@ export const App: React.FC = () => {
               onSelectSession={handleSelectSession}
               onNewChat={handleNewChat}
               onDeleteSession={handleDeleteSession}
-              onDeleteDocument={handleDeleteDocument}
             />
           </div>
         )}

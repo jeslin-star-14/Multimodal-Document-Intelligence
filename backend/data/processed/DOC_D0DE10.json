@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "document_id": "DOC_D0DE10",
+  "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+  "page_count": 4,
+  "evidence_count": 4,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_D0DE10",
+      "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+      "page": 1,
+      "section": "Slide 1",
+      "type": "text",
+      "text": "Nexus Beginner Guide \u2022 Module 1\nSlide 01 of 03\nSTEP 01 // WELCOME TO NEXUS\nMeet Nexus: Your Smart AI Assistant\nA friendly thinking helper that reads, organizes, and explains information clearly\nSimple & Fast\n100% Easy\nSmart Reading\nReads long PDFs, articles, and notes in seconds.\nInstant Finding\nUnderstands your question's real meaning instantly.\nTeam of Brains\nSelects the best AI model for each specific task.\nVisual Answers\nDraws colorful charts and diagrams automatically.\nMade for Everyone\nNo coding or tech skills needed",
+      "table": null,
+      "image_path": "D:\\Projects\\Hackathon\\backend\\data\\pages\\DOC_D0DE10\\page_1.png",
+      "metadata": {
+        "slide_num": 1
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_D0DE10",
+      "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+      "page": 2,
+      "section": "Slide 2",
+      "type": "text",
+      "text": "Nexus Beginner Guide \u2022 Module 2\nSlide 02 of 03\nSTEP 02 // HOW MEMORY WORKS\nHow Nexus Remembers Everything\nOrganizing ideas, facts, and files just like a super-powered digital library\nSafe & Organized\n0.1s Search\nInstant Retrieval\nNever lose a single note or file\nGroups related topics together naturally.\nSaves exact dates, numbers, and conversation logs.\nKeeps team files separate and locked.\nIdea Memory\nCONCEPT MAP\nFact Vault\nEXACT DETAILS\nPrivate Lockbox\nSAFE & ISOLATED",
+      "table": null,
+      "image_path": "D:\\Projects\\Hackathon\\backend\\data\\pages\\DOC_D0DE10\\page_2.png",
+      "metadata": {
+        "slide_num": 2
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_D0DE10",
+      "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+      "page": 3,
+      "section": "Slide 3",
+      "type": "text",
+      "text": "Nexus Beginner Guide \u2022 Module 3\nSlide 03 of 03\nSTEP 03 // REAL BENEFITS\nWhy Nexus Helps You Win Every Day\nSaving valuable hours and giving answers you can trust 100%\nTrust & Privacy\nTrusted AI\nAlways Verified\nCompletely Safe\n5x Faster Work\nShared Clarity\nHuman First\nTechnology that serves people\nZero Guesswork\nPoints directly to source pages.\nTotal Privacy\nFiles never shared with outsiders.\nSaves Your Day\nEliminates hours of manual search.\nSimple for Teams\nEveryone understands answers instantly.",
+      "table": null,
+      "image_path": "D:\\Projects\\Hackathon\\backend\\data\\pages\\DOC_D0DE10\\page_3.png",
+      "metadata": {
+        "slide_num": 3
+      }
+    },
+    {
+      "evidence_id": "E004",
+      "document_id": "DOC_D0DE10",
+      "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+      "page": 4,
+      "section": "Slide 4",
+      "type": "text",
+      "text": "Image Sources\nhttps://learningmole.com/wp-content/uploads/2026/03/v2-19qxrp-knw5o.jpg\nSource: learningmole.com\nhttps://ps.w.org/library-management-system/assets/banner-1544x500.jpg?rev=3620837\nSource: wordpress.org\nhttps://getjoan.com/wp-content/uploads/2021/05/homeOffice-v2.webp\nSource: getjoan.com",
+      "table": null,
+      "image_path": "D:\\Projects\\Hackathon\\backend\\data\\pages\\DOC_D0DE10\\page_4.png",
+      "metadata": {
+        "slide_num": 4
+      }
+    }
+  ]
+}

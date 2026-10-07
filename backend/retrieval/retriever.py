@@ -69,6 +69,8 @@ def retrieve(
         [{"evidence_id": "...", "document_id": "...", "score": 0.92, ...}]
     """
     index = get_vector_index(index_dir)
+    if not index.evidence_store:
+        index._load_from_disk()
     
     if not index.evidence_store:
         logger.warning("No indexed documents available for retrieval.")

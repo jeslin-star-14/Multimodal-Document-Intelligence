@@ -1,12 +1,11 @@
 import React from 'react';
-import { MessageSquare, Plus, Trash2, Clock } from 'lucide-react';
+import { MessageSquare, Trash2, Clock } from 'lucide-react';
 import type { ChatSession, LanguageCode } from '../../types';
 
 interface ChatHistoryProps {
   sessions: ChatSession[];
   activeSessionId: string | null;
   onSelectSession: (sessionId: string) => void;
-  onNewChat: () => void;
   onDeleteSession: (sessionId: string) => void;
   language: LanguageCode;
 }
@@ -15,36 +14,30 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({
   sessions,
   activeSessionId,
   onSelectSession,
-  onNewChat,
   onDeleteSession,
 }) => {
   return (
     <div className="flex flex-col h-full space-y-2">
-      {/* Header with Title and "+ New Chat" action */}
+      {/* Header with Title and count badge */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-1.5 text-xs font-semibold text-slate-700">
           <Clock className="w-3.5 h-3.5 text-slate-500" />
           <span>Chat History</span>
         </div>
-
-        <button
-          type="button"
-          onClick={onNewChat}
-          className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-[#0d5c4d] hover:bg-[#0b4d40] text-white text-[11px] font-medium shadow-2xs transition-colors cursor-pointer"
-          title="Start a new conversation"
-        >
-          <Plus className="w-3 h-3" />
-          <span>New Chat</span>
-        </button>
+        {sessions.length > 0 && (
+          <span className="text-[11px] font-normal px-1.5 py-0.5 rounded-full bg-slate-200/70 text-slate-600">
+            {sessions.length}
+          </span>
+        )}
       </div>
 
       {/* Sessions List */}
-      <div className="space-y-1.5 overflow-y-auto max-h-[220px] pr-1">
+      <div className="space-y-1.5 overflow-y-auto flex-1 pr-1">
         {sessions.length === 0 ? (
-          <div className="p-3.5 rounded-xl border border-dashed border-slate-200 text-center bg-white/60">
+          <div className="p-3.5 rounded-xl border border-dashed border-slate-300 text-center bg-slate-50/50">
             <p className="text-xs font-medium text-slate-600">No past chats</p>
             <p className="text-[11px] text-slate-400 mt-0.5">
-              Conversations will be saved here automatically.
+              Conversations will appear here.
             </p>
           </div>
         ) : (
@@ -97,3 +90,4 @@ export const ChatHistory: React.FC<ChatHistoryProps> = ({
     </div>
   );
 };
+

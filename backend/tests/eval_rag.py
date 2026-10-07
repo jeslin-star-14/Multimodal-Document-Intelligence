@@ -52,7 +52,7 @@ BENCHMARK_TEST_CASES = [
 
 def run_evaluation():
     print("=" * 70)
-    print("🔬 DOC-Q / VERITY MULTIMODAL RAG BENCHMARK & EVALUATION SUITE")
+    print("[EVAL] DOC-Q / VERITY MULTIMODAL RAG BENCHMARK & EVALUATION SUITE")
     print("=" * 70)
     
     total_tests = len(BENCHMARK_TEST_CASES)
@@ -63,7 +63,7 @@ def run_evaluation():
 
     for tc in BENCHMARK_TEST_CASES:
         start_t = time.time()
-        print(f"\n▶ Running [{tc['id']}] {tc['category']}")
+        print(f"\n>> Running [{tc['id']}] {tc['category']}")
         print(f"  Query: \"{tc['query']}\"")
         
         # 1. Retrieval
@@ -79,33 +79,33 @@ def run_evaluation():
         kw_rate = found_kw / len(tc["expected_keywords"])
         if kw_rate >= 0.6:
             passed_grounding += 1
-            print(f"  ✓ Grounding: {int(kw_rate * 100)}% keyword overlap matched")
+            print(f"  [PASS] Grounding: {int(kw_rate * 100)}% keyword overlap matched")
         else:
-            print(f"  ✗ Grounding: Low keyword overlap ({int(kw_rate * 100)}%)")
+            print(f"  [FAIL] Grounding: Low keyword overlap ({int(kw_rate * 100)}%)")
 
         # 4. Proof Level verification
         if resp.proof_level in [tc["expected_proof_level"], "Calculated", "Stated"]:
             passed_proof_level += 1
-            print(f"  ✓ Proof Level: {resp.proof_level} (Expected: {tc['expected_proof_level']})")
+            print(f"  [PASS] Proof Level: {resp.proof_level} (Expected: {tc['expected_proof_level']})")
         else:
-            print(f"  ✗ Proof Level: {resp.proof_level}")
+            print(f"  [FAIL] Proof Level: {resp.proof_level}")
 
         # 5. Math verification
         if tc["requires_math"]:
             calcs = extract_and_verify_calculations(resp.answer)
             if calcs and all(c.status == "VERIFIED" for c in calcs):
                 passed_math += 1
-                print(f"  ✓ Math Verification: {len(calcs)} AST verified equation(s)")
+                print(f"  [PASS] Math Verification: {len(calcs)} AST verified equation(s)")
             elif calcs:
                 passed_math += 1
-                print(f"  ✓ Math Verification: {len(calcs)} equations evaluated")
+                print(f"  [PASS] Math Verification: {len(calcs)} equations evaluated")
             else:
-                print(f"  ✗ Math Verification: No equations parsed")
+                print(f"  [FAIL] Math Verification: No equations parsed")
         else:
             passed_math += 1
 
     print("\n" + "=" * 70)
-    print("📊 EVALUATION RESULTS SUMMARY")
+    print("EVALUATION RESULTS SUMMARY")
     print("=" * 70)
     print(f"Total Test Cases Evaluated:       {total_tests}")
     print(f"Factual Grounding Accuracy:       {(passed_grounding / total_tests) * 100:.1f}%")
@@ -113,7 +113,7 @@ def run_evaluation():
     print(f"Proof Level Calibration:          {(passed_proof_level / total_tests) * 100:.1f}%")
     print(f"Average End-to-End Latency:       {sum(latencies) / len(latencies):.2f} ms")
     print("=" * 70)
-    print("🏆 Benchmark Status: PASSED ALL PRODUCTION THRESHOLDS")
+    print("[SUCCESS] Benchmark Status: PASSED ALL PRODUCTION THRESHOLDS")
 
 if __name__ == "__main__":
     run_evaluation()

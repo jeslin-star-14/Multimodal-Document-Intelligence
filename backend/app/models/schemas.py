@@ -44,6 +44,15 @@ class DocumentChunk(BaseModel):
     bounding_box: Optional[BoundingBox] = None
     ocr_words: Optional[List[OCRWord]] = None
     
+    # Compatibility fields for frontend camelCase:
+    documentId: Optional[str] = None
+    documentName: Optional[str] = None
+    pageNumber: Optional[int] = None
+    rawTableData: Optional[TableData] = None
+    imageUrl: Optional[str] = None
+    similarityScore: Optional[float] = None
+    boundingBox: Optional[BoundingBox] = None
+
     # Compatibility fields for backend retriever & reasoning:
     chunk_id: Optional[str] = None
     doc_name: Optional[str] = None
@@ -64,12 +73,47 @@ class DocumentChunk(BaseModel):
             self.doc_name = self.document_name
         elif not self.document_name and self.doc_name:
             self.document_name = self.doc_name
+
+        if not self.documentId and self.document_id:
+            self.documentId = self.document_id
+        elif not self.document_id and self.documentId:
+            self.document_id = self.documentId
+
+        if not self.documentName and self.document_name:
+            self.documentName = self.document_name
+        elif not self.document_name and self.documentName:
+            self.document_name = self.documentName
+
+        if not self.pageNumber and self.page_number:
+            self.pageNumber = self.page_number
+        elif not self.page_number and self.pageNumber:
+            self.page_number = self.pageNumber
             
         if not self.chunk_type and self.type:
             self.chunk_type = self.type
         elif not self.type and self.chunk_type:
             c_type = self.chunk_type if self.chunk_type in ['text', 'table', 'image', 'chart'] else 'image'
             self.type = c_type
+
+        if not self.rawTableData and self.raw_table_data:
+            self.rawTableData = self.raw_table_data
+        elif not self.raw_table_data and self.rawTableData:
+            self.raw_table_data = self.rawTableData
+
+        if not self.imageUrl and self.image_url:
+            self.imageUrl = self.image_url
+        elif not self.image_url and self.imageUrl:
+            self.image_url = self.imageUrl
+
+        if not self.similarityScore and self.similarity_score:
+            self.similarityScore = self.similarity_score
+        elif not self.similarity_score and self.similarityScore:
+            self.similarity_score = self.similarityScore
+
+        if not self.boundingBox and self.bounding_box:
+            self.boundingBox = self.bounding_box
+        elif not self.bounding_box and self.boundingBox:
+            self.bounding_box = self.boundingBox
 
 class Entity(BaseModel):
     category: Literal['Org', 'Date', 'Financial', 'Metric', 'Location', 'Person']
@@ -105,6 +149,15 @@ class Citation(BaseModel):
     proof_level: ProofLevel = "Stated"
     proof_explanation: Optional[str] = None
     
+    # CamelCase compatibility fields for frontend
+    documentId: Optional[str] = None
+    documentName: Optional[str] = None
+    pageNumber: Optional[int] = None
+    chunkType: Optional[ChunkType] = None
+    chunkId: Optional[str] = None
+    similarityScore: Optional[float] = None
+    boundingBox: Optional[BoundingBox] = None
+
     # Compatibility fields:
     citation_id: Optional[int] = None
     doc_name: Optional[str] = None
@@ -123,6 +176,41 @@ class Citation(BaseModel):
         elif not self.document_name and self.doc_name:
             self.document_name = self.doc_name
             
+        if not self.documentId and self.document_id:
+            self.documentId = self.document_id
+        elif not self.document_id and self.documentId:
+            self.document_id = self.documentId
+
+        if not self.documentName and self.document_name:
+            self.documentName = self.document_name
+        elif not self.document_name and self.documentName:
+            self.document_name = self.documentName
+
+        if not self.pageNumber and self.page_number:
+            self.pageNumber = self.page_number
+        elif not self.page_number and self.pageNumber:
+            self.page_number = self.pageNumber
+
+        if not self.chunkType and self.chunk_type:
+            self.chunkType = self.chunk_type
+        elif not self.chunk_type and self.chunkType:
+            self.chunk_type = self.chunkType
+
+        if not self.chunkId and self.chunk_id:
+            self.chunkId = self.chunk_id
+        elif not self.chunk_id and self.chunkId:
+            self.chunk_id = self.chunkId
+
+        if not self.similarityScore and self.similarity_score:
+            self.similarityScore = self.similarity_score
+        elif not self.similarity_score and self.similarityScore:
+            self.similarity_score = self.similarityScore
+
+        if not self.boundingBox and self.bounding_box:
+            self.boundingBox = self.bounding_box
+        elif not self.bounding_box and self.boundingBox:
+            self.bounding_box = self.boundingBox
+
         if not self.type and self.chunk_type:
             self.type = self.chunk_type
         elif not self.chunk_type and self.type:

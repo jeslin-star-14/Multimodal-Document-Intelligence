@@ -210,9 +210,12 @@ async def list_documents():
                 "size": size_str,
                 "type": doc_type,
                 "page_count": page_count,
+                "pageCount": page_count,
                 "status": "Ready",
                 "uploaded_at": "Today",
+                "uploadedAt": "Today",
                 "page_images": page_images,
+                "pageImages": page_images,
                 "evidence_count": evidence_count
             }
         except Exception as e:
@@ -234,9 +237,12 @@ async def list_documents():
                 "size": "1.5 MB",
                 "type": "pdf",
                 "page_count": page_count,
+                "pageCount": page_count,
                 "status": "Ready",
                 "uploaded_at": "Today",
+                "uploadedAt": "Today",
                 "page_images": [f"/data/pages/{doc_id}/page_{p+1}.png" for p in range(page_count)],
+                "pageImages": [f"/data/pages/{doc_id}/page_{p+1}.png" for p in range(page_count)],
                 "evidence_count": 0
             }
         docs_map[doc_id]["evidence_count"] = max(docs_map[doc_id]["evidence_count"], 1)
@@ -659,6 +665,7 @@ async def query_documents_chat(request: FrontendQueryRequest):
 
 # Feature 3: Chart Decompiler
 @app.post("/api/charts/decompile")
+@app.post("/api/chart/decompile")
 async def decompile_chart(req: ChartDecompileRequest):
     """Decompiles visual chart into structured tabular CSV & Plotly spec."""
     img_path = ""

@@ -15,22 +15,7 @@ export default defineConfig({
       '/data': {
         target: 'http://localhost:8000',
         changeOrigin: true,
-      },
-      '/upload': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-      },
-      '/search': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-      },
-      '/documents': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-      },
-      '/evidence': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
+
       }
     }
   }

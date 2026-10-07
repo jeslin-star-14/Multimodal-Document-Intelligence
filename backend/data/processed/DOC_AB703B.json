@@ -1,38 +1,11 @@
 {
-  "evidence_store": {
-    "DOC_62C934_E001": {
-      "evidence_id": "E001",
-      "document_id": "DOC_62C934",
-      "document_name": "production_report.pdf",
-      "page": 1,
-      "section": "Production Efficiency Report Q4",
-      "type": "text",
-      "text": "Production Efficiency Report Q4\nProduction efficiency increased from 71% in Q2 to 84% in Q4.",
-      "table": null,
-      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_62C934/page_1.png",
-      "metadata": {
-        "scanned": false,
-        "char_count": 92
-      },
-      "_search_text": "Section: Production Efficiency Report Q4\nProduction Efficiency Report Q4\nProduction efficiency increased from 71% in Q2 to 84% in Q4."
-    },
-    "DOC_62C934_E002": {
-      "evidence_id": "E002",
-      "document_id": "DOC_62C934",
-      "document_name": "production_report.pdf",
-      "page": 2,
-      "section": "Factory Throughput & Cost Analysis",
-      "type": "text",
-      "text": "Factory Throughput & Cost Analysis\nQ4 total output reached 12,200 units with operating expenses at $4,250,000.",
-      "table": null,
-      "image_path": "C:/Karunya/Hackathon/Multimodal-Document-Intelligence/backend/data/pages/DOC_62C934/page_2.png",
-      "metadata": {
-        "scanned": false,
-        "char_count": 110
-      },
-      "_search_text": "Section: Factory Throughput & Cost Analysis\nFactory Throughput & Cost Analysis\nQ4 total output reached 12,200 units with operating expenses at $4,250,000."
-    },
-    "DOC_AB703B_E001": {
+  "success": true,
+  "document_id": "DOC_AB703B",
+  "document_name": "URK25CS1043_Practicum4.pdf",
+  "page_count": 9,
+  "evidence_count": 24,
+  "evidence": [
+    {
       "evidence_id": "E001",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -45,10 +18,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 2772
-      },
-      "_search_text": "Section: 1. Follow ethical practices in AI model development and deployment.\nOBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 1 of 9\n\nPracticum No.4\n\n\n\n\n\n\n\n           Date:03/08/2026\nImplementation of Heuristic Search Algorithms\n\nI\nPractical Significance\nHeuristic search algorithms improve problem-solving efficiency by using domain-specific knowledge.\nThis practicum focuses on informed search strategies such as A* and Greedy Best-First Search, widely\nused in applications like route planning, game AI, and optimization.\nIndustry-Relevant Job Positions:\n●\nPathfinding Algorithm Developer\n●\nAI Game Developer\n●\nRobotics Navigation Engineer\n●\nOptimization Analyst\n\nII\nCompetency and Industry-Specific Practical Skills\nThis practicum exercise is expected to develop the following skills for the industry-identified\ncompetency.\n● Use the principles of artificial intelligence to solve complex engineering problems.\n\na)  Select and implement suitable search algorithms (uninformed and informed) for problem-solving\nin intelligent systems. (Cognitive Domain)\nb) Formulate AI-based solutions to real-world problems using appropriate AI techniques.\n(Cognitive Domain)\nc)  Apply AI techniques to domain-specific areas like healthcare, robotics, finance, and autonomous\nsystems. (Cognitive Domain)\nd) Adopt ethical principles and responsible practices in the development and deployment of AI\nsystems. (Affective Domain)\nIII\nRelevant CO(s)\nCO2: Implement and analyze different search strategies used in AI applications\n\nIV\nPractical Outcome (PrO) \\\n● Develop a heuristic search algorithm  for the given problem and compare its efficiency.\n\nV\nRelated ADO(s)\n1. Follow ethical practices in AI model development and deployment.\n2. Follow adaptability to emerging AI techniques and technologies.\n3. Follow a structured approach to AI driven decision making.\n4. Follow a commitment to continuous learning.\n\nVI\nMinimum Underpinning Theory\n\nHeuristic search uses additional information (heuristics) to estimate the cost of reaching the goal.\nA* search combines path cost (g) and heuristic (h) to form f(n) = g(n) + h(n). Greedy Best-First Search\nuses only the heuristic to make decisions, potentially faster but less optimal.\nHeuristic Search is a form of informed search that improves efficiency by using domain-specific\nknowledge (heuristics) to estimate the best path toward a goal. Unlike uninformed algorithms (like BFS\nand DFS), heuristic search uses a cost function to prioritize which nodes to explore.\nA* Search Algorithm:\nA* is a widely-used heuristic search algorithm that combines:\n●\ng(n): The cost from the start node to the current node n"
+      }
     },
-    "DOC_AB703B_E002": {
+    {
       "evidence_id": "E002",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -61,10 +33,9 @@
       "metadata": {
         "confidence": 0.8,
         "detection_details": "Embedded image with graph keywords"
-      },
-      "_search_text": "Section: 1. Follow ethical practices in AI model development and deployment.\n[GRAPH visual content on page 1]"
+      }
     },
-    "DOC_AB703B_E003": {
+    {
       "evidence_id": "E003",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -77,10 +48,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 2342
-      },
-      "_search_text": "Section: VII\nOBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 2 of 9\n\n●\nh(n): A heuristic estimate of the cost from n to the goal\n●\nf(n) = g(n) + h(n): Total estimated cost of the path through node n\nIn this example:\n●\nThe agent searches a grid, moving in four directions (up, down, left, right).\n●\nObstacles are represented by 1, and free cells by 0.\n●\nManhattan Distance is used as the heuristic h(n): h(n) = |x1 - x2| + |y1 - y2|\n\n\nVII\nPracticum Set-up/Circuit Diagram/Algorithm/Flowchart\nAlgorithm:\n1. Define the heuristic function (Manhattan distance)\n2. Initialize a priority queue with the start node and its f(n) = g(n) + h(n)\n3. While the queue is not empty:\n    a. Pop the node with the lowest f(n)\n    b. If this node is the goal, return the path\n    c. If not visited:\n        - Mark it as visited\n        - Add its neighbors to the queue with updated g(n) and f(n)\n        - Only consider neighbors within the grid and not obstacles\n4. If goal is not reached, return None\nPython Sample Code:\nExample: A* search in a grid for shortest path with Manhattan distance heuristic.\n\ndef heuristic(a, b):\n    return abs(a[0] - b[0]) + abs(a[1] - b[1])\n\ndef astar(grid, start, goal):\n    rows, cols = len(grid), len(grid[0])\n    open_list = []\n    heapq.heappush(open_list, (0 + heuristic(start, goal), 0, start, []))\n    visited = set()\n\n    while open_list:\n        est_total, cost, current, path = heapq.heappop(open_list)\n        if current in visited:\n            continue\n        visited.add(current)\n        path = path + [current]\n        if current == goal:\n            return path\n\n        x, y = current\n        for dx, dy in [(0,1),(1,0),(0,-1),(-1,0)]:\n            nx, ny = x + dx, y + dy\n            if 0 <= nx < rows and 0 <= ny < cols and grid[nx][ny] == 0:\n                neighbor = (nx, ny)\n                if neighbor not in visited:\n                    heapq.heappush(open_list, (cost+1 + heuristic(neighbor, goal), cost+1, neighbor, path))\n    return None\n\n# 0 = free cell, 1 = obstacle\ngrid = [[0, 1, 0, 0], [0, 1, 0, 1], [0, 0, 0, 0]]\nstart, goal = (0, 0), (2, 3)\npath = astar(grid, start, goal)\nprint(\"Path:\", path)"
+      }
     },
-    "DOC_AB703B_E004": {
+    {
       "evidence_id": "E004",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -93,10 +63,9 @@
       "metadata": {
         "confidence": 0.8,
         "detection_details": "Embedded image with chart keywords"
-      },
-      "_search_text": "Section: VII\n[CHART visual content on page 2]"
+      }
     },
-    "DOC_AB703B_E005": {
+    {
       "evidence_id": "E005",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -109,10 +78,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 1116
-      },
-      "_search_text": "Section: Administration Block (A) to the Research Laboratory (J).\nOBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 3 of 9\n\n\nDevelop an uninformed search algorithm in Python to help the robot find a path from the\nAdministration Block (A) to the Research Laboratory (J).\nA* Search Algorithm\n\ngraph = {\n    'S': [('A', 2), ('B', 4)],\n    'A': [('C', 3), ('D', 1)],\n    'B': [('D', 2), ('E', 3)],\n    'C': [('G', 5)],\n    'D': [('G', 4)],\n    'E': [('G', 2)],\n    'G': []\n}\nh = {\n    'S': 7,\n    'A': 6,\n    'B': 5,\n    'C': 5,\n    'D': 4,\n    'E': 2,\n    'G': 0\n}\ndef astar(start, goal):\n    open_list = [start]\n    closed_list = []\n    parent = {}\n    cost = {start: 0}\n\n    while open_list:\n        current = open_list[0]\n        for node in open_list:\n            if cost[node] + h[node] < cost[current] + h[current]:\n                current = node\n\n        open_list.remove(current)\n\n        if current == goal:\n            path = []\n            while current != start:"
+      }
     },
-    "DOC_AB703B_E006": {
+    {
       "evidence_id": "E006",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -125,10 +93,9 @@
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (35 paths) with chart keywords"
-      },
-      "_search_text": "Section: Administration Block (A) to the Research Laboratory (J).\n[GRAPH visual content on page 3]"
+      }
     },
-    "DOC_AB703B_E007": {
+    {
       "evidence_id": "E007",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -141,10 +108,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 1311
-      },
-      "_search_text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 4 of 9\n\n                path.append(current)\n                current = parent[current]\n            path.append(start)\n            path.reverse()\n\n            print(\"\\nOptimal Path:\", path)\n            print(\"Total Path Cost:\", cost[goal])\n            print(\"Expanded Order:\", closed_list)\n            return\n\n        closed_list.append(current)\n\n        for neighbour, edge_cost in graph[current]:\n            new_cost = cost[current] + edge_cost\n            if neighbour not in cost or new_cost < cost[neighbour]:\n                cost[neighbour] = new_cost\n                parent[neighbour] = current\n                if neighbour not in open_list:\n                    open_list.append(neighbour)\n\n        print(\"\\nExpanded:\", current)\n        print(\"OPEN:\", open_list)\n        print(\"CLOSED:\", closed_list)\n\n    print(\"Destination cannot be reached.\")\n\nastar('S', 'G')\nOutput:\n\n\n\nBreadth First Search\n\ngraph = {\n    'A': ['B', 'C'],\n    'B': ['D', 'E'],\n    'C': ['F'],\n    'D': ['G'],\n    'E': ['H'],\n    'F': ['I'],\n    'G': ['J'],\n    'H': ['J'],"
+      }
     },
-    "DOC_AB703B_E008": {
+    {
       "evidence_id": "E008",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -157,10 +123,9 @@
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (36 paths) with chart keywords"
-      },
-      "_search_text": "[GRAPH visual content on page 4]"
+      }
     },
-    "DOC_AB703B_E009": {
+    {
       "evidence_id": "E009",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -173,10 +138,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 1205
-      },
-      "_search_text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 5 of 9\n\n    'I': ['J'],\n    'J': []\n}\ndef bfs(start, goal):\n    queue = [start]\n    visited = []\n    parent = {}\n\n    while queue:\n        current = queue.pop(0)\n\n        if current not in visited:\n            visited.append(current)\n            print(\"Visited:\", current)\n\n            if current == goal:\n                path = []\n                while current != start:\n                    path.append(current)\n                    current = parent[current]\n\n                path.append(start)\n                path.reverse()\n\n                print(\"\\nVisited Order:\", visited)\n                print(\"Path:\", path)\n                return\n\n            for neighbour in graph[current]:\n                if neighbour not in visited:\n                    if neighbour not in queue:\n                        queue.append(neighbour)\n                        parent[neighbour] = current\n\n    print(\"Destination cannot be reached.\")\n\nbfs('A', 'J')\n\nOutput:"
+      }
     },
-    "DOC_AB703B_E010": {
+    {
       "evidence_id": "E010",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -189,10 +153,9 @@
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (37 paths) with chart keywords"
-      },
-      "_search_text": "[GRAPH visual content on page 5]"
+      }
     },
-    "DOC_AB703B_E011": {
+    {
       "evidence_id": "E011",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -205,10 +168,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 2352
-      },
-      "_search_text": "Section: VIII\nOBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 6 of 9\n\nVIII\nResources Required\n\nS.\nNo\n.\nName of Resource\nSuggested Broad Specification\nQuantity\n1 Computer System\nIntel i5 or higher, 8 GB RAM, 256 GB SSD, Python 3.x\ninstalled\n1 per\nstudent\n2\nPython\nProgramming\nEnvironment\nPython 3.x with standard libraries (NumPy, time module)\nInstalled\n3\nJupyter Notebook\nor IDE (e.g.,\nVSCode,\nPyCharm)\nFor writing and running Python code\n1 per\nstudent\n\nIX\nSafety Precautions\na) Avoid sharing login credentials.\nb) Ensure antivirus software and firewalls are updated.\nc) Keep eatables away from computers.\nd) Follow Institutional laboratory policies.\ne) Avoid storing confidential data in lab computers.\n\nX\nProcedure\n1. Interpret the algorithm in Section VII to understand the step-by-step execution of the Heuristic\nsearch algorithm.\n2. Select a suitable heuristic search algorithm such as A* or Greedy Best-First Search.\n3. Define the problem environment using a state-space representation or grid-based structure.\n4. Design an appropriate heuristic function, such as Manhattan or Euclidean distance.\n5. Implement the chosen heuristic search algorithm in Python using required data structures.\n6. Initialize the environment with the start and goal nodes and set up cost and heuristic values.\n7. Execute the algorithm and trace the path from start to goal using the evaluation function.\n8. Display the explored nodes, path taken, and total cost or steps.\n9. Test the algorithm with various scenarios including blocked paths and alternate routes.\n10. Analyze the correctness, optimality, and efficiency of the solution.\n11.  Document the approach, code, output, and observations in a structured report.\n12. Submit the final implementation, report, and output screenshots for evaluation.\n\nXI\nActual Resources Used\n\nS.No.\nName of Resource\nBroad Specifications /\nMake Details\nQuantity\nRemarks\n1\nOperating System\nWindows 11\n1\nUsed for program\nexecution\n2\nProgramming\nLanguage\nPython 3.14\n1\nUsed for implementing\nA* and BFS\n3\nSoftware Development\nKit\nPython 3.14 / IDLE\n1\nUsed for coding and\nexecution\n4\nLibraries\nheapq and standard\n1\nUsed for priority queue"
+      }
     },
-    "DOC_AB703B_E012": {
+    {
       "evidence_id": "E012",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -248,10 +210,9 @@
       "metadata": {
         "row_count": 3,
         "col_count": 4
-      },
-      "_search_text": "Section: VIII\nTable Data:\nS.\nNo\n. | Name of Resource | Suggested Broad Specification | Quantity\n1 | Computer System | Intel i5 or higher, 8 GB RAM, 256 GB SSD, Python 3.x\ninstalled | 1 per\nstudent\n2 | Python\nProgramming\nEnvironment | Python 3.x with standard libraries (NumPy, time module) | Installed\n3 | Jupyter Notebook\nor IDE (e.g.,\nVSCode,\nPyCharm) | For writing and running Python code | 1 per\nstudent"
+      }
     },
-    "DOC_AB703B_E013": {
+    {
       "evidence_id": "E013",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -302,10 +263,9 @@
       "metadata": {
         "row_count": 4,
         "col_count": 5
-      },
-      "_search_text": "Section: VIII\nTable Data:\nS.No. | Name of Resource | Broad Specifications /\nMake Details | Quantity | Remarks\n1 | Operating System | Windows 11 | 1 | Used for program\nexecution\n2 | Programming\nLanguage | Python 3.14 | 1 | Used for implementing\nA* and BFS\n3 | Software Development\nKit | Python 3.14 / IDLE | 1 | Used for coding and\nexecution\n4 | Libraries | heapq and standard | 1 | Used for priority queue"
+      }
     },
-    "DOC_AB703B_E014": {
+    {
       "evidence_id": "E014",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -318,10 +278,9 @@
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (64 paths) with chart keywords"
-      },
-      "_search_text": "Section: VIII\n[GRAPH visual content on page 6]"
+      }
     },
-    "DOC_AB703B_E015": {
+    {
       "evidence_id": "E015",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -334,10 +293,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 2765
-      },
-      "_search_text": "Section: Python libraries\nOBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 7 of 9\n\nPython libraries\nand data handling\n5\nGraphics/Animation\ntool\nNot Used\n-\nNot required\n6\nFront-end tool\nNot Used\n-\nNot required\n7\nBack-end tool\nNot Used\n-\nNot required\n8\nVirtual Lab\nNot Used\n-\nProgram executed\nlocally\n9\nSpecific Hardware\nComputer System –\nIntel i5, 8 GB RAM\n1\nUsed for execution\n10\nSimulation/Emulation\nTool\nPython/Jupyter\nNotebook\n1\nUsed for testing the\nalgorithms\n\nXII\nActual Procedure Followed\n\n1. Studied the working principle of heuristic search and the A* algorithm.\n2. Represented the problem as a weighted graph containing nodes, edges, and heuristic\nvalues.\n3. Defined the heuristic values h(n) for each node.\n4. Initialized the starting node with path cost g(n) = 0.\n5. Calculated the evaluation function using f(n) = g(n) + h(n).\n6. Maintained OPEN and CLOSED lists to keep track of unexplored and explored nodes.\n7. Selected the node having the minimum f(n) value.\n8. Expanded the selected node and updated the costs of its neighbouring nodes.\n9. Stored the parent of each node to reconstruct the final path.\n10. Continued the process until the goal node G was reached.\n11. Implemented BFS separately to compare an uninformed search approach with A*.\n12. Recorded the expanded nodes, final path, and total path cost.\n13. Analyzed the results obtained from both search algorithms.\n\nXIII\nResults/Obervations\n\nA* Search:\n\nThe algorithm successfully found a path from the starting node S to the goal node G.\n\nThe heuristic value was used along with the actual path cost to select the next node.\n\nThe evaluation function used was f(n) = g(n) + h(n).\n\nThe algorithm selected the path with the minimum estimated total cost.\n\nThe expanded nodes and OPEN/CLOSED lists were displayed during execution.\n\nA* was able to use additional heuristic information to guide the search toward the goal.\nBFS:\n\nBFS successfully found a path from A to J.\n\nNodes were explored level by level.\n\nBFS does not use heuristic information.\n\nThe visited order and final path were displayed.\n\nXIV\nResults/Observations\n\n\nA* uses both actual path cost g(n) and heuristic cost h(n).\n\nBFS explores nodes without using heuristic information.\n\nA* can reduce unnecessary exploration when an appropriate heuristic is used.\n\nManhattan distance is suitable for grid-based movement where movement is allowed in four\ndirections.\n\nThe choice of heuristic has a significant effect on the efficiency of informed search.\n\nA* can produce an optimal path when an appropriate admissible heuristic is used."
+      }
     },
-    "DOC_AB703B_E016": {
+    {
       "evidence_id": "E016",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -402,10 +360,9 @@
       "metadata": {
         "row_count": 6,
         "col_count": 5
-      },
-      "_search_text": "Section: Python libraries\nTable Data:\n |  | Python libraries |  | and data handling\n5 | Graphics/Animation\ntool | Not Used | - | Not required\n6 | Front-end tool | Not Used | - | Not required\n7 | Back-end tool | Not Used | - | Not required\n8 | Virtual Lab | Not Used | - | Program executed\nlocally\n9 | Specific Hardware | Computer System –\nIntel i5, 8 GB RAM | 1 | Used for execution\n10 | Simulation/Emulation\nTool | Python/Jupyter\nNotebook | 1 | Used for testing the\nalgorithms"
+      }
     },
-    "DOC_AB703B_E017": {
+    {
       "evidence_id": "E017",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -418,10 +375,9 @@
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (32 paths) with chart keywords"
-      },
-      "_search_text": "Section: Python libraries\n[GRAPH visual content on page 7]"
+      }
     },
-    "DOC_AB703B_E018": {
+    {
       "evidence_id": "E018",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -434,10 +390,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 3219
-      },
-      "_search_text": "Section: XVI\nOBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 8 of 9\n\nXV\nInterpretation of Results\n\nThe results show that A search is more informed than BFS because it uses heuristic information\nto guide the search toward the goal*. The evaluation function f(n) = g(n) + h(n) balances the cost\nalready travelled with the estimated cost remaining. Therefore, A* can avoid exploring some\nunnecessary nodes and efficiently identify a suitable path. The practicum notes that heuristic\nsearch improves efficiency by using domain-specific knowledge.\n\nXVI\n Conclusions\n\nThe A* heuristic search algorithm was successfully implemented in Python and used to find a\npath from a starting node to a goal node. The experiment demonstrated how g(n), h(n), and f(n)\nare used to select nodes during the search. BFS was also implemented to understand the\ndifference between uninformed and informed search. The experiment helped demonstrate the\nimportance of heuristic functions in improving search efficiency and showed the practical\napplication of A* in pathfinding and intelligent systems.\n\nXVII  Suggested Practicum Related Questions:\nNote: Below given are a few sample questions for reference. Teachers must design more such questions\nin order to ensure the achievement of pre-determined course outcome.\n1. What is the difference between uninformed and heuristic search?\n2. Define the evaluation function f(n) used in A* search.\n3. What is a heuristic function? Give an example used in your implementation.\n4. Explain the role of g(n) and h(n) in A* search.\n5. How is Greedy Best-First Search different from A* search?\n6. What data structures did you use to implement A* search?\n7. How did you represent the environment or grid in your code?\n8. What heuristic function did you implement and why?\n9. How does your program handle obstacles or blocked paths?\n10. How do you ensure the shortest or optimal path is selected?\n11. What output did the algorithm produce for the given start and goal nodes?\n12. How efficient was your algorithm in terms of time and space?\n13. How would the result change if a non-admissible heuristic was used?\n14. What are real-world applications of A* or heuristic search algorithms?\n15. Can your approach be extended to dynamic or real-time pathfinding problem\nXVIII References / Suggestions for further reading\nOnline Tutorials & Articles\na) GeeksforGeeks - GeeksforGeeks – A Search Algorithm*- https://www.geeksforgeeks.org/a-\nsearch-algorithm/\nb) FreeCodeCamp – A Search Pathfinding in Python\nhttps://www.youtube.com/watch?v=JtiK0DOeI4A\nInteractive Platforms for Practicing\na) Replit – Python A* Search Projects (Interactive IDE)-\nhttps://replit.com/search?q=a%20star%20pathfinding\nb) VisuAlgo – A* Search Visualizer- https://visualgo.net/en/sssp\nVideo Lectures & Courses\na) NPTEL – Artificial Intelligence: Search Strategies (Prof. Deepak Khemani, IIT Madras)-\nhttps://onlinecourses.nptel.ac.in/noc23-cs88\nb) FreeCodeCamp – A* Pathfinding Algorithm in Python-\nhttps://www.youtube.com/watch?v=JtiK0DOeI4A"
+      }
     },
-    "DOC_AB703B_E019": {
+    {
       "evidence_id": "E019",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -450,10 +405,9 @@
       "metadata": {
         "confidence": 0.8,
         "detection_details": "Embedded image with graph keywords"
-      },
-      "_search_text": "Section: XVI\n[GRAPH visual content on page 8]"
+      }
     },
-    "DOC_AB703B_E020": {
+    {
       "evidence_id": "E020",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -466,10 +420,9 @@
       "metadata": {
         "scanned": false,
         "char_count": 1562
-      },
-      "_search_text": "Section: 1  Understanding of heuristic search concepts and A*\nOBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 9 of 9\n\nXIX\nSuggested Assessment Scheme\nThe given performance indicators should serve as a guideline for assessment regarding process and\nproduct-related marks.\nNote: The weightage for the process-related skills and product-related skills will change depending upon\nthe PrO, COs, and competency related to the concerned course.\n\nPerformance indicators\nMax. Marks\nMarks\nObtained\nProcess related skills: 18 Marks - 60%\n\n\n1\nUnderstanding of heuristic search concepts and A*\nalgorithm logic\n3\n\n2\nProper integration of heuristic function (e.g., Manhattan\ndistance)\n6\n\n3\nFollowed Coding Standards and Best Practices\n6\n\n4\nEfficient Implementation of algorithm\n3\n\nProduct related skills: 12 Marks - 40%\n\n\n5\nAccuracy of the computed shortest path from start to goal\n3\n\n6\nProper use of priority queues (min-heap) and efficient\ntraversal\n3\n\n7\nHandling invalid input, blocked paths, or edge cases\n1.5\n\n8\nInterpretation of Results and Conclusions\n1.5\n\n9\nPractical related questions\n1.5\n\n10\nSubmitting the Report on time\n1.5\n\nTotal\n30\n\nTo be filled by Student:\n\nS.No.\nName of the Student\nRegister No.\n1\nJACHIN SAMUEL J\nURK25CS1043\n\nTo be filled by the Faculty Member:\n\n\nMarks Obtained\nName and Designation of\nthe Faculty Member\nDate of Evaluation\nProcess-\nRelated Skills\n(18)\nProduct-\nRelated Skills\n(12)\nTotal\n(30)"
+      }
     },
-    "DOC_AB703B_E021": {
+    {
       "evidence_id": "E021",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -625,10 +578,9 @@
       "metadata": {
         "row_count": 13,
         "col_count": 8
-      },
-      "_search_text": "Section: 1  Understanding of heuristic search concepts and A*\nTable Data:\nPerformance indicators |  |  |  |  |  | Max. Marks | Marks\nObtained\nProcess related skills: 18 |  | Marks - 60% |  |  |  |  | \n1 | Understanding of heuristic search concepts and A*\nalgorithm logic |  |  |  |  | 3 | \n2 | Proper integration of heuristic function (e.g., Manhattan\ndistance) |  |  |  |  | 6 | \n3 | Followed Coding Standards and Best Practices |  |  |  |  | 6 | \n4 | Efficient Implementation of algorithm |  |  |  |  | 3 | \nProduct related skills: 12 |  |  | Marks - 40% |  |  |  | \n5 | Accuracy of the computed shortest path from start to goal |  |  |  |  | 3 | \n6 | Proper use of priority queues (min-heap) and efficient\ntraversal |  |  |  |  | 3 | \n7 | Handling invalid input, blocked paths, or edge cases |  |  |  |  | 1.5 | \n8 | Interpretation of Results and Conclusions |  |  |  |  | 1.5 | \n9 | Practical related questions |  |  |  |  | 1.5 | \n10 | Submitting the Report on time |  |  |  |  | 1.5 | \n | Total |  |  |  |  | 30 | "
+      }
     },
-    "DOC_AB703B_E022": {
+    {
       "evidence_id": "E022",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -654,10 +606,9 @@
       "metadata": {
         "row_count": 1,
         "col_count": 3
-      },
-      "_search_text": "Section: 1  Understanding of heuristic search concepts and A*\nTable Data:\nS.No. | Name of the Student | Register No.\n1 | JACHIN SAMUEL J | URK25CS1043"
+      }
     },
-    "DOC_AB703B_E023": {
+    {
       "evidence_id": "E023",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -700,10 +651,9 @@
       "metadata": {
         "row_count": 2,
         "col_count": 7
-      },
-      "_search_text": "Section: 1  Understanding of heuristic search concepts and A*\nTable Data:\nMarks Obtained |  |  |  | Name and Designation of |  | Date of Evaluation\n |  |  |  | the Faculty Member |  | \nProcess-\nRelated Skills\n(18) | Product-\nRelated Skills\n(12) | Total\n(30) |  |  |  | "
+      }
     },
-    "DOC_AB703B_E024": {
+    {
       "evidence_id": "E024",
       "document_id": "DOC_AB703B",
       "document_name": "URK25CS1043_Practicum4.pdf",
@@ -716,36 +666,7 @@
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (97 paths) with chart keywords"
-      },
-      "_search_text": "Section: 1  Understanding of heuristic search concepts and A*\n[CHART visual content on page 9]"
+      }
     }
-  },
-  "keys_list": [
-    "DOC_62C934_E001",
-    "DOC_62C934_E002",
-    "DOC_AB703B_E001",
-    "DOC_AB703B_E002",
-    "DOC_AB703B_E003",
-    "DOC_AB703B_E004",
-    "DOC_AB703B_E005",
-    "DOC_AB703B_E006",
-    "DOC_AB703B_E007",
-    "DOC_AB703B_E008",
-    "DOC_AB703B_E009",
-    "DOC_AB703B_E010",
-    "DOC_AB703B_E011",
-    "DOC_AB703B_E012",
-    "DOC_AB703B_E013",
-    "DOC_AB703B_E014",
-    "DOC_AB703B_E015",
-    "DOC_AB703B_E016",
-    "DOC_AB703B_E017",
-    "DOC_AB703B_E018",
-    "DOC_AB703B_E019",
-    "DOC_AB703B_E020",
-    "DOC_AB703B_E021",
-    "DOC_AB703B_E022",
-    "DOC_AB703B_E023",
-    "DOC_AB703B_E024"
   ]
 }

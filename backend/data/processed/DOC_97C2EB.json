@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "document_id": "DOC_97C2EB",
+  "document_name": "Screenshot 2026-10-07 at 4.17.41\u202fPM.png",
+  "page_count": 1,
+  "evidence_count": 1,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_97C2EB",
+      "document_name": "Screenshot 2026-10-07 at 4.17.41\u202fPM.png",
+      "page": 1,
+      "section": "Visual Image",
+      "type": "image",
+      "text": "Scanned visual content from Screenshot 2026-10-07 at 4.17.41\u202fPM.png",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_97C2EB/page_1.png",
+      "metadata": {
+        "scanned": true
+      }
+    }
+  ]
+}

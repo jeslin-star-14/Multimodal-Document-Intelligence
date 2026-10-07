@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "document_id": "DOC_2A04E5",
+  "document_name": "annual_income_report_2024.pdf",
+  "page_count": 1,
+  "evidence_count": 3,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_2A04E5",
+      "document_name": "annual_income_report_2024.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "text",
+      "text": "Annual Financial Performance Report\n(2024)\nDocument Type: Financial Statement Evaluation | Fiscal Period: FY 2024\nExecutive Summary:\nFiscal Year 2024 demonstrated stable linear growth across all tracking metrics. Markets\nbehaved predictably, and operations expanded steadily through Q4, resulting in a healthy\nbaseline performance for our business profile.\nVisual Data Representation:\nQuarterly Performance Breakdown:\nQuarter\nGross Income\nStatus\nQ1\n$45,000\nTarget Met\nQ2\n$48,000\nTarget Met\nQ3\n$52,000\nTarget Met\nQ4\n$55,000\nTarget Met\nTotal Annual\n$200,000\nFinalized",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_2A04E5/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 565
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_2A04E5",
+      "document_name": "annual_income_report_2024.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Quarter",
+          "Gross Income",
+          "Status"
+        ],
+        "rows": [
+          [
+            "Q1",
+            "$45,000",
+            "Target Met"
+          ],
+          [
+            "Q2",
+            "$48,000",
+            "Target Met"
+          ],
+          [
+            "Q3",
+            "$52,000",
+            "Target Met"
+          ],
+          [
+            "Q4",
+            "$55,000",
+            "Target Met"
+          ],
+          [
+            "Total Annual",
+            "$200,000",
+            "Finalized"
+          ]
+        ]
+      },
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_2A04E5/page_1.png",
+      "metadata": {
+        "row_count": 5,
+        "col_count": 3
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_2A04E5",
+      "document_name": "annual_income_report_2024.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_2A04E5/page_1.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      }
+    }
+  ]
+}

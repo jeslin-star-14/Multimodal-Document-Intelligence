@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "document_id": "DOC_F86EB3",
+  "document_name": "annual_income_report_2025.pdf",
+  "page_count": 1,
+  "evidence_count": 3,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_F86EB3",
+      "document_name": "annual_income_report_2025.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "text",
+      "text": "Annual Financial Performance Report\n(2025)\nDocument Type: Financial Statement Evaluation | Fiscal Period: FY 2025\nExecutive Summary:\nFiscal Year 2025 was marked by high market volatility and dynamic scaling. An initial surge in\nQ1 and Q2 was followed by a brief correction period in Q3 due to supply adjustments,\nculminating in a historic Q4 revenue peak.\nVisual Data Representation:\nQuarterly Performance Breakdown:\nQuarter\nGross Income\nStatus\nQ1\n$58,000\nTarget Met\nQ2\n$61,000\nTarget Met\nQ3\n$59,000\nTarget Met\nQ4\n$67,000\nTarget Met\nTotal Annual\n$245,000\nFinalized",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_F86EB3/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 564
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_F86EB3",
+      "document_name": "annual_income_report_2025.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Quarter",
+          "Gross Income",
+          "Status"
+        ],
+        "rows": [
+          [
+            "Q1",
+            "$58,000",
+            "Target Met"
+          ],
+          [
+            "Q2",
+            "$61,000",
+            "Target Met"
+          ],
+          [
+            "Q3",
+            "$59,000",
+            "Target Met"
+          ],
+          [
+            "Q4",
+            "$67,000",
+            "Target Met"
+          ],
+          [
+            "Total Annual",
+            "$245,000",
+            "Finalized"
+          ]
+        ]
+      },
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_F86EB3/page_1.png",
+      "metadata": {
+        "row_count": 5,
+        "col_count": 3
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_F86EB3",
+      "document_name": "annual_income_report_2025.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_F86EB3/page_1.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      }
+    }
+  ]
+}

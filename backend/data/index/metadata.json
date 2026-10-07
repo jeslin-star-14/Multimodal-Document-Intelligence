@@ -222,6 +222,183 @@
         "detection_details": "Embedded image with chart keywords"
       },
       "_search_text": "Section: Annual Income Report - Profile B\n[CHART visual content on page 1]"
+    },
+    "DOC_2A04E5_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_2A04E5",
+      "document_name": "annual_income_report_2024.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "text",
+      "text": "Annual Financial Performance Report\n(2024)\nDocument Type: Financial Statement Evaluation | Fiscal Period: FY 2024\nExecutive Summary:\nFiscal Year 2024 demonstrated stable linear growth across all tracking metrics. Markets\nbehaved predictably, and operations expanded steadily through Q4, resulting in a healthy\nbaseline performance for our business profile.\nVisual Data Representation:\nQuarterly Performance Breakdown:\nQuarter\nGross Income\nStatus\nQ1\n$45,000\nTarget Met\nQ2\n$48,000\nTarget Met\nQ3\n$52,000\nTarget Met\nQ4\n$55,000\nTarget Met\nTotal Annual\n$200,000\nFinalized",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_2A04E5/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 565
+      },
+      "_search_text": "Section: Annual Financial Performance Report\nAnnual Financial Performance Report\n(2024)\nDocument Type: Financial Statement Evaluation | Fiscal Period: FY 2024\nExecutive Summary:\nFiscal Year 2024 demonstrated stable linear growth across all tracking metrics. Markets\nbehaved predictably, and operations expanded steadily through Q4, resulting in a healthy\nbaseline performance for our business profile.\nVisual Data Representation:\nQuarterly Performance Breakdown:\nQuarter\nGross Income\nStatus\nQ1\n$45,000\nTarget Met\nQ2\n$48,000\nTarget Met\nQ3\n$52,000\nTarget Met\nQ4\n$55,000\nTarget Met\nTotal Annual\n$200,000\nFinalized"
+    },
+    "DOC_2A04E5_E002": {
+      "evidence_id": "E002",
+      "document_id": "DOC_2A04E5",
+      "document_name": "annual_income_report_2024.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Quarter",
+          "Gross Income",
+          "Status"
+        ],
+        "rows": [
+          [
+            "Q1",
+            "$45,000",
+            "Target Met"
+          ],
+          [
+            "Q2",
+            "$48,000",
+            "Target Met"
+          ],
+          [
+            "Q3",
+            "$52,000",
+            "Target Met"
+          ],
+          [
+            "Q4",
+            "$55,000",
+            "Target Met"
+          ],
+          [
+            "Total Annual",
+            "$200,000",
+            "Finalized"
+          ]
+        ]
+      },
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_2A04E5/page_1.png",
+      "metadata": {
+        "row_count": 5,
+        "col_count": 3
+      },
+      "_search_text": "Section: Annual Financial Performance Report\nTable Data:\nQuarter | Gross Income | Status\nQ1 | $45,000 | Target Met\nQ2 | $48,000 | Target Met\nQ3 | $52,000 | Target Met\nQ4 | $55,000 | Target Met\nTotal Annual | $200,000 | Finalized"
+    },
+    "DOC_2A04E5_E003": {
+      "evidence_id": "E003",
+      "document_id": "DOC_2A04E5",
+      "document_name": "annual_income_report_2024.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_2A04E5/page_1.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      },
+      "_search_text": "Section: Annual Financial Performance Report\n[IMAGE visual content on page 1]"
+    },
+    "DOC_F86EB3_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_F86EB3",
+      "document_name": "annual_income_report_2025.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "text",
+      "text": "Annual Financial Performance Report\n(2025)\nDocument Type: Financial Statement Evaluation | Fiscal Period: FY 2025\nExecutive Summary:\nFiscal Year 2025 was marked by high market volatility and dynamic scaling. An initial surge in\nQ1 and Q2 was followed by a brief correction period in Q3 due to supply adjustments,\nculminating in a historic Q4 revenue peak.\nVisual Data Representation:\nQuarterly Performance Breakdown:\nQuarter\nGross Income\nStatus\nQ1\n$58,000\nTarget Met\nQ2\n$61,000\nTarget Met\nQ3\n$59,000\nTarget Met\nQ4\n$67,000\nTarget Met\nTotal Annual\n$245,000\nFinalized",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_F86EB3/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 564
+      },
+      "_search_text": "Section: Annual Financial Performance Report\nAnnual Financial Performance Report\n(2025)\nDocument Type: Financial Statement Evaluation | Fiscal Period: FY 2025\nExecutive Summary:\nFiscal Year 2025 was marked by high market volatility and dynamic scaling. An initial surge in\nQ1 and Q2 was followed by a brief correction period in Q3 due to supply adjustments,\nculminating in a historic Q4 revenue peak.\nVisual Data Representation:\nQuarterly Performance Breakdown:\nQuarter\nGross Income\nStatus\nQ1\n$58,000\nTarget Met\nQ2\n$61,000\nTarget Met\nQ3\n$59,000\nTarget Met\nQ4\n$67,000\nTarget Met\nTotal Annual\n$245,000\nFinalized"
+    },
+    "DOC_F86EB3_E002": {
+      "evidence_id": "E002",
+      "document_id": "DOC_F86EB3",
+      "document_name": "annual_income_report_2025.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Quarter",
+          "Gross Income",
+          "Status"
+        ],
+        "rows": [
+          [
+            "Q1",
+            "$58,000",
+            "Target Met"
+          ],
+          [
+            "Q2",
+            "$61,000",
+            "Target Met"
+          ],
+          [
+            "Q3",
+            "$59,000",
+            "Target Met"
+          ],
+          [
+            "Q4",
+            "$67,000",
+            "Target Met"
+          ],
+          [
+            "Total Annual",
+            "$245,000",
+            "Finalized"
+          ]
+        ]
+      },
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_F86EB3/page_1.png",
+      "metadata": {
+        "row_count": 5,
+        "col_count": 3
+      },
+      "_search_text": "Section: Annual Financial Performance Report\nTable Data:\nQuarter | Gross Income | Status\nQ1 | $58,000 | Target Met\nQ2 | $61,000 | Target Met\nQ3 | $59,000 | Target Met\nQ4 | $67,000 | Target Met\nTotal Annual | $245,000 | Finalized"
+    },
+    "DOC_F86EB3_E003": {
+      "evidence_id": "E003",
+      "document_id": "DOC_F86EB3",
+      "document_name": "annual_income_report_2025.pdf",
+      "page": 1,
+      "section": "Annual Financial Performance Report",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_F86EB3/page_1.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      },
+      "_search_text": "Section: Annual Financial Performance Report\n[IMAGE visual content on page 1]"
+    },
+    "DOC_97C2EB_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_97C2EB",
+      "document_name": "Screenshot 2026-10-07 at 4.17.41 PM.png",
+      "page": 1,
+      "section": "Visual Image",
+      "type": "image",
+      "text": "Scanned visual content from Screenshot 2026-10-07 at 4.17.41 PM.png",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_97C2EB/page_1.png",
+      "metadata": {
+        "scanned": true
+      },
+      "_search_text": "Section: Visual Image\nScanned visual content from Screenshot 2026-10-07 at 4.17.41 PM.png"
     }
   },
   "keys_list": [
@@ -238,6 +415,13 @@
     "DOC_0A63FD_E001",
     "DOC_0A63FD_E002",
     "DOC_65A93F_E001",
-    "DOC_65A93F_E002"
+    "DOC_65A93F_E002",
+    "DOC_2A04E5_E001",
+    "DOC_2A04E5_E002",
+    "DOC_2A04E5_E003",
+    "DOC_F86EB3_E001",
+    "DOC_F86EB3_E002",
+    "DOC_F86EB3_E003",
+    "DOC_97C2EB_E001"
   ]
 }

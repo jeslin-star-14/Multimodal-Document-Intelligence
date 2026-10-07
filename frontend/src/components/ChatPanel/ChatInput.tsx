@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { Send, Mic } from 'lucide-react';
+import { Send, Mic, Paperclip } from 'lucide-react';
 import type { LanguageCode } from '../../types';
 
 interface ChatInputProps {
   onSendMessage: (query: string) => void;
+  onFileUpload?: (files: FileList | File[]) => void;
   isLoading?: boolean;
   language: LanguageCode;
   selectedDocName?: string;
@@ -11,17 +12,25 @@ interface ChatInputProps {
 
 export const ChatInput: React.FC<ChatInputProps> = ({
   onSendMessage,
+  onFileUpload,
   isLoading = false,
 }) => {
   const [inputQuery, setInputQuery] = useState('');
   const [isListening, setIsListening] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (!inputQuery.trim() || isLoading) return;
     onSendMessage(inputQuery.trim());
     setInputQuery('');
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0 && onFileUpload) {
+      onFileUpload(e.target.files);
+    }
   };
 
   const handleToggleMic = () => {
@@ -55,8 +64,30 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     <div className="p-4 bg-transparent sticky bottom-0">
       <form
         onSubmit={handleSubmit}
-        className="flex items-center bg-white border border-slate-200/90 rounded-2xl px-4 py-2 shadow-xs transition-all focus-within:border-slate-300"
+        className="flex items-center bg-white border border-slate-200/90 rounded-2xl px-3 py-2 shadow-xs transition-all focus-within:border-slate-300"
       >
+        {/* Hidden File Input for In-Chat Upload */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          multiple
+          accept=".pdf,.docx,.pptx,.png,.jpg,.jpeg,.tiff,.webp"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+
+        {/* Attachment Upload Button inside Chat */}
+        <button
+          type="button"
+          onClick={() => fileInputRef.current?.click()}
+          className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer mr-1"
+          title="Upload documents or images (PDF, DOCX, PPTX, Images)"
+          aria-label="Upload documents or images"
+        >
+          <Paperclip className="w-4 h-4" />
+        </button>
+
+        {/* Query Input */}
         <input
           ref={inputRef}
           type="text"

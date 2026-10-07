@@ -9,6 +9,7 @@ interface ChatPanelProps {
   selectedCitation: Citation | null;
   onCitationClick: (citation: Citation) => void;
   onSendMessage: (text: string) => void;
+  onFileUpload?: (files: FileList | File[]) => void;
   onOpenConflicts: (conflicts: ConflictRecord[]) => void;
   language: LanguageCode;
   selectedDocName?: string;
@@ -20,6 +21,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
   selectedCitation,
   onCitationClick,
   onSendMessage,
+  onFileUpload,
   onOpenConflicts,
   language,
   selectedDocName,
@@ -31,7 +33,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
   }, [messages, isLoading]);
 
   return (
-    <div className="h-full flex flex-col bg-white overflow-hidden">
+    <div className="h-full flex flex-col bg-white overflow-hidden relative">
       {/* Scrollable Conversation Stream */}
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
         {messages.map((msg) => (
@@ -58,6 +60,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       {/* Floating Bottom Input Bar */}
       <ChatInput
         onSendMessage={onSendMessage}
+        onFileUpload={onFileUpload}
         isLoading={isLoading}
         language={language}
         selectedDocName={selectedDocName}

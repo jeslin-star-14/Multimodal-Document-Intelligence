@@ -1,4 +1,4 @@
-import { LanguageCode } from '../types';
+import type { LanguageCode } from '../types';
 
 export interface Translations {
   appName: string;

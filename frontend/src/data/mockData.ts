@@ -1,4 +1,4 @@
-import { DocumentItem, DocumentChunk, ChatMessage, ConflictRecord } from '../types';
+import type { DocumentItem, DocumentChunk, ChatMessage, ConflictRecord } from '../types';
 
 // Mock Page Previews as rich SVG data URIs so they load reliably without external dependencies
 export const mockPageSvgPreview = (pageNumber: number, title: string, subtitle: string, chartOrTable: 'chart' | 'table' | 'invoice') => {
@@ -38,17 +38,17 @@ export const mockPageSvgPreview = (pageNumber: number, title: string, subtitle: 
       <text x="70" y="355" fill="#e2e8f0" font-size="13">Enterprise AI Core</text>
       <text x="220" y="355" fill="#e2e8f0" font-size="13">1,420</text>
       <text x="340" y="355" fill="#10b981" font-size="13" font-weight="600">₹2.60M</text>
-      <text x="460" y="355" fill="#e2e8f0" font-size="13">68.5%</text>
+      <text x="460" y="355" font-size="13">68.5%</text>
 
       <text x="70" y="395" fill="#e2e8f0" font-size="13">Vision Analytics</text>
       <text x="220" y="395" fill="#e2e8f0" font-size="13">890</text>
       <text x="340" y="395" fill="#10b981" font-size="13" font-weight="600">₹1.15M</text>
-      <text x="460" y="395" fill="#e2e8f0" font-size="13">54.2%</text>
+      <text x="460" y="395" font-size="13">54.2%</text>
 
       <text x="70" y="435" fill="#e2e8f0" font-size="13">Edge Gateway Pro</text>
       <text x="220" y="435" fill="#e2e8f0" font-size="13">450</text>
       <text x="340" y="435" fill="#10b981" font-size="13" font-weight="600">₹0.45M</text>
-      <text x="460" y="435" fill="#e2e8f0" font-size="13">41.0%</text>
+      <text x="460" y="435" font-size="13">41.0%</text>
     `;
   } else {
     contentSvg = `

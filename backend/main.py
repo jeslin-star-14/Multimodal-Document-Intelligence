@@ -37,7 +37,8 @@ from app.models.schemas import (
     QueryRequest as FrontendQueryRequest, 
     QueryResponse as FrontendQueryResponse, 
     Citation as FrontendCitation,
-    BoundingBox as FrontendBoundingBox
+    BoundingBox as FrontendBoundingBox,
+    DocumentChunk
 )
 from app.reasoning import reasoning_engine
 
@@ -221,7 +222,7 @@ async def query_documents_chat(request: FrontendQueryRequest):
     frontend_citations: List[FrontendCitation] = []
     
     if retrieved_evidence:
-        context_blocks = []
+        doc_chunks: List[DocumentChunk] = []
         for idx, ev in enumerate(retrieved_evidence):
             ev_id = ev.get("evidence_id", f"E{idx+1:03d}")
             doc_name = ev.get("document_name", "Document.pdf")
@@ -230,14 +231,39 @@ async def query_documents_chat(request: FrontendQueryRequest):
             section = ev.get("section") or f"Section {ev_type.title()}"
             score = ev.get("score", 0.95)
             
-            # Map evidence to context
+            # Map evidence to context snippet & raw table data
             snippet = ev.get("text", "")
+            table_obj = None
             if ev.get("table"):
                 tab = ev["table"]
-                headers = " | ".join(tab.get("headers", []))
-                snippet = f"Table Headers: {headers}"
+                headers = tab.get("headers", [])
+                rows = tab.get("rows", [])
+                headers_str = " | ".join(headers)
+                rows_str = "\n".join([" | ".join(r) for r in rows])
+                snippet = f"Table Headers: {headers_str}\n{rows_str}"
+                table_obj = TableData(headers=headers, rows=rows)
 
-            context_blocks.append(f"[{doc_name} Page {page_num} ({section})]: {snippet}")
+            chunk_type = ev_type if ev_type in ["text", "table", "image", "chart"] else "text"
+            if ev_type in ["chart", "graph"]:
+                chunk_type = "chart"
+
+            doc_chunk = DocumentChunk(
+                id=ev_id,
+                chunk_id=ev_id,
+                document_id=ev.get("document_id", "DOC001"),
+                doc_name=doc_name,
+                document_name=doc_name,
+                page_number=page_num,
+                type=chunk_type,
+                chunk_type=chunk_type,
+                content=snippet,
+                raw_table_data=table_obj,
+                page_image_path=ev.get("image_path"),
+                crop_path=ev.get("image_path"),
+                similarity_score=float(score),
+                metadata={"section": section}
+            )
+            doc_chunks.append(doc_chunk)
 
             # Assign color per evidence type
             color_map = {"text": "#6366f1", "table": "#10b981", "chart": "#f59e0b", "graph": "#f59e0b", "image": "#ec4899", "ocr": "#8b5cf6"}
@@ -265,10 +291,10 @@ async def query_documents_chat(request: FrontendQueryRequest):
                 )
             ))
 
-        # Generate grounded synthesis via VLM reasoning engine
+        # Generate grounded synthesis via VLM reasoning engine using real document chunks!
         ans_obj = await reasoning_engine.generate_multimodal_answer(
             query=request.query,
-            chunks=[]  # Pass empty chunks to trigger formatted CoT synthesis
+            chunks=doc_chunks
         )
 
         return FrontendQueryResponse(
@@ -565,4 +591,15 @@ async def get_benchmark_demo():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run(
+        "main:app", 
+        host="0.0.0.0", 
+        port=8000, 
+        reload=True,
+        reload_dirs=[
+            str(BACKEND_DIR / "ingestion"), 
+            str(BACKEND_DIR / "retrieval"), 
+            str(BACKEND_DIR / "schemas"), 
+            str(BACKEND_DIR / "app")
+        ]
+    )

@@ -258,10 +258,50 @@ async def query_documents_chat(request: FrontendQueryRequest):
                 )
             ))
 
+        # Convert retrieved evidence to DocumentChunk list for multimodal reasoning
+        from app.models.schemas import DocumentChunk
+        reasoning_chunks = []
+        for idx, ev in enumerate(retrieved_evidence):
+            ev_id = ev.get("evidence_id", f"E{idx+1:03d}")
+            doc_id = ev.get("document_id", "DOC001")
+            doc_name = ev.get("document_name", "Document.pdf")
+            page_num = ev.get("page", 1)
+            ev_type = ev.get("type", "text")
+            section = ev.get("section") or f"Section {ev_type.title()}"
+            score = ev.get("score", 0.95)
+            snippet = ev.get("text", "")
+            if ev.get("table"):
+                tab = ev["table"]
+                headers = " | ".join(tab.get("headers", []))
+                rows = "; ".join([", ".join(map(str, r)) for r in tab.get("rows", [])[:4]])
+                snippet = f"Table: {headers}\nRows: {rows}"
+
+            page_img = str(PAGES_DIR / doc_id / f"page_{page_num}.png")
+            if not Path(page_img).exists() and ev.get("image_path") and Path(ev["image_path"]).exists():
+                page_img = ev["image_path"]
+            elif not Path(page_img).exists():
+                page_img = ""
+
+            reasoning_chunks.append(DocumentChunk(
+                id=ev_id,
+                chunk_id=ev_id,
+                document_id=doc_id,
+                document_name=doc_name,
+                doc_name=doc_name,
+                page_number=page_num,
+                type=ev_type if ev_type in ["text", "table", "image", "chart"] else "text",
+                chunk_type=ev_type if ev_type in ["text", "table", "image", "chart"] else "text",
+                content=snippet,
+                page_image_path=page_img if page_img else None,
+                crop_path=page_img if page_img else None,
+                similarity_score=score,
+                metadata={"section": section, "document_name": doc_name}
+            ))
+
         # Generate grounded synthesis via VLM reasoning engine
         ans_obj = await reasoning_engine.generate_multimodal_answer(
             query=request.query,
-            chunks=[]  # Pass empty chunks to trigger formatted CoT synthesis
+            chunks=reasoning_chunks
         )
 
         return FrontendQueryResponse(

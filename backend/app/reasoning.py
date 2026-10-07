@@ -34,13 +34,24 @@ class MultimodalReasoningEngine:
         self.model = VLM_MODEL
 
     def _encode_image_to_base64(self, image_path: str) -> Tuple[str, str]:
-        """Reads local image file and returns (mime_type, base64_str)."""
+        """Reads local image file and returns (mime_type, base64_str) with cross-machine fallback."""
+        if not image_path:
+            return "", ""
         path = Path(image_path)
         if not path.is_absolute():
             path = BASE_DIR / image_path
             
         if not path.exists():
-            return "", ""
+            # Check within local data/pages or data/crops for matching filename
+            candidates = list((BASE_DIR / "data" / "pages").glob(f"**/{path.name}"))
+            if candidates:
+                path = candidates[0]
+            else:
+                candidates_crops = list((BASE_DIR / "data" / "crops").glob(f"**/{path.name}"))
+                if candidates_crops:
+                    path = candidates_crops[0]
+                else:
+                    return "", ""
 
         suffix = path.suffix.lower()
         mime_type = "image/png"
@@ -49,9 +60,12 @@ class MultimodalReasoningEngine:
         elif suffix == ".webp":
             mime_type = "image/webp"
 
-        with open(path, "rb") as f:
-            encoded = base64.b64encode(f.read()).decode("utf-8")
-        return mime_type, encoded
+        try:
+            with open(path, "rb") as f:
+                encoded = base64.b64encode(f.read()).decode("utf-8")
+            return mime_type, encoded
+        except Exception:
+            return "", ""
 
     async def generate_multimodal_answer(
         self, 
@@ -93,9 +107,10 @@ class MultimodalReasoningEngine:
             ))
             citation_counter += 1
 
-            # If chunk is visual and has a local crop, include image in VLM prompt
-            if chunk.chunk_type in ["chart", "figure", "table"] and chunk.crop_path:
-                mime_type, b64_data = self._encode_image_to_base64(chunk.crop_path)
+            # Include visual crops or page images in VLM prompt
+            img_target = chunk.crop_path or chunk.page_image_path
+            if img_target and len(image_parts) < 3:
+                mime_type, b64_data = self._encode_image_to_base64(img_target)
                 if b64_data:
                     image_parts.append({
                         "inline_data": {
@@ -131,8 +146,6 @@ class MultimodalReasoningEngine:
         context_text: str, 
         image_parts: List[Dict[str, Any]]
     ) -> Tuple[str, List[str]]:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
-        
         prompt_text = f"{SYSTEM_PROMPT}\n\n{context_text}\n\nUSER QUESTION: {query}\n\nProvide your verified answer with visual analysis, math steps, and exact source citations:"
 
         parts = [{"text": prompt_text}]
@@ -147,18 +160,34 @@ class MultimodalReasoningEngine:
             }
         }
 
-        async with httpx.AsyncClient(timeout=45.0) as client:
-            resp = await client.post(url, headers={"Content-Type": "application/json"}, json=payload)
-            resp.raise_for_status()
-            data = resp.json()
+        # Try active model, fallback to high-availability gemini-3.5-flash-lite / gemini-2.5-flash
+        candidate_models = [self.model, "gemini-3.5-flash-lite", "gemini-2.5-flash"]
+        # deduplicate while keeping order
+        candidate_models = list(dict.fromkeys(candidate_models))
 
-        candidates = data.get("candidates", [])
-        if not candidates:
-            return "Unable to generate answer from context.", []
+        last_error = None
+        for model_name in candidate_models:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={self.api_key}"
+            try:
+                async with httpx.AsyncClient(timeout=35.0) as client:
+                    resp = await client.post(url, headers={"Content-Type": "application/json"}, json=payload)
+                    resp.raise_for_status()
+                    data = resp.json()
 
-        raw_text = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
-        math_steps = self._extract_math_steps(raw_text)
-        return raw_text, math_steps
+                candidates = data.get("candidates", [])
+                if not candidates:
+                    continue
+
+                raw_text = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+                math_steps = self._extract_math_steps(raw_text)
+                return raw_text, math_steps
+            except Exception as ex:
+                last_error = ex
+                continue
+
+        if last_error:
+            raise last_error
+        return "Unable to generate answer from context.", []
 
     def _extract_math_steps(self, text: str) -> List[str]:
         steps = []

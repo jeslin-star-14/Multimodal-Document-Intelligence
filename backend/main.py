@@ -113,6 +113,10 @@ class ChartDecompileRequest(BaseModel):
     image_url: Optional[str] = None
     chart_title: Optional[str] = "Detected Chart"
 
+class AIConfigRequest(BaseModel):
+    api_key: Optional[str] = Field(None, description="Google AI Studio / Gemini API Key")
+    model: Optional[str] = Field(None, description="Model name e.g. gemini-2.0-flash or gemma-2-27b-it")
+
 class CounterfactualSimRequest(BaseModel):
     metric_name: str = Field("Production Efficiency", description="Name of the metric to simulate")
     baseline_value: float = Field(70.8, description="Actual observed metric value (e.g. 70.8%)")
@@ -126,14 +130,23 @@ class CounterfactualSimRequest(BaseModel):
 
 @app.get("/")
 def read_root():
+    api_key = (
+        os.getenv("GEMINI_API_KEY") 
+        or os.getenv("GOOGLE_API_KEY") 
+        or os.getenv("GOOGLE_AI_STUDIO_API_KEY")
+        or reasoning_engine.api_key
+        or ""
+    ).strip()
     return {
         "status": "online",
-        "service": "Multimodal Document Intelligence API",
+        "service": "Multimodal Document Intelligence API (Google AI Studio)",
+        "google_ai_studio_connected": bool(api_key),
         "models": {
-            "vlm_reasoning": VLM_MODEL,
+            "vlm_reasoning": os.getenv("VLM_MODEL") or reasoning_engine.model or "gemini-2.0-flash",
             "embeddings": "text-embedding-004 + Lexical BM25 Hybrid"
         },
         "novelty_features": [
+            "Google AI Studio / Gemini Multimodal VLM Grounding",
             "Visual Lasso (Point-and-Ask Spatial Querying)",
             "Chart Decompiler (Image to Structured CSV & Plotly)",
             "Deterministic Python Math Verifier",
@@ -148,6 +161,36 @@ def health_check():
         "status": "healthy",
         "service": "Multimodal Document Intelligence API",
         "version": "2.5.0"
+    }
+
+@app.get("/api/ai/status")
+def get_ai_status():
+    api_key = (
+        os.getenv("GEMINI_API_KEY") 
+        or os.getenv("GOOGLE_API_KEY") 
+        or os.getenv("GOOGLE_AI_STUDIO_API_KEY")
+        or reasoning_engine.api_key
+        or ""
+    ).strip()
+    return {
+        "google_ai_studio_connected": bool(api_key),
+        "model": os.getenv("VLM_MODEL") or reasoning_engine.model or "gemini-2.0-flash",
+        "api_key_masked": f"{api_key[:6]}...{api_key[-4:]}" if len(api_key) > 10 else ("Configured" if api_key else "Not set")
+    }
+
+@app.post("/api/ai/config")
+def update_ai_config(req: AIConfigRequest):
+    if req.api_key:
+        os.environ["GEMINI_API_KEY"] = req.api_key.strip()
+        reasoning_engine.api_key = req.api_key.strip()
+    if req.model:
+        os.environ["VLM_MODEL"] = req.model.strip()
+        reasoning_engine.model = req.model.strip()
+    return {
+        "success": True,
+        "message": "Google AI Studio configuration updated.",
+        "google_ai_studio_connected": bool(reasoning_engine.api_key or os.getenv("GEMINI_API_KEY")),
+        "model": reasoning_engine.model
     }
 
 

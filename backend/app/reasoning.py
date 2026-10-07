@@ -127,10 +127,20 @@ class MultimodalReasoningEngine:
                         }
                     })
 
-        # Call Gemini Vision if API key is configured
-        if self.api_key:
+        # Dynamic API key check from environment / .env
+        api_key = (
+            self.api_key 
+            or os.getenv("GEMINI_API_KEY") 
+            or os.getenv("GOOGLE_API_KEY") 
+            or os.getenv("GOOGLE_AI_STUDIO_API_KEY") 
+            or os.getenv("GEMMA_API_KEY") 
+            or ""
+        ).strip()
+
+        # Call Google AI Studio / Gemini Vision if API key is configured
+        if api_key:
             try:
-                answer, math_steps = await self._call_gemini_vlm(query, context_text, image_parts)
+                answer, math_steps = await self._call_gemini_vlm(query, context_text, image_parts, api_key=api_key)
                 elapsed = (time.time() - start_time) * 1000
                 return QueryResponse(
                     query=query,
@@ -142,7 +152,7 @@ class MultimodalReasoningEngine:
                     processing_time_ms=round(elapsed, 2)
                 )
             except Exception as e:
-                print(f"[Reasoning] Gemini API error: {e}, using structured reasoning synthesis.")
+                print(f"[Reasoning] Google AI Studio / Gemini API error: {e}, using structured reasoning synthesis.")
 
         # Fallback synthesizer
         elapsed = (time.time() - start_time) * 1000
@@ -152,8 +162,10 @@ class MultimodalReasoningEngine:
         self, 
         query: str, 
         context_text: str, 
-        image_parts: List[Dict[str, Any]]
+        image_parts: List[Dict[str, Any]],
+        api_key: str = ""
     ) -> Tuple[str, List[str]]:
+        key_to_use = api_key or self.api_key
         prompt_text = f"{SYSTEM_PROMPT}\n\n{context_text}\n\nUSER QUESTION: {query}\n\nProvide your verified answer with visual analysis, math steps, and exact source citations:"
 
         parts = [{"text": prompt_text}]
@@ -168,14 +180,15 @@ class MultimodalReasoningEngine:
             }
         }
 
-        # Try active model, fallback to high-availability gemini-3.5-flash-lite / gemini-2.5-flash
-        candidate_models = [self.model, "gemini-3.5-flash-lite", "gemini-2.5-flash"]
+        # Try active model, fallback to high-availability gemini-2.0-flash / gemini-1.5-flash / gemini-2.5-flash / gemma-2-27b-it
+        active_model = os.getenv("VLM_MODEL") or os.getenv("GEMMA_MODEL") or self.model
+        candidate_models = [active_model, "gemini-2.0-flash", "gemini-1.5-flash", "gemini-2.5-flash", "gemma-2-27b-it"]
         # deduplicate while keeping order
         candidate_models = list(dict.fromkeys(candidate_models))
 
         last_error = None
         for model_name in candidate_models:
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={self.api_key}"
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={key_to_use}"
             try:
                 async with httpx.AsyncClient(timeout=35.0) as client:
                     resp = await client.post(url, headers={"Content-Type": "application/json"}, json=payload)

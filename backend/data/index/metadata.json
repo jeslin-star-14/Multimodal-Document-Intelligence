@@ -1,0 +1,479 @@
+{
+  "evidence_store": {
+    "DOC_C5557D_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 1,
+      "section": "Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES",
+      "type": "text",
+      "text": "OBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\nKarunya INSTITUTE OF TECHNOLOGY AND SCIENCES\n(Declared as Deemed to be University under Sec.3 of the UGC Act, 1956)\nKarunya Nagar, Coimbatore - 641 114, Tamil Nadu, India.\nSchool of Computer Science and Technology\nDivision of Computer Science and Engineering\nPart – A\nMICRO-PROJECT PROPOSAL\nI.Details of the Students:\nS.No\nName of the Student\nRegister Number\n1\nSathya Swarub\nURK25CS1068\n2\nMathu Karthick M\nURK25CS1220\n3\nAkash J\nURK25CS1201\n4\nBarjith A I\nURK25CS1205\nII.Details of the Course related to the Micro-Project:\nCourse Title: Data Structures and Algorithms\nCourse Code: 25CS306\nCourse Faculty: Shirly S\nAcademic Year: 2026 - 2027\nSemester: 3\nYear & Batch: II CSE\nIII.Macro-Level and Meso-Level Sub-Tasks (COs) related to this Micro-Project:\nMacro-Level\nCompetency: Evaluate the functionality of application in various situations.\nCourse\nOutcomes:\nCO1\nDevelop efficient solutions using relevant linear data structures.\nCO2\nUse dynamic data structures for efficient storage and retrieval.\nCO3\nEvaluate the performance of searching and sorting algorithms for solving\nengineering problems\nCO4\nDevelop tree structures for solving engineering problems.\nCO5\nEvaluate the applicability of graph data structures and traversal techniques for\nsolving engineering problems.\nKarunya Institute of Technology and Sciences1 | Page",
+      "table": null,
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1410
+      },
+      "_search_text": "Section: Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES\nOBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\nKarunya INSTITUTE OF TECHNOLOGY AND SCIENCES\n(Declared as Deemed to be University under Sec.3 of the UGC Act, 1956)\nKarunya Nagar, Coimbatore - 641 114, Tamil Nadu, India.\nSchool of Computer Science and Technology\nDivision of Computer Science and Engineering\nPart – A\nMICRO-PROJECT PROPOSAL\nI.Details of the Students:\nS.No\nName of the Student\nRegister Number\n1\nSathya Swarub\nURK25CS1068\n2\nMathu Karthick M\nURK25CS1220\n3\nAkash J\nURK25CS1201\n4\nBarjith A I\nURK25CS1205\nII.Details of the Course related to the Micro-Project:\nCourse Title: Data Structures and Algorithms\nCourse Code: 25CS306\nCourse Faculty: Shirly S\nAcademic Year: 2026 - 2027\nSemester: 3\nYear & Batch: II CSE\nIII.Macro-Level and Meso-Level Sub-Tasks (COs) related to this Micro-Project:\nMacro-Level\nCompetency: Evaluate the functionality of application in various situations.\nCourse\nOutcomes:\nCO1\nDevelop efficient solutions using relevant linear data structures.\nCO2\nUse dynamic data structures for efficient storage and retrieval.\nCO3\nEvaluate the performance of searching and sorting algorithms for solving\nengineering problems\nCO4\nDevelop tree structures for solving engineering problems.\nCO5\nEvaluate the applicability of graph data structures and traversal techniques for\nsolving engineering problems.\nKarunya Institute of Technology and Sciences1 | Page"
+    },
+    "DOC_C5557D_E002": {
+      "evidence_id": "E002",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 1,
+      "section": "Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "S.No",
+          "Name of the Student",
+          "Register Number"
+        ],
+        "rows": [
+          [
+            "1",
+            "Sathya Swarub",
+            "URK25CS1068"
+          ],
+          [
+            "2",
+            "Mathu Karthick M",
+            "URK25CS1220"
+          ],
+          [
+            "3",
+            "Akash J",
+            "URK25CS1201"
+          ],
+          [
+            "4",
+            "Barjith A I",
+            "URK25CS1205"
+          ]
+        ]
+      },
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_1.png",
+      "metadata": {
+        "row_count": 4,
+        "col_count": 3
+      },
+      "_search_text": "Section: Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES\nTable Data:\nS.No | Name of the Student | Register Number\n1 | Sathya Swarub | URK25CS1068\n2 | Mathu Karthick M | URK25CS1220\n3 | Akash J | URK25CS1201\n4 | Barjith A I | URK25CS1205"
+    },
+    "DOC_C5557D_E003": {
+      "evidence_id": "E003",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 1,
+      "section": "Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Course Title:",
+          "Data Structures and Algorithms"
+        ],
+        "rows": [
+          [
+            "Course Code:",
+            "25CS306"
+          ],
+          [
+            "Course Faculty:",
+            "Shirly S"
+          ],
+          [
+            "Academic Year:",
+            "2026 - 2027"
+          ],
+          [
+            "Semester:",
+            "3"
+          ],
+          [
+            "Year & Batch:",
+            "II CSE"
+          ]
+        ]
+      },
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_1.png",
+      "metadata": {
+        "row_count": 5,
+        "col_count": 2
+      },
+      "_search_text": "Section: Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES\nTable Data:\nCourse Title: | Data Structures and Algorithms\nCourse Code: | 25CS306\nCourse Faculty: | Shirly S\nAcademic Year: | 2026 - 2027\nSemester: | 3\nYear & Batch: | II CSE"
+    },
+    "DOC_C5557D_E004": {
+      "evidence_id": "E004",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 1,
+      "section": "Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Macro-Level\nCompetency:",
+          "Evaluate the functionality of application in various situations.",
+          ""
+        ],
+        "rows": [
+          [
+            "Course\nOutcomes:",
+            "CO1",
+            "Develop efficient solutions using relevant linear data structures."
+          ],
+          [
+            "",
+            "CO2",
+            "Use dynamic data structures for efficient storage and retrieval."
+          ],
+          [
+            "",
+            "CO3",
+            "Evaluate the performance of searching and sorting algorithms for solving\nengineering problems"
+          ],
+          [
+            "",
+            "CO4",
+            "Develop tree structures for solving engineering problems."
+          ],
+          [
+            "",
+            "CO5",
+            "Evaluate the applicability of graph data structures and traversal techniques for\nsolving engineering problems."
+          ]
+        ]
+      },
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_1.png",
+      "metadata": {
+        "row_count": 5,
+        "col_count": 3
+      },
+      "_search_text": "Section: Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES\nTable Data:\nMacro-Level\nCompetency: | Evaluate the functionality of application in various situations. | \nCourse\nOutcomes: | CO1 | Develop efficient solutions using relevant linear data structures.\n | CO2 | Use dynamic data structures for efficient storage and retrieval.\n | CO3 | Evaluate the performance of searching and sorting algorithms for solving\nengineering problems\n | CO4 | Develop tree structures for solving engineering problems.\n | CO5 | Evaluate the applicability of graph data structures and traversal techniques for\nsolving engineering problems."
+    },
+    "DOC_C5557D_E005": {
+      "evidence_id": "E005",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 1,
+      "section": "Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_1.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (50 paths) with chart keywords"
+      },
+      "_search_text": "Section: Karunya INSTITUTE OF TECHNOLOGY AND SCIENCES\n[GRAPH visual content on page 1]"
+    },
+    "DOC_C5557D_E006": {
+      "evidence_id": "E006",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 2,
+      "section": "Personalized Learning Platform",
+      "type": "text",
+      "text": "OBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\nPersonalized Learning Platform\n1.0  Rationale\nEvery learner has a different pace, background and set of strengths. Most conventional e-learning\nplatforms, however, deliver the same fixed sequence of lessons to everyone. Fast learners become\nbored, struggling learners fall behind, and revision is left entirely to the student. A personalized\nlearning platform addresses this gap by adapting the content, the order of topics and the revision\nschedule to each learner's actual performance.\nBuilding such a platform is, at its core, a Data Structures and Algorithms (DSA) problem. Course\ntopics and their prerequisites naturally form a directed graph; learning paths can be generated using\ngraph traversal and topological ordering; the \"most urgent topic to revise\" can be found efficiently\nwith a priority queue (heap); topic search and auto-suggestion can be handled by a trie; and learner\nrecords can be stored and retrieved quickly using hash tables and linked structures. Choosing the\nright structure directly decides whether the system responds instantly or slows down as the number\nof learners and topics grows.\nThis micro-project is therefore significant for three reasons. First, it applies the syllabus concepts –\nlinear structures, dynamic structures, searching and sorting, trees and graphs – to a single realistic,\nsocially useful application instead of isolated exercises. Second, it lets the team evaluate the\nperformance of different algorithms (for example linear versus binary search, or different sorting\ntechniques) on real data, which supports the macro-level competency of evaluating application\nfunctionality in various situations. Third, personalized and adaptive learning is a growing need in\neducation, and a lightweight, well-engineered prototype demonstrates how good algorithmic design\ncan improve learning outcomes without heavy infrastructure.\nBy the end of the project the team will have a working prototype that recommends what to learn\nnext, tracks progress, and schedules revision for each learner, along with an analysis of why each\ndata structure was chosen.\n2.0  Literature Review\nPersonalized (adaptive) learning has been studied for several decades under the headings of\nIntelligent Tutoring Systems (ITS) and adaptive hypermedia. Early ITS research showed that tutoring\nwhich adapts to the learner's current knowledge state produces better results than uniform\ninstruction. Corbett and Anderson's Bayesian Knowledge Tracing (1995) modelled the probability\nthat a learner has mastered a skill and remains a foundation of many modern systems.\nRetention and revision scheduling are supported by Ebbinghaus's forgetting-curve research and by\nspaced-repetition methods such as the Leitner box system and the SM-2 algorithm used in\nSuperMemo. Modern platforms such as Duolingo have extended this idea with statistical models\n(e.g., half-life regression) to decide when an item should be reviewed again.\nCommercial platforms such as Khan Academy, Coursera and NPTEL provide large course\ncatalogues with quizzes and progress dashboards. Most still rely largely on fixed course sequences,\nwith limited personalization of the learning path. Educational technology literature commonly\nrepresents a curriculum as a concept or prerequisite graph, in which nodes are topics and directed\nedges show which topic must be learned before another. Graph algorithms such as BFS, DFS,\nKarunya Institute of Technology and Sciences2 | Page",
+      "table": null,
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 3540
+      },
+      "_search_text": "Section: Personalized Learning Platform\nOBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\nPersonalized Learning Platform\n1.0  Rationale\nEvery learner has a different pace, background and set of strengths. Most conventional e-learning\nplatforms, however, deliver the same fixed sequence of lessons to everyone. Fast learners become\nbored, struggling learners fall behind, and revision is left entirely to the student. A personalized\nlearning platform addresses this gap by adapting the content, the order of topics and the revision\nschedule to each learner's actual performance.\nBuilding such a platform is, at its core, a Data Structures and Algorithms (DSA) problem. Course\ntopics and their prerequisites naturally form a directed graph; learning paths can be generated using\ngraph traversal and topological ordering; the \"most urgent topic to revise\" can be found efficiently\nwith a priority queue (heap); topic search and auto-suggestion can be handled by a trie; and learner\nrecords can be stored and retrieved quickly using hash tables and linked structures. Choosing the\nright structure directly decides whether the system responds instantly or slows down as the number\nof learners and topics grows.\nThis micro-project is therefore significant for three reasons. First, it applies the syllabus concepts –\nlinear structures, dynamic structures, searching and sorting, trees and graphs – to a single realistic,\nsocially useful application instead of isolated exercises. Second, it lets the team evaluate the\nperformance of different algorithms (for example linear versus binary search, or different sorting\ntechniques) on real data, which supports the macro-level competency of evaluating application\nfunctionality in various situations. Third, personalized and adaptive learning is a growing need in\neducation, and a lightweight, well-engineered prototype demonstrates how good algorithmic design\ncan improve learning outcomes without heavy infrastructure.\nBy the end of the project the team will have a working prototype that recommends what to learn\nnext, tracks progress, and schedules revision for each learner, along with an analysis of why each\ndata structure was chosen.\n2.0  Literature Review\nPersonalized (adaptive) learning has been studied for several decades under the headings of\nIntelligent Tutoring Systems (ITS) and adaptive hypermedia. Early ITS research showed that tutoring\nwhich adapts to the learner's current knowledge state produces better results than uniform\ninstruction. Corbett and Anderson's Bayesian Knowledge Tracing (1995) modelled the probability\nthat a learner has mastered a skill and remains a foundation of many modern systems.\nRetention and revision scheduling are supported by Ebbinghaus's forgetting-curve research and by\nspaced-repetition methods such as the Leitner box system and the SM-2 algorithm used in\nSuperMemo. Modern platforms such as Duolingo have extended this idea with statistical models\n(e.g., half-life regression) to decide when an item should be reviewed again.\nCommercial platforms such as Khan Academy, Coursera and NPTEL provide large course\ncatalogues with quizzes and progress dashboards. Most still rely largely on fixed course sequences,\nwith limited personalization of the learning path. Educational technology literature commonly\nrepresents a curriculum as a concept or prerequisite graph, in which nodes are topics and directed\nedges show which topic must be learned before another. Graph algorithms such as BFS, DFS,\nKarunya Institute of Technology and Sciences2 | Page"
+    },
+    "DOC_C5557D_E007": {
+      "evidence_id": "E007",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 3,
+      "section": "3.0  Proposed Methodology",
+      "type": "text",
+      "text": "OBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\ntopological sorting (Kahn's algorithm) and shortest-path algorithms (Dijkstra) are standard tools for\ngenerating valid learning sequences on such graphs.\nStandard DSA textbooks – Cormen et al., Introduction to Algorithms; Weiss, Data Structures and\nAlgorithm Analysis; and Sedgewick & Wayne, Algorithms – describe heaps and priority queues for\n\"best-next\" selection, tries for prefix search, balanced trees and hash tables for fast lookup, and the\ntime-complexity trade-offs of searching and sorting techniques. Online resources such as\nGeeksforGeeks, Programiz and the official Python documentation supplement these with\nimplementation guidance.\nExisting status and gap: many published and commercial solutions focus on machine-learning-driven\nrecommendation, which requires large datasets and heavy computing. There is less material showing\nhow a personalized learning engine can be built using only core DSA concepts with clear, analysable\ncomplexity. This project fills that gap by designing a transparent, lightweight platform in which\nevery feature is mapped to a specific data structure or algorithm and evaluated for performance.\n3.0  Proposed Methodology\nThe project will be carried out in the following sequence. The flow of the system is: Learner registers\n→ Profile created → Goal / topic selected → Prerequisite graph checked → Next unlocked topic\nrecommended → Lesson and quiz → Score updated → Weak topics pushed to heap and revision\nqueue → Progress report → Repeat until goal is reached.\n1.​ Requirement analysis: define the learner profile (topics known, quiz scores, time spent, goal)\nand the feature set – course catalogue, prerequisite-based learning path, adaptive quiz,\nweak-topic recommendation, revision scheduler and progress report.\n2.​ Data modelling: prepare a sample course dataset (for example a Programming / DSA course\nwith 30–50 topics), tag each topic with a difficulty level and list its prerequisites; create sample\nlearner records.\n3.​ Design of data structures: select and design the structures listed in the table below and draw\nthe overall architecture and module diagram.\n4.​ Implementation of core modules: code the catalogue (tree), prerequisite graph, learner profile\nstore, quiz queue, navigation stack and search module.\n5.​ Personalization engine: after each quiz, update the learner's topic score; push weak topics into\na max-heap; generate the next topic using topological order restricted to unlocked topics;\nschedule revisions with a spaced-repetition queue.\n6.​ Integration and interface: combine the modules into a menu-driven / simple GUI application\nin Python so that a learner can register, learn, take quizzes and view recommendations.\n7.​ Testing: test with different learner types (beginner, average, advanced) and edge cases such as\nempty profile, cyclic prerequisites and repeated topics, to check functionality in various\nsituations.\n8.​ Performance evaluation: compare linear vs. binary search and different sorting algorithms on\ngrowing data sizes, record execution time and analyse time and space complexity.\n9.​ Documentation and presentation: prepare the project report, results, screenshots and a\ndemonstration.\nKarunya Institute of Technology and Sciences3 | Page",
+      "table": null,
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_3.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 3320
+      },
+      "_search_text": "Section: 3.0  Proposed Methodology\nOBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\ntopological sorting (Kahn's algorithm) and shortest-path algorithms (Dijkstra) are standard tools for\ngenerating valid learning sequences on such graphs.\nStandard DSA textbooks – Cormen et al., Introduction to Algorithms; Weiss, Data Structures and\nAlgorithm Analysis; and Sedgewick & Wayne, Algorithms – describe heaps and priority queues for\n\"best-next\" selection, tries for prefix search, balanced trees and hash tables for fast lookup, and the\ntime-complexity trade-offs of searching and sorting techniques. Online resources such as\nGeeksforGeeks, Programiz and the official Python documentation supplement these with\nimplementation guidance.\nExisting status and gap: many published and commercial solutions focus on machine-learning-driven\nrecommendation, which requires large datasets and heavy computing. There is less material showing\nhow a personalized learning engine can be built using only core DSA concepts with clear, analysable\ncomplexity. This project fills that gap by designing a transparent, lightweight platform in which\nevery feature is mapped to a specific data structure or algorithm and evaluated for performance.\n3.0  Proposed Methodology\nThe project will be carried out in the following sequence. The flow of the system is: Learner registers\n→ Profile created → Goal / topic selected → Prerequisite graph checked → Next unlocked topic\nrecommended → Lesson and quiz → Score updated → Weak topics pushed to heap and revision\nqueue → Progress report → Repeat until goal is reached.\n1.​ Requirement analysis: define the learner profile (topics known, quiz scores, time spent, goal)\nand the feature set – course catalogue, prerequisite-based learning path, adaptive quiz,\nweak-topic recommendation, revision scheduler and progress report.\n2.​ Data modelling: prepare a sample course dataset (for example a Programming / DSA course\nwith 30–50 topics), tag each topic with a difficulty level and list its prerequisites; create sample\nlearner records.\n3.​ Design of data structures: select and design the structures listed in the table below and draw\nthe overall architecture and module diagram.\n4.​ Implementation of core modules: code the catalogue (tree), prerequisite graph, learner profile\nstore, quiz queue, navigation stack and search module.\n5.​ Personalization engine: after each quiz, update the learner's topic score; push weak topics into\na max-heap; generate the next topic using topological order restricted to unlocked topics;\nschedule revisions with a spaced-repetition queue.\n6.​ Integration and interface: combine the modules into a menu-driven / simple GUI application\nin Python so that a learner can register, learn, take quizzes and view recommendations.\n7.​ Testing: test with different learner types (beginner, average, advanced) and edge cases such as\nempty profile, cyclic prerequisites and repeated topics, to check functionality in various\nsituations.\n8.​ Performance evaluation: compare linear vs. binary search and different sorting algorithms on\ngrowing data sizes, record execution time and analyse time and space complexity.\n9.​ Documentation and presentation: prepare the project report, results, screenshots and a\ndemonstration.\nKarunya Institute of Technology and Sciences3 | Page"
+    },
+    "DOC_C5557D_E008": {
+      "evidence_id": "E008",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 4,
+      "section": "Mapping of DSA concepts to the platform and Course Outcomes:",
+      "type": "text",
+      "text": "OBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\nMapping of DSA concepts to the platform and Course Outcomes:\nConcept / Structure\nCO\nWhere it is used in the platform\nArrays / Lists, Stack, Queue\nCO1\nQuiz question queue, navigation history (back / undo) using stack,\nrevision queue\nLinked List, Hash Table\nCO2\nLearner activity log, study playlist, fast learner-profile lookup by ID\nSearching and Sorting\nCO3\nLinear vs. binary search of topics; sorting topics by difficulty or score;\ntiming comparison\nTree, Trie, Heap (Priority Queue)\nCO4\nCourse catalogue hierarchy, topic auto-suggest search, \"weakest topic\nfirst\" recommendation\nGraph: BFS, DFS, Topological\nSort, Dijkstra\nCO5\nPrerequisite graph, valid learning-path generation, shortest path to a\nlearning goal\n4.0  Tentative Action Plan\nS.\nNo.\nDetails of the planned activities during the\nentire semester\nPlanned Start\ndate\nPlanned Finish\ndate\nName of the\nResponsible Team\nMember(s)\n1\nTopic finalisation, requirement analysis and\nliterature study\nWeek 1\nWeek 2\nAll members\n2\nCourse dataset creation and learner data model\nWeek 2\nWeek 3\nSathya Swarub\n3\nDesign of data structures, architecture and\nflowchart\nWeek 3\nWeek 4\nAll members\n4\nLinear structures module: queue, stack,\nnavigation and quiz flow\nWeek 4\nWeek 5\nMathu Karthick M\n5\nDynamic structures module: linked list, hash\ntable, learner profiles\nWeek 5\nWeek 6\nAkash J\n6\nSearching and sorting module with trie-based\ntopic search\nWeek 6\nWeek 7\nBarjith A I\n7\nTree / heap module: course catalogue and\nweak-topic recommendation\nWeek 7\nWeek 9\nSathya Swarub\n8\nGraph module: prerequisite graph, topological\nsort, learning path\nWeek 9\nWeek 11\nMathu Karthick M\n9\nIntegration, testing and performance evaluation\nWeek 11\nWeek 13\nAll members\n10\nReport writing, final demonstration and\nsubmission\nWeek 13\nWeek 15\nAll members\n5.0  Tentative Resources (if any) Required\nS.\nNo.\nName of Resource/Material\nBroad Specifications\nQty.\nCost (INR)\n1\nComputer / Laptop\nMinimum 8 GB RAM, dual-core or\nhigher processor, Windows / Linux\n(existing college / personal system)\n1 per\nmember\nNil\nKarunya Institute of Technology and Sciences4 | Page",
+      "table": null,
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_4.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2161
+      },
+      "_search_text": "Section: Mapping of DSA concepts to the platform and Course Outcomes:\nOBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\nMapping of DSA concepts to the platform and Course Outcomes:\nConcept / Structure\nCO\nWhere it is used in the platform\nArrays / Lists, Stack, Queue\nCO1\nQuiz question queue, navigation history (back / undo) using stack,\nrevision queue\nLinked List, Hash Table\nCO2\nLearner activity log, study playlist, fast learner-profile lookup by ID\nSearching and Sorting\nCO3\nLinear vs. binary search of topics; sorting topics by difficulty or score;\ntiming comparison\nTree, Trie, Heap (Priority Queue)\nCO4\nCourse catalogue hierarchy, topic auto-suggest search, \"weakest topic\nfirst\" recommendation\nGraph: BFS, DFS, Topological\nSort, Dijkstra\nCO5\nPrerequisite graph, valid learning-path generation, shortest path to a\nlearning goal\n4.0  Tentative Action Plan\nS.\nNo.\nDetails of the planned activities during the\nentire semester\nPlanned Start\ndate\nPlanned Finish\ndate\nName of the\nResponsible Team\nMember(s)\n1\nTopic finalisation, requirement analysis and\nliterature study\nWeek 1\nWeek 2\nAll members\n2\nCourse dataset creation and learner data model\nWeek 2\nWeek 3\nSathya Swarub\n3\nDesign of data structures, architecture and\nflowchart\nWeek 3\nWeek 4\nAll members\n4\nLinear structures module: queue, stack,\nnavigation and quiz flow\nWeek 4\nWeek 5\nMathu Karthick M\n5\nDynamic structures module: linked list, hash\ntable, learner profiles\nWeek 5\nWeek 6\nAkash J\n6\nSearching and sorting module with trie-based\ntopic search\nWeek 6\nWeek 7\nBarjith A I\n7\nTree / heap module: course catalogue and\nweak-topic recommendation\nWeek 7\nWeek 9\nSathya Swarub\n8\nGraph module: prerequisite graph, topological\nsort, learning path\nWeek 9\nWeek 11\nMathu Karthick M\n9\nIntegration, testing and performance evaluation\nWeek 11\nWeek 13\nAll members\n10\nReport writing, final demonstration and\nsubmission\nWeek 13\nWeek 15\nAll members\n5.0  Tentative Resources (if any) Required\nS.\nNo.\nName of Resource/Material\nBroad Specifications\nQty.\nCost (INR)\n1\nComputer / Laptop\nMinimum 8 GB RAM, dual-core or\nhigher processor, Windows / Linux\n(existing college / personal system)\n1 per\nmember\nNil\nKarunya Institute of Technology and Sciences4 | Page"
+    },
+    "DOC_C5557D_E009": {
+      "evidence_id": "E009",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 4,
+      "section": "Mapping of DSA concepts to the platform and Course Outcomes:",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Concept / Structure",
+          "CO",
+          "Where it is used in the platform"
+        ],
+        "rows": [
+          [
+            "Arrays / Lists, Stack, Queue",
+            "CO1",
+            "Quiz question queue, navigation history (back / undo) using stack,\nrevision queue"
+          ],
+          [
+            "Linked List, Hash Table",
+            "CO2",
+            "Learner activity log, study playlist, fast learner-profile lookup by ID"
+          ],
+          [
+            "Searching and Sorting",
+            "CO3",
+            "Linear vs. binary search of topics; sorting topics by difficulty or score;\ntiming comparison"
+          ],
+          [
+            "Tree, Trie, Heap (Priority Queue)",
+            "CO4",
+            "Course catalogue hierarchy, topic auto-suggest search, \"weakest topic\nfirst\" recommendation"
+          ],
+          [
+            "Graph: BFS, DFS, Topological\nSort, Dijkstra",
+            "CO5",
+            "Prerequisite graph, valid learning-path generation, shortest path to a\nlearning goal"
+          ]
+        ]
+      },
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_4.png",
+      "metadata": {
+        "row_count": 5,
+        "col_count": 3
+      },
+      "_search_text": "Section: Mapping of DSA concepts to the platform and Course Outcomes:\nTable Data:\nConcept / Structure | CO | Where it is used in the platform\nArrays / Lists, Stack, Queue | CO1 | Quiz question queue, navigation history (back / undo) using stack,\nrevision queue\nLinked List, Hash Table | CO2 | Learner activity log, study playlist, fast learner-profile lookup by ID\nSearching and Sorting | CO3 | Linear vs. binary search of topics; sorting topics by difficulty or score;\ntiming comparison\nTree, Trie, Heap (Priority Queue) | CO4 | Course catalogue hierarchy, topic auto-suggest search, \"weakest topic\nfirst\" recommendation\nGraph: BFS, DFS, Topological\nSort, Dijkstra | CO5 | Prerequisite graph, valid learning-path generation, shortest path to a\nlearning goal"
+    },
+    "DOC_C5557D_E010": {
+      "evidence_id": "E010",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 4,
+      "section": "Mapping of DSA concepts to the platform and Course Outcomes:",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "S.\nNo.",
+          "Details of the planned activities during the\nentire semester",
+          "Planned Start\ndate",
+          "Planned Finish\ndate",
+          "Name of the\nResponsible Team\nMember(s)"
+        ],
+        "rows": [
+          [
+            "1",
+            "Topic finalisation, requirement analysis and\nliterature study",
+            "Week 1",
+            "Week 2",
+            "All members"
+          ],
+          [
+            "2",
+            "Course dataset creation and learner data model",
+            "Week 2",
+            "Week 3",
+            "Sathya Swarub"
+          ],
+          [
+            "3",
+            "Design of data structures, architecture and\nflowchart",
+            "Week 3",
+            "Week 4",
+            "All members"
+          ],
+          [
+            "4",
+            "Linear structures module: queue, stack,\nnavigation and quiz flow",
+            "Week 4",
+            "Week 5",
+            "Mathu Karthick M"
+          ],
+          [
+            "5",
+            "Dynamic structures module: linked list, hash\ntable, learner profiles",
+            "Week 5",
+            "Week 6",
+            "Akash J"
+          ],
+          [
+            "6",
+            "Searching and sorting module with trie-based\ntopic search",
+            "Week 6",
+            "Week 7",
+            "Barjith A I"
+          ],
+          [
+            "7",
+            "Tree / heap module: course catalogue and\nweak-topic recommendation",
+            "Week 7",
+            "Week 9",
+            "Sathya Swarub"
+          ],
+          [
+            "8",
+            "Graph module: prerequisite graph, topological\nsort, learning path",
+            "Week 9",
+            "Week 11",
+            "Mathu Karthick M"
+          ],
+          [
+            "9",
+            "Integration, testing and performance evaluation",
+            "Week 11",
+            "Week 13",
+            "All members"
+          ],
+          [
+            "10",
+            "Report writing, final demonstration and\nsubmission",
+            "Week 13",
+            "Week 15",
+            "All members"
+          ]
+        ]
+      },
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_4.png",
+      "metadata": {
+        "row_count": 10,
+        "col_count": 5
+      },
+      "_search_text": "Section: Mapping of DSA concepts to the platform and Course Outcomes:\nTable Data:\nS.\nNo. | Details of the planned activities during the\nentire semester | Planned Start\ndate | Planned Finish\ndate | Name of the\nResponsible Team\nMember(s)\n1 | Topic finalisation, requirement analysis and\nliterature study | Week 1 | Week 2 | All members\n2 | Course dataset creation and learner data model | Week 2 | Week 3 | Sathya Swarub\n3 | Design of data structures, architecture and\nflowchart | Week 3 | Week 4 | All members\n4 | Linear structures module: queue, stack,\nnavigation and quiz flow | Week 4 | Week 5 | Mathu Karthick M\n5 | Dynamic structures module: linked list, hash\ntable, learner profiles | Week 5 | Week 6 | Akash J\n6 | Searching and sorting module with trie-based\ntopic search | Week 6 | Week 7 | Barjith A I\n7 | Tree / heap module: course catalogue and\nweak-topic recommendation | Week 7 | Week 9 | Sathya Swarub\n8 | Graph module: prerequisite graph, topological\nsort, learning path | Week 9 | Week 11 | Mathu Karthick M\n9 | Integration, testing and performance evaluation | Week 11 | Week 13 | All members\n10 | Report writing, final demonstration and\nsubmission | Week 13 | Week 15 | All members"
+    },
+    "DOC_C5557D_E011": {
+      "evidence_id": "E011",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 4,
+      "section": "Mapping of DSA concepts to the platform and Course Outcomes:",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "S.\nNo.",
+          "Name of Resource/Material",
+          "Broad Specifications",
+          "Qty.",
+          "Cost (INR)"
+        ],
+        "rows": [
+          [
+            "1",
+            "Computer / Laptop",
+            "Minimum 8 GB RAM, dual-core or\nhigher processor, Windows / Linux\n(existing college / personal system)",
+            "1 per\nmember",
+            "Nil"
+          ]
+        ]
+      },
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_4.png",
+      "metadata": {
+        "row_count": 1,
+        "col_count": 5
+      },
+      "_search_text": "Section: Mapping of DSA concepts to the platform and Course Outcomes:\nTable Data:\nS.\nNo. | Name of Resource/Material | Broad Specifications | Qty. | Cost (INR)\n1 | Computer / Laptop | Minimum 8 GB RAM, dual-core or\nhigher processor, Windows / Linux\n(existing college / personal system) | 1 per\nmember | Nil"
+    },
+    "DOC_C5557D_E012": {
+      "evidence_id": "E012",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 4,
+      "section": "Mapping of DSA concepts to the platform and Course Outcomes:",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_4.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (54 paths) with chart keywords"
+      },
+      "_search_text": "Section: Mapping of DSA concepts to the platform and Course Outcomes:\n[GRAPH visual content on page 4]"
+    },
+    "DOC_C5557D_E013": {
+      "evidence_id": "E013",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 5,
+      "section": "**************",
+      "type": "text",
+      "text": "OBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\n2\nProgramming environment\nPython 3.x with IDLE / VS Code,\nTkinter (GUI), Matplotlib\n(performance graphs) – free and open\nsource\n1\nNil\n3\nSupporting tools\nGitHub (version control), draw.io\n(flowcharts, diagrams), MS Word /\nExcel (report and Gantt chart) – free\nversions\n1\nNil\n**************\nKarunya Institute of Technology and Sciences5 | Page",
+      "table": null,
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_5.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 428
+      },
+      "_search_text": "Section: **************\nOBCFC - Micro-Project Proposal (2025-2026)Division of Computer Science and Engineering\n2\nProgramming environment\nPython 3.x with IDLE / VS Code,\nTkinter (GUI), Matplotlib\n(performance graphs) – free and open\nsource\n1\nNil\n3\nSupporting tools\nGitHub (version control), draw.io\n(flowcharts, diagrams), MS Word /\nExcel (report and Gantt chart) – free\nversions\n1\nNil\n**************\nKarunya Institute of Technology and Sciences5 | Page"
+    },
+    "DOC_C5557D_E014": {
+      "evidence_id": "E014",
+      "document_id": "DOC_C5557D",
+      "document_name": "Micro_Project_Proposal_Personalized_Learning_Platform.pdf",
+      "page": 5,
+      "section": "**************",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "2",
+          "Programming environment",
+          "Python 3.x with IDLE / VS Code,\nTkinter (GUI), Matplotlib\n(performance graphs) – free and open\nsource",
+          "1",
+          "Nil"
+        ],
+        "rows": [
+          [
+            "3",
+            "Supporting tools",
+            "GitHub (version control), draw.io\n(flowcharts, diagrams), MS Word /\nExcel (report and Gantt chart) – free\nversions",
+            "1",
+            "Nil"
+          ]
+        ]
+      },
+      "image_path": "C:/Hackathon/Multimodal-Document-Intelligence-main/backend/data/pages/DOC_C5557D/page_5.png",
+      "metadata": {
+        "row_count": 1,
+        "col_count": 5
+      },
+      "_search_text": "Section: **************\nTable Data:\n2 | Programming environment | Python 3.x with IDLE / VS Code,\nTkinter (GUI), Matplotlib\n(performance graphs) – free and open\nsource | 1 | Nil\n3 | Supporting tools | GitHub (version control), draw.io\n(flowcharts, diagrams), MS Word /\nExcel (report and Gantt chart) – free\nversions | 1 | Nil"
+    }
+  },
+  "keys_list": [
+    "DOC_C5557D_E001",
+    "DOC_C5557D_E002",
+    "DOC_C5557D_E003",
+    "DOC_C5557D_E004",
+    "DOC_C5557D_E005",
+    "DOC_C5557D_E006",
+    "DOC_C5557D_E007",
+    "DOC_C5557D_E008",
+    "DOC_C5557D_E009",
+    "DOC_C5557D_E010",
+    "DOC_C5557D_E011",
+    "DOC_C5557D_E012",
+    "DOC_C5557D_E013",
+    "DOC_C5557D_E014"
+  ]
+}

@@ -11,15 +11,15 @@ from app.models.schemas import DocumentChunk, Citation, QueryResponse, VerifiedC
 from app.calculator import extract_and_verify_calculations, safe_eval_expr
 
 ROLE_PROMPTS = {
-    "Executive": """You are communicating with an Executive. Keep answers concise, high-impact, focused on key facts, takeaways, and numbers.""",
+    "Executive": """You are communicating with an Executive. Keep answers concise, high-impact, focused on key facts, takeaways, root causes, and numbers.""",
     "Auditor": """You are an independent Auditor. Require extreme factual precision, explicit audit trails, and exact line/page/table citations.""",
-    "Data Scientist": """You are a Principal Data Scientist. Provide technical breakdowns of metrics, data schemas, and mathematical calculations.""",
-    "Student": """You are a friendly STEM Educator. Explain concepts clearly and simply, step-by-step.""",
-    "Legal Counsel": """You are Senior Legal Counsel. Focus on contractual terms, compliance standards, and exact document sections."""
+    "Data Scientist": """You are a Principal Data Scientist. Provide technical breakdowns of metrics, data schemas, mathematical derivations, and formulas.""",
+    "Student": """You are a friendly STEM Educator. Explain concepts clearly and simply, define technical acronyms, and break down math step-by-step.""",
+    "Legal Counsel": """You are Senior Legal Counsel. Focus on contractual terms, compliance standards, risk clauses, and exact document sections."""
 }
 
 BASE_SYSTEM_PROMPT = """You are an elite Multimodal Document Intelligence AI (DOC-Q / Verity).
-Your task is to answer user questions about their uploaded documents (text, tables, charts, receipts, diagrams, scanned pages) with extreme factual precision.
+Your task is to answer user questions about their uploaded documents (text, tables, charts, receipts, diagrams, scanned pages) with extreme factual precision and verifiable proof.
 
 CRITICAL INSTRUCTIONS:
 1. DIRECT FACTUAL ACCURACY:
@@ -29,6 +29,8 @@ CRITICAL INSTRUCTIONS:
    - Cite where each detail came from: [Doc: <document_name>, Page: <page_number>, Section: <section_or_title>]
 3. MATHEMATICAL ACCURACY:
    - When numbers or calculations are compared, show explicit formulas: Formula: A - B = C
+4. VISUAL REASONING:
+   - Analyze charts and diagrams visually (read axes, values, trends).
 """
 
 class MultimodalReasoningEngine:
@@ -76,14 +78,12 @@ class MultimodalReasoningEngine:
         math_calcs: List[VerifiedCalculation], 
         chunks: List[DocumentChunk]
     ) -> Tuple[ProofLevel, str]:
-        # 1. If mathematical calculations were verified
         if math_calcs or any(w in query.lower() for w in ["calculate", "difference", "variance", "compare", "growth", "math"]):
             if math_calcs and all(c.status == "VERIFIED" for c in math_calcs):
                 return "Calculated", f"Deterministically verified via Python AST math engine with {len(math_calcs)} validated equation(s)."
             elif math_calcs:
                 return "Calculated", f"Calculated with AST verification: {len(math_calcs)} equation(s) processed."
 
-        # 2. Check for verbatim or direct text/table extraction
         answer_lower = answer.lower()
         chunk_matches = 0
         for c in chunks:
@@ -105,10 +105,8 @@ class MultimodalReasoningEngine:
         start_time = time.time()
 
         if not chunks:
-            # Fallback when no indexed docs are present
             return self._build_benchmark_demo_response(query, start_time, role_mode)
 
-        # Build context blocks and collect image parts
         context_text = "### RETRIEVED DOCUMENT CONTEXT:\n\n"
         image_parts = []
         citations: List[Citation] = []
@@ -158,7 +156,6 @@ class MultimodalReasoningEngine:
                         }
                     })
 
-        # Call Gemini Vision if API key is configured
         if self.api_key:
             try:
                 answer, math_steps = await self._call_gemini_vlm(query, context_text, image_parts, role_mode)
@@ -183,7 +180,6 @@ class MultimodalReasoningEngine:
             except Exception as e:
                 print(f"[Reasoning] Gemini API error: {e}, using dynamic context synthesizer.")
 
-        # Fallback synthesizer: Strictly extracts truth from real uploaded chunks
         elapsed = (time.time() - start_time) * 1000
         return self._synthesize_local_response(query, chunks, citations, elapsed, role_mode)
 
@@ -267,23 +263,16 @@ class MultimodalReasoningEngine:
         elapsed_ms: float,
         role_mode: RoleMode = "Executive"
     ) -> QueryResponse:
-        """
-        Dynamically extracts factual answers directly from the real chunks of uploaded documents.
-        """
         primary = chunks[0] if chunks else None
         doc_name = primary.doc_name if primary else "Uploaded Document"
         page_num = primary.page_number if primary else 1
         q_lower = query.lower()
 
-        # Check for specific search queries (e.g., "is name X there", "find X", "is X present")
-        # Extract keywords from query
         clean_words = [w for w in re.findall(r'[a-zA-Z0-9]+', q_lower) if w not in [
             "is", "the", "name", "there", "in", "document", "pdf", "docx", "image", "what", "are", "contends", "contents", "present", "explain", "give", "me", "tell", "about", "this", "uploaded", "first", "1st"
         ] and len(w) > 2]
 
         matched_lines = []
-        matched_chunk_ref = None
-
         if clean_words:
             for c in chunks:
                 lines = c.content.split("\n")
@@ -293,10 +282,8 @@ class MultimodalReasoningEngine:
                         continue
                     if any(w in line_clean.lower() for w in clean_words):
                         matched_lines.append((line_clean, c.doc_name, c.page_number, c.type))
-                        if not matched_chunk_ref:
-                            matched_chunk_ref = c
 
-        # 1. Answer specific name/entity existence query
+        # Check for specific search queries
         if any(w in q_lower for w in ["is", "find", "check", "there", "present", "exist", "who", "whom"]):
             if matched_lines:
                 target_word = " ".join(clean_words).title()
@@ -307,7 +294,6 @@ class MultimodalReasoningEngine:
                 )
                 for line, d_nm, pg, t_type in matched_lines[:5]:
                     answer += f"- `{line}` [Doc: {d_nm}, Page: {pg}]\n"
-                
                 answer += f"\nThis record was verified directly from the uploaded {matched_lines[0][3]} data."
             else:
                 target_word = " ".join(clean_words) if clean_words else "the requested keyword"
@@ -316,8 +302,6 @@ class MultimodalReasoningEngine:
                     f"Based on a comprehensive scan of **{doc_name}** [Doc: {doc_name}, Page: {page_num}], "
                     f"the term **'{target_word}'** was not found in the extracted text or tabular fields."
                 )
-
-        # 2. General Explanation / Summary query ("explain me the docx or pdf", "what is this document")
         else:
             answer = (
                 f"### Document Overview: **{doc_name}**\n"
@@ -330,7 +314,6 @@ class MultimodalReasoningEngine:
                     clean_snippet = clean_snippet[:160] + "..."
                 answer += f"- **{c.chunk_type.title()} (Page {c.page_number})**: {clean_snippet} [Doc: {c.doc_name}, Page: {c.page_number}, Section: {c.chunk_type.upper()}]\n"
 
-            # If tables exist, provide structured snapshot
             table_chunks = [c for c in chunks if c.chunk_type == "table" or "Table" in c.content]
             if table_chunks:
                 answer += f"\n### Tabular Records Detected:\n"
@@ -362,7 +345,6 @@ class MultimodalReasoningEngine:
         start_time: float, 
         role_mode: RoleMode = "Executive"
     ) -> QueryResponse:
-        """Benchmark demo response for synthetic tests."""
         elapsed = (time.time() - start_time) * 1000
         mock_citations = [
             Citation(

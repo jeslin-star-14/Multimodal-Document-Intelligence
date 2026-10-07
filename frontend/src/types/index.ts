@@ -2,6 +2,10 @@ export type DocumentStatus = 'Uploading' | 'Parsing' | 'OCR' | 'Embedding' | 'Re
 
 export type ChunkType = 'text' | 'table' | 'image' | 'chart';
 
+export type ProofLevel = 'Stated' | 'Calculated' | 'Inferred';
+
+export type RoleMode = 'Executive' | 'Auditor' | 'Data Scientist' | 'Student' | 'Legal Counsel';
+
 export interface BoundingBox {
   id: string;
   x: number; // percentage 0-100
@@ -11,6 +15,14 @@ export interface BoundingBox {
   label?: string;
   type: ChunkType;
   color?: string;
+}
+
+export interface OCRWord {
+  id: string;
+  text: string;
+  confidence: number;
+  bbox?: number[];
+  is_low_confidence?: boolean;
 }
 
 export interface DocumentChunk {
@@ -24,6 +36,7 @@ export interface DocumentChunk {
     headers: string[];
     rows: string[][];
   };
+  ocr_words?: OCRWord[];
   imageUrl?: string;
   similarityScore: number;
   boundingBox?: BoundingBox;
@@ -61,7 +74,31 @@ export interface Citation {
   label: string; // e.g. "Page 5 · Chart 2"
   chunkId: string;
   similarityScore: number;
+  proof_level?: ProofLevel;
+  proof_explanation?: string;
   boundingBox?: BoundingBox;
+}
+
+export interface VerifiedCalculation {
+  id: string;
+  title: string;
+  formula: string;
+  inputs: Record<string, any>;
+  computed_result: string;
+  status: 'VERIFIED' | 'DISCREPANCY';
+  explanation: string;
+  source_chunk_ids: string[];
+  page_number?: number;
+}
+
+export interface DocumentGap {
+  id: string;
+  clause_name: string;
+  category: string;
+  status: 'Missing' | 'Partial' | 'Present';
+  severity: 'Critical' | 'Moderate' | 'Low';
+  description: string;
+  recommendation: string;
 }
 
 export interface ConflictRecord {
@@ -103,6 +140,10 @@ export interface ChatMessage {
   citations?: Citation[];
   notFound?: boolean;
   conflicts?: ConflictRecord[];
+  proof_level?: ProofLevel;
+  proof_explanation?: string;
+  verified_calculations?: VerifiedCalculation[];
+  role_mode?: RoleMode;
 }
 
 export interface ChatSession {
@@ -114,4 +155,3 @@ export interface ChatSession {
 }
 
 export type LanguageCode = 'en' | 'ta' | 'hi';
-

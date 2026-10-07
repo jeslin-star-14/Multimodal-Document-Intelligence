@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquarePlus, X } from 'lucide-react';
+import { MessageSquarePlus, X, FileSearch } from 'lucide-react';
 import type { DocumentItem } from '../../types';
 
 interface DocumentListProps {
@@ -8,6 +8,7 @@ interface DocumentListProps {
   onSelectDocument: (id: string) => void;
   onAttachToChat?: (doc: DocumentItem) => void;
   onDeleteDocument?: (id: string) => void;
+  onOpenGaps?: (docId: string) => void;
 }
 
 export const DocumentList: React.FC<DocumentListProps> = ({
@@ -16,6 +17,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
   onSelectDocument,
   onAttachToChat,
   onDeleteDocument,
+  onOpenGaps
 }) => {
   const getBadgeLabel = (type: DocumentItem['type']) => {
     switch (type) {
@@ -90,8 +92,23 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                     </p>
                   </div>
 
-                  {/* Action Buttons: Ask in Chat + Remove Document (X) */}
+                  {/* Action Buttons: Gaps Analysis + Ask in Chat + Remove Document */}
                   <div className="flex items-center space-x-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {onOpenGaps && isReady && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onOpenGaps(doc.id);
+                        }}
+                        className="p-1.5 rounded-lg bg-white border border-slate-200 hover:border-purple-400 text-slate-500 hover:text-purple-700 shadow-2xs cursor-pointer transition-colors"
+                        title="Analyze Document Gaps & Compliance"
+                        aria-label="Analyze Gaps"
+                      >
+                        <FileSearch className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+
                     {onAttachToChat && isReady && (
                       <button
                         type="button"
@@ -99,8 +116,8 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                           e.stopPropagation();
                           onAttachToChat(doc);
                         }}
-                        className="p-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#0d5c4d] text-slate-500 hover:text-[#0d5c4d] shadow-2xs cursor-pointer"
-                        title="Upload to Chat (Ask in chat)"
+                        className="p-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#0d5c4d] text-slate-500 hover:text-[#0d5c4d] shadow-2xs cursor-pointer transition-colors"
+                        title="Ask in Chat"
                         aria-label="Upload to chat"
                       >
                         <MessageSquarePlus className="w-3.5 h-3.5" />

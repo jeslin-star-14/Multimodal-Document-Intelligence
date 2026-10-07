@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "document_id": "DOC_E122CC",
+  "document_name": "8b888b47-7ad1-496e-82b0-643d44eaa20a.png",
+  "page_count": 1,
+  "evidence_count": 1,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_E122CC",
+      "document_name": "8b888b47-7ad1-496e-82b0-643d44eaa20a.png",
+      "page": 1,
+      "section": "Visual Image",
+      "type": "image",
+      "text": "Scanned visual content from 8b888b47-7ad1-496e-82b0-643d44eaa20a.png",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_E122CC/page_1.png",
+      "metadata": {
+        "scanned": true
+      }
+    }
+  ]
+}

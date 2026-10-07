@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "document_id": "DOC_8747E8",
+  "document_name": "artificial-intelligence-fundamentals.png",
+  "page_count": 1,
+  "evidence_count": 1,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_8747E8",
+      "document_name": "artificial-intelligence-fundamentals.png",
+      "page": 1,
+      "section": "Visual Image",
+      "type": "image",
+      "text": "Scanned visual content from artificial-intelligence-fundamentals.png",
+      "table": null,
+      "image_path": "/Users/jeslinjp/Documents/my_projects/Multimodal-Document-Intelligence/backend/data/pages/DOC_8747E8/page_1.png",
+      "metadata": {
+        "scanned": true
+      }
+    }
+  ]
+}

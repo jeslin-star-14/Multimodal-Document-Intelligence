@@ -51,17 +51,31 @@ def filter_evidence_list(
     types: Optional[List[str]] = None
 ) -> List[Dict[str, Any]]:
     """
-    Filters evidence items by document_ids and/or types.
+    Filters evidence items by document_ids (matching ID or filename) and/or types.
     """
     filtered = []
-    doc_set = set(document_ids) if document_ids else None
-    type_set = set(types) if types else None
+    doc_tokens = set([d.lower().strip() for d in document_ids]) if document_ids else None
+    type_set = set([t.lower().strip() for t in types]) if types else None
 
     for item in evidence_items:
-        if doc_set and item.get("document_id") not in doc_set:
-            continue
-        if type_set and item.get("type") not in type_set:
-            continue
+        if doc_tokens:
+            item_id = (item.get("document_id") or "").lower().strip()
+            item_name = (item.get("document_name") or "").lower().strip()
+            # Match if document_id matches, or filename matches, or partial name match
+            match_doc = (
+                item_id in doc_tokens or 
+                item_name in doc_tokens or 
+                any(t in item_name for t in doc_tokens) or 
+                any(item_name and item_name in t for t in doc_tokens)
+            )
+            if not match_doc:
+                continue
+
+        if type_set:
+            item_type = (item.get("type") or "").lower().strip()
+            if item_type not in type_set:
+                continue
+
         filtered.append(item)
         
     return filtered

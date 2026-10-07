@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import glob
 import json
@@ -20,6 +21,7 @@ if str(BACKEND_DIR) not in sys.path:
 
 from schemas.evidence import DocumentProcessResponse, Evidence, TableData
 from ingestion.pipeline import process_document
+from ingestion.universal_parser import ingest_any_file
 from retrieval.indexer import index_document, get_vector_index
 from retrieval.retriever import retrieve
 from retrieval.metadata_filter import get_evidence_page
@@ -150,33 +152,170 @@ def health_check():
 
 
 # -------------------------------------------------------------
-# Document Ingestion Pipeline Endpoints
+# Document Ingestion & Listing Endpoints
 # -------------------------------------------------------------
+
+@app.get("/api/documents")
+async def list_documents():
+    """
+    Returns list of all indexed documents in the workspace with metadata and page image URLs.
+    """
+    index = get_vector_index(str(INDEX_DIR))
+    docs_map = {}
+    
+    # Scan indexed documents
+    for key, ev in index.evidence_store.items():
+        doc_id = ev.get("document_id")
+        if not doc_id:
+            continue
+        doc_name = ev.get("document_name", "Document.pdf")
+        if doc_id not in docs_map:
+            pages_folder = PAGES_DIR / doc_id
+            page_files = sorted(list(pages_folder.glob("page_*.png")), key=lambda p: p.name) if pages_folder.exists() else []
+            page_count = len(page_files) if page_files else 1
+            docs_map[doc_id] = {
+                "id": doc_id,
+                "name": doc_name,
+                "size": "1.8 MB",
+                "type": "pdf",
+                "page_count": page_count,
+                "status": "Ready",
+                "uploaded_at": "Today",
+                "page_images": [f"/data/pages/{doc_id}/page_{p+1}.png" for p in range(page_count)],
+                "evidence_count": 0
+            }
+        docs_map[doc_id]["evidence_count"] += 1
+        
+    return {"documents": list(docs_map.values())}
+
+@app.delete("/api/documents/{doc_id}")
+async def delete_document(doc_id: str):
+    """
+    Deletes an uploaded document, its page renders, and vector index entries.
+    """
+    import shutil
+    import numpy as np
+    index = get_vector_index(str(INDEX_DIR))
+    keys_to_remove = [
+        k for k, v in index.evidence_store.items() 
+        if v.get("document_id") == doc_id or v.get("document_name") == doc_id
+    ]
+    
+    for k in keys_to_remove:
+        index.evidence_store.pop(k, None)
+        if k in index.keys_list:
+            index.keys_list.remove(k)
+            
+    meta_path = INDEX_DIR / "metadata.json"
+    index_npy_path = INDEX_DIR / "index.npy"
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump({"evidence_store": index.evidence_store, "keys_list": index.keys_list}, f, indent=2)
+        
+    if index.keys_list and index.embeddings is not None and len(index.embeddings) >= len(index.keys_list):
+        index.embeddings = index.embeddings[:len(index.keys_list)]
+        np.save(str(index_npy_path), index.embeddings)
+    elif not index.keys_list and index_npy_path.exists():
+        index_npy_path.unlink()
+
+    # Clean up pages folder
+    doc_pages_folder = PAGES_DIR / doc_id
+    if doc_pages_folder.exists() and doc_pages_folder.is_dir():
+        shutil.rmtree(doc_pages_folder, ignore_errors=True)
+        
+    logger.info(f"Deleted document {doc_id} and removed {len(keys_to_remove)} evidence entries.")
+    return {"success": True, "message": f"Document {doc_id} removed."}
+
+@app.get("/api/documents/{doc_id}/chunks")
+async def get_document_chunks(doc_id: str):
+    """
+    Returns all extracted chunks, tables, and bounding boxes for a document.
+    """
+    # 1. Check processed json
+    processed_candidates = list((DATA_DIR / "processed").glob(f"*{doc_id}*.json"))
+    if not processed_candidates:
+        processed_candidates = list((DATA_DIR / "processed").glob("*.json"))
+
+    for p_file in processed_candidates:
+        try:
+            with open(p_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                d_id = data.get("document_id", "")
+                d_name = data.get("document_name", "")
+                if doc_id.lower() in d_id.lower() or doc_id.lower() in d_name.lower():
+                    chunks = []
+                    for ev in data.get("evidence", []):
+                        table_data = None
+                        if ev.get("table"):
+                            table_data = {
+                                "headers": ev["table"].get("headers", []),
+                                "rows": ev["table"].get("rows", [])
+                            }
+                        ev_type = ev.get("type", "text")
+                        c_color = "#10b981" if ev_type == "table" else ("#f59e0b" if ev_type in ["chart", "graph"] else "#6366f1")
+                        chunks.append({
+                            "id": f"chunk-{ev.get('evidence_id')}",
+                            "document_id": ev.get("document_id", doc_id),
+                            "document_name": ev.get("document_name", d_name),
+                            "page_number": ev.get("page", 1),
+                            "type": ev_type if ev_type in ["text", "table", "image", "chart"] else "image",
+                            "content": ev.get("text") or (f"Table: {', '.join(ev['table']['headers'])}" if ev.get("table") else f"{ev_type.title()} content"),
+                            "raw_table_data": table_data,
+                            "bounding_box": {
+                                "id": f"bbox-{ev.get('evidence_id')}",
+                                "x": 10.0 + (ev.get("page", 1) * 4) % 15,
+                                "y": 15.0 + (ev.get("page", 1) * 6) % 30,
+                                "width": 80.0,
+                                "height": 30.0,
+                                "label": f"Page {ev.get('page', 1)} · {ev.get('section') or ev_type.title()}",
+                                "type": ev_type if ev_type in ["text", "table", "image", "chart"] else "image",
+                                "color": c_color
+                            }
+                        })
+                    return {"chunks": chunks}
+        except Exception:
+            continue
+
+    # 2. Fallback from vector index
+    index = get_vector_index(str(INDEX_DIR))
+    chunks = []
+    for k, ev in index.evidence_store.items():
+        ev_did = (ev.get("document_id") or "").lower()
+        ev_dname = (ev.get("document_name") or "").lower()
+        q_did = doc_id.lower()
+        if q_did in ev_did or q_did in ev_dname:
+            chunks.append({
+                "id": f"chunk-{ev.get('evidence_id', k)}",
+                "document_id": ev.get("document_id", doc_id),
+                "document_name": ev.get("document_name", ""),
+                "page_number": ev.get("page", 1),
+                "type": ev.get("type", "text"),
+                "content": ev.get("text", ""),
+                "raw_table_data": ev.get("table")
+            })
+    return {"chunks": chunks}
 
 @app.post("/upload")
 @app.post("/api/documents/upload")
 async def upload_document(file: UploadFile = File(...)):
     """
-    Accepts any PDF file, executes the full ingestion pipeline:
-    renders high-res page images, extracts text, tabular structures, and visual content,
+    Accepts any document file (PDF, DOCX, PPTX, TXT, MD, CSV, etc.),
+    executes the full ingestion pipeline: renders high-res page images,
+    extracts text, tabular structures, and visual content,
     indexes into the hybrid vector store, and returns structured summary metadata.
     """
-    if not file.filename.lower().endswith(".pdf"):
-        raise HTTPException(status_code=400, detail="Only PDF files are currently supported.")
-
-    target_pdf_path = UPLOADS_DIR / file.filename
+    target_path = UPLOADS_DIR / file.filename
     try:
         content = await file.read()
-        with open(target_pdf_path, "wb") as f:
+        with open(target_path, "wb") as f:
             f.write(content)
-        logger.info(f"Saved uploaded PDF to {target_pdf_path}")
+        logger.info(f"Saved uploaded file to {target_path}")
     except Exception as e:
         logger.error(f"Failed to save uploaded file: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
 
     try:
-        # Run Member 2's ingestion pipeline
-        result = process_document(str(target_pdf_path), output_base_dir=str(DATA_DIR))
+        # Run universal ingestion pipeline (.pdf, .docx, .pptx, .txt, etc.)
+        result = ingest_any_file(str(target_path), output_base_dir=str(DATA_DIR))
         
         # Index extracted evidence for hybrid retrieval
         indexed_count = index_document(result, index_dir=str(INDEX_DIR))
@@ -190,11 +329,11 @@ async def upload_document(file: UploadFile = File(...)):
             "evidence_count": result["evidence_count"],
             "indexed_count": indexed_count,
             "status": "Ready",
-            "message": "Document successfully ingested and indexed for multimodal QA."
+            "message": f"Document '{result['document_name']}' successfully ingested and indexed for multimodal QA."
         }
     except Exception as e:
-        logger.error(f"Error processing uploaded PDF: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Error processing PDF: {str(e)}")
+        logger.error(f"Error processing uploaded document: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error processing document: {str(e)}")
 
 
 # -------------------------------------------------------------
@@ -217,7 +356,58 @@ async def query_documents_chat(request: FrontendQueryRequest):
             index_dir=str(INDEX_DIR)
         )
     except Exception as e:
-        logger.warning(f"Retrieval error: {e}, falling back to reasoning engine defaults.")
+        logger.warning(f"Retrieval error: {e}")
+
+    # Fallback to broader retrieval if document-filter returned empty
+    if not retrieved_evidence:
+        try:
+            retrieved_evidence = retrieve(
+                question=request.query,
+                top_k=6,
+                index_dir=str(INDEX_DIR)
+            )
+        except Exception:
+            pass
+
+    index = get_vector_index(str(INDEX_DIR))
+
+    # Cross-match query terms against document names in the index (e.g. 'practicum', 'practicum1', 'report')
+    query_tokens = [t.lower() for t in re.findall(r'[a-zA-Z0-9]+', request.query) if len(t) > 2]
+    matched_by_query = []
+    for ev in index.evidence_store.values():
+        doc_name_clean = (ev.get("document_name") or "").lower()
+        if any(tok in doc_name_clean for tok in query_tokens):
+            matched_by_query.append(ev)
+    if matched_by_query:
+        for ev in matched_by_query:
+            if ev not in retrieved_evidence:
+                retrieved_evidence.append(ev)
+
+    # If still empty for generic queries ("explain", "summarize"), retrieve top chunks from active or all docs
+    if not retrieved_evidence and index.evidence_store:
+        matched = []
+        if request.document_id:
+            req_d = request.document_id.lower().strip()
+            for ev in index.evidence_store.values():
+                ev_id = (ev.get("document_id") or "").lower().strip()
+                ev_nm = (ev.get("document_name") or "").lower().strip()
+                if req_d in ev_id or req_d in ev_nm or ev_nm in req_d:
+                    matched.append(ev)
+        retrieved_evidence = (matched if matched else list(index.evidence_store.values()))[:8]
+
+    # If user asks to extract data/tables/metrics, explicitly inject all table and visual chunks
+    q_lower = request.query.lower()
+    if any(k in q_lower for k in ["extract", "table", "data", "metric", "chart", "figure", "numbers", "all", "what"]):
+        for ev in list(index.evidence_store.values()):
+            if request.document_id:
+                req_d = request.document_id.lower().strip()
+                ev_id = (ev.get("document_id") or "").lower().strip()
+                ev_nm = (ev.get("document_name") or "").lower().strip()
+                if not (req_d in ev_id or req_d in ev_nm or ev_nm in req_d):
+                    continue
+            if ev.get("type") in ["table", "chart", "graph"] or ev.get("table"):
+                if ev not in retrieved_evidence:
+                    retrieved_evidence.insert(0, ev)
 
     # Convert retrieved evidence to frontend citation format
     frontend_citations: List[FrontendCitation] = []
@@ -239,10 +429,12 @@ async def query_documents_chat(request: FrontendQueryRequest):
                 tab = ev["table"]
                 headers = tab.get("headers", [])
                 rows = tab.get("rows", [])
-                headers_str = " | ".join(headers)
-                rows_str = "\n".join([" | ".join(r) for r in rows])
-                snippet = f"Table Headers: {headers_str}\n{rows_str}"
+                headers_str = " | ".join(headers) if isinstance(headers, list) else str(headers)
+                rows_str = "\n".join([" | ".join(map(str, r)) if isinstance(r, list) else str(r) for r in rows[:6]])
+                snippet = f"Table Data:\nHeaders: {headers_str}\nRows:\n{rows_str}"
                 table_obj = TableData(headers=headers, rows=rows)
+            elif ev.get("type") in ["chart", "graph", "image"]:
+                snippet = f"Visual Content [{ev.get('type').upper()}]: {snippet or 'Embedded figure and plotted diagram'}"
 
             chunk_type = ev_type if ev_type in ["text", "table", "image", "chart"] else "text"
             if ev_type in ["chart", "graph"]:
@@ -259,10 +451,10 @@ async def query_documents_chat(request: FrontendQueryRequest):
                 chunk_type=chunk_type,
                 content=snippet,
                 raw_table_data=table_obj,
-                page_image_path=ev.get("image_path"),
+                page_image_path=ev.get("image_path") or str(PAGES_DIR / ev.get("document_id", "") / f"page_{page_num}.png"),
                 crop_path=ev.get("image_path"),
                 similarity_score=float(score),
-                metadata={"section": section}
+                metadata={"section": section, "document_name": doc_name}
             )
             doc_chunks.append(doc_chunk)
 
@@ -280,6 +472,7 @@ async def query_documents_chat(request: FrontendQueryRequest):
                 label=f"Page {page_num} · {section}",
                 chunk_id=ev_id,
                 similarity_score=round(score, 3),
+                raw_table_data=table_obj,
                 bounding_box=FrontendBoundingBox(
                     id=f"bbox-{ev_id}",
                     x=10.0 + (idx * 5.0) % 20.0,
@@ -305,8 +498,11 @@ async def query_documents_chat(request: FrontendQueryRequest):
             not_found=False
         )
 
+    # Truthful grounded response when genuinely no evidence matches
+    indexed_doc_names = list(set(ev.get("document_name") for ev in index.evidence_store.values() if ev.get("document_name")))
+    doc_info = f"indexed document(s): {', '.join(indexed_doc_names)}" if indexed_doc_names else "no documents are currently indexed"
     return FrontendQueryResponse(
-        text="No relevant evidence was found for this query. Upload a document and wait for indexing before asking a question.",
+        text=f"I could not locate verified evidence for **'{request.query}'** in the active document set ({doc_info}).\n\nPlease select the target document in the left panel, or upload your file to analyze its text and tables.",
         confidence_score=0,
         citations=[],
         not_found=True

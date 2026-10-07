@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "document_id": "DOC_5EA110",
+  "document_name": "G-K_Hacks.pdf",
+  "page_count": 1,
+  "evidence_count": 2,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_5EA110",
+      "document_name": "G-K_Hacks.pdf",
+      "page": 1,
+      "section": "JACHIN SAMUEL J",
+      "type": "text",
+      "text": "JACHIN SAMUEL J\n(Reg No:URK25CS1043)\n\n\n\n\n\n\n\n\n\nKarunya University\n\n\n\n\n\nCertificate ID: G-K_Hacks_2025_1206",
+      "table": null,
+      "image_path": "data/pages/DOC_5EA110/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 105
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_5EA110",
+      "document_name": "G-K_Hacks.pdf",
+      "page": 1,
+      "section": "JACHIN SAMUEL J",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "data/pages/DOC_5EA110/page_1.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      }
+    }
+  ]
+}

@@ -24,12 +24,82 @@ export const App: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [chunks, setChunks] = useState<DocumentChunk[]>([]);
   const [isLoadingAnswer, setIsLoadingAnswer] = useState<boolean>(false);
-  const [language, setLanguage] = useState<LanguageCode>('en');
+  const language: LanguageCode = 'en';
+
+  // Load existing indexed documents from backend on mount
+  useEffect(() => {
+    const fetchExistingDocuments = async () => {
+      try {
+        const res = await fetch('/api/documents');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.documents && data.documents.length > 0) {
+            const mapped: DocumentItem[] = data.documents.map((d: any) => ({
+              id: d.id,
+              name: d.name,
+              size: d.size || '1.8 MB',
+              type: d.type || 'pdf',
+              pageCount: d.page_count || 1,
+              uploadedAt: d.uploaded_at || 'Today',
+              status: 'Ready',
+              progress: 100,
+              currentStepDescription: 'Ready',
+              pageImages: d.page_images || [`/data/pages/${d.id}/page_1.png`],
+              insights: {
+                summary: `Document "${d.name}" indexed with ${d.evidence_count || 2} multimodal chunks.`,
+                keyEntities: [
+                  { category: 'Doc', value: d.name.replace(/\.[^/.]+$/, '') },
+                  { category: 'Metric', value: '100% Grounded' }
+                ],
+                suggestedQuestions: [
+                  `Summarize key findings in ${d.name}`,
+                  `Extract all tables and data from ${d.name}`
+                ]
+              }
+            }));
+            setDocuments(mapped);
+            setSelectedDocId(mapped[0].id);
+          }
+        }
+      } catch (e) {
+        console.log('Backend documents load skipped:', e);
+      }
+    };
+    fetchExistingDocuments();
+  }, []);
+
+  // Automatically load chunks, tables, and visual bounding boxes for selected document
+  useEffect(() => {
+    if (!selectedDocId) return;
+    const fetchDocChunks = async () => {
+      try {
+        const res = await fetch(`/api/documents/${selectedDocId}/chunks`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.chunks && data.chunks.length > 0) {
+            setChunks((prev) => {
+              const existingIds = new Set(prev.map((c) => c.id));
+              const fresh = data.chunks.filter((c: any) => !existingIds.has(c.id));
+              return [...prev, ...fresh];
+            });
+            const firstChunkWithBox = data.chunks.find((c: any) => c.boundingBox);
+            if (firstChunkWithBox) {
+              setActiveChunkId(firstChunkWithBox.id);
+              setActiveBoxId(firstChunkWithBox.boundingBox.id);
+            }
+          }
+        }
+      } catch (e) {
+        // ignore error
+      }
+    };
+    fetchDocChunks();
+  }, [selectedDocId]);
 
   // Chat Sessions History State (Persisted in localStorage)
   const [chatSessions, setChatSessions] = useState<ChatSession[]>(() => {
     try {
-      const saved = localStorage.getItem('verity_chat_sessions');
+      const saved = localStorage.getItem('docq_chat_sessions') || localStorage.getItem('verity_chat_sessions');
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -40,7 +110,7 @@ export const App: React.FC = () => {
   // Sync chatSessions to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('verity_chat_sessions', JSON.stringify(chatSessions));
+      localStorage.setItem('docq_chat_sessions', JSON.stringify(chatSessions));
     } catch {
       // ignore storage errors
     }
@@ -242,6 +312,24 @@ export const App: React.FC = () => {
     setStagedAttachments((prev) => prev.filter((a) => a.id !== attId));
   };
 
+  // Handle Delete Document
+  const handleDeleteDocument = async (docId: string) => {
+    try {
+      await fetch(`/api/documents/${docId}`, { method: 'DELETE' });
+    } catch (e) {
+      console.log('Delete error:', e);
+    }
+    setDocuments((prev) => {
+      const updated = prev.filter((d) => d.id !== docId);
+      if (selectedDocId === docId) {
+        setSelectedDocId(updated.length > 0 ? updated[0].id : null);
+      }
+      return updated;
+    });
+    setChunks((prev) => prev.filter((c) => c.documentId !== docId));
+    setStagedAttachments((prev) => prev.filter((a) => !a.id.includes(docId)));
+  };
+
   // Handle Citation Click -> Synchronizes Evidence Panel & Page
   const handleCitationClick = (citation: Citation) => {
     setSelectedCitation(citation);
@@ -328,23 +416,27 @@ export const App: React.FC = () => {
 
         if (response.ok) {
           const data = await response.json();
-          const backendDocId = data.document_id || data.id || fileId;
-          setSelectedDocId(backendDocId);
+          const realDocId = data.document_id || data.id || fileId;
+          const pageCount = data.page_count || 1;
+          const realPageImages = Array.from({ length: pageCount }, (_, i) => 
+            `/data/pages/${realDocId}/page_${i+1}.png`
+          );
           setDocuments((prev) =>
             prev.map((d) =>
               d.id === fileId
                 ? {
                     ...d,
-                    id: backendDocId,
+                    id: realDocId,
                     status: 'Ready',
                     progress: 100,
                     currentStepDescription: 'Ready',
-                    pageCount: data.page_count || 1,
+                    pageCount: pageCount,
+                    pageImages: realPageImages.length > 0 ? realPageImages : d.pageImages,
                     insights: {
-                      summary: `Document "${file.name}" indexed for multimodal retrieval.`,
+                      summary: `Document "${file.name}" indexed for visual RAG with ${data.evidence_count || 0} chunks.`,
                       keyEntities: [
                         { category: 'Org', value: file.name.replace(/\.[^/.]+$/, '') },
-                        { category: 'Metric', value: 'Indexed' }
+                        { category: 'Metric', value: `${data.evidence_count || pageCount} Chunks Indexed` }
                       ],
                       suggestedQuestions: [
                         `Summarize ${file.name}`,
@@ -355,6 +447,7 @@ export const App: React.FC = () => {
                 : d
             )
           );
+          setSelectedDocId(realDocId);
         } else {
           const errorText = await response.text();
           setDocuments((prev) =>
@@ -453,7 +546,8 @@ export const App: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: queryText,
-          document_id: activeDocument?.id || selectedDocId || null
+          document_id: activeDocument?.id || selectedDocId || activeDocument?.name || null,
+          doc_names: documents.map((d) => d.name)
         })
       });
 
@@ -482,14 +576,19 @@ export const App: React.FC = () => {
             return [...prev, ...fresh];
           });
 
-          // Select the first citation automatically
+          // Select the first citation automatically and sync evidence panel
           setSelectedCitation(citations[0]);
+          const matchingDoc = documents.find(d => d.id === citations[0].documentId || d.name === citations[0].documentName);
+          if (matchingDoc) {
+            setSelectedDocId(matchingDoc.id);
+          }
           if (citations[0].pageNumber) {
             setCurrentPageNumber(citations[0].pageNumber);
           }
           if (citations[0].boundingBox) {
             setActiveBoxId(citations[0].boundingBox.id);
           }
+          setIsRightPanelOpen(true);
         }
 
         aiMsg = {
@@ -542,10 +641,7 @@ export const App: React.FC = () => {
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#f8fafc] text-slate-900">
       {/* Header */}
-      <Header
-        language={language}
-        onLanguageChange={setLanguage}
-      />
+      <Header />
 
       {/* Main 3-Panel Workspace */}
       <main className="flex-1 flex flex-row overflow-hidden relative">
@@ -560,8 +656,8 @@ export const App: React.FC = () => {
               selectedDocId={selectedDocId}
               onSelectDocument={handleSelectDocument}
               onFileUpload={handleFileUpload}
-              onSelectQuestion={(q) => handleSendMessage(q)}
               onAttachToChat={handleAttachDocumentToChat}
+              onDeleteDocument={handleDeleteDocument}
               onClosePanel={() => setIsLeftPanelOpen(false)}
               language={language}
               chatSessions={chatSessions}

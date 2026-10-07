@@ -12,6 +12,7 @@ interface DocumentPanelProps {
   onFileUpload: (files: FileList | File[]) => void;
   onAttachToChat?: (doc: DocumentItem) => void;
   onDeleteDocument?: (id: string) => void;
+  onOpenGaps?: (docId: string) => void;
   onClosePanel?: () => void;
   language: LanguageCode;
   chatSessions?: ChatSession[];
@@ -28,6 +29,7 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
   onFileUpload,
   onAttachToChat,
   onDeleteDocument,
+  onOpenGaps,
   onClosePanel,
   language,
   chatSessions = [],
@@ -66,9 +68,8 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
         </div>
       </div>
 
-      {/* Split Area Container: Top Workspace Documents + Bottom Chat History */}
+      {/* Split Area Container */}
       <div className="flex-1 flex flex-col min-h-0 pt-3">
-        {/* Top Half: Document Upload Zone & Document List */}
         <div className="flex-1 min-h-0 overflow-y-auto space-y-3 pr-0.5">
           <FileUploadZone language={language} onFileUpload={onFileUpload} />
 
@@ -78,13 +79,14 @@ export const DocumentPanel: React.FC<DocumentPanelProps> = ({
             onSelectDocument={onSelectDocument}
             onAttachToChat={onAttachToChat}
             onDeleteDocument={onDeleteDocument}
+            onOpenGaps={onOpenGaps}
           />
         </div>
 
         {/* Center Split Divider */}
         <div className="border-t border-slate-200/90 my-2.5 shrink-0" />
 
-        {/* Bottom Half: Chat History starting right from center */}
+        {/* Bottom Half: Chat History */}
         <div className="flex-1 min-h-0 overflow-y-auto">
           <ChatHistory
             sessions={chatSessions}

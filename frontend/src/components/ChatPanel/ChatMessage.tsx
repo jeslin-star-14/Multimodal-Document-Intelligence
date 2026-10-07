@@ -8,7 +8,11 @@ import {
   ExternalLink,
   Copy,
   Check,
-  Bot
+  Bot,
+  HelpCircle,
+  Cpu,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import type { ChatMessage as MessageType, Citation, ConflictRecord, LanguageCode } from '../../types';
 import { CitationChip } from './CitationChip';
@@ -18,7 +22,7 @@ interface ChatMessageProps {
   selectedCitation: Citation | null;
   onCitationClick: (citation: Citation) => void;
   onOpenConflicts?: (conflicts: ConflictRecord[]) => void;
-  language: LanguageCode;
+  language?: LanguageCode;
 }
 
 export const ChatMessage: React.FC<ChatMessageProps> = ({
@@ -28,6 +32,8 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 }) => {
   const isUser = message.sender === 'user';
   const [copied, setCopied] = useState(false);
+  const [showProofTooltip, setShowProofTooltip] = useState(false);
+  const [showMathDetails, setShowMathDetails] = useState(true);
 
   const handleCopy = () => {
     if (message.text) {
@@ -81,14 +87,35 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
     );
   }
 
+  // Determine proof level styling
+  const proofLevel = message.proof_level || 'Stated';
+  const proofConfig = {
+    Stated: {
+      label: 'Stated in Document',
+      bg: 'bg-emerald-50 text-[#0d5c4d] border-emerald-200/80',
+      icon: CheckCircle2,
+      dotColor: 'bg-[#0d5c4d]'
+    },
+    Calculated: {
+      label: 'Calculated Proof (AST)',
+      bg: 'bg-purple-50 text-purple-800 border-purple-200/80',
+      icon: Calculator,
+      dotColor: 'bg-purple-600'
+    },
+    Inferred: {
+      label: 'Inferred Synthesis',
+      bg: 'bg-amber-50 text-amber-900 border-amber-200/80',
+      icon: Sparkles,
+      dotColor: 'bg-amber-600'
+    }
+  }[proofLevel];
+
+  const ProofIcon = proofConfig.icon;
+
   // Parse and render formatted answer sections
   const renderFormattedContent = (rawText: string) => {
-    // Helper to render inline markdown (bold, code, inline citations)
     const formatInline = (text: string) => {
-      // Clean up multiple vertical newlines within single bullet lines
       const cleanLine = text.replace(/\n(?!\n)/g, ' ').trim();
-      
-      // Match inline citation format: [Doc: name, Page: X, Section: Y] or [Page X · ...]
       const citationRegex = /\[Doc:\s*([^,\]]+),\s*Page:\s*(\d+)(?:,\s*Section:\s*([^\]]+))?\]|\[Page\s*(\d+)(?:\s*·\s*([^\]]+))?\]/gi;
       
       const parts: React.ReactNode[] = [];
@@ -104,7 +131,6 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
         const pageNum = parseInt(match[2] || match[4] || '1', 10);
         const section = match[3] || match[5] || 'Evidence';
 
-        // Find matching citation from message citations if available
         const matchedCitation: Citation = message.citations?.find(
           (c) => c?.pageNumber === pageNum || Boolean(docName && (c?.documentName?.toLowerCase().includes(docName.toLowerCase()) || c?.documentId?.toLowerCase().includes(docName.toLowerCase())))
         ) || {
@@ -148,9 +174,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
       return parts.length > 0 ? parts : cleanLine;
     };
 
-    // Helper for bold and code backticks
     const renderStyledSpans = (str: string): React.ReactNode => {
-      // Split by bold (**text**) and code (`text`)
       const tokens = str.split(/(\*\*[^*]+\*\*|`[^`]+`|\$[^$]+\$)/g);
       return tokens.map((token, i) => {
         if (token.startsWith('**') && token.endsWith('**')) {
@@ -178,29 +202,24 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
       });
     };
 
-    // Split text into semantic sections by `### ` headers
     const rawSections = rawText.split(/(?=###\s+)/g);
 
     return rawSections.map((secText, secIdx) => {
       const trimmed = secText.trim();
       if (!trimmed) return null;
 
-      // Extract Header Title if section starts with ###
       const headerMatch = trimmed.match(/^###\s+([^\n]+)/);
       const title = headerMatch ? headerMatch[1].trim() : '';
       const bodyContent = headerMatch ? trimmed.substring(headerMatch[0].length).trim() : trimmed;
 
-      // Determine Section Type for specialized UI treatment
       const isExecutiveSummary = /Executive Summary|Overview|Summary/i.test(title);
       const isMathSection = /Mathematical|Calculations|Math|Proof|Verification/i.test(title);
       const isReasonList = /Reasons|Findings|Root Cause|Analysis|Key Points/i.test(title);
 
-      // Split body lines
       const rawLines = bodyContent.split('\n').filter((l) => l.trim().length > 0);
 
       return (
         <div key={`sec-${secIdx}`} className="space-y-2">
-          {/* Section Heading */}
           {title && (
             <div className="flex items-center space-x-2 pt-1 pb-0.5">
               {isExecutiveSummary && <Sparkles className="w-4 h-4 text-[#0d5c4d]" />}
@@ -215,9 +234,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
             </div>
           )}
 
-          {/* Section Body Content */}
           {isMathSection ? (
-            // Specialized Math & Verification Box
             <div className="bg-slate-50 border border-slate-200/90 rounded-xl p-3.5 space-y-2 text-xs sm:text-sm shadow-2xs">
               {rawLines.map((line, lIdx) => (
                 <div key={lIdx} className="flex items-start space-x-2 text-slate-700 leading-relaxed font-sans">
@@ -227,7 +244,6 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
               ))}
             </div>
           ) : isReasonList ? (
-            // Numbered or Bullet List of Reasons / Findings
             <div className="space-y-2.5">
               {rawLines.map((line, lIdx) => {
                 const numberedMatch = line.match(/^(\d+)\.\s*(.*)/);
@@ -260,7 +276,6 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
               })}
             </div>
           ) : (
-            // Standard text / Executive Summary Card
             <div className={`${isExecutiveSummary ? 'bg-[#f0f9f6] border border-[#d1ede6] p-3.5 rounded-xl text-slate-800' : 'text-slate-700'} text-xs sm:text-sm leading-relaxed space-y-2`}>
               {rawLines.map((line, lIdx) => (
                 <p key={lIdx} className="leading-relaxed">
@@ -283,6 +298,11 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
             <Bot className="w-3 h-3" />
           </div>
           <span className="text-xs font-bold text-slate-900 tracking-tight">DOC-Q Intelligence</span>
+          {message.role_mode && (
+            <span className="text-[10px] font-medium bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded border border-slate-200">
+              {message.role_mode} Mode
+            </span>
+          )}
           <span className="text-[11px] text-slate-400 font-normal">· {message.timestamp}</span>
         </div>
 
@@ -300,12 +320,97 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
       {/* Formatted Answer Body */}
       <div className="w-full bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs space-y-3.5">
         {renderFormattedContent(message.text || '')}
+
+        {/* FEATURE 2: Verified Calculations Drawer / Card */}
+        {message.verified_calculations && message.verified_calculations.length > 0 && (
+          <div className="mt-4 pt-3 border-t border-slate-200/80">
+            <button
+              onClick={() => setShowMathDetails(!showMathDetails)}
+              className="flex items-center justify-between w-full text-left py-1 text-xs font-semibold text-purple-900 hover:text-purple-950 transition-colors cursor-pointer"
+            >
+              <span className="flex items-center gap-1.5">
+                <Cpu className="w-3.5 h-3.5 text-purple-600" />
+                <span>Deterministic AST Verified Calculations ({message.verified_calculations.length})</span>
+              </span>
+              {showMathDetails ? <ChevronUp className="w-3.5 h-3.5 text-slate-400" /> : <ChevronDown className="w-3.5 h-3.5 text-slate-400" />}
+            </button>
+
+            {showMathDetails && (
+              <div className="mt-2 space-y-2">
+                {message.verified_calculations.map((calc, cIdx) => (
+                  <div
+                    key={calc.id || cIdx}
+                    className="p-3 bg-purple-50/50 rounded-xl border border-purple-200/70 text-xs text-slate-700 space-y-1.5"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono font-bold text-purple-900 bg-white px-2 py-0.5 rounded border border-purple-200">
+                        {calc.formula}
+                      </span>
+                      <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                        {calc.status}
+                      </span>
+                    </div>
+
+                    <p className="text-[11px] text-slate-600 leading-normal">
+                      {calc.explanation}
+                    </p>
+
+                    {calc.inputs && Object.keys(calc.inputs).length > 0 && (
+                      <div className="flex items-center flex-wrap gap-1.5 pt-1 text-[11px]">
+                        <span className="text-slate-400 font-medium">Inputs:</span>
+                        {Object.entries(calc.inputs).map(([k, v]) => (
+                          <span key={k} className="bg-white px-1.5 py-0.5 rounded border border-slate-200 font-mono text-[10px] text-slate-700">
+                            {k}: <strong>{String(v)}</strong>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
-      {/* Footer Badges & Citations */}
+      {/* Footer Badges: Proof Level + Confidence + Citations */}
       <div className="flex items-center flex-wrap gap-2 pt-0.5 text-xs">
+        {/* FEATURE 1: Proof Level Badge with Tooltip */}
+        <div className="relative inline-block">
+          <button
+            type="button"
+            onClick={() => setShowProofTooltip(!showProofTooltip)}
+            onMouseEnter={() => setShowProofTooltip(true)}
+            onMouseLeave={() => setShowProofTooltip(false)}
+            className={`inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full border text-xs font-semibold transition-all cursor-pointer ${proofConfig.bg}`}
+          >
+            <ProofIcon className="w-3.5 h-3.5" />
+            <span>{proofConfig.label}</span>
+            <HelpCircle className="w-3 h-3 opacity-60 ml-0.5" />
+          </button>
+
+          {showProofTooltip && (
+            <div className="absolute left-0 bottom-full mb-2 z-40 w-72 p-3 bg-slate-900 text-white rounded-xl shadow-xl text-[11px] leading-relaxed animate-in fade-in-50">
+              <div className="flex items-center space-x-1.5 font-bold mb-1 text-amber-300">
+                <ProofIcon className="w-3.5 h-3.5" />
+                <span>Proof Level: {proofLevel}</span>
+              </div>
+              <p className="text-slate-200">
+                {message.proof_explanation || (
+                  proofLevel === 'Calculated'
+                    ? 'Derived deterministically via Python AST arithmetic across multiple document tables and charts.'
+                    : proofLevel === 'Stated'
+                    ? 'Directly extracted from verbatim text or explicit table cells in the uploaded file.'
+                    : 'Logically synthesized by multimodal reasoning across visual charts and operational context.'
+                )}
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* Confidence Badge */}
-        <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/70 text-xs text-[#0d5c4d] font-semibold">
+        <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-xs text-slate-700 font-semibold">
           <span className="w-1.5 h-1.5 rounded-full bg-[#0d5c4d]" />
           <span>{message.confidenceScore ? `${message.confidenceScore}% Grounded` : 'Verified Grounded'}</span>
         </span>
@@ -323,4 +428,3 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
     </div>
   );
 };
-

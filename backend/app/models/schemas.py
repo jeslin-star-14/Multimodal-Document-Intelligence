@@ -3,6 +3,8 @@ from pydantic import BaseModel, Field
 
 ChunkType = Literal['text', 'table', 'image', 'chart']
 DocumentStatus = Literal['Uploading', 'Parsing', 'OCR', 'Embedding', 'Ready', 'Error']
+ProofLevel = Literal['Stated', 'Calculated', 'Inferred']
+RoleMode = Literal['Executive', 'Auditor', 'Data Scientist', 'Student', 'Legal Counsel']
 
 class BoundingBox(BaseModel):
     id: str = "bbox-1"
@@ -23,6 +25,13 @@ class TableData(BaseModel):
     headers: List[str] = Field(default_factory=list)
     rows: List[List[str]] = Field(default_factory=list)
 
+class OCRWord(BaseModel):
+    id: str = ""
+    text: str
+    confidence: float = Field(0.95, description="Confidence score between 0.0 and 1.0")
+    bbox: Optional[List[float]] = None
+    is_low_confidence: bool = False
+
 class DocumentChunk(BaseModel):
     id: str = ""
     document_id: str = ""
@@ -34,6 +43,7 @@ class DocumentChunk(BaseModel):
     image_url: Optional[str] = None
     similarity_score: float = 0.0
     bounding_box: Optional[BoundingBox] = None
+    ocr_words: Optional[List[OCRWord]] = None
     
     # Compatibility fields for backend retriever & reasoning:
     chunk_id: Optional[str] = None
@@ -93,6 +103,8 @@ class Citation(BaseModel):
     chunk_id: str = ""
     similarity_score: float = 0.95
     bounding_box: Optional[BoundingBox] = None
+    proof_level: ProofLevel = "Stated"
+    proof_explanation: Optional[str] = None
     
     # Compatibility fields:
     citation_id: Optional[int] = None
@@ -123,10 +135,42 @@ class Citation(BaseModel):
         elif not self.similarity_score and self.confidence:
             self.similarity_score = self.confidence
 
+class VerifiedCalculation(BaseModel):
+    id: str = "calc-1"
+    title: str = "Calculated Variance"
+    formula: str = ""
+    inputs: Dict[str, Any] = Field(default_factory=dict)
+    computed_result: str = ""
+    status: Literal['VERIFIED', 'DISCREPANCY'] = "VERIFIED"
+    explanation: str = ""
+    source_chunk_ids: List[str] = Field(default_factory=list)
+    page_number: Optional[int] = None
+
+class DocumentGap(BaseModel):
+    id: str
+    clause_name: str
+    category: str
+    status: Literal['Missing', 'Partial', 'Present']
+    severity: Literal['Critical', 'Moderate', 'Low']
+    description: str
+    recommendation: str
+
+class ConsistencyConflict(BaseModel):
+    id: str
+    metric_name: str
+    topic: str
+    document_a: Dict[str, Any]
+    document_b: Dict[str, Any]
+    discrepancy: str
+    severity: Literal['high', 'medium', 'low']
+    resolution: str
+    status: str = "Unresolved"
+
 class QueryRequest(BaseModel):
     query: str
     document_id: Optional[str] = None
     language: Optional[str] = "en"
+    role_mode: Optional[RoleMode] = "Executive"
     doc_names: Optional[List[str]] = None
     top_k: int = 5
 
@@ -135,6 +179,10 @@ class QueryResponse(BaseModel):
     confidence_score: float = 95.0
     citations: List[Citation] = Field(default_factory=list)
     not_found: bool = False
+    proof_level: ProofLevel = "Stated"
+    proof_explanation: str = "Extracted directly from verbatim text and certified tables in source documents."
+    verified_calculations: List[VerifiedCalculation] = Field(default_factory=list)
+    role_mode: Optional[RoleMode] = "Executive"
     
     # Compatibility fields:
     query: Optional[str] = None

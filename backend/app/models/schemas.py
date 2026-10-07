@@ -126,6 +126,7 @@ class Citation(BaseModel):
 class QueryRequest(BaseModel):
     query: str
     document_id: Optional[str] = None
+    document_ids: Optional[List[str]] = None
     language: Optional[str] = "en"
     doc_names: Optional[List[str]] = None
     top_k: int = 5

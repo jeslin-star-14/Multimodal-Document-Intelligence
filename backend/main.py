@@ -411,67 +411,108 @@ async def query_documents_chat(request: FrontendQueryRequest):
     Retrieves multimodal evidence across indexed documents, feeds text + page images into VLM,
     and returns grounded answers with mathematical proofs and exact bounding-box citations.
     """
-    retrieved_evidence = []
-    try:
-        retrieved_evidence = retrieve(
-            question=request.query,
-            top_k=6,
-            document_ids=[request.document_id] if request.document_id else None,
-            index_dir=str(INDEX_DIR)
-        )
-    except Exception as e:
-        logger.warning(f"Retrieval error: {e}")
+    index = get_vector_index(str(INDEX_DIR))
+    q_lower = request.query.lower()
 
-    # Fallback to broader retrieval if document-filter returned empty
+    # 1. Detect target documents intelligently
+    target_docs = None
+    if getattr(request, "document_ids", None) and len(request.document_ids) > 0:
+        target_docs = [d.strip() for d in request.document_ids if d.strip()]
+    elif getattr(request, "doc_names", None) and len(request.doc_names) > 0:
+        all_store_docs = set(ev.get("document_name") for ev in index.evidence_store.values() if ev.get("document_name"))
+        if len(request.doc_names) < len(all_store_docs):
+            target_docs = request.doc_names
+
+    # Check for cross-document intent in query (compare, versus, difference, across, between, all, both, etc.)
+    cross_doc_words = [
+        "compare", "comparison", "versus", "vs", "difference", "differences", 
+        "across", "between", "both", "all", "each", "conflict", "discrepancy", 
+        "variance", "trend", "overall", "reports", "documents", "quarters"
+    ]
+    is_cross_doc = any(re.search(r'\b' + re.escape(w) + r'\b', q_lower) for w in cross_doc_words)
+
+    # Detect document name mentions in query (e.g. "q2", "q4", "practicum 1", "practicum 2", "resume")
+    mentioned_docs = []
+    for ev in index.evidence_store.values():
+        d_name = ev.get("document_name", "")
+        if not d_name or d_name in mentioned_docs:
+            continue
+        d_clean = d_name.lower().replace("_", " ").replace("-", " ")
+        name_parts = [p for p in re.findall(r'[a-zA-Z0-9]+', d_clean) if len(p) >= 2]
+        if any(re.search(r'\b' + re.escape(p) + r'\b', q_lower) for p in name_parts):
+            mentioned_docs.append(d_name)
+
+    # Resolve active target documents
+    if len(mentioned_docs) >= 2:
+        target_docs = mentioned_docs
+        is_cross_doc = True
+    elif is_cross_doc:
+        target_docs = None  # search across all documents
+    elif target_docs and len(target_docs) > 0:
+        pass
+    elif len(mentioned_docs) == 1:
+        target_docs = mentioned_docs
+    elif request.document_id:
+        target_docs = [request.document_id]
+    else:
+        target_docs = None
+
+    # 2. Execute balanced retrieval
+    retrieved_evidence = []
+    if target_docs and len(target_docs) > 1:
+        # Retrieve top 4 most relevant chunks from EACH target document to guarantee fair coverage
+        for t_doc in target_docs:
+            try:
+                doc_chunks = retrieve(
+                    question=request.query,
+                    top_k=4,
+                    document_ids=[t_doc],
+                    index_dir=str(INDEX_DIR)
+                )
+                retrieved_evidence.extend(doc_chunks)
+            except Exception as e:
+                logger.warning(f"Error retrieving for {t_doc}: {e}")
+    elif target_docs and len(target_docs) == 1:
+        try:
+            retrieved_evidence = retrieve(
+                question=request.query,
+                top_k=8,
+                document_ids=target_docs,
+                index_dir=str(INDEX_DIR)
+            )
+        except Exception as e:
+            logger.warning(f"Error retrieving for {target_docs}: {e}")
+    else:
+        try:
+            retrieved_evidence = retrieve(
+                question=request.query,
+                top_k=8,
+                document_ids=None,
+                index_dir=str(INDEX_DIR)
+            )
+        except Exception as e:
+            logger.warning(f"Error in global retrieval: {e}")
+
+    # Fallback to general retrieval if document-specific search returned empty
     if not retrieved_evidence:
         try:
             retrieved_evidence = retrieve(
                 question=request.query,
-                top_k=6,
+                top_k=8,
                 index_dir=str(INDEX_DIR)
             )
         except Exception:
             pass
 
-    index = get_vector_index(str(INDEX_DIR))
-
-    # Cross-match query terms against document names in the index (e.g. 'practicum', 'practicum1', 'report')
-    query_tokens = [t.lower() for t in re.findall(r'[a-zA-Z0-9]+', request.query) if len(t) > 2]
-    matched_by_query = []
-    for ev in index.evidence_store.values():
-        doc_name_clean = (ev.get("document_name") or "").lower()
-        if any(tok in doc_name_clean for tok in query_tokens):
-            matched_by_query.append(ev)
-    if matched_by_query:
-        for ev in matched_by_query:
-            if ev not in retrieved_evidence:
-                retrieved_evidence.append(ev)
-
-    # If still empty for generic queries ("explain", "summarize"), retrieve top chunks from active or all docs
-    if not retrieved_evidence and index.evidence_store:
-        matched = []
-        if request.document_id:
-            req_d = request.document_id.lower().strip()
-            for ev in index.evidence_store.values():
-                ev_id = (ev.get("document_id") or "").lower().strip()
-                ev_nm = (ev.get("document_name") or "").lower().strip()
-                if req_d in ev_id or req_d in ev_nm or ev_nm in req_d:
-                    matched.append(ev)
-        retrieved_evidence = (matched if matched else list(index.evidence_store.values()))[:8]
-
-    # If user asks to extract data/tables/metrics, explicitly inject all table and visual chunks
-    q_lower = request.query.lower()
-    if any(k in q_lower for k in ["extract", "table", "data", "metric", "chart", "figure", "numbers", "all", "what"]):
-        for ev in list(index.evidence_store.values()):
-            if request.document_id:
-                req_d = request.document_id.lower().strip()
-                ev_id = (ev.get("document_id") or "").lower().strip()
-                ev_nm = (ev.get("document_name") or "").lower().strip()
-                if not (req_d in ev_id or req_d in ev_nm or ev_nm in req_d):
-                    continue
-            if ev.get("type") in ["table", "chart", "graph"] or ev.get("table"):
-                if ev not in retrieved_evidence:
-                    retrieved_evidence.insert(0, ev)
+    # 3. Deduplicate and cap at 8 chunks max to ensure concise, highly focused context for Gemini
+    seen_keys = set()
+    unique_evidence = []
+    for ev in retrieved_evidence:
+        k = f"{ev.get('document_id')}_{ev.get('evidence_id')}"
+        if k not in seen_keys:
+            seen_keys.add(k)
+            unique_evidence.append(ev)
+    retrieved_evidence = unique_evidence[:8]
 
     # Convert retrieved evidence to frontend citation format
     frontend_citations: List[FrontendCitation] = []

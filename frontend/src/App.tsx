@@ -487,12 +487,19 @@ export const App: React.FC = () => {
     }
 
     try {
+      const attachedDocNames = (attachments && attachments.length > 0)
+        ? attachments.map((a) => a.name)
+        : null;
+
       const response = await fetch('/api/chat/query', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: queryText,
-          document_id: activeDocument?.name || null,
+          document_id: attachedDocNames && attachedDocNames.length === 1 
+            ? attachedDocNames[0] 
+            : (attachedDocNames ? null : (activeDocument?.name || null)),
+          document_ids: attachedDocNames,
           doc_names: documents.map((d) => d.name)
         })
       });

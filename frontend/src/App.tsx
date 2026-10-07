@@ -182,8 +182,8 @@ export const App: React.FC = () => {
     });
   };
 
-  // Handle Query Submission and AI Response Simulation
-  const handleSendMessage = (queryText: string) => {
+  // Handle Query Submission: calls live backend API with intelligent fallback
+  const handleSendMessage = async (queryText: string) => {
     const userMsg: ChatMessage = {
       id: `msg-${Date.now()}`,
       sender: 'user',
@@ -194,7 +194,42 @@ export const App: React.FC = () => {
     setMessages((prev) => [...prev, userMsg]);
     setIsLoadingAnswer(true);
 
-    // Realistic intelligent matching based on query keywords
+    try {
+      const res = await fetch('http://localhost:8000/api/chat/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: queryText,
+          document_id: selectedDocId,
+          language: language
+        })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        const aiMsg: ChatMessage = {
+          id: `msg-${Date.now() + 1}`,
+          sender: 'assistant',
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          text: data.text || data.answer,
+          confidenceScore: data.confidence_score,
+          citations: data.citations || [],
+          conflicts: undefined,
+          notFound: data.not_found || false
+        };
+
+        setMessages((prev) => [...prev, aiMsg]);
+        if (data.citations && data.citations.length > 0) {
+          handleCitationClick(data.citations[0]);
+        }
+        setIsLoadingAnswer(false);
+        return;
+      }
+    } catch (e) {
+      console.log('Backend query offline or unreachable, using responsive local fallback:', e);
+    }
+
+    // Realistic intelligent matching fallback
     setTimeout(() => {
       const lower = queryText.toLowerCase();
       let responseText = '';

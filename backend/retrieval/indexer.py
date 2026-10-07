@@ -118,18 +118,25 @@ class LocalVectorIndex:
         if self.embeddings_matrix is None or len(self.keys_list) == 0:
             return []
 
-        # Vector dot product
-        scores = np.dot(self.embeddings_matrix, query_vector)
+        # Safely align matrix length with keys_list
+        n = min(len(self.keys_list), len(self.embeddings_matrix))
+        if n == 0:
+            return []
+            
+        mat = self.embeddings_matrix[:n]
+        scores = np.dot(mat, query_vector)
         
-        top_k = min(top_k, len(scores))
+        top_k = min(top_k, n)
         top_indices = np.argsort(scores)[::-1][:top_k]
 
         results = []
         for idx in top_indices:
-            key = self.keys_list[idx]
-            ev_data = self.evidence_store[key]
-            score = float(scores[idx])
-            results.append((ev_data, score))
+            if idx < len(self.keys_list):
+                key = self.keys_list[idx]
+                if key in self.evidence_store:
+                    ev_data = self.evidence_store[key]
+                    score = float(scores[idx])
+                    results.append((ev_data, score))
 
         return results
 

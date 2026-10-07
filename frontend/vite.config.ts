@@ -15,6 +15,7 @@ export default defineConfig({
       '/data': {
         target: 'http://localhost:8000',
         changeOrigin: true,
+
       }
     }
   }

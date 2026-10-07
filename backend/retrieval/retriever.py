@@ -33,19 +33,31 @@ def compute_keyword_and_numerical_score(query: str, search_text: str) -> float:
 
     search_text_lower = search_text.lower()
     
-    # 1. Basic word match count
-    matched_words = sum(1 for t in query_tokens if t in search_text_lower)
-    word_ratio = matched_words / len(query_tokens)
+    # 1. Exact entity IDs matching (e.g. TX26045, EMP1010, EMP1039, KMS, DOC_...)
+    entity_tokens = re.findall(r'\b(?:tx\d+|emp\d+|doc_\w+|\d{4,})\b', query.lower())
+    exact_entity_match = sum(1 for et in entity_tokens if et in search_text_lower)
 
-    # 2. Numerical & Quarter token boost
+    # 2. Meaningful keyword matching
+    stopwords = {"what", "is", "the", "of", "and", "in", "to", "for", "which", "had", "are", "give", "me", "all", "this", "that", "from"}
+    meaningful_tokens = [t for t in query_tokens if t not in stopwords]
+    if not meaningful_tokens:
+        meaningful_tokens = query_tokens
+
+    matched_words = sum(1 for t in meaningful_tokens if t in search_text_lower)
+    word_ratio = matched_words / len(meaningful_tokens)
+
+    # 3. Numerical & Quarter token boost
     query_nums = extract_numerical_tokens(query)
     num_boost = 0.0
     if query_nums:
         search_nums = set(extract_numerical_tokens(search_text))
         matched_nums = sum(1 for num in query_nums if num in search_nums or num in search_text_lower)
-        num_boost = (matched_nums / len(query_nums)) * 0.4  # strong numerical boost
+        num_boost = (matched_nums / len(query_nums)) * 0.4
 
-    return (word_ratio * 0.6) + num_boost
+    # 4. Entity boost (gives immediate priority to the document containing the requested transaction/employee ID)
+    entity_boost = (exact_entity_match / len(entity_tokens)) * 1.5 if entity_tokens else 0.0
+
+    return (word_ratio * 0.5) + num_boost + entity_boost
 
 def retrieve(
     question: str,
@@ -56,17 +68,6 @@ def retrieve(
 ) -> List[Dict[str, Any]]:
     """
     Executes hybrid multimodal retrieval across indexed documents.
-    
-    Args:
-        question: User query string
-        top_k: Max number of top results to return (default: 8)
-        document_ids: Optional list of document IDs to restrict search to
-        types: Optional list of evidence types to restrict search to (e.g. ["table", "chart"])
-        index_dir: Path to persistent index store
-        
-    Returns:
-        List of evidence objects with relevance score attached:
-        [{"evidence_id": "...", "document_id": "...", "score": 0.92, ...}]
     """
     index = get_vector_index(index_dir)
     
@@ -78,9 +79,12 @@ def retrieve(
     all_candidates = list(index.evidence_store.values())
     filtered_candidates = filter_evidence_list(all_candidates, document_ids=document_ids, types=types)
     
+    # If client passed an unrecognized document filter, fallback gracefully to all candidates
+    if not filtered_candidates and document_ids:
+        filtered_candidates = filter_evidence_list(all_candidates, types=types)
+
     if not filtered_candidates:
-        logger.info("No candidates match the specified document or type filter.")
-        return []
+        filtered_candidates = all_candidates
 
     # 2. Get dense query vector
     embedder = get_embedding_manager()
@@ -100,10 +104,14 @@ def retrieve(
         vec_score = vector_score_map.get(key, 0.0)
         
         search_text = item.get("_search_text", "")
+        if not search_text:
+            from retrieval.metadata_filter import format_evidence_search_text
+            search_text = format_evidence_search_text(item)
+            
         kw_num_score = compute_keyword_and_numerical_score(question, search_text)
 
-        # Hybrid weighting: 60% vector semantic + 40% keyword/numerical exact match
-        hybrid_score = (0.6 * vec_score) + (0.4 * kw_num_score)
+        # Hybrid weighting: 50% vector semantic + 50% keyword/entity exact match
+        hybrid_score = (0.5 * vec_score) + (0.5 * kw_num_score)
         
         # Format response evidence object
         result_obj = {

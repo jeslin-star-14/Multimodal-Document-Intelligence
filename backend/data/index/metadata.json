@@ -6698,6 +6698,38 @@
         "col_count": 7
       },
       "_search_text": "Section: Txn ID\nTable Data:\nTxn ID | Date | Account | Product | Qty | Amount | Status\nTX26116 | 16-01-2026 | Western Ghats Logistics | Billing Manager | 24 | Rs. 168,000 | Overdue\nTX26117 | 08-12-2026 | Everest Retail | Analytics Pro | 17 | Rs. 119,000 | Paid\nTX26118 | 01-07-2026 | Pioneer Foods | CRM Lite | 15 | Rs. 112,500 | Overdue\nTX26119 | 23-07-2026 | Western Ghats Motors | Analytics Pro | 21 | Rs. 147,000 | Paid"
+    },
+    "DOC_EE776A_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_EE776A",
+      "document_name": "KMS.docx",
+      "page": 1,
+      "section": "KMS (Karunya Monitoring system)",
+      "type": "text",
+      "text": "KMS (Karunya Monitoring system)\n\nPortals:\n\nAdmin\n\nFaculty\n\nStudent\n\nAdmin:\n\nCan Create Class\n\nAssign a Faculty for that Class\n\nCan see the Faculty Data\n\nAssign Student to the Faculty to the Respective Class\n\nCan see the Student Data\n\nProfile Page can change the Password and Can see the Profile Data\n\nFaculty:\n\nCan Add Student like Admin Student Creation\n\nCan Monitor the Student Screen\n\nCan Control the Whole System like Veyon of the Student System",
+      "table": null,
+      "image_path": "C:\\Karunya\\Hackathon\\Multimodal-Document-Intelligence\\backend\\data\\pages\\DOC_EE776A\\page_1.png",
+      "metadata": {
+        "word_count": 73,
+        "scanned": false
+      },
+      "_search_text": "Section: KMS (Karunya Monitoring system)\nKMS (Karunya Monitoring system)\n\nPortals:\n\nAdmin\n\nFaculty\n\nStudent\n\nAdmin:\n\nCan Create Class\n\nAssign a Faculty for that Class\n\nCan see the Faculty Data\n\nAssign Student to the Faculty to the Respective Class\n\nCan see the Student Data\n\nProfile Page can change the Password and Can see the Profile Data\n\nFaculty:\n\nCan Add Student like Admin Student Creation\n\nCan Monitor the Student Screen\n\nCan Control the Whole System like Veyon of the Student System"
+    },
+    "DOC_EE776A_E002": {
+      "evidence_id": "E002",
+      "document_id": "DOC_EE776A",
+      "document_name": "KMS.docx",
+      "page": 2,
+      "section": "About 60 Screen need to be in the Facult",
+      "type": "text",
+      "text": "About 60 Screen need to be in the Faculty Portal\n\nProfile Page can change the Password and Can see the Profile Data\n\nCan add the Monitoring Class Section and Timing\n\nStudent:\n\nProfile Page can change the Password and Can see the Profile Data\n\nCan monitor the Class Section and Timing\n\nRules:\n\nCannot Able to Switch App for Student When the lab is coming\n\nCopy & Paste will not work",
+      "table": null,
+      "image_path": "C:\\Karunya\\Hackathon\\Multimodal-Document-Intelligence\\backend\\data\\pages\\DOC_EE776A\\page_2.png",
+      "metadata": {
+        "word_count": 69,
+        "scanned": false
+      },
+      "_search_text": "Section: About 60 Screen need to be in the Facult\nAbout 60 Screen need to be in the Faculty Portal\n\nProfile Page can change the Password and Can see the Profile Data\n\nCan add the Monitoring Class Section and Timing\n\nStudent:\n\nProfile Page can change the Password and Can see the Profile Data\n\nCan monitor the Class Section and Timing\n\nRules:\n\nCannot Able to Switch App for Student When the lab is coming\n\nCopy & Paste will not work"
     }
   },
   "keys_list": [
@@ -6779,6 +6811,8 @@
     "DOC_40925D_E027",
     "DOC_40925D_E028",
     "DOC_40925D_E029",
-    "DOC_40925D_E030"
+    "DOC_40925D_E030",
+    "DOC_EE776A_E001",
+    "DOC_EE776A_E002"
   ]
 }

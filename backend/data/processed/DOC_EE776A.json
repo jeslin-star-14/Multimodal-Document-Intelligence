@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "document_id": "DOC_EE776A",
+  "document_name": "KMS.docx",
+  "page_count": 2,
+  "evidence_count": 2,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_EE776A",
+      "document_name": "KMS.docx",
+      "page": 1,
+      "section": "KMS (Karunya Monitoring system)",
+      "type": "text",
+      "text": "KMS (Karunya Monitoring system)\n\nPortals:\n\nAdmin\n\nFaculty\n\nStudent\n\nAdmin:\n\nCan Create Class\n\nAssign a Faculty for that Class\n\nCan see the Faculty Data\n\nAssign Student to the Faculty to the Respective Class\n\nCan see the Student Data\n\nProfile Page can change the Password and Can see the Profile Data\n\nFaculty:\n\nCan Add Student like Admin Student Creation\n\nCan Monitor the Student Screen\n\nCan Control the Whole System like Veyon of the Student System",
+      "table": null,
+      "image_path": "C:\\Karunya\\Hackathon\\Multimodal-Document-Intelligence\\backend\\data\\pages\\DOC_EE776A\\page_1.png",
+      "metadata": {
+        "word_count": 73,
+        "scanned": false
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_EE776A",
+      "document_name": "KMS.docx",
+      "page": 2,
+      "section": "About 60 Screen need to be in the Facult",
+      "type": "text",
+      "text": "About 60 Screen need to be in the Faculty Portal\n\nProfile Page can change the Password and Can see the Profile Data\n\nCan add the Monitoring Class Section and Timing\n\nStudent:\n\nProfile Page can change the Password and Can see the Profile Data\n\nCan monitor the Class Section and Timing\n\nRules:\n\nCannot Able to Switch App for Student When the lab is coming\n\nCopy & Paste will not work",
+      "table": null,
+      "image_path": "C:\\Karunya\\Hackathon\\Multimodal-Document-Intelligence\\backend\\data\\pages\\DOC_EE776A\\page_2.png",
+      "metadata": {
+        "word_count": 69,
+        "scanned": false
+      }
+    }
+  ]
+}

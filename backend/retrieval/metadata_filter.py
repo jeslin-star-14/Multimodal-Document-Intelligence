@@ -19,6 +19,8 @@ def format_evidence_search_text(evidence_dict: Dict[str, Any]) -> str:
     doc_name = evidence_dict.get("document_name") or ""
     
     parts = []
+    if doc_name:
+        parts.append(f"Document: {doc_name}")
     if section:
         parts.append(f"Section: {section}")
 

@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 from PIL import Image, ImageDraw, ImageFont
 
-from schemas.evidence import Evidence, DocumentProcessResponse, TableData, EvidenceType
+from schemas.evidence import Evidence, DocumentProcessResponse, TableData
 from ingestion.pipeline import process_document as process_pdf_document
 
 logger = logging.getLogger(__name__)
@@ -137,22 +137,39 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
     os.makedirs(pages_dir, exist_ok=True)
     os.makedirs(processed_dir, exist_ok=True)
 
-    doc = docx.Document(docx_path)
-    
-    # Extract all paragraphs and tables
-    all_paras = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
-    
+    all_paras = []
     all_tables_data = []
-    for t_idx, table in enumerate(doc.tables):
-        if not table.rows:
-            continue
-        headers = [c.text.strip() for c in table.rows[0].cells]
-        rows = []
-        for row in table.rows[1:]:
-            r_vals = [c.text.strip() for c in row.cells]
-            if any(r_vals):
-                rows.append(r_vals)
-        all_tables_data.append({"headers": headers, "rows": rows, "table_id": f"T{t_idx+1}"})
+
+    try:
+        import docx
+        doc = docx.Document(docx_path)
+        all_paras = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
+        for t_idx, table in enumerate(doc.tables):
+            if not table.rows:
+                continue
+            headers = [c.text.strip() for c in table.rows[0].cells]
+            rows = []
+            for row in table.rows[1:]:
+                r_vals = [c.text.strip() for c in row.cells]
+                if any(r_vals):
+                    rows.append(r_vals)
+            all_tables_data.append({"headers": headers, "rows": rows, "table_id": f"T{t_idx+1}"})
+    except Exception as e:
+        logger.warning(f"python-docx reading issue: {e}, attempting zipfile XML fallback.")
+        try:
+            import zipfile
+            import xml.etree.ElementTree as ET
+            with zipfile.ZipFile(docx_path) as z:
+                xml_content = z.read('word/document.xml')
+                tree = ET.fromstring(xml_content)
+                text_parts = []
+                for node in tree.iter():
+                    if node.tag.endswith('t') and node.text:
+                        text_parts.append(node.text.strip())
+                if text_parts:
+                    all_paras = [" ".join(text_parts[i:i+10]) for i in range(0, len(text_parts), 10)]
+        except Exception as ex2:
+            logger.error(f"Docx XML fallback also failed: {ex2}")
 
     # Divide paragraphs into virtual pages (approx 15-20 paragraphs per page)
     PAGE_SIZE = 16
@@ -190,7 +207,7 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
             document_name=doc_name,
             page=page_num,
             section=section_name,
-            type=EvidenceType.TEXT,
+            type="text",
             text=page_text,
             table=None,
             image_path=page_img_path,
@@ -206,7 +223,7 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
                 document_name=doc_name,
                 page=page_num,
                 section=f"Table: {', '.join(t_data['headers'][:3])}",
-                type=EvidenceType.TABLE,
+                type="table",
                 text=f"Table Data: Headers: {' | '.join(t_data['headers'])}\nRows: {len(t_data['rows'])} records",
                 table=TableData(headers=t_data["headers"], rows=t_data["rows"]),
                 image_path=page_img_path,
@@ -287,7 +304,7 @@ def process_pptx_file(pptx_path: str, output_base_dir: str = "data") -> Dict[str
             document_name=doc_name,
             page=page_num,
             section=slide_title,
-            type=EvidenceType.TEXT,
+            type="text",
             text="\n".join(slide_texts),
             table=None,
             image_path=page_img_path,
@@ -302,7 +319,7 @@ def process_pptx_file(pptx_path: str, output_base_dir: str = "data") -> Dict[str
                 document_name=doc_name,
                 page=page_num,
                 section=f"{slide_title} Table",
-                type=EvidenceType.TABLE,
+                type="table",
                 text=f"Table: {' | '.join(tab['headers'])}",
                 table=TableData(headers=tab["headers"], rows=tab["rows"]),
                 image_path=page_img_path,
@@ -363,7 +380,7 @@ def process_text_file(text_path: str, output_base_dir: str = "data") -> Dict[str
             document_name=doc_name,
             page=page_num,
             section=p_lines[0][:40] if p_lines else f"Page {page_num}",
-            type=EvidenceType.TEXT,
+            type="text",
             text="\n".join(p_lines),
             table=None,
             image_path=page_img_path,

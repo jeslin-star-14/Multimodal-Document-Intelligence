@@ -2,19 +2,39 @@
 node_modules/
 frontend/node_modules/
 frontend/dist/
+dist/
+.vite/
+*.local
 
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyd
+*.pyo
+*.so
+*.db
+*.sqlite
+*.sqlite3
 .venv/
 venv/
 ENV/
+env/
 
 # Environment Variables
 .env
 .env.local
 
-# OS
+# Data uploads and temporary crops
+backend/data/uploads/*
+!backend/data/uploads/.gitkeep
+backend/data/crops/*
+!backend/data/crops/.gitkeep
+backend/data/pages/*
+!backend/data/pages/.gitkeep
+
+# IDE / OS
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db

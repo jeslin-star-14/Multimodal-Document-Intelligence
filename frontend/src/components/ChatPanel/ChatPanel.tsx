@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import type { ChatMessage as MessageType, Citation, ConflictRecord, LanguageCode } from '../../types';
+import type { ChatMessage as MessageType, Citation, ConflictRecord, LanguageCode, ChatAttachment } from '../../types';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 
@@ -8,7 +8,10 @@ interface ChatPanelProps {
   isLoading: boolean;
   selectedCitation: Citation | null;
   onCitationClick: (citation: Citation) => void;
-  onSendMessage: (text: string) => void;
+  onSendMessage: (text: string, attachments?: ChatAttachment[]) => void;
+  onFileUpload?: (files: FileList | File[]) => void;
+  stagedAttachments?: ChatAttachment[];
+  onRemoveAttachment?: (id: string) => void;
   onOpenConflicts: (conflicts: ConflictRecord[]) => void;
   language: LanguageCode;
   selectedDocName?: string;
@@ -20,6 +23,9 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
   selectedCitation,
   onCitationClick,
   onSendMessage,
+  onFileUpload,
+  stagedAttachments = [],
+  onRemoveAttachment,
   onOpenConflicts,
   language,
   selectedDocName,
@@ -28,10 +34,10 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isLoading]);
+  }, [messages, isLoading, stagedAttachments.length]);
 
   return (
-    <div className="h-full flex flex-col bg-white overflow-hidden">
+    <div className="h-full flex flex-col bg-white overflow-hidden relative">
       {/* Scrollable Conversation Stream */}
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
         {messages.map((msg) => (
@@ -58,6 +64,9 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       {/* Floating Bottom Input Bar */}
       <ChatInput
         onSendMessage={onSendMessage}
+        onFileUpload={onFileUpload}
+        stagedAttachments={stagedAttachments}
+        onRemoveAttachment={onRemoveAttachment}
         isLoading={isLoading}
         language={language}
         selectedDocName={selectedDocName}

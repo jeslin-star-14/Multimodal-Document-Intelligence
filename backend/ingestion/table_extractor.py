@@ -1,13 +1,16 @@
 import logging
 from typing import List, Dict, Any, Optional
-import fitz  # PyMuPDF
 
 logger = logging.getLogger(__name__)
 
+try:
+    import fitz
+    HAS_FITZ = True
+except ImportError:
+    fitz = None
+    HAS_FITZ = False
+
 def extract_tables_pdfplumber(pdf_path: str, page_number_1based: int) -> List[Dict[str, Any]]:
-    """
-    Attempts table extraction using pdfplumber for a specific 1-indexed page.
-    """
     tables_data = []
     try:
         import pdfplumber
@@ -18,28 +21,22 @@ def extract_tables_pdfplumber(pdf_path: str, page_number_1based: int) -> List[Di
                 for raw_table in extracted_tables:
                     if not raw_table or len(raw_table) < 1:
                         continue
-                    # First non-empty row as header candidate
                     headers = [str(cell).strip() if cell is not None else "" for cell in raw_table[0]]
                     rows = []
                     for r in raw_table[1:]:
                         row_cells = [str(cell).strip() if cell is not None else "" for cell in r]
-                        if any(row_cells):  # ignore empty rows
+                        if any(row_cells):
                             rows.append(row_cells)
-                    
                     if headers or rows:
-                        tables_data.append({
-                            "headers": headers,
-                            "rows": rows
-                        })
+                        tables_data.append({"headers": headers, "rows": rows})
     except Exception as e:
-        logger.warning(f"pdfplumber table extraction failed for page {page_number_1based}: {e}")
+        logger.debug(f"pdfplumber table extraction skipped: {e}")
     return tables_data
 
-def extract_tables_fitz(page: fitz.Page) -> List[Dict[str, Any]]:
-    """
-    Fallback table extraction using PyMuPDF (fitz) built-in table finder.
-    """
+def extract_tables_fitz(page: Any) -> List[Dict[str, Any]]:
     tables_data = []
+    if not HAS_FITZ or not hasattr(page, "find_tables"):
+        return tables_data
     try:
         tabs = page.find_tables()
         for tab in tabs:
@@ -53,25 +50,15 @@ def extract_tables_fitz(page: fitz.Page) -> List[Dict[str, Any]]:
                 if any(row_cells):
                     rows.append(row_cells)
             if headers or rows:
-                tables_data.append({
-                    "headers": headers,
-                    "rows": rows
-                })
+                tables_data.append({"headers": headers, "rows": rows})
     except Exception as e:
         logger.debug(f"PyMuPDF table extraction exception: {e}")
     return tables_data
 
-def extract_tables_from_page(pdf_path: str, page: fitz.Page, page_number_1based: int) -> List[Dict[str, Any]]:
-    """
-    Extracts tables from a PDF page using pdfplumber with PyMuPDF fallback.
-    Returns list of table objects: [{"headers": [...], "rows": [[...]]}]
-    """
-    # Try pdfplumber first
+def extract_tables_from_page(pdf_path: str, page: Any, page_number_1based: int) -> List[Dict[str, Any]]:
     tables = extract_tables_pdfplumber(pdf_path, page_number_1based)
     if not tables:
-        # Fallback to PyMuPDF find_tables
         tables = extract_tables_fitz(page)
-    
     if tables:
         logger.info(f"Extracted {len(tables)} table(s) on page {page_number_1based}.")
     return tables

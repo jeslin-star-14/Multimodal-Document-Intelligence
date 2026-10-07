@@ -1,24 +1,20 @@
 import re
 import logging
 from typing import List, Literal, Dict, Any
-import fitz  # PyMuPDF
 
 logger = logging.getLogger(__name__)
 
+try:
+    import fitz
+    HAS_FITZ = True
+except ImportError:
+    fitz = None
+    HAS_FITZ = False
+
 VisualContentType = Literal["chart", "graph", "image", "table"]
 
-def detect_visual_content(page: fitz.Page, extracted_text: str, has_tables: bool) -> List[Dict[str, Any]]:
-    """
-    Detects likely visual content such as charts, graphs, images, or tables on a page.
-    Uses simple heuristics based on PDF images, vector graphics drawings, and text keywords.
-    
-    Returns:
-        List of dicts representing visual content detections:
-        [{"type": "chart" | "graph" | "image" | "table", "confidence": float, "details": str}]
-    """
+def detect_visual_content(page: Any, extracted_text: str, has_tables: bool) -> List[Dict[str, Any]]:
     results = []
-    
-    # 1. If tables were detected by table_extractor
     if has_tables:
         results.append({
             "type": "table",
@@ -26,21 +22,24 @@ def detect_visual_content(page: fitz.Page, extracted_text: str, has_tables: bool
             "details": "Table structures detected"
         })
 
-    # 2. Check bitmap images embedded in the page
-    images = page.get_images(full=True)
-    num_images = len(images)
-
-    # 3. Check vector drawings (often used to render SVG-like charts, bar graphs, pie charts)
-    drawings = page.get_drawings()
-    num_drawings = len(drawings)
+    num_images = 0
+    num_drawings = 0
+    if HAS_FITZ and hasattr(page, "get_images"):
+        try:
+            num_images = len(page.get_images(full=True))
+            num_drawings = len(page.get_drawings())
+        except Exception:
+            pass
+    elif hasattr(page, "images"):
+        try:
+            num_images = len(page.images)
+        except Exception:
+            pass
 
     text_lower = extracted_text.lower()
-    
-    # Keyword indicators
     has_chart_keyword = any(k in text_lower for k in ["chart", "figure", "fig.", "plot", "graph", "diagram", "trend", "percentage", "axis"])
     has_graph_keyword = any(k in text_lower for k in ["graph", "network", "workflow", "flowchart", "node"])
 
-    # Heavy vector drawing density usually indicates charts/graphs rendered directly as PDF paths
     if num_drawings > 35 or (num_drawings > 15 and has_chart_keyword):
         detected_type: VisualContentType = "graph" if has_graph_keyword else "chart"
         results.append({
@@ -49,7 +48,6 @@ def detect_visual_content(page: fitz.Page, extracted_text: str, has_tables: bool
             "details": f"High vector path density ({num_drawings} paths) with chart keywords"
         })
     elif num_images > 0:
-        # Check if text mentions chart/graph
         if has_chart_keyword:
             results.append({
                 "type": "chart",

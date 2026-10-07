@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PanelRightClose } from 'lucide-react';
 import type { DocumentChunk, BoundingBox, DocumentItem, LanguageCode } from '../../types';
 import { PageViewer } from './PageViewer';
 
@@ -12,6 +13,7 @@ interface EvidencePanelProps {
   chunks: DocumentChunk[];
   activeChunkId?: string;
   onSelectChunk: (chunk: DocumentChunk) => void;
+  onClosePanel?: () => void;
   language: LanguageCode;
 }
 
@@ -22,6 +24,7 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
   boundingBoxes,
   activeBoxId,
   onBoxClick,
+  onClosePanel,
   language,
 }) => {
   const [activeTab, setActiveTab] = useState<'page' | 'data' | 'text'>('page');
@@ -35,7 +38,7 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
   const docTitle = activeDocument?.name || 'Annual Report 2025';
 
   return (
-    <div className="h-full flex flex-col bg-white border-l border-slate-200/80 p-6 overflow-y-auto">
+    <div className="h-full flex flex-col bg-white p-6 overflow-y-auto relative select-none">
       {/* Top Header */}
       <div className="flex items-start justify-between pb-4">
         <div>
@@ -47,11 +50,24 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
           </p>
         </div>
 
-        {/* Top Right Chunk Type Badge */}
-        <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-medium border border-[#0d5c4d] text-[#0d5c4d] bg-[#eaf5f2]/40">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#0d5c4d]" />
-          <span>Chart</span>
-        </span>
+        {/* Top Right Controls: Chunk Type Badge + Hide button */}
+        <div className="flex items-center space-x-2">
+          <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-medium border border-[#0d5c4d] text-[#0d5c4d] bg-[#eaf5f2]/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0d5c4d]" />
+            <span>Chart</span>
+          </span>
+
+          {onClosePanel && (
+            <button
+              onClick={onClosePanel}
+              className="p-1 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer ml-1"
+              title="Hide evidence panel"
+              aria-label="Hide evidence panel"
+            >
+              <PanelRightClose className="w-4 h-4" />
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Tabs */}

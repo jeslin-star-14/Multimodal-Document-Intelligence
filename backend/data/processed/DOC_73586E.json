@@ -1,0 +1,745 @@
+{
+  "success": true,
+  "document_id": "DOC_73586E",
+  "document_name": "URK25CS1043_Practicum5.pdf",
+  "page_count": 9,
+  "evidence_count": 24,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 1,
+      "section": "1. Follow ethical practices in AI model development and deployment.",
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 1 of 9\n\nPracticum No.5\n\n\n\n\n\n\n\n           Date:17/08/2026\nImplementation of Constraints with Backtracking Search\n\nI\nPractical Significance\nConstraint satisfaction problems (CSPs) involve variables, their domains, and constraints.\nBacktracking search is a standard technique for solving CSPs efficiently. This practicum introduces\nstudents to backtracking algorithms by solving puzzles like Sudoku or map coloring.\nIndustry-Relevant Job Positions:\n●\nConstraint Programming Engineer\n●\nOptimization Analyst\n●\nAI Developer\n●\nScheduling and Planning Engineer\n\nII\nCompetency and Industry-Specific Practical Skills\nThis practicum exercise is expected to develop the following skills for the industry-identified\ncompetency.\n● Use the principles of artificial intelligence to solve complex engineering problems.\na) Apply logical reasoning and knowledge representation methods for building rule-based\nsystems and intelligent agents. (Cognitive Domain)\nb)  Select and implement suitable search algorithms (uninformed and informed) for problem-\nsolving in intelligent systems. (Cognitive Domain)\nc) Formulate AI-based solutions to real-world problems using appropriate AI techniques.\n(Cognitive Domain)\nd) Apply AI techniques to domain-specific areas like healthcare, robotics, finance, and\nautonomous systems. (Cognitive Domain)\n\nIII\nRelevant CO(s)\nCO2.  Develop uninformed and informed search techniques for AI problem-solving tasks.\n\nIV\nPractical Outcome (PrO)\n● Develop a backtracking search algorithm for the given constraint satisfaction problem\n\nV\nRelated ADO(s)\n1. Follow ethical practices in AI model development and deployment.\n2. Follow adaptability to emerging AI techniques and technologies.\n3. Follow a structured approach to AI driven decision making.\n4. Follow a commitment to continuous learning.\n\nVI\nMinimum Underpinning Theory\nCSPs consist of a set of variables with finite domains and a set of constraints that restrict variable\ncombinations. Backtracking search systematically explores assignments, abandoning those that violate\nconstraints. Improvements include forward checking and heuristics like MRV (minimum remaining\nvalue).\nConstraint Satisfaction Problems (CSPs) are fundamental in AI and involve finding values for a\nset of variables that satisfy specific constraints. A backtracking search algorithm is a depth-first search\ntechnique where variables are assigned values one at a time, and assignments that violate constraints are\nundone (backtracked).",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2730
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 1,
+      "section": "1. Follow ethical practices in AI model development and deployment.",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_1.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 2,
+      "section": "VII",
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 2 of 9\n\nIn the map coloring problem, each region is a variable, and the domain is a set of available colors.\nThe constraint is that no two adjacent regions can have the same color. Backtracking tries color\nassignments and retreats when a conflict is detected.\nKey Concepts:\n●\nVariables: Entities to be assigned values (e.g., states on a map).\n●\nDomains: Possible values for each variable (e.g., red, green, blue).\n●\nConstraints:\nRules\nto\nrestrict\ncombinations\nof\nvalues\n(e.g.,\nneighboring states ≠ same color).\n●\nBacktracking: Recursive search that abandons invalid paths and explores alternatives\n\n\nVII\nPracticum Set-up/Circuit Diagram/Algorithm/Flowchart\nAlgorithm:\nStep 1: If all variables have been assigned, return the current assignment as the solution.\nStep 2: Select an unassigned variable.\nStep 3: For each value in the domain of the selected variable:\n          a. Check if assigning this value violates any constraint.\n          b. If valid, assign the value and recursively call backtracking with updated state.\n          c. If recursion returns a solution, return it.\n          d. If no valid value found, remove assignment and backtrack.\nStep 4: If no assignment leads to a solution, return failure (no solution).\nPython Sample Code:\nExample: Backtracking for map coloring (4-color problem).\ndef is_valid(state, variable, value, constraints):\n    for neighbor in constraints[variable]:\n        if state.get(neighbor) == value:\n            return False\n    return True\n\ndef backtrack(state, variables, domains, constraints):\n    if len(state) == len(variables):\n        return state\n\n    var = [v for v in variables if v not in state][0]\n    for value in domains[var]:\n        if is_valid(state, var, value, constraints):\n            state[var] = value\n            result = backtrack(state.copy(), variables, domains, constraints)\n            if result:\n                return result\n            del state[var]\n    return None",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2200
+      }
+    },
+    {
+      "evidence_id": "E004",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 2,
+      "section": "VII",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_2.png",
+      "metadata": {
+        "confidence": 0.8,
+        "detection_details": "Embedded image with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E005",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 3,
+      "section": null,
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 3 of 9\n\n# Variables and constraints for 4-color map coloring\nvariables = ['WA', 'NT', 'SA', 'Q', 'NSW', 'V', 'T']\ndomains = {v: ['red', 'green', 'blue'] for v in variables}\nconstraints = {\n    'WA': ['NT', 'SA'],\n    'NT': ['WA', 'SA', 'Q'],\n    'SA': ['WA', 'NT', 'Q', 'NSW', 'V'],\n    'Q': ['NT', 'SA', 'NSW'],\n    'NSW': ['Q', 'SA', 'V'],\n    'V': ['SA', 'NSW'],\n    'T': []\n}\n\nsolution = backtrack({}, variables, domains, constraints)\nprint(\"Solution:\", solution)\nScenario\nA college department needs to prepare an examination timetable for five subjects:\n{AI,ML,DBMS,OS,CN}\nThere are only three available time slots:\n{T1,T2,T3}\nSome students have registered for multiple subjects. Therefore, the following subject pairs cannot be\nscheduled at the same time:\n\nAI and ML\n\nAI and DBMS\n\nML and OS\n\nDBMS and CN\n\nOS and CN\nYour Task\nImplement this problem as a Constraint Satisfaction Problem (CSP) and find a valid timetable.\n1. Variables – Subjects to be scheduled\n2. Domains – Available time slots\n3. Constraints – Conflicting subjects cannot have the same slot\n4. Solution – Assign a time slot to every subject without violating any constraint",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_3.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1411
+      }
+    },
+    {
+      "evidence_id": "E006",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 3,
+      "section": null,
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_3.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      }
+    },
+    {
+      "evidence_id": "E007",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 4,
+      "section": null,
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 4 of 9\n\nCode:\nsubjects = [\"AI\", \"ML\", \"DBMS\", \"OS\", \"CN\"]\ntime_slots = [\"T1\", \"T2\", \"T3\"]\n\nconflicts = [\n    (\"AI\", \"ML\"),\n    (\"AI\", \"DBMS\"),\n    (\"ML\", \"OS\"),\n    (\"DBMS\", \"CN\"),\n    (\"OS\", \"CN\")\n]\n\ndef is_valid(subject, slot, assignment):\n    for a, b in conflicts:\n        if subject == a and b in assignment and assignment[b] == slot:\n            return False\n        if subject == b and a in assignment and assignment[a] == slot:\n            return False\n    return True\n\ndef backtracking(assignment):\n    if len(assignment) == len(subjects):\n        return assignment\n\n    for subject in subjects:\n        if subject not in assignment:\n            for slot in time_slots:\n                if is_valid(subject, slot, assignment):\n                    assignment[subject] = slot\n\n                    result = backtracking(assignment)\n\n                    if result:\n                        return result\n\n                    del assignment[subject]\n\n            return None\n\nsolution = backtracking({})\n\nif solution:\n    print(\"Valid Examination Timetable:\")\n    for subject in subjects:\n        print(subject, \"->\", solution[subject])\nelse:\n    print(\"No valid timetable found.\")\n\nOutput:",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_4.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1453
+      }
+    },
+    {
+      "evidence_id": "E008",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 4,
+      "section": null,
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_4.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (46 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E009",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 5,
+      "section": "VIII",
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 5 of 9\n\nVIII\nResources Required\n\nS.\nNo\n.\nName of Resource\nSuggested Broad Specification\nQuantity\n1 Computer System\nIntel i5 or higher, 8 GB RAM, 256 GB SSD, Python 3.x\ninstalled\n1 per\nstudent\n2\nPython\nProgramming\nEnvironment\nPython 3.x with standard libraries (NumPy, time module)\nInstalled\n3\nJupyter Notebook\nor IDE (e.g.,\nVSCode,\nPyCharm)\nFor writing and running Python code\n1 per\nstudent\n\nIX\nSafety Precautions\na) Avoid sharing login credentials.\nb) Ensure antivirus software and firewalls are updated.\nc) Keep eatables away from computers.\nd) Follow Institutional laboratory policies.\ne) Avoid storing confidential data in lab computers.\n\nX\nProcedure\n1. Interpret the algorithm in Section VII to understand the concept of solving constraints with\nbacktracking search.\n2.  Load the CSP dataset containing variables, domains, and constraints into the processing\nenvironment (e.g., Jupyter Notebook, Google Colab, or preferred IDE).\n3. Define the CSP variables, their domains, and the constraints for the specific problem (e.g., map\ncoloring).\n4. Implement the backtracking search algorithm to assign values to variables while respecting the\nconstraints.\n5. Track the search process, backtracking when a conflict is detected and exploring alternative\nassignments.\n6. Measure the execution time of the backtracking algorithm using Python’s time module to assess\nperformance.\n7. Analyze the efficiency of the algorithm by varying the number of variables, domains, and\nconstraints.\n8. Visualize the solutions found using Matplotlib or Seaborn to represent variable assignments and\nconstraint satisfaction.\n9. Evaluate different scenarios, such as changing variable domains or adding/removing constraints,\nto understand variations in outcomes.\n10. Optimize the implementation by improving heuristics, like forward checking or minimum\nremaining value (MRV), to enhance search efficiency.\n11. Document the step-by-step process, observations, and key findings, including performance\nanalysis, in a structured format.\n12. Prepare a summary report detailing the solution process, execution time, computational\nefficiency, and graphical representations.\n13. Close all open files and release system resources to ensure optimal memory management.",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_5.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2496
+      }
+    },
+    {
+      "evidence_id": "E010",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 5,
+      "section": "VIII",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "S.\nNo\n.",
+          "Name of Resource",
+          "Suggested Broad Specification",
+          "Quantity"
+        ],
+        "rows": [
+          [
+            "1",
+            "Computer System",
+            "Intel i5 or higher, 8 GB RAM, 256 GB SSD, Python 3.x\ninstalled",
+            "1 per\nstudent"
+          ],
+          [
+            "2",
+            "Python\nProgramming\nEnvironment",
+            "Python 3.x with standard libraries (NumPy, time module)",
+            "Installed"
+          ],
+          [
+            "3",
+            "Jupyter Notebook\nor IDE (e.g.,\nVSCode,\nPyCharm)",
+            "For writing and running Python code",
+            "1 per\nstudent"
+          ]
+        ]
+      },
+      "image_path": "backend/data/pages/DOC_73586E/page_5.png",
+      "metadata": {
+        "row_count": 3,
+        "col_count": 4
+      }
+    },
+    {
+      "evidence_id": "E011",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 5,
+      "section": "VIII",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_5.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (39 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E012",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 6,
+      "section": "S.No.",
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 6 of 9\n\nXI\nActual Resources Used\n\nS.No.\nName of Resource\nBroad Specifications /\nMake Details\nQuantity\nRemarks\n1\nOperating System\nWindows 11\n1\nUsed for running the\nprogram\n2\nProgramming\nLanguage\nPython 3.14\n1\nUsed to implement the\nCSP and backtracking\nalgorithm\n3\nSoftware Development\nKit\nPython Interpreter\n1\nRequired to execute the\nPython program\n4\nLibraries\nPython Standard\nLibraries\n1\nNo external libraries\nwere required\n5\nGraphics/Animation\nTool\nNot used\n-\nNot required for this\nproblem\n6\nFront-end Tool\nNot used\n-\nNot required\n7\nBack-end Tool\nNot used\n-\nNot required\n8\nVirtual Lab\nNot used\n-\nNot required\n9\nSpecific Hardware\nComputer/Laptop\n1\nUsed for program\nexecution\n10\nSimulation/Emulation\nTool\nPython IDLE / VS\nCode\n1\nUsed to write and run the\nprogram\n\nXII\nActual Procedure Followed\n\n1. The given examination timetable problem was identified as a Constraint Satisfaction Problem\n(CSP).\n2. The five subjects AI, ML, DBMS, OS and CN were taken as the variables.\n3. The available time slots T1, T2 and T3 were considered as the domains for each subject.\n4. The conflicting subject pairs were defined as constraints. A conflicting pair was not allowed to\nhave the same time slot.\n5. The is_valid() function was used to check whether assigning a particular time slot to a subject\nwould violate any of the given constraints.\n6. The backtracking() function was implemented to assign time slots one by one.\n7. If a valid time slot was found, the subject was assigned that slot and the algorithm continued with\nthe next subject.\n8. If an assignment caused a conflict and no other valid choice was available, the previous\nassignment was removed and the algorithm tried another time slot.\n9. The process was continued until all five subjects received a valid time slot.\n10. The final timetable was displayed after a valid assignment was found.\n\nXIII\nResults/Obervations\n\nThe program successfully generated a valid examination timetable using the backtracking search\ntechnique.\nThe obtained timetable was:\nSubject\nTime Slot\nAI\nT1\nML\nT2\nDBMS\nT2\nOS\nT1\nCN\nT3\nThe timetable satisfies all the given constraints:\n\nAI and ML are scheduled at different times.",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_6.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2411
+      }
+    },
+    {
+      "evidence_id": "E013",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 6,
+      "section": "S.No.",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "S.No.",
+          "Name of Resource",
+          "Broad Specifications /\nMake Details",
+          "Quantity",
+          "Remarks"
+        ],
+        "rows": [
+          [
+            "1",
+            "Operating System",
+            "Windows 11",
+            "1",
+            "Used for running the\nprogram"
+          ],
+          [
+            "2",
+            "Programming\nLanguage",
+            "Python 3.14",
+            "1",
+            "Used to implement the\nCSP and backtracking\nalgorithm"
+          ],
+          [
+            "3",
+            "Software Development\nKit",
+            "Python Interpreter",
+            "1",
+            "Required to execute the\nPython program"
+          ],
+          [
+            "4",
+            "Libraries",
+            "Python Standard\nLibraries",
+            "1",
+            "No external libraries\nwere required"
+          ],
+          [
+            "5",
+            "Graphics/Animation\nTool",
+            "Not used",
+            "-",
+            "Not required for this\nproblem"
+          ],
+          [
+            "6",
+            "Front-end Tool",
+            "Not used",
+            "-",
+            "Not required"
+          ],
+          [
+            "7",
+            "Back-end Tool",
+            "Not used",
+            "-",
+            "Not required"
+          ],
+          [
+            "8",
+            "Virtual Lab",
+            "Not used",
+            "-",
+            "Not required"
+          ],
+          [
+            "9",
+            "Specific Hardware",
+            "Computer/Laptop",
+            "1",
+            "Used for program\nexecution"
+          ],
+          [
+            "10",
+            "Simulation/Emulation\nTool",
+            "Python IDLE / VS\nCode",
+            "1",
+            "Used to write and run the\nprogram"
+          ]
+        ]
+      },
+      "image_path": "backend/data/pages/DOC_73586E/page_6.png",
+      "metadata": {
+        "row_count": 10,
+        "col_count": 5
+      }
+    },
+    {
+      "evidence_id": "E014",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 6,
+      "section": "S.No.",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Subject",
+          "Time Slot"
+        ],
+        "rows": [
+          [
+            "AI",
+            "T1"
+          ],
+          [
+            "ML",
+            "T2"
+          ],
+          [
+            "DBMS",
+            "T2"
+          ],
+          [
+            "OS",
+            "T1"
+          ],
+          [
+            "CN",
+            "T3"
+          ]
+        ]
+      },
+      "image_path": "backend/data/pages/DOC_73586E/page_6.png",
+      "metadata": {
+        "row_count": 5,
+        "col_count": 2
+      }
+    },
+    {
+      "evidence_id": "E015",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 6,
+      "section": "S.No.",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_6.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (67 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E016",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 7,
+      "section": "XIV",
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 7 of 9\n\n\nAI and DBMS are scheduled at different times.\n\nML and OS are scheduled at different times.\n\nDBMS and CN are scheduled at different times.\n\nOS and CN are scheduled at different times.\nTherefore, no conflicting subjects are scheduled in the same time slot.\n\nXIV\nResults/Observations\n\nThe backtracking algorithm was able to find a valid timetable without violating any of the\nconstraints. The program assigns a time slot to a subject only after checking it against the subjects\nthat have already been assigned.\nThe main observation was that backtracking helps avoid invalid schedules. Whenever a selected\ntime slot would create a conflict, that assignment is rejected and another available time slot is\ntried.\nIn this problem, three time slots were sufficient to schedule all five subjects while satisfying the\ngiven constraints. The solution demonstrates how a real-world scheduling problem can be\nrepresented and solved using a CSP.\n\nXV\nInterpretation of Results\n\nThe result shows that the examination timetable can be successfully represented as a Constraint\nSatisfaction Problem. Each subject acts as a variable, while T1, T2 and T3 form the possible\nvalues in its domain.\nThe constraints ensure that students who have registered for multiple subjects do not have\nexaminations at the same time. The backtracking search systematically tries possible assignments\nand removes an assignment whenever it leads to a conflict.\nThus, the experiment demonstrates that backtracking is a suitable technique for solving small\nscheduling problems where different conditions must be satisfied simultaneously.\n\nXVI\n Conclusions\n\nThe examination timetable problem was successfully implemented as a Constraint Satisfaction\nProblem using Python. A backtracking search algorithm was used to assign time slots to all five\nsubjects while satisfying the given constraints.\nThe program produced a valid timetable in which no conflicting subjects were assigned the same\ntime slot. Through this practicum, the working of variables, domains, constraints and\nbacktracking was understood practically.\nThe experiment also showed how backtracking can be applied to real-world problems such as\nexamination scheduling, where finding a valid combination of assignments is important.\n\nXVII  Suggested Practicum Related Questions:\nNote: Below given are a few sample questions for reference. Teachers must design more such questions\nin order to ensure the achievement of pre-determined course outcome.\n1. What is the backtracking search technique, and how does it work in solving CSPs?\n2. How do you choose the next variable to assign a value in the backtracking algorithm, and\nwhy is this choice important?\n3. How does backtracking handle constraints in a CSP, and how does it ensure that no\ninvalid assignments are made?\n4. Why is backtracking considered a depth-first search technique, and how does recursion\nplay a role in its execution?\n5. What role do forward checking and heuristics like the Minimum Remaining Values\n(MRV) play in improving the efficiency of backtracking in CSPs?\n6. In the context of map coloring, how does the backtracking algorithm ensure that adjacent\nregions are assigned different colors?\n7. What are some of the potential limitations or inefficiencies of using backtracking search\nfor large-scale CSPs with many variables?",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_7.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 3592
+      }
+    },
+    {
+      "evidence_id": "E017",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 7,
+      "section": "XIV",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_7.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (1 image(s))"
+      }
+    },
+    {
+      "evidence_id": "E018",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 8,
+      "section": "10 Submitting the Report on time",
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 8 of 9\n\n8. How does the backtracking algorithm backtrack when a constraint violation is detected,\nand what does it mean to \"undo\" an assignment?\n9. How would you optimize backtracking to handle CSPs that involve continuous domains\nor complex constraints?\n10. What are some alternative algorithms to backtracking for solving CSPs, and how do they\ncompare in terms of efficiency?\n11. How would you extend the backtracking algorithm to handle problems like Sudoku or\nscheduling with complex constraints?\n12. What role do data structures like constraint graphs or arc-consistency algorithms play in\nimproving the backtracking search for CSPs?\n13. How does the backtracking algorithm handle different types of constraints (e.g., unary,\nbinary, and higher-order constraints)?\n14. In practical applications, how do you decide whether backtracking is the right approach\nfor a given CSP problem?\n15. What are some real-world examples where backtracking is applied to solve constraint\nsatisfaction problems, and what challenges might arise in these cases?\n\nXVIII References / Suggestions for further reading\nOnline Tutorials & Articles\na) GeeksforGeeks - Backtracking Algorithm- https://www.geeksforgeeks.org/backtracking-\nalgorithms/\nb) GeeksforGeeks - Map Coloring Problem using Backtracking-\nhttps://www.geeksforgeeks.org/map-coloring-problem-using-backtracking/\n\nInteractive Platforms for Practicing\na) LeetCode - Backtracking Problems- https://leetcode.com/tag/backtracking/\nb) HackerRank - Backtracking and CSP Problems\nhttps://www.hackerrank.com/domains/tutorials/10-days-of-backtracking\nVideo Lectures & Courses\na) NPTEL - Artificial Intelligence: Search Methods for Problem Solving (CSP Lecture)-\nhttps://nptel.ac.in/courses/106106126\n\nXIX\nSuggested Assessment Scheme\nThe given performance indicators should serve as a guideline for assessment regarding process and\nproduct-related marks.\nNote: The weightage for the process-related skills and product-related skills will change depending upon\nthe PrO, COs, and competency related to the concerned course.\n\nPerformance indicators\nMax. Marks\nMarks\nObtained\nProcess related skills: 18 Marks - 60%\n\n\n1\nUnderstanding\nof\nCSP\nand\nBacktracking\nAlgorithm\n3\n\n2\nEfficient Implementation of Backtracking for CSP\n6\n\n3\nFollowed Coding Standards and Best Practices\n6\n\n4\nSelection\nand\nJustification\nof\nBacktracking\nalgorithm\n3\n\nProduct related skills: 12 Marks - 40%\n\n\n5\nAccuracy of CSP Solution Output\n3\n\n6\nComputational Efficiency and Recursive Depth\nControl\n3\n\n7\nError Handling & Debugging\n1.5\n\n8\nInterpretation of Results and Conclusions\n1.5\n\n9\nPractical related questions\n1.5\n\n10\nSubmitting the Report on time\n1.5\n\nTotal\n30",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_8.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 2923
+      }
+    },
+    {
+      "evidence_id": "E019",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 8,
+      "section": "10 Submitting the Report on time",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Performance indicators",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Max. Marks",
+          "Marks\nObtained"
+        ],
+        "rows": [
+          [
+            "Process related skills: 18",
+            "",
+            "",
+            "Marks - 60%",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "1",
+            "Understanding of CSP and Backtracking\nAlgorithm",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "3",
+            ""
+          ],
+          [
+            "2",
+            "Efficient Implementation of Backtracking for CSP",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "6",
+            ""
+          ],
+          [
+            "3",
+            "Followed Coding Standards and Best Practices",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "6",
+            ""
+          ],
+          [
+            "4",
+            "Selection and Justification of Backtracking\nalgorithm",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "3",
+            ""
+          ],
+          [
+            "Product related skills: 12",
+            "",
+            "",
+            "",
+            "",
+            "Marks - 40%",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "5",
+            "Accuracy of CSP Solution Output",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "3",
+            ""
+          ],
+          [
+            "6",
+            "Computational Efficiency and Recursive Depth\nControl",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "3",
+            ""
+          ],
+          [
+            "7",
+            "",
+            "Error Handling & Debugging",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "1.5",
+            ""
+          ],
+          [
+            "8",
+            "",
+            "Interpretation of Results and Conclusions",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "1.5",
+            ""
+          ],
+          [
+            "9",
+            "",
+            "Practical related questions",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "1.5",
+            ""
+          ],
+          [
+            "10",
+            "",
+            "Submitting the Report on time",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "1.5",
+            ""
+          ],
+          [
+            "",
+            "Total",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "30",
+            ""
+          ]
+        ]
+      },
+      "image_path": "backend/data/pages/DOC_73586E/page_8.png",
+      "metadata": {
+        "row_count": 13,
+        "col_count": 12
+      }
+    },
+    {
+      "evidence_id": "E020",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 8,
+      "section": "10 Submitting the Report on time",
+      "type": "graph",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_8.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (61 paths) with chart keywords"
+      }
+    },
+    {
+      "evidence_id": "E021",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 9,
+      "section": "To be filled by Student:",
+      "type": "text",
+      "text": "OBCFC - Practicum Record (2026-27)\n                                            Division of  Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 9 of 9\n\n\nTo be filled by Student:\n\nS.No.\nName of the Student\nRegister No.\n1\nJACHIN SAMUEL J\nURK25CS1043\n\nTo be filled by the Faculty Member:\n\n\n\n\n\n\nMarks Obtained\nName and Designation of\nthe Faculty Member\nDate of Evaluation\nProcess-\nRelated Skills\n(18)\nProduct-\nRelated Skills\n(12)\nTotal\n(30)",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_9.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 553
+      }
+    },
+    {
+      "evidence_id": "E022",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 9,
+      "section": "To be filled by Student:",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "S.No.",
+          "Name of the Student",
+          "Register No."
+        ],
+        "rows": [
+          [
+            "1",
+            "JACHIN SAMUEL J",
+            "URK25CS1043"
+          ]
+        ]
+      },
+      "image_path": "backend/data/pages/DOC_73586E/page_9.png",
+      "metadata": {
+        "row_count": 1,
+        "col_count": 3
+      }
+    },
+    {
+      "evidence_id": "E023",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 9,
+      "section": "To be filled by Student:",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "Marks Obtained",
+          "",
+          "",
+          "",
+          "Name and Designation of",
+          "",
+          "Date of Evaluation"
+        ],
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            "",
+            "the Faculty Member",
+            "",
+            ""
+          ],
+          [
+            "Process-\nRelated Skills\n(18)",
+            "Product-\nRelated Skills\n(12)",
+            "Total\n(30)",
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "image_path": "backend/data/pages/DOC_73586E/page_9.png",
+      "metadata": {
+        "row_count": 2,
+        "col_count": 7
+      }
+    },
+    {
+      "evidence_id": "E024",
+      "document_id": "DOC_73586E",
+      "document_name": "URK25CS1043_Practicum5.pdf",
+      "page": 9,
+      "section": "To be filled by Student:",
+      "type": "chart",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_73586E/page_9.png",
+      "metadata": {
+        "confidence": 0.85,
+        "detection_details": "High vector path density (43 paths) with chart keywords"
+      }
+    }
+  ]
+}

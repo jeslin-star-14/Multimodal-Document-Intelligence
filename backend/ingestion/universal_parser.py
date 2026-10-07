@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 from PIL import Image, ImageDraw, ImageFont
 
-from schemas.evidence import Evidence, DocumentProcessResponse, TableData, EvidenceType
+from schemas.evidence import Evidence, DocumentProcessResponse, TableData
 from ingestion.pipeline import process_document as process_pdf_document
 
 logger = logging.getLogger(__name__)
@@ -37,7 +37,6 @@ def render_text_to_page_image(
     img = Image.new("RGB", (width, height), color=(255, 255, 255))
     draw = ImageDraw.Draw(img)
 
-    # Use default bitmap font or basic font
     font = ImageFont.load_default()
 
     # Draw page border & header background
@@ -63,7 +62,6 @@ def render_text_to_page_image(
             y += 15
             continue
 
-        # Wrap text simply
         words = text.split()
         line = ""
         is_heading = len(text) < 60 and (text.endswith(":") or text.isupper() or text.startswith("#"))
@@ -103,14 +101,12 @@ def render_text_to_page_image(
         y += 22
 
         col_w = max(100, int((width - 100) / max(1, len(headers or (rows[0] if rows else [1])))))
-        # Header row
         if headers:
             draw.rectangle([40, y, width - 40, y + 26], fill=(240, 253, 244))
             for c_idx, h in enumerate(headers[:6]):
                 draw.text((45 + c_idx * col_w, y + 6), str(h)[:25], fill=(21, 128, 61), font=font)
             y += 28
 
-        # Data rows
         for r in rows[:8]:
             if y > height - 80:
                 break
@@ -139,7 +135,6 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
 
     doc = docx.Document(docx_path)
     
-    # Extract all paragraphs and tables
     all_paras = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
     
     all_tables_data = []
@@ -154,7 +149,6 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
                 rows.append(r_vals)
         all_tables_data.append({"headers": headers, "rows": rows, "table_id": f"T{t_idx+1}"})
 
-    # Divide paragraphs into virtual pages (approx 15-20 paragraphs per page)
     PAGE_SIZE = 16
     para_chunks = [all_paras[i:i + PAGE_SIZE] for i in range(0, max(1, len(all_paras)), PAGE_SIZE)]
     if not para_chunks:
@@ -168,7 +162,6 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
         page_num = page_idx + 1
         page_img_path = os.path.join(pages_dir, f"page_{page_num}.png")
         
-        # Tables for this page
         page_tables = [all_tables_data[page_idx]] if page_idx < len(all_tables_data) else []
         
         render_text_to_page_image(
@@ -180,7 +173,6 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
             total_pages=total_pages
         )
 
-        # 1. Text Evidence chunk
         page_text = "\n\n".join(page_paras)
         section_name = page_paras[0][:40] if page_paras else f"Page {page_num}"
         
@@ -190,7 +182,7 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
             document_name=doc_name,
             page=page_num,
             section=section_name,
-            type=EvidenceType.TEXT,
+            type="text",
             text=page_text,
             table=None,
             image_path=page_img_path,
@@ -198,7 +190,6 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
         ))
         evidence_counter += 1
 
-        # 2. Table Evidence chunks
         for t_data in page_tables:
             all_evidence.append(Evidence(
                 evidence_id=f"E{evidence_counter:03d}",
@@ -206,7 +197,7 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
                 document_name=doc_name,
                 page=page_num,
                 section=f"Table: {', '.join(t_data['headers'][:3])}",
-                type=EvidenceType.TABLE,
+                type="table",
                 text=f"Table Data: Headers: {' | '.join(t_data['headers'])}\nRows: {len(t_data['rows'])} records",
                 table=TableData(headers=t_data["headers"], rows=t_data["rows"]),
                 image_path=page_img_path,
@@ -214,7 +205,6 @@ def process_docx_file(docx_path: str, output_base_dir: str = "data") -> Dict[str
             ))
             evidence_counter += 1
 
-    # Save to processed JSON
     processed_json_path = os.path.join(processed_dir, f"{doc_id}.json")
     resp_obj = DocumentProcessResponse(
         document_id=doc_id,
@@ -287,7 +277,7 @@ def process_pptx_file(pptx_path: str, output_base_dir: str = "data") -> Dict[str
             document_name=doc_name,
             page=page_num,
             section=slide_title,
-            type=EvidenceType.TEXT,
+            type="text",
             text="\n".join(slide_texts),
             table=None,
             image_path=page_img_path,
@@ -302,7 +292,7 @@ def process_pptx_file(pptx_path: str, output_base_dir: str = "data") -> Dict[str
                 document_name=doc_name,
                 page=page_num,
                 section=f"{slide_title} Table",
-                type=EvidenceType.TABLE,
+                type="table",
                 text=f"Table: {' | '.join(tab['headers'])}",
                 table=TableData(headers=tab["headers"], rows=tab["rows"]),
                 image_path=page_img_path,
@@ -321,6 +311,81 @@ def process_pptx_file(pptx_path: str, output_base_dir: str = "data") -> Dict[str
     with open(processed_json_path, "w", encoding="utf-8") as f:
         json.dump(resp_obj.model_dump(), f, indent=2)
 
+    return resp_obj.model_dump()
+
+
+def process_image_file(image_path: str, output_base_dir: str = "data") -> Dict[str, Any]:
+    """
+    Parses an uploaded image or scan (.png, .jpg, .jpeg, .webp, .tiff, .bmp):
+    1. Saves image to pages/{doc_id}/page_1.png
+    2. Runs OCR to extract all readable text
+    3. Creates Evidence items for text and visual content
+    4. Saves processed JSON
+    """
+    from ingestion.ocr import perform_ocr_on_image
+
+    doc_name = os.path.basename(image_path)
+    doc_id = generate_doc_id(image_path)
+
+    pages_dir = os.path.join(output_base_dir, "pages", doc_id)
+    processed_dir = os.path.join(output_base_dir, "processed")
+    os.makedirs(pages_dir, exist_ok=True)
+    os.makedirs(processed_dir, exist_ok=True)
+
+    dest_page_img = os.path.join(pages_dir, "page_1.png")
+    with Image.open(image_path) as img:
+        img_rgb = img.convert("RGB")
+        img_rgb.save(dest_page_img, "PNG")
+
+    all_evidence = []
+    evidence_counter = 1
+
+    # 1. OCR Extraction
+    ocr_text = perform_ocr_on_image(dest_page_img)
+    has_valid_ocr = bool(ocr_text and not ocr_text.startswith("[OCR Engine pending"))
+
+    if has_valid_ocr:
+        all_evidence.append(Evidence(
+            evidence_id=f"E{evidence_counter:03d}",
+            document_id=doc_id,
+            document_name=doc_name,
+            page=1,
+            section="Scanned Image Text",
+            type="text",
+            text=ocr_text,
+            table=None,
+            image_path=dest_page_img,
+            metadata={"source": "ocr", "char_count": len(ocr_text)}
+        ))
+        evidence_counter += 1
+
+    # 2. Visual Content chunk
+    all_evidence.append(Evidence(
+        evidence_id=f"E{evidence_counter:03d}",
+        document_id=doc_id,
+        document_name=doc_name,
+        page=1,
+        section="Visual Image",
+        type="image",
+        text=ocr_text if has_valid_ocr else f"Scanned visual content from {doc_name}",
+        table=None,
+        image_path=dest_page_img,
+        metadata={"scanned": True}
+    ))
+    evidence_counter += 1
+
+    processed_json_path = os.path.join(processed_dir, f"{doc_id}.json")
+    resp_obj = DocumentProcessResponse(
+        document_id=doc_id,
+        document_name=doc_name,
+        page_count=1,
+        evidence_count=len(all_evidence),
+        evidence=all_evidence
+    )
+    with open(processed_json_path, "w", encoding="utf-8") as f:
+        json.dump(resp_obj.model_dump(), f, indent=2)
+
+    logger.info(f"Processed image {doc_name}: 1 page, {len(all_evidence)} evidence items.")
     return resp_obj.model_dump()
 
 
@@ -363,7 +428,7 @@ def process_text_file(text_path: str, output_base_dir: str = "data") -> Dict[str
             document_name=doc_name,
             page=page_num,
             section=p_lines[0][:40] if p_lines else f"Page {page_num}",
-            type=EvidenceType.TEXT,
+            type="text",
             text="\n".join(p_lines),
             table=None,
             image_path=page_img_path,
@@ -388,7 +453,7 @@ def process_text_file(text_path: str, output_base_dir: str = "data") -> Dict[str
 def ingest_any_file(file_path: str, output_base_dir: str = "data") -> Dict[str, Any]:
     """
     Universal ingestion entry point: automatically detects file format
-    (.pdf, .docx, .pptx, .txt, .md, .csv) and invokes the appropriate parser.
+    (.pdf, .docx, .pptx, .png, .jpg, .jpeg, .webp, .txt, .md, .csv) and invokes the appropriate parser.
     """
     ext = os.path.splitext(file_path)[1].lower()
     if ext == ".pdf":
@@ -397,8 +462,9 @@ def ingest_any_file(file_path: str, output_base_dir: str = "data") -> Dict[str, 
         return process_docx_file(file_path, output_base_dir=output_base_dir)
     elif ext in [".pptx", ".ppt"]:
         return process_pptx_file(file_path, output_base_dir=output_base_dir)
+    elif ext in [".png", ".jpg", ".jpeg", ".webp", ".tiff", ".bmp"]:
+        return process_image_file(file_path, output_base_dir=output_base_dir)
     elif ext in [".txt", ".md", ".csv", ".json"]:
         return process_text_file(file_path, output_base_dir=output_base_dir)
     else:
-        # Fallback to text parsing
         return process_text_file(file_path, output_base_dir=output_base_dir)

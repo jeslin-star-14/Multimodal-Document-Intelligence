@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "document_id": "DOC_EEE650",
+  "document_name": "Screenshot 2026-10-03 153650.png",
+  "page_count": 1,
+  "evidence_count": 1,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_EEE650",
+      "document_name": "Screenshot 2026-10-03 153650.png",
+      "page": 1,
+      "section": "Visual Image",
+      "type": "image",
+      "text": "Scanned visual content from Screenshot 2026-10-03 153650.png",
+      "table": null,
+      "image_path": "backend/data\\pages\\DOC_EEE650\\page_1.png",
+      "metadata": {
+        "scanned": true
+      }
+    }
+  ]
+}

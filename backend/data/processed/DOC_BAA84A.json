@@ -14,7 +14,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 1 of 12\n\n\n\n\n\n\nSchool of Engineering and Technology\n\nDivision of Computer Science and Engineering\n\nB.Tech. Computer Science and Engineering\n(OBCFC Regulations 2025)\n\n\n\n\n\nStudent-Centred & Industry-Aligned\n\nOutcome-Based Competency-Focused Curriculum (OBCFC)\n\n\n\n\nPracticum Record\n\n\n\n\n\nCourse Code & Title: 25CS301 – Artificial Intelligence",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_1.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_1.png",
       "metadata": {
         "scanned": false,
         "char_count": 598
@@ -29,7 +29,7 @@
       "type": "image",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_1.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_1.png",
       "metadata": {
         "confidence": 0.75,
         "detection_details": "Embedded bitmap image found (4 image(s))"
@@ -44,7 +44,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 2 of 12\n\nPREFACE\n\nThe advent of Industry 5.0 has accelerated the integration of Artificial Intelligence (AI) into\nnearly every sector, from healthcare and finance to autonomous systems and smart\nmanufacturing. In this era of human-machine collaboration, AI is not just a technological\nadvancement but a strategic driver of innovation and efficiency. Recognizing the critical role of\nAI in solving complex, data-driven problems, the Computer Science and Engineering Division of\nKarunya University has developed this Artificial Intelligence Practicum Manual to empower\nstudents with the practical competencies necessary for real-world AI implementation.\n\nAligned with the National Education Policy (NEP-2020) and the principles of outcome-based\neducation, this manual provides an application-oriented, hands-on learning experience that\nbridges theoretical concepts with industry-relevant skills. It encourages students to think like AI\npractitioners—designing intelligent systems, experimenting with machine learning algorithms,\nand understanding the ethical and social implications of AI technologies.\n\nThis practicum manual encompasses a broad spectrum of AI domains, including search\nstrategies, knowledge representation, reasoning, machine learning, natural language processing,\ncomputer vision, and expert systems. Each practicum is carefully curated to enhance core\ncompetencies such as problem-solving, critical thinking, algorithm design, and coding\nproficiency using tools like Python, Scikit-learn, TensorFlow, and open-source AI platforms.",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_2.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_2.png",
       "metadata": {
         "scanned": false,
         "char_count": 1809
@@ -59,7 +59,7 @@
       "type": "image",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_2.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_2.png",
       "metadata": {
         "confidence": 0.75,
         "detection_details": "Embedded bitmap image found (1 image(s))"
@@ -74,7 +74,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 3 of 12\n\nCONTENTS\n\nS. No.\nTitle of the Practicum\nPage No.\n1\nImplementation of Reflex Intelligent Agent\n5\n2\nImplementation of Goal based Intelligent Agent\n13\n3\nImplementation of Uninformed Search Algorithms\n20\n4\nImplementation of Heuristic Search Algorithms\n26\n5\nImplementation of Constraints with Backtracking Search\n32\n6\nImplementation of Knowledge Representation Using Predicate Logic\n38\n7\nDevelopment of a Propositional Logic Inference Engine\n44\n8\nImplementation of Unification in Logic Systems\n50\n9\nReasoning with Forward and Backward Chaining\n57\n10\nImplementation of Bayes' Theorem\n63\n11\nConstruction of Bayesian Networks for Inference\n70\n12\n\nImplementation of Supervised Learning Models\n77\n13\nDevelopment of a Basic Neural Network Classifier\n84\n14\nImplementation of Genetic Algorithm for Optimization Problems\n92\n15\nDevelopment of a Rule-Based Expert System\n100",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_3.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_3.png",
       "metadata": {
         "scanned": false,
         "char_count": 1128
@@ -172,7 +172,7 @@
           ]
         ]
       },
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_3.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_3.png",
       "metadata": {
         "row_count": 15,
         "col_count": 3
@@ -187,7 +187,7 @@
       "type": "graph",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_3.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_3.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (62 paths) with chart keywords"
@@ -202,7 +202,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 4 of 12\n\nList of Industry-Specific Skills to be developed through this Course\n\nS. No.\nIndustry-Specific Skills\nDomain\nOutcome\n(PDO/CDO/ADO)\n1\nFormulate AI-based solutions to real-world problems using\nappropriate AI techniques.\nCognitive\n2\n Select and implement suitable search algorithms (uninformed and\ninformed) for problem-solving in intelligent systems.\nCognitive\n3\nApply logical reasoning and knowledge representation methods for\nbuilding rule-based systems and intelligent agents.\nCognitive\n4\nDesign and train machine learning models using supervised,\nunsupervised, and reinforcement learning paradigms.\nCognitive\n5\nAnalyze the performance and applicability of machine learning\nalgorithms on different datasets.\nCognitive\n6\nImplement Natural Language Processing (NLP) techniques for text\nunderstanding and language-based applications.\nCognitive\n7\nDevelop intelligent systems for pattern recognition, classification,\nand clustering using AI frameworks.\nCognitive\n8\nConstruct computer vision pipelines for tasks such as object\ndetection, recognition, and tracking.\nCognitive\n9\nUse probabilistic reasoning models, such as Bayesian networks, for\ndecision-making under uncertainty.\nCognitive\n10\nDesign and implement genetic algorithms and other evolutionary\ntechniques for optimization tasks.\nCognitive\n11\nDevelop fuzzy logic-based systems for handling imprecise or\nuncertain information.\nCognitive\n12\nDeploy AI models using open-source tools and platforms such as\nPython, TensorFlow, Keras, OpenCV, and Scikit-learn.\nCognitive\n13\nParticipate effectively in collaborative AI projects and research\ninitiatives.\nAffective\n14\nRespect data privacy, fairness, and inclusivity in the design of\nintelligent systems.\nAffective\n15\nStay engaged in lifelong learning to keep up with emerging trends,\ntools, and techniques in Artificial Intelligence.\nAffective\nLegends: PDO-Psychomotor Domain Outcome, CDO-Cognitive Domain Outcome, ADO-Affective Domain Outcome.",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_4.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_4.png",
       "metadata": {
         "scanned": false,
         "char_count": 2211
@@ -346,7 +346,7 @@
           ]
         ]
       },
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_4.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_4.png",
       "metadata": {
         "row_count": 17,
         "col_count": 5
@@ -361,7 +361,7 @@
       "type": "graph",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_4.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_4.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (64 paths) with chart keywords"
@@ -376,7 +376,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 5 of 12\n\nPracticum No.1\n\n\n\n\n\n\n\n           Date:18/07/2026\nImplementation of Reflex Intelligent Agent\n\nI.\nPractical Significance\nThe concept of an intelligent agent is foundational in Artificial Intelligence. In this practicum,\nstudents will build a reflex-based agent that chooses actions based on predefined percepts. This\nmodels the perception-action loop that underlies intelligent behavior in real-world AI systems\nsuch as chatbots, virtual assistants, or automated controllers.\nIndustry-Relevant Job Positions:\n●\nAI Developer\n●\nRobotics Engineer\n●\nAutomation Software Engineer\n●\nAI Chatbot Designer\n\nII.\nCompetency and Industry-Specific Practical Skills\nThis practicum exercise is expected to develop the following skills for the industry-identified\ncompetency.\n● Use the principles of artificial intelligence to solve complex engineering problems.\na) Apply logical reasoning and knowledge representation methods for building rule-based systems\nand intelligent agents. (Cognitive Domain)\nb) Formulate AI-based solutions to real-world problems using appropriate AI techniques.\n(Cognitive Domain)\nc) Apply AI techniques to domain-specific areas like healthcare, robotics, finance, and autonomous\nsystems(Cognitive Domain)\nd) Adopt ethical principles and responsible practices in the development and deployment of AI\nsystems. (Affective Domain)\n\nIII.\nRelevant CO(s)\n                CO1: Use intelligent agent models and problem-solving approaches for various AI applications\n\nIV.\nPractical Outcome (PrO)\n● Develop a simple intelligent agent for the given problem-solving scenario.\nV.\nRelated ADO(s) (Kindly copy from the Course Structure)\n1. Follow ethical practices in AI model development and deployment.\n2. Follow adaptability to emerging AI techniques and technologies.\n3. Follow a structured approach to AI driven decision making.\n4. Follow a commitment to continuous learning.\n\nVI.\nMinimum Underpinning Theory\n\nAn intelligent agent perceives its environment through sensors and acts upon that environment\nthrough actuators. A Reflex-Based Intelligent Agent is the simplest type of AI agent that selects actions\nbased solely on the current percept (environment state), without memory or learning. I t operates using\ncondition-action rules, like:\nIf the room is dirty, then clean; otherwise, move.\nThis models a perception-action loop, fundamental in intelligent systems such as robotic\ncleaners, thermostat controllers, and basic chatbots.\nKey Concepts:\n●\nAgent: An entity that perceives and acts upon the environment.\n●\nEnvironment: The world with which the agent interacts (e.g., Rooms A and B).\n●\nPercept: The agent’s current sensory input (e.g., is the room clean or dirty?).\n●\nAction: The decision the agent makes (e.g., clean or move).",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_5.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_5.png",
       "metadata": {
         "scanned": false,
         "char_count": 3009
@@ -391,7 +391,7 @@
       "type": "image",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_5.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_5.png",
       "metadata": {
         "confidence": 0.75,
         "detection_details": "Embedded bitmap image found (1 image(s))"
@@ -406,7 +406,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 6 of 12\n\n●\nReflex Agent: Uses predefined rules to make decisions based only on the current state.\n\nVII.\nPracticum Set-up/Circuit Diagram/Algorithm/Flowchart\n\nAlgorithm:\n\n1. Start the program.\n2. Read all sensor inputs from the user:\n\nMotion\n\nTime\n\nDoor status\n\nAuthorization\n\nSmoke\n\nGas leakage\n\nTemperature\n\nWater leakage\n\nFire\n\nEmergency button\n\nPower status\n\nCamera motion\n\nBattery level\n\nWindow status\n\nRain status\n\nRoom occupancy\n\nLight level\n\nNo motion\n\nDoor lock status\n3. Compare each input with the predefined condition-action rules.\n4. Perform the corresponding action whenever a condition is satisfied.\n5. Display all actions taken by the intelligent agent.\n6. Stop the program.\n\n\nPython Code:\n\nmotion = input(\"Motion detected (yes/no): \")\ntime = input(\"Time (day/night): \")\n\ndoor = input(\"Door status (opened/closed): \")\nauthorized = input(\"Authorized access (yes/no): \")\n\nsmoke = input(\"Smoke detected (yes/no): \")\ngas = input(\"Gas leakage (yes/no): \")\n\ntemperature = float(input(\"Temperature (°C): \"))\n\nwater = input(\"Water leakage (yes/no): \")\n\nfire = input(\"Fire detected (yes/no): \")\n\nemergency = input(\"Emergency button pressed (yes/no): \")\n\npower = input(\"Power available (yes/no): \")",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_6.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_6.png",
       "metadata": {
         "scanned": false,
         "char_count": 1483
@@ -421,7 +421,7 @@
       "type": "graph",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_6.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_6.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (19 paths) with chart keywords"
@@ -436,7 +436,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 7 of 12\n\ncamera = input(\"Camera detected motion (yes/no): \")\n\nbattery = int(input(\"Battery level (%): \"))\n\nwindow = input(\"Window open (yes/no): \")\nrain = input(\"Raining (yes/no): \")\n\noccupied = input(\"Room occupied (yes/no): \")\nlight = input(\"Light level low (yes/no): \")\n\nno_motion = input(\"No motion for 15 minutes (yes/no): \")\n\nlocked = input(\"Door locked successfully (yes/no): \")\n\nprint(\"\\nActions:\")\n\nif motion == \"yes\" and time == \"night\":\n    print(\"Turn ON outdoor lights\")\n\nif door == \"opened\" and authorized == \"no\":\n    print(\"Activate security alarm\")\n\nif smoke == \"yes\":\n    print(\"Activate fire alarm\")\n\nif gas == \"yes\":\n    print(\"Shut OFF gas valve\")\n    print(\"Start exhaust fan\")\n\nif temperature > 45:\n    print(\"Turn ON cooling system\")\n\nif water == \"yes\":\n    print(\"Close main water valve\")\n\nif fire == \"yes\":\n    print(\"Activate sprinkler system\")\n\nif emergency == \"yes\":\n    print(\"Notify emergency services\")\n\nif power == \"no\":\n    print(\"Switch to backup battery\")\n\nif camera == \"yes\":\n    print(\"Start video recording\")\n\nif battery < 20:\n    print(\"Send low-battery alert\")\n\nif window == \"yes\" and rain == \"yes\":",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_7.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_7.png",
       "metadata": {
         "scanned": false,
         "char_count": 1401
@@ -451,7 +451,7 @@
       "type": "chart",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_7.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_7.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (51 paths) with chart keywords"
@@ -466,7 +466,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 8 of 12\n\n    print(\"Close the smart window\")\n\nif occupied == \"yes\" and light == \"yes\":\n    print(\"Turn ON room lights\")\n\nif no_motion == \"yes\":\n    print(\"Turn OFF room lights\")\n\nif door == \"closed\" and locked == \"yes\":\n    print(\"Turn OFF security warning indicator\")\n\n\n\nVIII.\nResources Required\n\nS.\nNo\n.\nName of\nResource\nSuggested Broad Specification\nQuantity\n1\nComputer System\nIntel i5 or higher, 8 GB RAM, 256 GB SSD, Python 3.x\ninstalled\n1 per\nstudent\n2\nPython\nProgramming\nEnvironment\nPython 3.x with standard libraries (NumPy, time module)\nInstalled\n3\nJupyter Notebook\nor IDE (e.g.,\nVSCode,\nPyCharm)\nFor writing and running Python code\n1 per\nstudent\n\nIX.\nSafety Precautions\na) Avoid sharing login credentials.\nb) Ensure antivirus software and firewalls are updated.\nc) Keep eatables away from computers.\nd) Follow Institutional laboratory policies.\ne) Avoid storing confidential data in lab computers.\n\nX.\nProcedure\n1.\nInterpret the algorithm in Section VII to understand the step-by-step logic of how a simple reflex\nagent perceives its environment and chooses actions.\n2.\nInitialize the environment with two rooms (Room A and Room B) with randomly assigned\nstatuses ('clean' or 'dirty'), and place the agent in a starting room.\n3.\nImplement the reflex agent in Python using basic conditional statements to decide whether to\nclean the current room or move to the other.\n4.\nSimulate agent actions: In each step, the agent should perceive its current environment, decide,\nand act accordingly.\n5.\nMaintain an action trace log that records the agent’s decisions (e.g., \"Room A is Dirty –\nCleaning...\").\n6.\nRepeat the agent loop for a fixed number of steps (e.g., 4 to 6), simulating perception-action\ncycles.\n7.\nObserve and display the room status after each action to track environmental changes.",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_8.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_8.png",
       "metadata": {
         "scanned": false,
         "char_count": 2061
@@ -508,7 +508,7 @@
           ]
         ]
       },
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_8.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_8.png",
       "metadata": {
         "row_count": 3,
         "col_count": 4
@@ -523,7 +523,7 @@
       "type": "chart",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_8.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_8.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (44 paths) with chart keywords"
@@ -538,7 +538,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 9 of 12\n\n8.\nAnalyze the reflex behavior by interpreting whether the agent completed its cleaning task\ncorrectly based on initial conditions.\n9.\nOptimize the agent logic, if necessary, by adding a counter or loop control to prevent infinite\ncycles or redundant moves.\n10.\nDocument all steps and observations in a structured format including input configuration, agent\npath, and final room status.\n11.\nPrepare a summary report highlighting agent performance, correctness, design logic, and room\ncoverage analysis.\n12.\nSubmit the implementation and report along with screenshots/output trace logs as practical\nevidence.\n13.\nEnsure that the Python script is closed properly, and memory is released before exiting the IDE.\n\nXI.\nActual Resources Used\n\nS.No\nName of Resource\nBroad Specifications\nQuantity\nRemarks\n1\nOperating System\nWindows 11\n1\nSuccessfully used\n2\nProgramming Language\nPython 3.14\n1\nSuccessfully used\n3\nSoftware Development\nKit\nPython SDK\n1\nInstalled\n4\nLibraries\nStandard Python Library\n1\nNo external libraries\nused\n5\nGraphics/Animation\nTool\nNil\n-\nNot Required\n6\nFront-end Tool\nNil\n-\nNot Required\n7\nBack-end Tool\nNil\n-\nNot Required\n8\nVirtual Lab\nNil\n-\nNot Required\n9\nSpecific Hardware\nIntel Core i5 Laptop, 16\nGB RAM\n1\nSuccessfully used\n10\nSimulation/Emulation\nTool\nPython IDLE / VS Code\n1\nSuccessfully used\n\nXII.\nActual Procedure Followed\n\n1. Opened the Python IDE (VS Code/PyCharm).\n2. Created a new Python file.\n3. Entered the given Reflex Intelligent Agent program.\n4. Saved the file.\n5. Executed the program.\n6. Entered different sensor values as input.\n7. Observed the actions displayed by the agent.\n8. Verified that the output matched the corresponding condition-action rules.\n9. Corrected any syntax errors if found.\n10. Successfully executed the program and recorded the output.\n\nXIII.\nResults/Obervations\n\nSample Input:\n\nMotion detected : yes\nTime : night\nDoor status : opened",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_9.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_9.png",
       "metadata": {
         "scanned": false,
         "char_count": 2158
@@ -633,7 +633,7 @@
           ]
         ]
       },
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_9.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_9.png",
       "metadata": {
         "row_count": 10,
         "col_count": 5
@@ -648,7 +648,7 @@
       "type": "graph",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_9.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_9.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (50 paths) with chart keywords"
@@ -663,7 +663,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 10 of 12\n\nAuthorized access : no\nSmoke : yes\nGas leakage : no\nTemperature : 48\nWater leakage : no\nFire : no\nEmergency button : no\nPower : yes\nCamera motion : yes\nBattery level : 15\nWindow open : yes\nRaining : yes\nRoom occupied : yes\nLight level low : yes\nNo motion : no\nDoor locked : no\n\nSample Output:\n\nActions:\nTurn ON outdoor lights\nActivate security alarm\nActivate fire alarm\nTurn ON cooling system\nStart video recording\nSend low-battery alert\nClose the smart window\nTurn ON room lights\n\nXIV.\nResults/Observations\n\n1. The intelligent agent successfully accepted all sensor inputs.\n2. It compared every input with predefined rules.\n3. The correct actions were displayed immediately.\n4. Multiple actions were executed simultaneously whenever multiple conditions were satisfied.\n5. The program behaved as expected without errors.\n\nXV.\nInterpretation of Results\n\nThe Reflex Intelligent Agent responded correctly to the current environmental conditions. It used\nonly the present inputs to make decisions without storing previous information. This\ndemonstrates the working principle of a Simple Reflex Agent, where actions are selected using\npredefined condition-action rules. The implementation accurately simulated a smart home\nsecurity system.\n\nXVI.\n Conclusions\n\nThe Reflex Intelligent Agent was successfully implemented using Python. The agent correctly\nperceived the environmental conditions and performed the appropriate actions according to the\npredefined rules. The experiment helped in understanding the perception-action cycle and the\nworking of simple reflex agents in Artificial Intelligence.\n\nXVII.  Suggested Practicum Related Questions:\nNote: Below given are a few sample questions for reference. Teachers must design more such questions\nin order to ensure the achievement of pre-determined course outcome.\n1.\nWhat is a reflex agent and how does it differ from a model-based agent?\n2.\nExplain the perception-action cycle in the context of your implementation.",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_10.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_10.png",
       "metadata": {
         "scanned": false,
         "char_count": 2234
@@ -678,7 +678,7 @@
       "type": "image",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_10.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_10.png",
       "metadata": {
         "confidence": 0.75,
         "detection_details": "Embedded bitmap image found (1 image(s))"
@@ -693,7 +693,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 11 of 12\n\n3.\nWhy is a reflex agent considered memoryless?\n4.\nWhat are the limitations of a simple reflex agent?\n5.\nIn which real-world applications can reflex agents be effectively used?\n6.\nHow is the room environment represented in your code?\n7.\nHow does the agent decide whether to clean or move?\n8.\nWhat modifications can you make to improve the intelligence of the agent?\n9.\nWhat would happen if the environment had more than two rooms?\n10.\nDescribe how the agent’s actions changed the environment step by step.\n11.\nDid the agent successfully clean both rooms in all runs? Why or why not?\n12.\nWhat are some edge cases or logical flaws that could occur?\n13.\nIf one room is clean and one is dirty, what is the optimal action sequence?\n14.\nHow does this implementation demonstrate goal-oriented behavior.\n\nXVIII References / Suggestions for further reading\nOnline Tutorials & Articles\na. Russell & Norvig, “Artificial Intelligence: A Modern Approach”\nb. GeeksforGeeks – Intelligent Agent Types: https://www.geeksforgeeks.org/intelligent-agent-in-\nartificial-intelligence-ai/\nc. YouTube: AI Agents in Real Life: https://www.youtube.com/watch?v=7vINJz7vJ1Y\n\nInteractive Platforms for Practicing Intelligent agent\na) Codingame – AI Bots and Strategy Games\n https://www.codingame.com/multiplayer/bot-programming\nb) AIcrowd – AI Challenges and Competitions\nhttps://www.aicrowd.com/\n\nVideo Lectures & Courses\na) Intro to AI agents- https://youtu.be/ZZ2QUCePgYw?si=ySVerkoKkyIPcjXK\n\n\nXIX\nSuggested Assessment Scheme\nThe given performance indicators should serve as a guideline for assessment regarding process and\nproduct-related marks.\nNote: The weightage for the process-related skills and product-related skills will change depending upon\nthe PrO, COs, and competency related to the concerned course.\n\nPerformance indicators\nMax. Marks\nMarks\nObtained\nProcess related skills: 18 Marks - 60%\n\n\n1\nUnderstanding of Intelligent agents\n3\n\n2\nApplication of suitable AI technique/ algorithm\n6\n\n3\nFollowed Coding Standards and Best Practices\n6\n\n4\nImplementation of AI agent correctly\n3\n\nProduct related skills: 12 Marks - 40%\n\n\n5\nAccuracy of Output/Agent behaviour/ model\npredictions\n3\n\n6\nEvaluation of performance\n3\n\n7\nError Handling & Debugging\n1.5\n\n8\nInterpretation of Results and Conclusions\n1.5\n\n9\nPractical related questions\n1.5",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_11.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_11.png",
       "metadata": {
         "scanned": false,
         "char_count": 2583
@@ -867,7 +867,7 @@
           ]
         ]
       },
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_11.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_11.png",
       "metadata": {
         "row_count": 11,
         "col_count": 11
@@ -882,7 +882,7 @@
       "type": "chart",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_11.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_11.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (54 paths) with chart keywords"
@@ -897,7 +897,7 @@
       "type": "text",
       "text": "OBCFC - Practicum Record (2026-27)\n                                             Division of Computer Science and Engineering\nKarunya Institute of Technology and Sciences\n\n                                                                                     Page 12 of 12\n\nPerformance indicators\nMax. Marks\nMarks\nObtained\n10\nSubmitting the Report on time\n1.5\n\nTotal\n30\n\n\nTo be filled by Student:\n\nS.No.\nName of the Student\nRegister No.\n1\nJACHIN SAMUEL J\nURK25CS1043\n\nTo be filled by the Faculty Member:\n\n\n\n\nMarks Obtained\nName and Designation of\nthe Faculty Member\nDate of Evaluation\nProcess-\nRelated Skills\n(18)\nProduct-\nRelated Skills\n(12)\nTotal\n(30)",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_12.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_12.png",
       "metadata": {
         "scanned": false,
         "char_count": 650
@@ -939,7 +939,7 @@
           ]
         ]
       },
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_12.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_12.png",
       "metadata": {
         "row_count": 2,
         "col_count": 6
@@ -979,7 +979,7 @@
           ]
         ]
       },
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_12.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_12.png",
       "metadata": {
         "row_count": 1,
         "col_count": 9
@@ -1024,7 +1024,7 @@
           ]
         ]
       },
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_12.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_12.png",
       "metadata": {
         "row_count": 2,
         "col_count": 7
@@ -1039,7 +1039,7 @@
       "type": "chart",
       "text": "",
       "table": null,
-      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_BAA84A/page_12.png",
+      "image_path": "backend/data/pages/DOC_BAA84A/page_12.png",
       "metadata": {
         "confidence": 0.85,
         "detection_details": "High vector path density (65 paths) with chart keywords"

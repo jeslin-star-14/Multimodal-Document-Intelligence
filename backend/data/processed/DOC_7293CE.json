@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "document_id": "DOC_7293CE",
+  "document_name": "Google_CDL.pdf",
+  "page_count": 1,
+  "evidence_count": 2,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_7293CE",
+      "document_name": "Google_CDL.pdf",
+      "page": 1,
+      "section": "JACHIN SAMUEL J",
+      "type": "text",
+      "text": "This acknowledges that\nhas successfully completed all the requirements to be recognized as a\nGoogle Cloud Certified\nApr 23, 2026\nApr 23, 2029\n5c7d888563d24d15b0f7b96459ddde9a\nCloud Digital Leader\nJACHIN SAMUEL J\nJACHIN SAMUEL J\nSeries ID:\nIssued Date:\nExpiration Date:\nID:\nCertified As:\n119818",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_7293CE/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 293
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_7293CE",
+      "document_name": "Google_CDL.pdf",
+      "page": 1,
+      "section": "JACHIN SAMUEL J",
+      "type": "image",
+      "text": "",
+      "table": null,
+      "image_path": "backend/data/pages/DOC_7293CE/page_1.png",
+      "metadata": {
+        "confidence": 0.75,
+        "detection_details": "Embedded bitmap image found (2 image(s))"
+      }
+    }
+  ]
+}

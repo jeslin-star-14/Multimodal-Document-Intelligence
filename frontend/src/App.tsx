@@ -15,19 +15,13 @@ import type {
   ConflictRecord,
   ChatAttachment
 } from './types';
-import { 
-  initialDocuments, 
-  initialChatMessages, 
-  mockChunks, 
-  mockConflicts, 
-  mockVerityPageSvg 
-} from './data/mockData';
 
 export const App: React.FC = () => {
-  // Application State
-  const [documents, setDocuments] = useState<DocumentItem[]>(initialDocuments);
-  const [selectedDocId, setSelectedDocId] = useState<string>('doc-1');
-  const [messages, setMessages] = useState<ChatMessage[]>(initialChatMessages);
+  // Application State - Clean Initial State without hardcoded mocks
+  const [documents, setDocuments] = useState<DocumentItem[]>([]);
+  const [selectedDocId, setSelectedDocId] = useState<string | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [chunks, setChunks] = useState<DocumentChunk[]>([]);
   const [isLoadingAnswer, setIsLoadingAnswer] = useState<boolean>(false);
   const [language, setLanguage] = useState<LanguageCode>('en');
 
@@ -44,23 +38,21 @@ export const App: React.FC = () => {
   const isDraggingRightRef = useRef(false);
 
   // Evidence Panel State
-  const [currentPageNumber, setCurrentPageNumber] = useState<number>(5);
-  const [selectedCitation, setSelectedCitation] = useState<Citation | null>(
-    initialChatMessages[1]?.citations?.[0] || null
-  );
-  const [activeBoxId, setActiveBoxId] = useState<string>('bbox-chart-q3');
-  const [activeChunkId, setActiveChunkId] = useState<string>('chunk-chart-q3');
+  const [currentPageNumber, setCurrentPageNumber] = useState<number>(1);
+  const [selectedCitation, setSelectedCitation] = useState<Citation | null>(null);
+  const [activeBoxId, setActiveBoxId] = useState<string | undefined>(undefined);
+  const [activeChunkId, setActiveChunkId] = useState<string | undefined>(undefined);
   const [isConflictModalOpen, setIsConflictModalOpen] = useState<boolean>(false);
-  const [activeConflicts, setActiveConflicts] = useState<ConflictRecord[]>(mockConflicts);
+  const [activeConflicts, setActiveConflicts] = useState<ConflictRecord[]>([]);
 
   // Current active document
-  const activeDocument = documents.find((d) => d.id === selectedDocId) || documents[0];
+  const activeDocument = documents.find((d) => d.id === selectedDocId) || documents[0] || null;
 
   // Active page bounding boxes
-  const currentBoundingBoxes: BoundingBox[] = mockChunks
+  const currentBoundingBoxes: BoundingBox[] = chunks
     .filter(
       (c) =>
-        c.documentId === activeDocument.id &&
+        (!activeDocument || c.documentId === activeDocument.id || c.documentName === activeDocument.name) &&
         c.pageNumber === currentPageNumber &&
         c.boundingBox
     )
@@ -113,8 +105,8 @@ export const App: React.FC = () => {
     setSelectedDocId(docId);
     const doc = documents.find((d) => d.id === docId);
     if (doc) {
-      setCurrentPageNumber(5);
-      const firstChunk = mockChunks.find((c) => c.documentId === docId);
+      setCurrentPageNumber(1);
+      const firstChunk = chunks.find((c) => c.documentId === docId || c.documentName === doc.name);
       if (firstChunk) {
         setActiveChunkId(firstChunk.id);
         if (firstChunk.boundingBox) {
@@ -148,8 +140,14 @@ export const App: React.FC = () => {
   // Handle Citation Click -> Synchronizes Evidence Panel & Page
   const handleCitationClick = (citation: Citation) => {
     setSelectedCitation(citation);
-    setSelectedDocId(citation.documentId);
-    setCurrentPageNumber(citation.pageNumber);
+    
+    // Find matching document if exists
+    const matchingDoc = documents.find(d => d.id === citation.documentId || d.name === citation.documentName);
+    if (matchingDoc) {
+      setSelectedDocId(matchingDoc.id);
+    }
+    
+    setCurrentPageNumber(citation.pageNumber || 1);
     setActiveChunkId(citation.chunkId);
     if (citation.boundingBox) {
       setActiveBoxId(citation.boundingBox.id);
@@ -163,18 +161,21 @@ export const App: React.FC = () => {
   // Handle Selecting a Chunk in Evidence Panel
   const handleSelectChunk = (chunk: DocumentChunk) => {
     setActiveChunkId(chunk.id);
-    setSelectedDocId(chunk.documentId);
-    setCurrentPageNumber(chunk.pageNumber);
+    const matchingDoc = documents.find(d => d.id === chunk.documentId || d.name === chunk.documentName);
+    if (matchingDoc) {
+      setSelectedDocId(matchingDoc.id);
+    }
+    setCurrentPageNumber(chunk.pageNumber || 1);
     if (chunk.boundingBox) {
       setActiveBoxId(chunk.boundingBox.id);
     }
   };
 
-  // Handle File Upload
-  const handleFileUpload = (files: FileList | File[]) => {
+  // Handle File Upload - Connects to real API or creates dynamic client document
+  const handleFileUpload = async (files: FileList | File[]) => {
     const fileList = Array.from(files);
 
-    // 1. Stage attachments directly in the chat box so the user sees them immediately
+    // 1. Stage attachments in chat box
     const newAttachments: ChatAttachment[] = fileList.map((file, idx) => ({
       id: `att-${Date.now()}-${idx}`,
       name: file.name,
@@ -184,32 +185,95 @@ export const App: React.FC = () => {
     }));
     setStagedAttachments((prev) => [...prev, ...newAttachments]);
 
-    // 2. Add to Workspace Documents List
-    fileList.forEach((file, index) => {
+    // 2. Process each file
+    for (let index = 0; index < fileList.length; index++) {
+      const file = fileList[index];
       const fileId = `doc-${Date.now()}-${index}`;
       const ext = file.name.split('.').pop()?.toLowerCase() || 'pdf';
       const fileType = (['pdf', 'docx', 'pptx'].includes(ext) ? ext : 'image') as any;
+
+      // Local preview URL if image
+      const previewUrl = file.type.startsWith('image/') ? URL.createObjectURL(file) : '';
 
       const newDoc: DocumentItem = {
         id: fileId,
         name: file.name,
         size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
         type: fileType,
-        pageCount: fileType === 'image' ? 1 : 12,
+        pageCount: 1,
         uploadedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         status: 'Parsing',
-        progress: 30,
-        currentStepDescription: 'Reading tables...',
-        pageImages: [
-          mockVerityPageSvg()
-        ]
+        progress: 40,
+        currentStepDescription: 'Analyzing document structure...',
+        pageImages: previewUrl ? [previewUrl] : []
       };
 
       setDocuments((prev) => [newDoc, ...prev]);
       setSelectedDocId(fileId);
 
-      // Transition to Ready
-      setTimeout(() => {
+      // Try uploading to backend API
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/api/documents/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setDocuments((prev) =>
+            prev.map((d) =>
+              d.id === fileId
+                ? {
+                    ...d,
+                    id: data.id || fileId,
+                    status: 'Ready',
+                    progress: 100,
+                    currentStepDescription: 'Ready',
+                    pageCount: data.page_count || 1,
+                    insights: {
+                      summary: `Document "${file.name}" indexed for visual RAG.`,
+                      keyEntities: [
+                        { category: 'Org', value: file.name.replace(/\.[^/.]+$/, '') },
+                        { category: 'Metric', value: '100% Parsed' }
+                      ],
+                      suggestedQuestions: [
+                        `Summarize the contents of ${file.name}`,
+                        `Extract key tables and figures from ${file.name}`
+                      ]
+                    }
+                  }
+                : d
+            )
+          );
+        } else {
+          // Backend offline or error -> Mark ready for client view
+          setDocuments((prev) =>
+            prev.map((d) =>
+              d.id === fileId
+                ? {
+                    ...d,
+                    status: 'Ready',
+                    progress: 100,
+                    currentStepDescription: 'Ready',
+                    insights: {
+                      summary: `Document "${file.name}" loaded.`,
+                      keyEntities: [
+                        { category: 'Org', value: file.name.replace(/\.[^/.]+$/, '') }
+                      ],
+                      suggestedQuestions: [
+                        `What is the main topic of ${file.name}?`
+                      ]
+                    }
+                  }
+                : d
+            )
+          );
+        }
+      } catch {
+        // Fallback when backend is not running
         setDocuments((prev) =>
           prev.map((d) =>
             d.id === fileId
@@ -219,26 +283,24 @@ export const App: React.FC = () => {
                   progress: 100,
                   currentStepDescription: 'Ready',
                   insights: {
-                    summary: `Document ${file.name} processed and indexed with visual grounding.`,
+                    summary: `Document "${file.name}" loaded into workspace.`,
                     keyEntities: [
-                      { category: 'Org', value: 'Enterprise Systems' },
-                      { category: 'Metric', value: '100% Parsed' }
+                      { category: 'Org', value: file.name.replace(/\.[^/.]+$/, '') }
                     ],
                     suggestedQuestions: [
-                      `What key figures are listed in ${file.name}?`,
-                      `Extract any tables and summaries from ${file.name}`
+                      `What key figures are mentioned in ${file.name}?`
                     ]
                   }
                 }
               : d
           )
         );
-      }, 2500);
-    });
+      }
+    }
   };
 
-  // Handle Query Submission and AI Response Simulation
-  const handleSendMessage = (queryText: string, attachments?: ChatAttachment[]) => {
+  // Handle Query Submission - Sends query to real Backend API
+  const handleSendMessage = async (queryText: string, attachments?: ChatAttachment[]) => {
     const userMsg: ChatMessage = {
       id: `msg-${Date.now()}`,
       sender: 'user',
@@ -248,105 +310,79 @@ export const App: React.FC = () => {
     };
 
     setMessages((prev) => [...prev, userMsg]);
-    setStagedAttachments([]); // clear staged attachments after sending
+    setStagedAttachments([]);
     setIsLoadingAnswer(true);
 
-    setTimeout(() => {
-      const lower = queryText.toLowerCase();
-      let responseText = '';
-      let citations: Citation[] = [];
-      let confidence = 94;
-      let notFound = false;
+    try {
+      const response = await fetch('/api/chat/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: queryText,
+          document_id: activeDocument?.name || null
+        })
+      });
 
-      if (attachments && attachments.length > 0) {
-        const attNames = attachments.map(a => a.name).join(', ');
-        responseText = `Analyzed **${attNames}**: Visual OCR and table extraction complete. All figures have been indexed for multimodal visual grounding.`;
-      } else if (lower.includes('penalty') || lower.includes('late delivery') || lower.includes('unrelated')) {
-        notFound = true;
-        responseText = "I couldn't find a late-delivery penalty in the vendor contract. It is still being read, so try again in a moment.";
-      } else if (lower.includes('operating cost') || lower.includes('cost')) {
-        responseText = "**Operating costs decreased by 8.4% in Q3**, primarily due to automated inventory processing and vendor contract consolidations.";
-        citations = [
-          {
-            id: 'cite-page5-chart',
-            documentId: 'doc-1',
-            documentName: 'Annual Report 2025',
-            pageNumber: 5,
-            chunkType: 'chart',
-            label: 'Page 5 · Chart',
-            chunkId: 'chunk-chart-q3',
-            similarityScore: 0.89,
-            boundingBox: {
-              id: 'bbox-chart-q3',
-              x: 43.5,
-              y: 19.5,
-              width: 13.5,
-              height: 49.0,
-              label: 'Answer',
-              type: 'chart',
-              color: '#f59e0b'
-            }
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Extract citations and update chunks state
+        const citations: Citation[] = data.citations || [];
+        if (citations.length > 0) {
+          const newChunks: DocumentChunk[] = citations.map((c: Citation) => ({
+            id: c.chunkId || `chunk-${c.id}`,
+            documentId: c.documentId,
+            documentName: c.documentName,
+            pageNumber: c.pageNumber || 1,
+            type: c.chunkType,
+            content: c.label,
+            similarityScore: c.similarityScore || 0.9,
+            boundingBox: c.boundingBox
+          }));
+
+          setChunks((prev) => {
+            const existingIds = new Set(prev.map((c) => c.id));
+            const fresh = newChunks.filter((c) => !existingIds.has(c.id));
+            return [...prev, ...fresh];
+          });
+
+          // Select the first citation automatically
+          setSelectedCitation(citations[0]);
+          if (citations[0].pageNumber) {
+            setCurrentPageNumber(citations[0].pageNumber);
           }
-        ];
+          if (citations[0].boundingBox) {
+            setActiveBoxId(citations[0].boundingBox.id);
+          }
+        }
+
+        const aiMsg: ChatMessage = {
+          id: `msg-${Date.now() + 1}`,
+          sender: 'assistant',
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          text: data.text || "No response received.",
+          confidenceScore: data.confidence_score,
+          citations: citations,
+          notFound: data.not_found
+        };
+
+        setMessages((prev) => [...prev, aiMsg]);
       } else {
-        responseText = "**Q3 had the highest sales at ₹4.2M**, up from ₹3.1M in Q2. The chart on page 5 shows the same peak, and the summary table on page 6 confirms the figure.";
-        citations = [
-          {
-            id: 'cite-page5-chart',
-            documentId: 'doc-1',
-            documentName: 'Annual Report 2025',
-            pageNumber: 5,
-            chunkType: 'chart',
-            label: 'Page 5 · Chart',
-            chunkId: 'chunk-chart-q3',
-            similarityScore: 0.89,
-            boundingBox: {
-              id: 'bbox-chart-q3',
-              x: 43.5,
-              y: 19.5,
-              width: 13.5,
-              height: 49.0,
-              label: 'Answer',
-              type: 'chart',
-              color: '#f59e0b'
-            }
-          },
-          {
-            id: 'cite-page6-table',
-            documentId: 'doc-1',
-            documentName: 'Annual Report 2025',
-            pageNumber: 6,
-            chunkType: 'table',
-            label: 'Page 6 · Table 2',
-            chunkId: 'chunk-table-summary',
-            similarityScore: 0.84,
-            boundingBox: {
-              id: 'bbox-table-summary',
-              x: 10,
-              y: 20,
-              width: 80,
-              height: 40,
-              label: 'Summary Table',
-              type: 'table',
-              color: '#0d5c4d'
-            }
-          }
-        ];
+        throw new Error(`API error: ${response.statusText}`);
       }
-
-      const aiMsg: ChatMessage = {
+    } catch (err: any) {
+      // Clean fallback response if backend API is not running
+      const fallbackMsg: ChatMessage = {
         id: `msg-${Date.now() + 1}`,
         sender: 'assistant',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        text: responseText,
-        confidenceScore: confidence,
-        citations: citations,
-        notFound: notFound
+        text: `Unable to connect to the backend engine at \`/api/chat/query\`. Please make sure the backend FastAPI service is running on port 8000 (\`python backend/main.py\`).`,
+        notFound: true
       };
-
-      setMessages((prev) => [...prev, aiMsg]);
+      setMessages((prev) => [...prev, fallbackMsg]);
+    } finally {
       setIsLoadingAnswer(false);
-    }, 800);
+    }
   };
 
   return (
@@ -460,11 +496,12 @@ export const App: React.FC = () => {
               boundingBoxes={currentBoundingBoxes}
               activeBoxId={activeBoxId}
               onBoxClick={(box) => setActiveBoxId(box.id)}
-              chunks={mockChunks.filter((c) => c.documentId === activeDocument?.id)}
+              chunks={chunks.filter((c) => !activeDocument || c.documentId === activeDocument.id || c.documentName === activeDocument.name)}
               activeChunkId={activeChunkId}
               onSelectChunk={handleSelectChunk}
               onClosePanel={() => setIsRightPanelOpen(false)}
               language={language}
+              selectedCitation={selectedCitation}
             />
           </div>
         )}

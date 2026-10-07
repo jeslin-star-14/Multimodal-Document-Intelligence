@@ -212,14 +212,14 @@ class MultimodalReasoningEngine:
             }
         }
 
-        candidate_models = [self.model, "gemini-2.0-flash", "gemini-2.5-flash", "gemini-1.5-flash"]
+        candidate_models = [self.model, "gemini-3.8-flash", "gemini-3.5-flash", "gemini-flash-latest", "gemini-3.1-flash-lite", "gemini-2.5-flash"]
         candidate_models = list(dict.fromkeys(candidate_models))
 
         last_error = None
         for model_name in candidate_models:
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={self.api_key}"
             try:
-                async with httpx.AsyncClient(timeout=35.0) as client:
+                async with httpx.AsyncClient(timeout=6.0) as client:
                     resp = await client.post(url, headers={"Content-Type": "application/json"}, json=payload)
                     resp.raise_for_status()
                     data = resp.json()

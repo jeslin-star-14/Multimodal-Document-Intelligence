@@ -99,7 +99,7 @@ export const App: React.FC = () => {
   // Chat Sessions History State (Persisted in localStorage)
   const [chatSessions, setChatSessions] = useState<ChatSession[]>(() => {
     try {
-      const saved = localStorage.getItem('verity_chat_sessions');
+      const saved = localStorage.getItem('docq_chat_sessions') || localStorage.getItem('verity_chat_sessions');
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -110,7 +110,7 @@ export const App: React.FC = () => {
   // Sync chatSessions to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('verity_chat_sessions', JSON.stringify(chatSessions));
+      localStorage.setItem('docq_chat_sessions', JSON.stringify(chatSessions));
     } catch {
       // ignore storage errors
     }

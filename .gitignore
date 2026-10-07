@@ -1,3 +1,11 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+.vite/
+*.local
+
 # Python
 __pycache__/
 *.py[cod]
@@ -8,16 +16,14 @@ __pycache__/
 *.db
 *.sqlite
 *.sqlite3
-venv/
 .venv/
+venv/
+ENV/
 env/
-.env
 
-# Node / Frontend
-node_modules/
-dist/
-.vite/
-*.local
+# Environment Variables
+.env
+.env.local
 
 # Data uploads and temporary crops
 backend/data/uploads/*

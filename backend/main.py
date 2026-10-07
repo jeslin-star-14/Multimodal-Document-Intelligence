@@ -634,6 +634,7 @@ async def query_documents_chat(request: FrontendQueryRequest):
 # -------------------------------------------------------------
 
 @app.post("/api/spatial/query")
+@app.post("/api/query/lasso")
 async def spatial_lasso_query(req: SpatialLassoQueryRequest):
     """
     NOVELTY FEATURE: Point-and-Ask Spatial Querying.

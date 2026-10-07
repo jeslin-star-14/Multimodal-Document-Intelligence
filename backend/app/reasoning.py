@@ -3,11 +3,19 @@ import re
 import time
 import base64
 import json
+import asyncio
 import httpx
 from typing import List, Dict, Any, Tuple, Optional
 from pathlib import Path
 from app.config import GEMINI_API_KEY, VLM_MODEL, BASE_DIR, DEMO_MODE
 from app.models import DocumentChunk, Citation, QueryResponse
+
+try:
+    import google.generativeai as genai
+    from PIL import Image as PILImage
+    HAS_GENAI = True
+except ImportError:
+    HAS_GENAI = False
 
 SYSTEM_PROMPT = """You are an elite Multimodal Document Intelligence AI.
 Your task is to answer complex questions across mixed documents (text, tables, charts, diagrams, scanned pages) with extreme factual precision and verifiable visual proof.
@@ -33,26 +41,36 @@ class MultimodalReasoningEngine:
         self.api_key = GEMINI_API_KEY
         self.model = VLM_MODEL
 
+    def _resolve_image_path(self, image_path: str) -> Optional[str]:
+        """Resolves an absolute local filesystem path for a page or crop image."""
+        if not image_path:
+            return None
+        path = Path(image_path)
+        if path.exists() and path.is_file():
+            return str(path)
+        if not path.is_absolute():
+            candidate = BASE_DIR / image_path
+            if candidate.exists() and candidate.is_file():
+                return str(candidate)
+
+        # Search in data/pages or data/crops
+        candidates = list((BASE_DIR / "data" / "pages").glob(f"**/{path.name}"))
+        if candidates and candidates[0].is_file():
+            return str(candidates[0])
+            
+        candidates_crops = list((BASE_DIR / "data" / "crops").glob(f"**/{path.name}"))
+        if candidates_crops and candidates_crops[0].is_file():
+            return str(candidates_crops[0])
+            
+        return None
+
     def _encode_image_to_base64(self, image_path: str) -> Tuple[str, str]:
         """Reads local image file and returns (mime_type, base64_str) with cross-machine fallback."""
-        if not image_path:
+        resolved = self._resolve_image_path(image_path)
+        if not resolved:
             return "", ""
-        path = Path(image_path)
-        if not path.is_absolute():
-            path = BASE_DIR / image_path
-            
-        if not path.exists():
-            # Check within local data/pages or data/crops for matching filename
-            candidates = list((BASE_DIR / "data" / "pages").glob(f"**/{path.name}"))
-            if candidates:
-                path = candidates[0]
-            else:
-                candidates_crops = list((BASE_DIR / "data" / "crops").glob(f"**/{path.name}"))
-                if candidates_crops:
-                    path = candidates_crops[0]
-                else:
-                    return "", ""
 
+        path = Path(resolved)
         suffix = path.suffix.lower()
         mime_type = "image/png"
         if suffix in [".jpg", ".jpeg"]:
@@ -87,14 +105,18 @@ class MultimodalReasoningEngine:
             )
 
         # Build context blocks and collect image parts
-        context_text = "### RETRIEVED DOCUMENT CONTEXT:\n\n"
+        context_text = "### GROUNDED DOCUMENT EVIDENCE & CONTEXT:\n\n"
         image_parts = []
+        image_paths = []
         citations: List[Citation] = []
         citation_counter = 1
+        seen_docs = set()
 
         for chunk in chunks:
             c_tag = f"[Doc: {chunk.doc_name}, Page: {chunk.page_number}, Section: {chunk.chunk_type.upper()}]"
             context_text += f"{c_tag}\nContent: {chunk.content}\n\n"
+            if chunk.doc_name:
+                seen_docs.add(chunk.doc_name)
 
             # Create citation object for evidence inspector
             crop_url = f"/api/assets/crops/{Path(chunk.crop_path).name}" if chunk.crop_path else None
@@ -117,15 +139,28 @@ class MultimodalReasoningEngine:
 
             # Include visual crops or page images in VLM prompt
             img_target = chunk.crop_path or chunk.page_image_path
-            if img_target and len(image_parts) < 3:
-                mime_type, b64_data = self._encode_image_to_base64(img_target)
-                if b64_data:
-                    image_parts.append({
-                        "inline_data": {
-                            "mime_type": mime_type,
-                            "data": b64_data
-                        }
-                    })
+            if img_target:
+                resolved_p = self._resolve_image_path(img_target)
+                if resolved_p and resolved_p not in image_paths and len(image_paths) < 8:
+                    image_paths.append(resolved_p)
+                if len(image_parts) < 6:
+                    mime_type, b64_data = self._encode_image_to_base64(img_target)
+                    if b64_data:
+                        image_parts.append({
+                            "inline_data": {
+                                "mime_type": mime_type,
+                                "data": b64_data
+                            }
+                        })
+
+        # Scan and attach full document page images if not already included
+        for doc_n in seen_docs:
+            for p_folder in (BASE_DIR / "data" / "pages").glob("*"):
+                if p_folder.is_dir():
+                    for page_img in sorted(p_folder.glob("page_*.png")):
+                        img_str = str(page_img)
+                        if img_str not in image_paths and len(image_paths) < 10:
+                            image_paths.append(img_str)
 
         # Dynamic API key check from environment / .env
         api_key = (
@@ -135,28 +170,25 @@ class MultimodalReasoningEngine:
             or os.getenv("GOOGLE_AI_STUDIO_API_KEY") 
             or os.getenv("GEMMA_API_KEY") 
             or ""
-        ).strip()
+        ).strip().strip('"').strip("'")
 
-        # Call Google AI Studio / Gemini Vision if a valid API key is configured
-        # Note: Valid Google AI Studio keys start with 'AIzaSy'
-        if api_key and (api_key.startswith("AIzaSy") or not api_key.startswith("AQ.")):
+        # Call Google AI Studio / Gemini Vision if API key is configured
+        if api_key:
             try:
-                answer, math_steps = await self._call_gemini_vlm(query, context_text, image_parts, api_key=api_key)
-                if answer:
+                answer, math_steps = await self._call_gemini_vlm(query, context_text, image_parts, image_paths=image_paths, api_key=api_key)
+                if answer and len(answer.strip()) > 20:
                     elapsed = (time.time() - start_time) * 1000
                     return QueryResponse(
                         query=query,
                         answer=answer,
-                        confidence_score=0.96,
+                        confidence_score=0.98,
                         math_steps=math_steps,
                         citations=citations,
                         evidence=citations,
                         processing_time_ms=round(elapsed, 2)
                     )
             except Exception as e:
-                print(f"[Reasoning] Google AI Studio / Gemini API note: {e}, using structured reasoning synthesis.")
-        elif api_key.startswith("AQ."):
-            print("[Reasoning] Notice: API key in .env is an OAuth code/token rather than a Google AI Studio API key (which begins with 'AIzaSy...'). Utilizing local deterministic reasoning engine.")
+                print(f"[Reasoning] Gemini Cloud VLM note: {e}, utilizing structured local reasoning synthesis.")
 
         # Fallback to local grounded synthesizer
         elapsed = (time.time() - start_time) * 1000
@@ -167,11 +199,66 @@ class MultimodalReasoningEngine:
         query: str, 
         context_text: str, 
         image_parts: List[Dict[str, Any]],
+        image_paths: List[str] = None,
         api_key: str = ""
     ) -> Tuple[str, List[str]]:
-        key_to_use = api_key or self.api_key
-        prompt_text = f"{SYSTEM_PROMPT}\n\n{context_text}\n\nUSER QUESTION: {query}\n\nProvide your verified answer with visual analysis, math steps, and exact source citations:"
+        key_to_use = (api_key or self.api_key).strip().strip('"').strip("'")
+        prompt_text = (
+            f"{SYSTEM_PROMPT}\n\n"
+            f"{context_text}\n\n"
+            f"USER QUESTION: {query}\n\n"
+            f"Provide your verified, factual, grounded answer with clear Markdown formatting, tables, math calculations, and exact source citations:"
+        )
 
+        active_model = (os.getenv("VLM_MODEL") or os.getenv("GEMMA_MODEL") or self.model or "gemini-3.5-flash").strip()
+        candidate_models = [
+            active_model,
+            "gemini-3.5-flash",
+            "gemini-3.7-flash",
+            "gemini-3.1-flash-lite",
+            "gemini-flash-latest",
+            "gemini-3.1-pro-preview"
+        ]
+        candidate_models = list(dict.fromkeys(candidate_models))
+
+        # 1. Try modern google-genai Client first
+        try:
+            from google import genai as google_genai
+            client = google_genai.Client(api_key=key_to_use)
+            
+            genai_contents: List[Any] = [prompt_text]
+            if image_paths:
+                from PIL import Image as PIL_Img
+                for ip in image_paths[:8]:
+                    if os.path.exists(ip):
+                        try:
+                            img = PIL_Img.open(ip)
+                            genai_contents.append(img)
+                        except Exception:
+                            pass
+
+            for model_name in candidate_models:
+                try:
+                    clean_model = model_name.replace("models/", "")
+                    response = await asyncio.to_thread(
+                        client.models.generate_content,
+                        model=clean_model,
+                        contents=genai_contents
+                    )
+                    if response and response.text:
+                        math_steps = self._extract_math_steps(response.text)
+                        return response.text, math_steps
+                except Exception as ex_m:
+                    err_str = str(ex_m).lower()
+                    if "401" in err_str or "unauthorized" in err_str or "api_key_invalid" in err_str:
+                        raise ValueError(f"Google AI Studio API key unauthorized ({ex_m})")
+                    continue
+        except ValueError as ve:
+            raise ve
+        except Exception as ex_sdk:
+            print(f"[Reasoning] google-genai SDK note: {ex_sdk}")
+
+        # 2. REST HTTP Fallback
         parts = [{"text": prompt_text}]
         parts.extend(image_parts)
 
@@ -184,11 +271,6 @@ class MultimodalReasoningEngine:
             }
         }
 
-        # Try active model, fallback to high-availability gemini-2.0-flash / gemini-1.5-flash
-        active_model = os.getenv("VLM_MODEL") or os.getenv("GEMMA_MODEL") or self.model
-        candidate_models = [active_model, "gemini-2.0-flash", "gemini-1.5-flash", "gemini-2.5-flash", "gemma-2-27b-it"]
-        candidate_models = list(dict.fromkeys(candidate_models))
-
         headers = {
             "Content-Type": "application/json",
             "x-goog-api-key": key_to_use
@@ -196,13 +278,15 @@ class MultimodalReasoningEngine:
 
         last_error = None
         for model_name in candidate_models:
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={key_to_use}"
+            clean_m = model_name.replace("models/", "")
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{clean_m}:generateContent?key={key_to_use}"
             try:
-                async with httpx.AsyncClient(timeout=8.0) as client:
-                    resp = await client.post(url, headers=headers, json=payload)
+                async with httpx.AsyncClient(timeout=30.0) as http_client:
+                    resp = await http_client.post(url, headers=headers, json=payload)
                     if resp.status_code in [401, 403]:
                         raise ValueError(f"Google AI Studio API key unauthorized (HTTP {resp.status_code})")
-                    resp.raise_for_status()
+                    if resp.status_code != 200:
+                        continue
                     data = resp.json()
 
                 candidates = data.get("candidates", [])
@@ -210,10 +294,10 @@ class MultimodalReasoningEngine:
                     continue
 
                 raw_text = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
-                math_steps = self._extract_math_steps(raw_text)
-                return raw_text, math_steps
+                if raw_text:
+                    math_steps = self._extract_math_steps(raw_text)
+                    return raw_text, math_steps
             except ValueError as ve:
-                # Key rejected, stop trying other models with same key
                 raise ve
             except Exception as ex:
                 last_error = ex

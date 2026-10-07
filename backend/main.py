@@ -396,7 +396,7 @@ async def query_documents_chat(request: FrontendQueryRequest):
     try:
         retrieved_evidence = retrieve(
             question=request.query,
-            top_k=6,
+            top_k=16,
             document_ids=[request.document_id] if request.document_id else None,
             index_dir=str(INDEX_DIR)
         )
@@ -408,7 +408,7 @@ async def query_documents_chat(request: FrontendQueryRequest):
         try:
             retrieved_evidence = retrieve(
                 question=request.query,
-                top_k=6,
+                top_k=16,
                 index_dir=str(INDEX_DIR)
             )
         except Exception:
@@ -416,12 +416,22 @@ async def query_documents_chat(request: FrontendQueryRequest):
 
     index = get_vector_index(str(INDEX_DIR))
 
-    # Cross-match query terms against document names in the index (e.g. 'practicum', 'practicum1', 'report')
+    # If document_id was explicitly provided, inject all evidence chunks of that document
+    if request.document_id:
+        req_d = request.document_id.lower().strip()
+        for ev in index.evidence_store.values():
+            ev_id = (ev.get("document_id") or "").lower().strip()
+            ev_nm = (ev.get("document_name") or "").lower().strip()
+            if req_d in ev_id or req_d in ev_nm or ev_nm in req_d:
+                if ev not in retrieved_evidence:
+                    retrieved_evidence.append(ev)
+
+    # Cross-match query terms against document names in the index if query explicitly specifies a file
     query_tokens = [t.lower() for t in re.findall(r'[a-zA-Z0-9]+', request.query) if len(t) > 2]
     matched_by_query = []
     for ev in index.evidence_store.values():
         doc_name_clean = (ev.get("document_name") or "").lower()
-        if any(tok in doc_name_clean for tok in query_tokens):
+        if any(tok in doc_name_clean for tok in query_tokens if tok in ["sales", "kms", "employee", "directory", "portal", "report", "practicum"]):
             matched_by_query.append(ev)
     if matched_by_query:
         for ev in matched_by_query:
@@ -430,29 +440,10 @@ async def query_documents_chat(request: FrontendQueryRequest):
 
     # If still empty for generic queries ("explain", "summarize"), retrieve top chunks from active or all docs
     if not retrieved_evidence and index.evidence_store:
-        matched = []
-        if request.document_id:
-            req_d = request.document_id.lower().strip()
-            for ev in index.evidence_store.values():
-                ev_id = (ev.get("document_id") or "").lower().strip()
-                ev_nm = (ev.get("document_name") or "").lower().strip()
-                if req_d in ev_id or req_d in ev_nm or ev_nm in req_d:
-                    matched.append(ev)
-        retrieved_evidence = (matched if matched else list(index.evidence_store.values()))[:8]
+        retrieved_evidence = list(index.evidence_store.values())[:10]
 
-    # If user asks to extract data/tables/metrics, explicitly inject all table and visual chunks
-    q_lower = request.query.lower()
-    if any(k in q_lower for k in ["extract", "table", "data", "metric", "chart", "figure", "numbers", "all", "what"]):
-        for ev in list(index.evidence_store.values()):
-            if request.document_id:
-                req_d = request.document_id.lower().strip()
-                ev_id = (ev.get("document_id") or "").lower().strip()
-                ev_nm = (ev.get("document_name") or "").lower().strip()
-                if not (req_d in ev_id or req_d in ev_nm or ev_nm in req_d):
-                    continue
-            if ev.get("type") in ["table", "chart", "graph"] or ev.get("table"):
-                if ev not in retrieved_evidence:
-                    retrieved_evidence.insert(0, ev)
+    # Limit total evidence context to top 12 chunks
+    retrieved_evidence = retrieved_evidence[:12]
 
     # Convert retrieved evidence to frontend citation format
     frontend_citations: List[FrontendCitation] = []

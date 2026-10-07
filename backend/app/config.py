@@ -30,7 +30,7 @@ GEMINI_API_KEY = (
     or ""
 ).strip()
 
-VLM_MODEL = os.getenv("VLM_MODEL") or os.getenv("GEMMA_MODEL") or "gemini-2.0-flash"
+VLM_MODEL = os.getenv("VLM_MODEL") or os.getenv("GEMMA_MODEL") or "gemini-3.5-flash"
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-004")
 
 HOST = os.getenv("HOST", "0.0.0.0")

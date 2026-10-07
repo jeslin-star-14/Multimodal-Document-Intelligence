@@ -52,8 +52,8 @@ export const App: React.FC = () => {
                   { category: 'Metric', value: '100% Grounded' }
                 ],
                 suggestedQuestions: [
-                  `What was the production efficiency in Q4?`,
-                  `Compare Q2 vs Q4 factory performance`
+                  `Summarize key findings in ${d.name}`,
+                  `Extract all tables and data from ${d.name}`
                 ]
               }
             }));
@@ -492,7 +492,8 @@ export const App: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: queryText,
-          document_id: activeDocument?.name || null
+          document_id: activeDocument?.name || null,
+          doc_names: documents.map((d) => d.name)
         })
       });
 

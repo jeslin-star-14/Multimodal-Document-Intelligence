@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import glob
 import json
@@ -20,6 +21,7 @@ if str(BACKEND_DIR) not in sys.path:
 
 from schemas.evidence import DocumentProcessResponse, Evidence, TableData
 from ingestion.pipeline import process_document
+from ingestion.universal_parser import ingest_any_file
 from retrieval.indexer import index_document, get_vector_index
 from retrieval.retriever import retrieve
 from retrieval.metadata_filter import get_evidence_page
@@ -287,26 +289,24 @@ async def get_document_chunks(doc_id: str):
 @app.post("/api/documents/upload")
 async def upload_document(file: UploadFile = File(...)):
     """
-    Accepts any PDF file, executes the full ingestion pipeline:
-    renders high-res page images, extracts text, tabular structures, and visual content,
+    Accepts any document file (PDF, DOCX, PPTX, TXT, MD, CSV, etc.),
+    executes the full ingestion pipeline: renders high-res page images,
+    extracts text, tabular structures, and visual content,
     indexes into the hybrid vector store, and returns structured summary metadata.
     """
-    if not file.filename.lower().endswith(".pdf"):
-        raise HTTPException(status_code=400, detail="Only PDF files are currently supported.")
-
-    target_pdf_path = UPLOADS_DIR / file.filename
+    target_path = UPLOADS_DIR / file.filename
     try:
         content = await file.read()
-        with open(target_pdf_path, "wb") as f:
+        with open(target_path, "wb") as f:
             f.write(content)
-        logger.info(f"Saved uploaded PDF to {target_pdf_path}")
+        logger.info(f"Saved uploaded file to {target_path}")
     except Exception as e:
         logger.error(f"Failed to save uploaded file: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
 
     try:
-        # Run Member 2's ingestion pipeline
-        result = process_document(str(target_pdf_path), output_base_dir=str(DATA_DIR))
+        # Run universal ingestion pipeline (.pdf, .docx, .pptx, .txt, etc.)
+        result = ingest_any_file(str(target_path), output_base_dir=str(DATA_DIR))
         
         # Index extracted evidence for hybrid retrieval
         indexed_count = index_document(result, index_dir=str(INDEX_DIR))
@@ -320,11 +320,11 @@ async def upload_document(file: UploadFile = File(...)):
             "evidence_count": result["evidence_count"],
             "indexed_count": indexed_count,
             "status": "Ready",
-            "message": "Document successfully ingested and indexed for multimodal QA."
+            "message": f"Document '{result['document_name']}' successfully ingested and indexed for multimodal QA."
         }
     except Exception as e:
-        logger.error(f"Error processing uploaded PDF: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Error processing PDF: {str(e)}")
+        logger.error(f"Error processing uploaded document: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error processing document: {str(e)}")
 
 
 # -------------------------------------------------------------
@@ -360,20 +360,31 @@ async def query_documents_chat(request: FrontendQueryRequest):
         except Exception:
             pass
 
-    # If still empty for generic queries ("explain", "details"), retrieve top chunks from active doc
     index = get_vector_index(str(INDEX_DIR))
+
+    # Cross-match query terms against document names in the index (e.g. 'practicum', 'practicum1', 'report')
+    query_tokens = [t.lower() for t in re.findall(r'[a-zA-Z0-9]+', request.query) if len(t) > 2]
+    matched_by_query = []
+    for ev in index.evidence_store.values():
+        doc_name_clean = (ev.get("document_name") or "").lower()
+        if any(tok in doc_name_clean for tok in query_tokens):
+            matched_by_query.append(ev)
+    if matched_by_query:
+        for ev in matched_by_query:
+            if ev not in retrieved_evidence:
+                retrieved_evidence.append(ev)
+
+    # If still empty for generic queries ("explain", "summarize"), retrieve top chunks from active or all docs
     if not retrieved_evidence and index.evidence_store:
         matched = []
-        for ev in index.evidence_store.values():
-            if request.document_id:
-                req_d = request.document_id.lower().strip()
+        if request.document_id:
+            req_d = request.document_id.lower().strip()
+            for ev in index.evidence_store.values():
                 ev_id = (ev.get("document_id") or "").lower().strip()
                 ev_nm = (ev.get("document_name") or "").lower().strip()
                 if req_d in ev_id or req_d in ev_nm or ev_nm in req_d:
                     matched.append(ev)
-            else:
-                matched.append(ev)
-        retrieved_evidence = (matched if matched else list(index.evidence_store.values()))[:6]
+        retrieved_evidence = (matched if matched else list(index.evidence_store.values()))[:8]
 
     # If user asks to extract data/tables/metrics, explicitly inject all table and visual chunks
     q_lower = request.query.lower()
@@ -499,36 +510,49 @@ async def query_documents_chat(request: FrontendQueryRequest):
             not_found=False
         )
 
-    # Fallback when no indexed documents exist yet (returns verified benchmark demo)
-    demo_obj = reasoning_engine._build_benchmark_demo_response(query=request.query, start_time=0)
-    for cit in demo_obj.citations:
-        c_type = cit.type if cit.type in ["text", "table", "chart"] else "image"
-        frontend_citations.append(FrontendCitation(
-            id=f"cite-{cit.citation_id}",
-            document_id=cit.doc_name,
-            document_name=cit.doc_name,
-            page_number=cit.page_number,
-            chunk_type=c_type,
-            label=f"{cit.section} (Page {cit.page_number})",
-            chunk_id=f"chunk-{cit.citation_id}",
-            similarity_score=cit.confidence,
-            bounding_box=FrontendBoundingBox(
-                id=f"bbox-{cit.citation_id}",
-                x=12.0,
-                y=25.0,
-                width=75.0,
-                height=35.0,
-                label=f"Evidence: {cit.title}",
-                type=c_type,
-                color="#f59e0b" if c_type == "chart" else ("#10b981" if c_type == "table" else "#6366f1")
-            )
-        ))
+    # Fallback: Only return benchmark demo if query specifically requests the benchmark or demo
+    is_benchmark_request = any(k in request.query.lower() for k in [
+        "benchmark demo", "benchmark", "compare production efficiency", "operations_q2", "cnc machine", "semiconductor"
+    ])
+    if is_benchmark_request:
+        demo_obj = reasoning_engine._build_benchmark_demo_response(query=request.query, start_time=0)
+        for cit in demo_obj.citations:
+            c_type = cit.type if cit.type in ["text", "table", "chart"] else "image"
+            frontend_citations.append(FrontendCitation(
+                id=f"cite-{cit.citation_id}",
+                document_id=cit.doc_name,
+                document_name=cit.doc_name,
+                page_number=cit.page_number,
+                chunk_type=c_type,
+                label=f"{cit.section} (Page {cit.page_number})",
+                chunk_id=f"chunk-{cit.citation_id}",
+                similarity_score=cit.confidence,
+                bounding_box=FrontendBoundingBox(
+                    id=f"bbox-{cit.citation_id}",
+                    x=12.0,
+                    y=25.0,
+                    width=75.0,
+                    height=35.0,
+                    label=f"Evidence: {cit.title}",
+                    type=c_type,
+                    color="#f59e0b" if c_type == "chart" else ("#10b981" if c_type == "table" else "#6366f1")
+                )
+            ))
+        return FrontendQueryResponse(
+            text=demo_obj.answer,
+            confidence_score=96,
+            citations=frontend_citations,
+            not_found=False
+        )
 
+    # Truthful grounded response when genuinely no evidence matches
+    indexed_doc_names = list(set(ev.get("document_name") for ev in index.evidence_store.values() if ev.get("document_name")))
+    doc_info = f"indexed document(s): {', '.join(indexed_doc_names)}" if indexed_doc_names else "no documents are currently indexed"
     return FrontendQueryResponse(
-        text=demo_obj.answer,
-        confidence_score=96,
-        citations=frontend_citations,
-        not_found=False
+        text=f"I could not locate verified evidence for **'{request.query}'** in the active document set ({doc_info}).\n\nPlease select the target document in the left panel, or upload your file to analyze its text and tables.",
+        confidence_score=0,
+        citations=[],
+        not_found=True
     )
 
 

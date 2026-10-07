@@ -84,10 +84,14 @@ if HAS_REASONING_MODULE:
 
 # Request Schemas
 class SearchQueryRequest(BaseModel):
-    question: str = Field(..., description="User search query or question")
+    question: Optional[str] = Field(None, description="User search query or question")
+    query: Optional[str] = Field(None, description="User search query or question")
     top_k: int = Field(8, description="Maximum number of evidence results to return")
     document_ids: Optional[List[str]] = Field(None, description="Optional list of document IDs to filter by")
     types: Optional[List[str]] = Field(None, description="Optional list of evidence types to filter by")
+
+    def get_query_text(self) -> str:
+        return self.query or self.question or ""
 
 class IndexDocumentRequest(BaseModel):
     document_id: str = Field(..., description="Document ID of an already processed document")
@@ -188,8 +192,11 @@ def search_evidence(req: SearchQueryRequest):
     Executes hybrid multimodal retrieval across indexed evidence objects.
     """
     try:
+        query_text = req.get_query_text()
+        if not query_text:
+            raise HTTPException(status_code=400, detail="Query or question parameter must be provided.")
         results = retrieve(
-            question=req.question,
+            question=query_text,
             top_k=req.top_k,
             document_ids=req.document_ids,
             types=req.types,
@@ -197,7 +204,7 @@ def search_evidence(req: SearchQueryRequest):
         )
         return {
             "success": True,
-            "query": req.question,
+            "query": query_text,
             "results": results
         }
     except Exception as e:

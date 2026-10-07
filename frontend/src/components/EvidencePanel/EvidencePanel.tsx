@@ -254,7 +254,7 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
                   <span>Extracted Tables ({allDocTables.length})</span>
                 </h4>
                 {allDocTables.map((t, idx) => (
-                  <div key={idx} className="rounded-xl border border-slate-200 p-3.5 bg-slate-50 text-xs space-y-2.5 shadow-xs">
+                  <div key={t.id || `table-${t.pageNumber}-${idx}`} className="rounded-xl border border-slate-200 p-3.5 bg-slate-50 text-xs space-y-2.5 shadow-xs">
                     <div className="flex items-center justify-between">
                       <span className="font-semibold text-slate-900">
                         Table {idx + 1} &middot; Page {t.pageNumber} ({t.rawTableData?.rows.length || 0} rows)
@@ -274,15 +274,15 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
                           <thead>
                             <tr className="bg-slate-100 border-b border-slate-200">
                               {t.rawTableData.headers.map((h, i) => (
-                                <th key={i} className="p-2 font-semibold text-slate-700">{h}</th>
+                                <th key={`th-${i}-${h}`} className="p-2 font-semibold text-slate-700">{h}</th>
                               ))}
                             </tr>
                           </thead>
                           <tbody>
                             {t.rawTableData.rows.slice(0, 10).map((row, rIdx) => (
-                              <tr key={rIdx} className="border-b border-slate-100 last:border-b-0">
+                              <tr key={`tr-${rIdx}`} className="border-b border-slate-100 last:border-b-0">
                                 {row.map((cell, cIdx) => (
-                                  <td key={cIdx} className="p-2 font-mono text-slate-800">{cell}</td>
+                                  <td key={`td-${rIdx}-${cIdx}`} className="p-2 font-mono text-slate-800">{cell}</td>
                                 ))}
                               </tr>
                             ))}
@@ -304,7 +304,7 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
                 </h4>
                 <div className="space-y-2">
                   {visualFigures.map((fig, idx) => (
-                    <div key={idx} className="p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between shadow-xs">
+                    <div key={fig.id || `fig-${fig.pageNumber}-${idx}`} className="p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between shadow-xs">
                       <div className="min-w-0 pr-3">
                         <span className="font-semibold text-slate-900 capitalize text-xs">
                           {fig.type} on Page {fig.pageNumber}

@@ -44,6 +44,33 @@ class LocalVectorIndex:
             except Exception as e:
                 logger.error(f"Failed to load metadata.json: {e}")
 
+        # Self-healing fallback: If evidence_store is empty, scan processed directory
+        if not self.evidence_store:
+            import glob
+            processed_dir = os.path.join(os.path.dirname(self.index_dir), "processed")
+            if os.path.exists(processed_dir):
+                for pf in sorted(glob.glob(os.path.join(processed_dir, "*.json"))):
+                    try:
+                        with open(pf, "r", encoding="utf-8") as f:
+                            p_data = json.load(f)
+                        doc_id = p_data.get("document_id")
+                        doc_name = p_data.get("document_name")
+                        for ev in p_data.get("evidence", []):
+                            ev["document_id"] = doc_id
+                            ev["document_name"] = doc_name
+                            ev_id = ev.get("evidence_id")
+                            key = f"{doc_id}_{ev_id}"
+                            search_text = format_evidence_search_text(ev)
+                            item_copy = dict(ev)
+                            item_copy["_search_text"] = search_text
+                            self.evidence_store[key] = item_copy
+                            if key not in self.keys_list:
+                                self.keys_list.append(key)
+                    except Exception as e:
+                        logger.warning(f"Failed to auto-load processed document {pf}: {e}")
+                if self.evidence_store:
+                    logger.info(f"Auto-recovered {len(self.evidence_store)} evidence entries from processed directory.")
+
         if os.path.exists(self.npy_path):
             try:
                 self.embeddings_matrix = np.load(self.npy_path)
@@ -146,6 +173,8 @@ def get_vector_index(index_dir: str = "data/index") -> LocalVectorIndex:
     global _INDEX_INSTANCE
     if _INDEX_INSTANCE is None:
         _INDEX_INSTANCE = LocalVectorIndex(index_dir)
+    elif not _INDEX_INSTANCE.evidence_store:
+        _INDEX_INSTANCE._load_from_disk()
     return _INDEX_INSTANCE
 
 def index_document(document_result: Dict[str, Any], index_dir: str = "data/index") -> int:

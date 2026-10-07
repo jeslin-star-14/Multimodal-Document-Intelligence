@@ -1,0 +1,90 @@
+{
+  "success": true,
+  "document_id": "DOC_D1E838",
+  "document_name": "Clinical_Trial_Phase3_Results.pdf",
+  "page_count": 2,
+  "evidence_count": 3,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_D1E838",
+      "document_name": "Clinical_Trial_Phase3_Results.pdf",
+      "page": 1,
+      "section": "Phase III Clinical Investigation: NeuroShield (VX-409)",
+      "type": "text",
+      "text": "Phase III Clinical Investigation: NeuroShield (VX-409)\nEfficacy, Patient Stratification & Primary Endpoint Audit\nDate: August 15, 2026\nDoc ID: MED-2026-CT3\nMultimodal Document Intelligence | Verified Formal Report\n1. Executive Summary & Study Design Overview\nA multicenter, double-blind, randomized, placebo-controlled Phase III study evaluated the therapeutic\nefficacy and safety profile of NeuroShield (VX-409) across 1,200 participants across 18 medical centers.\nThe primary cognitive retention endpoint was met with high statistical significance (p < 0.001).\nAt Week 48, 88.4% of subjects in the High-Dose (100mg) cohort demonstrated cognitive stability versus\n51.2% in the placebo cohort, demonstrating substantial clinical neuroprotection.\nTable 1: Participant Cohort Stratification & Demographic Baseline\nCohort Group\nSample (n)\nMean Age\nFemale %\nRetention Rate (W48)\nHigh-Dose (100mg)\n400\n64.5 yrs\n54.2%\n95.5% (382 pts)\nLow-Dose (50mg)\n400\n63.8 yrs\n52.8%\n94.0% (376 pts)\nPlacebo Control\n400\n64.1 yrs\n53.5%\n91.2% (365 pts)\nTotal Study Population\n1,200\n64.1 yrs\n53.5%\n93.6% (1,123 pts)\nFigure 1: Cognitive Preservation Rate at Week 48 (%)\n88.4%\nHigh-Dose\n76.5%\nLow-Dose\n51.2%\nPlacebo\n70.0%\nTarget Benchmark",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_D1E838/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1212
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_D1E838",
+      "document_name": "Clinical_Trial_Phase3_Results.pdf",
+      "page": 1,
+      "section": "Phase III Clinical Investigation: NeuroShield (VX-409)",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "88.4%\n76.5%\n70.0%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            "",
+            "51.2%",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "High-Dose Low-Dose Placebo Target Benchmark",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_D1E838/page_1.png",
+      "metadata": {
+        "row_count": 2,
+        "col_count": 9
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_D1E838",
+      "document_name": "Clinical_Trial_Phase3_Results.pdf",
+      "page": 2,
+      "section": "Biomarker Modulation & Pharmacovigilance Safety",
+      "type": "text",
+      "text": "Biomarker Modulation & Pharmacovigilance Safety\nSecondary Endpoints, Plaque Clearance & Biostatistical Proof\nDate: August 15, 2026\nDoc ID: MED-2026-CT3\nMultimodal Document Intelligence | Verified Formal Report\n2. Biomarker Efficacy & Adverse Event Profile\nPositron emission tomography (PET) imaging demonstrated a mean 42.8% reduction in cortical amyloid\nplaque burden in the 100mg cohort compared to a 4.2% increase in the placebo group. Serious Adverse Events\n(SAEs) occurred in 4.2% of active drug subjects versus 3.8% of placebo subjects (p = 0.72, non-significant),\nconfirming that VX-409 exhibits an excellent clinical safety and tolerability window.\nTable 2: Secondary Biomarker Efficacy & Safety Events\nBiomarker / Safety Endpoint\nHigh-Dose 100mg\nLow-Dose 50mg\nPlacebo Control\np-value\nAmyloid Plaque Reduction\n-42.8%\n-28.4%\n+4.2%\np < 0.001\nCSF Phospho-Tau Reduction\n-36.5%\n-21.0%\n+2.8%\np < 0.001\nMild Headache (Transient)\n8.5%\n6.2%\n5.0%\np = 0.12\nDiscontinuation Due to AEs\n4.5%\n4.0%\n6.8%\np = 0.24\n3. Biostatistical Formulation & Hazard Ratio Verification\nBiostatistical Formulations:\n  - Hazard Ratio (HR) = 0.58 (95% CI: [0.47, 0.71], p < 0.0001 via Cox Proportional Hazards Model)\n  - Cognitive Decline Event Rates: Placebo = 48.8%, High-Dose VX-409 = 11.6%\n  - Absolute Risk Reduction (ARR) = EventRate_Placebo - EventRate_Active\n      ARR = 48.8% - 11.6% = 37.2% (0.372)\n  - Number Needed to Treat (NNT) = 1 / ARR\n      NNT = 1 / 0.372 = 2.69 patients (Treating ~3 patients prevents 1 cognitive decline event)\n  - Relative Risk Reduction (RRR) = (ARR / EventRate_Placebo) * 100% = (37.2% / 48.8%) * 100% = 76.23%.",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_D1E838/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1625
+      }
+    }
+  ]
+}

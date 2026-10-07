@@ -18,7 +18,7 @@ ROLE_PROMPTS = {
     "Legal Counsel": """You are Senior Legal Counsel. Focus on contractual terms, compliance standards, risk clauses, and exact document sections."""
 }
 
-BASE_SYSTEM_PROMPT = """You are an elite Multimodal Document Intelligence AI (DOC-Q / Verity).
+BASE_SYSTEM_PROMPT = """You are an elite Multimodal Document Intelligence & Verification AI (DOC-Q / Verity).
 Your task is to answer user questions about their uploaded documents (text, tables, charts, receipts, diagrams, scanned pages) with extreme factual precision and verifiable proof.
 
 CRITICAL INSTRUCTIONS:

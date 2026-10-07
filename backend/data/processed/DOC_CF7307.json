@@ -1,0 +1,85 @@
+{
+  "success": true,
+  "document_id": "DOC_CF7307",
+  "document_name": "Financial_Q3_Earnings_Report.pdf",
+  "page_count": 2,
+  "evidence_count": 3,
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "document_id": "DOC_CF7307",
+      "document_name": "Financial_Q3_Earnings_Report.pdf",
+      "page": 1,
+      "section": "Q3 Global Financial Earnings & Audit",
+      "type": "text",
+      "text": "Q3 Global Financial Earnings & Audit\nConsolidated P&L, Segment Margins & Capital Allocations\nDate: September 30, 2026\nDoc ID: FIN-2026-Q3\nMultimodal Document Intelligence | Verified Formal Report\n1. Executive Financial Summary & Quarterly Highlights\nDuring the third quarter (Q3 2026), consolidated corporate revenue reached $18.45M (+12.5% YoY),\noutperforming guidance by $650,000. Gross profit totaled $8.12M with a stable gross margin of 44.0%.\nOperating income stood at $3.62M (19.6% margin), while Net Profit expanded to $2.78M. Revenue growth\nwas primarily driven by cloud software expansion in North America and robust enterprise demand in APAC.\nTable 1: Q3 Revenue & Segment Operating Performance\nOperating Segment\nRevenue ($M)\nYoY Growth\nGross Margin\nOperating Profit\nNorth America (AMER)\n$9.25M\n+14.2%\n46.2%\n$2.10M\nEurope & Mid-East (EMEA)\n$5.40M\n+8.5%\n42.1%\n$0.95M\nAsia-Pacific (APAC)\n$3.80M\n+15.8%\n41.5%\n$0.57M\nConsolidated Total\n$18.45M\n+12.5%\n44.0%\n$3.62M\nFigure 1: Segment Revenue Distribution ($M)\n9.25$M\nAMER\n5.4$M\nEMEA\n3.8$M\nAPAC\n18.45$M\nTotal",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_CF7307/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1061
+      }
+    },
+    {
+      "evidence_id": "E002",
+      "document_id": "DOC_CF7307",
+      "document_name": "Financial_Q3_Earnings_Report.pdf",
+      "page": 1,
+      "section": "Q3 Global Financial Earnings & Audit",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "18.45$M",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "9.25$M",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "5.4$M\n3.8$M",
+            "",
+            ""
+          ],
+          [
+            "AMER EMEA APAC Total",
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_CF7307/page_1.png",
+      "metadata": {
+        "row_count": 3,
+        "col_count": 5
+      }
+    },
+    {
+      "evidence_id": "E003",
+      "document_id": "DOC_CF7307",
+      "document_name": "Financial_Q3_Earnings_Report.pdf",
+      "page": 2,
+      "section": "Q3 Operating Expense Breakdown & Cash Flow",
+      "type": "text",
+      "text": "Q3 Operating Expense Breakdown & Cash Flow\nR&D Expenditure, Capital Allocation & Free Cash Flow Verification\nDate: September 30, 2026\nDoc ID: FIN-2026-Q3\nMultimodal Document Intelligence | Verified Formal Report\n2. Operating Expenses & Strategic R&D Allocation\nOperating expenses (OpEx) for Q3 totaled $4.50M, representing 24.4% of total revenue.\nStrategic research and development (R&D) investments increased by 18.2% YoY to accelerate AI compute\ninfrastructure, while sales efficiency improvements decreased administrative overhead by 2.1%.\nTable 2: Operating Expense Breakdown by Function (Q3 2026)\nExpense Category\nQ3 Amount\nShare of OpEx\nYoY Change\nBudget Variance\nResearch & Development (R&D)\n$2,100,000\n46.7%\n+18.2%\n+$50,000 (Within Plan)\nSales & Marketing (S&M)\n$1,420,000\n31.6%\n+5.4%\n-$80,000 (Favorable)\nGeneral & Administrative (G&A)\n$980,000\n21.7%\n-2.1%\n-$40,000 (Favorable)\nTotal Operating Expenses\n$4,500,000\n100.0%\n+9.8%\n-$70,000 (Net Favorable)\n3. Cash Flow Metrics & Mathematical Verification\nMathematical Financial Formulations:\n  - Operating Cash Flow = $4,250,000 (23.0% of revenue)\n  - Capital Expenditures (CapEx) = $1,150,000 (cloud infrastructure & compute servers)\n  - Free Cash Flow (FCF) = Operating Cash Flow - CapEx\n      FCF = $4,250,000 - $1,150,000 = $3,100,000 ($3.10M)\n  - FCF Conversion Rate = (FCF / EBITDA) * 100% = ($3,100,000 / $4,120,000) * 100% = 75.24%\n  - Operating Margin = (Operating Income / Revenue) * 100% = ($3.62M / $18.45M) * 100% = 19.62%.",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_CF7307/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1491
+      }
+    }
+  ]
+}

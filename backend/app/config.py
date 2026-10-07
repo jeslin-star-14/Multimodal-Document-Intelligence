@@ -16,7 +16,7 @@ CROPS_DIR.mkdir(parents=True, exist_ok=True)
 PAGES_DIR.mkdir(parents=True, exist_ok=True)
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-VLM_MODEL = os.getenv("VLM_MODEL", "gemini-2.5-flash")
+VLM_MODEL = os.getenv("VLM_MODEL", "gemini-3.5-flash-lite")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-004")
 
 HOST = os.getenv("HOST", "0.0.0.0")

@@ -423,5 +423,242 @@
     "DOC_F86EB3_E002",
     "DOC_F86EB3_E003",
     "DOC_97C2EB_E001"
+=======
+    "DOC_D0DE10_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_D0DE10",
+      "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+      "page": 1,
+      "section": "Slide 1",
+      "type": "text",
+      "text": "Nexus Beginner Guide • Module 1\nSlide 01 of 03\nSTEP 01 // WELCOME TO NEXUS\nMeet Nexus: Your Smart AI Assistant\nA friendly thinking helper that reads, organizes, and explains information clearly\nSimple & Fast\n100% Easy\nSmart Reading\nReads long PDFs, articles, and notes in seconds.\nInstant Finding\nUnderstands your question's real meaning instantly.\nTeam of Brains\nSelects the best AI model for each specific task.\nVisual Answers\nDraws colorful charts and diagrams automatically.\nMade for Everyone\nNo coding or tech skills needed",
+      "table": null,
+      "image_path": "D:\\Projects\\Hackathon\\backend\\data\\pages\\DOC_D0DE10\\page_1.png",
+      "metadata": {
+        "slide_num": 1
+      },
+      "_search_text": "Section: Slide 1\nNexus Beginner Guide • Module 1\nSlide 01 of 03\nSTEP 01 // WELCOME TO NEXUS\nMeet Nexus: Your Smart AI Assistant\nA friendly thinking helper that reads, organizes, and explains information clearly\nSimple & Fast\n100% Easy\nSmart Reading\nReads long PDFs, articles, and notes in seconds.\nInstant Finding\nUnderstands your question's real meaning instantly.\nTeam of Brains\nSelects the best AI model for each specific task.\nVisual Answers\nDraws colorful charts and diagrams automatically.\nMade for Everyone\nNo coding or tech skills needed"
+    },
+    "DOC_D0DE10_E002": {
+      "evidence_id": "E002",
+      "document_id": "DOC_D0DE10",
+      "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+      "page": 2,
+      "section": "Slide 2",
+      "type": "text",
+      "text": "Nexus Beginner Guide • Module 2\nSlide 02 of 03\nSTEP 02 // HOW MEMORY WORKS\nHow Nexus Remembers Everything\nOrganizing ideas, facts, and files just like a super-powered digital library\nSafe & Organized\n0.1s Search\nInstant Retrieval\nNever lose a single note or file\nGroups related topics together naturally.\nSaves exact dates, numbers, and conversation logs.\nKeeps team files separate and locked.\nIdea Memory\nCONCEPT MAP\nFact Vault\nEXACT DETAILS\nPrivate Lockbox\nSAFE & ISOLATED",
+      "table": null,
+      "image_path": "D:\\Projects\\Hackathon\\backend\\data\\pages\\DOC_D0DE10\\page_2.png",
+      "metadata": {
+        "slide_num": 2
+      },
+      "_search_text": "Section: Slide 2\nNexus Beginner Guide • Module 2\nSlide 02 of 03\nSTEP 02 // HOW MEMORY WORKS\nHow Nexus Remembers Everything\nOrganizing ideas, facts, and files just like a super-powered digital library\nSafe & Organized\n0.1s Search\nInstant Retrieval\nNever lose a single note or file\nGroups related topics together naturally.\nSaves exact dates, numbers, and conversation logs.\nKeeps team files separate and locked.\nIdea Memory\nCONCEPT MAP\nFact Vault\nEXACT DETAILS\nPrivate Lockbox\nSAFE & ISOLATED"
+    },
+    "DOC_D0DE10_E003": {
+      "evidence_id": "E003",
+      "document_id": "DOC_D0DE10",
+      "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+      "page": 3,
+      "section": "Slide 3",
+      "type": "text",
+      "text": "Nexus Beginner Guide • Module 3\nSlide 03 of 03\nSTEP 03 // REAL BENEFITS\nWhy Nexus Helps You Win Every Day\nSaving valuable hours and giving answers you can trust 100%\nTrust & Privacy\nTrusted AI\nAlways Verified\nCompletely Safe\n5x Faster Work\nShared Clarity\nHuman First\nTechnology that serves people\nZero Guesswork\nPoints directly to source pages.\nTotal Privacy\nFiles never shared with outsiders.\nSaves Your Day\nEliminates hours of manual search.\nSimple for Teams\nEveryone understands answers instantly.",
+      "table": null,
+      "image_path": "D:\\Projects\\Hackathon\\backend\\data\\pages\\DOC_D0DE10\\page_3.png",
+      "metadata": {
+        "slide_num": 3
+      },
+      "_search_text": "Section: Slide 3\nNexus Beginner Guide • Module 3\nSlide 03 of 03\nSTEP 03 // REAL BENEFITS\nWhy Nexus Helps You Win Every Day\nSaving valuable hours and giving answers you can trust 100%\nTrust & Privacy\nTrusted AI\nAlways Verified\nCompletely Safe\n5x Faster Work\nShared Clarity\nHuman First\nTechnology that serves people\nZero Guesswork\nPoints directly to source pages.\nTotal Privacy\nFiles never shared with outsiders.\nSaves Your Day\nEliminates hours of manual search.\nSimple for Teams\nEveryone understands answers instantly."
+    },
+    "DOC_D0DE10_E004": {
+      "evidence_id": "E004",
+      "document_id": "DOC_D0DE10",
+      "document_name": "What is Nexus_ Cognitive Engine (1).pptx",
+      "page": 4,
+      "section": "Slide 4",
+      "type": "text",
+      "text": "Image Sources\nhttps://learningmole.com/wp-content/uploads/2026/03/v2-19qxrp-knw5o.jpg\nSource: learningmole.com\nhttps://ps.w.org/library-management-system/assets/banner-1544x500.jpg?rev=3620837\nSource: wordpress.org\nhttps://getjoan.com/wp-content/uploads/2021/05/homeOffice-v2.webp\nSource: getjoan.com",
+      "table": null,
+      "image_path": "D:\\Projects\\Hackathon\\backend\\data\\pages\\DOC_D0DE10\\page_4.png",
+      "metadata": {
+        "slide_num": 4
+      },
+      "_search_text": "Section: Slide 4\nImage Sources\nhttps://learningmole.com/wp-content/uploads/2026/03/v2-19qxrp-knw5o.jpg\nSource: learningmole.com\nhttps://ps.w.org/library-management-system/assets/banner-1544x500.jpg?rev=3620837\nSource: wordpress.org\nhttps://getjoan.com/wp-content/uploads/2021/05/homeOffice-v2.webp\nSource: getjoan.com"
+    },
+    "DOC_CF7307_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_CF7307",
+      "document_name": "Financial_Q3_Earnings_Report.pdf",
+      "page": 1,
+      "section": "Q3 Global Financial Earnings & Audit",
+      "type": "text",
+      "text": "Q3 Global Financial Earnings & Audit\nConsolidated P&L, Segment Margins & Capital Allocations\nDate: September 30, 2026\nDoc ID: FIN-2026-Q3\nMultimodal Document Intelligence | Verified Formal Report\n1. Executive Financial Summary & Quarterly Highlights\nDuring the third quarter (Q3 2026), consolidated corporate revenue reached $18.45M (+12.5% YoY),\noutperforming guidance by $650,000. Gross profit totaled $8.12M with a stable gross margin of 44.0%.\nOperating income stood at $3.62M (19.6% margin), while Net Profit expanded to $2.78M. Revenue growth\nwas primarily driven by cloud software expansion in North America and robust enterprise demand in APAC.\nTable 1: Q3 Revenue & Segment Operating Performance\nOperating Segment\nRevenue ($M)\nYoY Growth\nGross Margin\nOperating Profit\nNorth America (AMER)\n$9.25M\n+14.2%\n46.2%\n$2.10M\nEurope & Mid-East (EMEA)\n$5.40M\n+8.5%\n42.1%\n$0.95M\nAsia-Pacific (APAC)\n$3.80M\n+15.8%\n41.5%\n$0.57M\nConsolidated Total\n$18.45M\n+12.5%\n44.0%\n$3.62M\nFigure 1: Segment Revenue Distribution ($M)\n9.25$M\nAMER\n5.4$M\nEMEA\n3.8$M\nAPAC\n18.45$M\nTotal",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_CF7307/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1061
+      },
+      "_search_text": "Section: Q3 Global Financial Earnings & Audit\nQ3 Global Financial Earnings & Audit\nConsolidated P&L, Segment Margins & Capital Allocations\nDate: September 30, 2026\nDoc ID: FIN-2026-Q3\nMultimodal Document Intelligence | Verified Formal Report\n1. Executive Financial Summary & Quarterly Highlights\nDuring the third quarter (Q3 2026), consolidated corporate revenue reached $18.45M (+12.5% YoY),\noutperforming guidance by $650,000. Gross profit totaled $8.12M with a stable gross margin of 44.0%.\nOperating income stood at $3.62M (19.6% margin), while Net Profit expanded to $2.78M. Revenue growth\nwas primarily driven by cloud software expansion in North America and robust enterprise demand in APAC.\nTable 1: Q3 Revenue & Segment Operating Performance\nOperating Segment\nRevenue ($M)\nYoY Growth\nGross Margin\nOperating Profit\nNorth America (AMER)\n$9.25M\n+14.2%\n46.2%\n$2.10M\nEurope & Mid-East (EMEA)\n$5.40M\n+8.5%\n42.1%\n$0.95M\nAsia-Pacific (APAC)\n$3.80M\n+15.8%\n41.5%\n$0.57M\nConsolidated Total\n$18.45M\n+12.5%\n44.0%\n$3.62M\nFigure 1: Segment Revenue Distribution ($M)\n9.25$M\nAMER\n5.4$M\nEMEA\n3.8$M\nAPAC\n18.45$M\nTotal"
+    },
+    "DOC_CF7307_E002": {
+      "evidence_id": "E002",
+      "document_id": "DOC_CF7307",
+      "document_name": "Financial_Q3_Earnings_Report.pdf",
+      "page": 1,
+      "section": "Q3 Global Financial Earnings & Audit",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "18.45$M",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "9.25$M",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "5.4$M\n3.8$M",
+            "",
+            ""
+          ],
+          [
+            "AMER EMEA APAC Total",
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_CF7307/page_1.png",
+      "metadata": {
+        "row_count": 3,
+        "col_count": 5
+      },
+      "_search_text": "Section: Q3 Global Financial Earnings & Audit\nTable Data:\n18.45$M |  |  |  | \n9.25$M |  |  |  | \n |  | 5.4$M\n3.8$M |  | \nAMER EMEA APAC Total |  |  |  | "
+    },
+    "DOC_CF7307_E003": {
+      "evidence_id": "E003",
+      "document_id": "DOC_CF7307",
+      "document_name": "Financial_Q3_Earnings_Report.pdf",
+      "page": 2,
+      "section": "Q3 Operating Expense Breakdown & Cash Flow",
+      "type": "text",
+      "text": "Q3 Operating Expense Breakdown & Cash Flow\nR&D Expenditure, Capital Allocation & Free Cash Flow Verification\nDate: September 30, 2026\nDoc ID: FIN-2026-Q3\nMultimodal Document Intelligence | Verified Formal Report\n2. Operating Expenses & Strategic R&D Allocation\nOperating expenses (OpEx) for Q3 totaled $4.50M, representing 24.4% of total revenue.\nStrategic research and development (R&D) investments increased by 18.2% YoY to accelerate AI compute\ninfrastructure, while sales efficiency improvements decreased administrative overhead by 2.1%.\nTable 2: Operating Expense Breakdown by Function (Q3 2026)\nExpense Category\nQ3 Amount\nShare of OpEx\nYoY Change\nBudget Variance\nResearch & Development (R&D)\n$2,100,000\n46.7%\n+18.2%\n+$50,000 (Within Plan)\nSales & Marketing (S&M)\n$1,420,000\n31.6%\n+5.4%\n-$80,000 (Favorable)\nGeneral & Administrative (G&A)\n$980,000\n21.7%\n-2.1%\n-$40,000 (Favorable)\nTotal Operating Expenses\n$4,500,000\n100.0%\n+9.8%\n-$70,000 (Net Favorable)\n3. Cash Flow Metrics & Mathematical Verification\nMathematical Financial Formulations:\n  - Operating Cash Flow = $4,250,000 (23.0% of revenue)\n  - Capital Expenditures (CapEx) = $1,150,000 (cloud infrastructure & compute servers)\n  - Free Cash Flow (FCF) = Operating Cash Flow - CapEx\n      FCF = $4,250,000 - $1,150,000 = $3,100,000 ($3.10M)\n  - FCF Conversion Rate = (FCF / EBITDA) * 100% = ($3,100,000 / $4,120,000) * 100% = 75.24%\n  - Operating Margin = (Operating Income / Revenue) * 100% = ($3.62M / $18.45M) * 100% = 19.62%.",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_CF7307/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1491
+      },
+      "_search_text": "Section: Q3 Operating Expense Breakdown & Cash Flow\nQ3 Operating Expense Breakdown & Cash Flow\nR&D Expenditure, Capital Allocation & Free Cash Flow Verification\nDate: September 30, 2026\nDoc ID: FIN-2026-Q3\nMultimodal Document Intelligence | Verified Formal Report\n2. Operating Expenses & Strategic R&D Allocation\nOperating expenses (OpEx) for Q3 totaled $4.50M, representing 24.4% of total revenue.\nStrategic research and development (R&D) investments increased by 18.2% YoY to accelerate AI compute\ninfrastructure, while sales efficiency improvements decreased administrative overhead by 2.1%.\nTable 2: Operating Expense Breakdown by Function (Q3 2026)\nExpense Category\nQ3 Amount\nShare of OpEx\nYoY Change\nBudget Variance\nResearch & Development (R&D)\n$2,100,000\n46.7%\n+18.2%\n+$50,000 (Within Plan)\nSales & Marketing (S&M)\n$1,420,000\n31.6%\n+5.4%\n-$80,000 (Favorable)\nGeneral & Administrative (G&A)\n$980,000\n21.7%\n-2.1%\n-$40,000 (Favorable)\nTotal Operating Expenses\n$4,500,000\n100.0%\n+9.8%\n-$70,000 (Net Favorable)\n3. Cash Flow Metrics & Mathematical Verification\nMathematical Financial Formulations:\n  - Operating Cash Flow = $4,250,000 (23.0% of revenue)\n  - Capital Expenditures (CapEx) = $1,150,000 (cloud infrastructure & compute servers)\n  - Free Cash Flow (FCF) = Operating Cash Flow - CapEx\n      FCF = $4,250,000 - $1,150,000 = $3,100,000 ($3.10M)\n  - FCF Conversion Rate = (FCF / EBITDA) * 100% = ($3,100,000 / $4,120,000) * 100% = 75.24%\n  - Operating Margin = (Operating Income / Revenue) * 100% = ($3.62M / $18.45M) * 100% = 19.62%."
+    },
+    "DOC_D1E838_E001": {
+      "evidence_id": "E001",
+      "document_id": "DOC_D1E838",
+      "document_name": "Clinical_Trial_Phase3_Results.pdf",
+      "page": 1,
+      "section": "Phase III Clinical Investigation: NeuroShield (VX-409)",
+      "type": "text",
+      "text": "Phase III Clinical Investigation: NeuroShield (VX-409)\nEfficacy, Patient Stratification & Primary Endpoint Audit\nDate: August 15, 2026\nDoc ID: MED-2026-CT3\nMultimodal Document Intelligence | Verified Formal Report\n1. Executive Summary & Study Design Overview\nA multicenter, double-blind, randomized, placebo-controlled Phase III study evaluated the therapeutic\nefficacy and safety profile of NeuroShield (VX-409) across 1,200 participants across 18 medical centers.\nThe primary cognitive retention endpoint was met with high statistical significance (p < 0.001).\nAt Week 48, 88.4% of subjects in the High-Dose (100mg) cohort demonstrated cognitive stability versus\n51.2% in the placebo cohort, demonstrating substantial clinical neuroprotection.\nTable 1: Participant Cohort Stratification & Demographic Baseline\nCohort Group\nSample (n)\nMean Age\nFemale %\nRetention Rate (W48)\nHigh-Dose (100mg)\n400\n64.5 yrs\n54.2%\n95.5% (382 pts)\nLow-Dose (50mg)\n400\n63.8 yrs\n52.8%\n94.0% (376 pts)\nPlacebo Control\n400\n64.1 yrs\n53.5%\n91.2% (365 pts)\nTotal Study Population\n1,200\n64.1 yrs\n53.5%\n93.6% (1,123 pts)\nFigure 1: Cognitive Preservation Rate at Week 48 (%)\n88.4%\nHigh-Dose\n76.5%\nLow-Dose\n51.2%\nPlacebo\n70.0%\nTarget Benchmark",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_D1E838/page_1.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1212
+      },
+      "_search_text": "Section: Phase III Clinical Investigation: NeuroShield (VX-409)\nPhase III Clinical Investigation: NeuroShield (VX-409)\nEfficacy, Patient Stratification & Primary Endpoint Audit\nDate: August 15, 2026\nDoc ID: MED-2026-CT3\nMultimodal Document Intelligence | Verified Formal Report\n1. Executive Summary & Study Design Overview\nA multicenter, double-blind, randomized, placebo-controlled Phase III study evaluated the therapeutic\nefficacy and safety profile of NeuroShield (VX-409) across 1,200 participants across 18 medical centers.\nThe primary cognitive retention endpoint was met with high statistical significance (p < 0.001).\nAt Week 48, 88.4% of subjects in the High-Dose (100mg) cohort demonstrated cognitive stability versus\n51.2% in the placebo cohort, demonstrating substantial clinical neuroprotection.\nTable 1: Participant Cohort Stratification & Demographic Baseline\nCohort Group\nSample (n)\nMean Age\nFemale %\nRetention Rate (W48)\nHigh-Dose (100mg)\n400\n64.5 yrs\n54.2%\n95.5% (382 pts)\nLow-Dose (50mg)\n400\n63.8 yrs\n52.8%\n94.0% (376 pts)\nPlacebo Control\n400\n64.1 yrs\n53.5%\n91.2% (365 pts)\nTotal Study Population\n1,200\n64.1 yrs\n53.5%\n93.6% (1,123 pts)\nFigure 1: Cognitive Preservation Rate at Week 48 (%)\n88.4%\nHigh-Dose\n76.5%\nLow-Dose\n51.2%\nPlacebo\n70.0%\nTarget Benchmark"
+    },
+    "DOC_D1E838_E002": {
+      "evidence_id": "E002",
+      "document_id": "DOC_D1E838",
+      "document_name": "Clinical_Trial_Phase3_Results.pdf",
+      "page": 1,
+      "section": "Phase III Clinical Investigation: NeuroShield (VX-409)",
+      "type": "table",
+      "text": "",
+      "table": {
+        "headers": [
+          "88.4%\n76.5%\n70.0%",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            "",
+            "51.2%",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "High-Dose Low-Dose Placebo Target Benchmark",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_D1E838/page_1.png",
+      "metadata": {
+        "row_count": 2,
+        "col_count": 9
+      },
+      "_search_text": "Section: Phase III Clinical Investigation: NeuroShield (VX-409)\nTable Data:\n88.4%\n76.5%\n70.0% |  |  |  |  |  |  |  | \n |  |  |  | 51.2% |  |  |  | \nHigh-Dose Low-Dose Placebo Target Benchmark |  |  |  |  |  |  |  | "
+    },
+    "DOC_D1E838_E003": {
+      "evidence_id": "E003",
+      "document_id": "DOC_D1E838",
+      "document_name": "Clinical_Trial_Phase3_Results.pdf",
+      "page": 2,
+      "section": "Biomarker Modulation & Pharmacovigilance Safety",
+      "type": "text",
+      "text": "Biomarker Modulation & Pharmacovigilance Safety\nSecondary Endpoints, Plaque Clearance & Biostatistical Proof\nDate: August 15, 2026\nDoc ID: MED-2026-CT3\nMultimodal Document Intelligence | Verified Formal Report\n2. Biomarker Efficacy & Adverse Event Profile\nPositron emission tomography (PET) imaging demonstrated a mean 42.8% reduction in cortical amyloid\nplaque burden in the 100mg cohort compared to a 4.2% increase in the placebo group. Serious Adverse Events\n(SAEs) occurred in 4.2% of active drug subjects versus 3.8% of placebo subjects (p = 0.72, non-significant),\nconfirming that VX-409 exhibits an excellent clinical safety and tolerability window.\nTable 2: Secondary Biomarker Efficacy & Safety Events\nBiomarker / Safety Endpoint\nHigh-Dose 100mg\nLow-Dose 50mg\nPlacebo Control\np-value\nAmyloid Plaque Reduction\n-42.8%\n-28.4%\n+4.2%\np < 0.001\nCSF Phospho-Tau Reduction\n-36.5%\n-21.0%\n+2.8%\np < 0.001\nMild Headache (Transient)\n8.5%\n6.2%\n5.0%\np = 0.12\nDiscontinuation Due to AEs\n4.5%\n4.0%\n6.8%\np = 0.24\n3. Biostatistical Formulation & Hazard Ratio Verification\nBiostatistical Formulations:\n  - Hazard Ratio (HR) = 0.58 (95% CI: [0.47, 0.71], p < 0.0001 via Cox Proportional Hazards Model)\n  - Cognitive Decline Event Rates: Placebo = 48.8%, High-Dose VX-409 = 11.6%\n  - Absolute Risk Reduction (ARR) = EventRate_Placebo - EventRate_Active\n      ARR = 48.8% - 11.6% = 37.2% (0.372)\n  - Number Needed to Treat (NNT) = 1 / ARR\n      NNT = 1 / 0.372 = 2.69 patients (Treating ~3 patients prevents 1 cognitive decline event)\n  - Relative Risk Reduction (RRR) = (ARR / EventRate_Placebo) * 100% = (37.2% / 48.8%) * 100% = 76.23%.",
+      "table": null,
+      "image_path": "D:/Projects/Hackathon/backend/data/pages/DOC_D1E838/page_2.png",
+      "metadata": {
+        "scanned": false,
+        "char_count": 1625
+      },
+      "_search_text": "Section: Biomarker Modulation & Pharmacovigilance Safety\nBiomarker Modulation & Pharmacovigilance Safety\nSecondary Endpoints, Plaque Clearance & Biostatistical Proof\nDate: August 15, 2026\nDoc ID: MED-2026-CT3\nMultimodal Document Intelligence | Verified Formal Report\n2. Biomarker Efficacy & Adverse Event Profile\nPositron emission tomography (PET) imaging demonstrated a mean 42.8% reduction in cortical amyloid\nplaque burden in the 100mg cohort compared to a 4.2% increase in the placebo group. Serious Adverse Events\n(SAEs) occurred in 4.2% of active drug subjects versus 3.8% of placebo subjects (p = 0.72, non-significant),\nconfirming that VX-409 exhibits an excellent clinical safety and tolerability window.\nTable 2: Secondary Biomarker Efficacy & Safety Events\nBiomarker / Safety Endpoint\nHigh-Dose 100mg\nLow-Dose 50mg\nPlacebo Control\np-value\nAmyloid Plaque Reduction\n-42.8%\n-28.4%\n+4.2%\np < 0.001\nCSF Phospho-Tau Reduction\n-36.5%\n-21.0%\n+2.8%\np < 0.001\nMild Headache (Transient)\n8.5%\n6.2%\n5.0%\np = 0.12\nDiscontinuation Due to AEs\n4.5%\n4.0%\n6.8%\np = 0.24\n3. Biostatistical Formulation & Hazard Ratio Verification\nBiostatistical Formulations:\n  - Hazard Ratio (HR) = 0.58 (95% CI: [0.47, 0.71], p < 0.0001 via Cox Proportional Hazards Model)\n  - Cognitive Decline Event Rates: Placebo = 48.8%, High-Dose VX-409 = 11.6%\n  - Absolute Risk Reduction (ARR) = EventRate_Placebo - EventRate_Active\n      ARR = 48.8% - 11.6% = 37.2% (0.372)\n  - Number Needed to Treat (NNT) = 1 / ARR\n      NNT = 1 / 0.372 = 2.69 patients (Treating ~3 patients prevents 1 cognitive decline event)\n  - Relative Risk Reduction (RRR) = (ARR / EventRate_Placebo) * 100% = (37.2% / 48.8%) * 100% = 76.23%."
+    }
+  },
+  "keys_list": [
+    "DOC_D0DE10_E001",
+    "DOC_D0DE10_E002",
+    "DOC_D0DE10_E003",
+    "DOC_D0DE10_E004",
+    "DOC_CF7307_E001",
+    "DOC_CF7307_E002",
+    "DOC_CF7307_E003",
+    "DOC_D1E838_E001",
+    "DOC_D1E838_E002",
+    "DOC_D1E838_E003"
+>>>>>>> origin/main
   ]
 }

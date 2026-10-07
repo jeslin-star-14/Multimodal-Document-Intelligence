@@ -63,6 +63,8 @@ def retrieve(
     Executes hybrid multimodal retrieval across indexed documents.
     """
     index = get_vector_index(index_dir)
+    if not index.evidence_store:
+        index._load_from_disk()
     
     if not index.evidence_store:
         logger.warning("No indexed documents available for retrieval.")

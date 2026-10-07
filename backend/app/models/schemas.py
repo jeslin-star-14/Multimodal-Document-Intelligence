@@ -168,6 +168,7 @@ class ConsistencyConflict(BaseModel):
 class QueryRequest(BaseModel):
     query: str
     document_id: Optional[str] = None
+    document_ids: Optional[List[str]] = None
     language: Optional[str] = "en"
     role_mode: Optional[RoleMode] = "Executive"
     doc_names: Optional[List[str]] = None

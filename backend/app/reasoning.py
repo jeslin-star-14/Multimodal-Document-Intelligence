@@ -6,7 +6,7 @@ import json
 import httpx
 from typing import List, Dict, Any, Tuple
 from pathlib import Path
-from app.config import GEMINI_API_KEY, VLM_MODEL, BASE_DIR
+from app.config import GEMINI_API_KEY, VLM_MODEL, BASE_DIR, DEMO_MODE
 from app.models import DocumentChunk, Citation, QueryResponse
 
 SYSTEM_PROMPT = """You are an elite Multimodal Document Intelligence AI.
@@ -61,8 +61,16 @@ class MultimodalReasoningEngine:
         start_time = time.time()
 
         if not chunks:
-            # Fallback when no indexed docs are present yet
-            return self._build_benchmark_demo_response(query, start_time)
+            elapsed = (time.time() - start_time) * 1000
+            return QueryResponse(
+                query=query,
+                text="No relevant evidence was found for this request. Upload and index a document before asking a question.",
+                confidence_score=0.0,
+                citations=[],
+                evidence=[],
+                not_found=True,
+                processing_time_ms=round(elapsed, 2)
+            )
 
         # Build context blocks and collect image parts
         context_text = "### RETRIEVED DOCUMENT CONTEXT:\n\n"
@@ -218,82 +226,27 @@ class MultimodalReasoningEngine:
         )
 
     def _build_benchmark_demo_response(self, query: str, start_time: float) -> QueryResponse:
-        """Built-in representative example required by hackathon submission guidelines."""
+        """Demo-only placeholder; actual production mode should never return synthetic benchmark content."""
         elapsed = (time.time() - start_time) * 1000
-
-        mock_citations = [
-            Citation(
-                citation_id=1,
-                doc_name="Operations_Q2_Report.pdf",
-                page_number=4,
-                section="Manufacturing KPI Chart",
-                type="chart",
-                title="Q2 Production Efficiency Trend",
-                crop_url="/api/assets/demo/q2_efficiency_chart.png",
-                page_url="/api/assets/demo/q2_page_4.png",
-                bbox=[120.0, 320.0, 750.0, 580.0],
-                confidence=0.98,
-                snippet="Bar and Line chart showing Q2 Monthly Efficiency peaking at 82.5% in June."
-            ),
-            Citation(
-                citation_id=2,
-                doc_name="Operations_Q4_Report.pdf",
-                page_number=2,
-                section="Quarterly Financial & Operational Summary",
-                type="table",
-                title="Q4 Operating Efficiency Matrix",
-                crop_url="/api/assets/demo/q4_metrics_table.png",
-                page_url="/api/assets/demo/q4_page_2.png",
-                bbox=[85.0, 180.0, 620.0, 420.0],
-                confidence=0.97,
-                snippet="Table row: Final Assembly Efficiency: 70.8% (Target: 80.0%). Variance: -9.2%."
-            ),
-            Citation(
-                citation_id=3,
-                doc_name="Operations_Q4_Report.pdf",
-                page_number=5,
-                section="Root Cause Analysis",
-                type="text",
-                title="Section 3.2: Unscheduled Downtime & Supply Disruptions",
-                crop_url=None,
-                page_url="/api/assets/demo/q4_page_5.png",
-                bbox=[100.0, 480.0, 700.0, 660.0],
-                confidence=0.95,
-                snippet="Microcontroller chip shortages delayed final board assembly by 18 days, causing conveyor stalls."
+        if not DEMO_MODE:
+            return QueryResponse(
+                query=query,
+                text="Demo mode is disabled. Upload and index a real document to receive evidence-backed answers.",
+                confidence_score=0.0,
+                citations=[],
+                evidence=[],
+                not_found=True,
+                processing_time_ms=round(elapsed, 2)
             )
-        ]
 
-        answer = (
-            "### Executive Summary\n"
-            "Comparing operational metrics across **Operations_Q2_Report.pdf** and **Operations_Q4_Report.pdf**, "
-            "production efficiency dropped from **82.5% in Q2** to **70.8% in Q4**, representing an absolute decrease of **11.7%** "
-            "(a relative decline of **-14.18%**) [Doc: Operations_Q2_Report.pdf, Page: 4, Section: Manufacturing KPI Chart] "
-            "[Doc: Operations_Q4_Report.pdf, Page: 2, Section: Quarterly Financial & Operational Summary].\n\n"
-            "### 3 Biggest Reasons for the Efficiency Change\n"
-            "1. **Supply Chain Semiconductor Bottlenecks**: Critical microcontroller delays led to 18 idle factory days in October–November [Doc: Operations_Q4_Report.pdf, Page: 5, Section: Root Cause Analysis].\n"
-            "2. **Unscheduled CNC Machine Downtime**: Facility 2 experienced 42 hours of unplanned hydraulic maintenance during peak line speeds [Doc: Operations_Q4_Report.pdf, Page: 6, Section: Equipment Reliability].\n"
-            "3. **Workforce Re-training Shift**: Introduction of the automated optical inspection (AOI) cell in November reduced hourly throughput during calibration [Doc: Operations_Q4_Report.pdf, Page: 7, Section: Process Automation].\n\n"
-            "### Mathematical Verification & Calculations\n"
-            "- **Q2 Baseline Efficiency**: `82.5%` [Doc: Operations_Q2_Report.pdf, Page: 4]\n"
-            "- **Q4 Final Efficiency**: `70.8%` [Doc: Operations_Q4_Report.pdf, Page: 2]\n"
-            "- **Absolute Difference**: $\\Delta = 70.8\\% - 82.5\\% = -11.7\\%$\n"
-            "- **Relative Efficiency Change**: $\\frac{70.8 - 82.5}{82.5} \\times 100\\% = -14.18\\%$\n"
-        )
-
-        math_steps = [
-            "Q2 Baseline Value: 82.5% (Chart visual axis extraction)",
-            "Q4 Final Value: 70.8% (Table cell extraction)",
-            "Absolute Variance: 70.8 - 82.5 = -11.7 percentage points",
-            "Relative Variance: (-11.7 / 82.5) * 100 = -14.18%"
-        ]
-
+        # This method remains available only for explicit demo/testing mode and should not be used in production.
         return QueryResponse(
             query=query,
-            answer=answer,
-            confidence_score=0.98,
-            math_steps=math_steps,
-            citations=mock_citations,
-            evidence=mock_citations,
+            text="Demo mode is active, but no benchmark data is available for this environment.",
+            confidence_score=0.0,
+            citations=[],
+            evidence=[],
+            not_found=True,
             processing_time_ms=round(elapsed, 2)
         )
 

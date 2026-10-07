@@ -2,7 +2,7 @@ import os
 import sys
 import json
 import pytest
-import fitz
+import pymupdf
 from PIL import Image, ImageDraw
 
 # Add backend directory to sys.path

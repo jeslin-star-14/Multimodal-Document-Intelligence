@@ -31,7 +31,8 @@ from app.config import (
     PAGES_DIR, 
     BASE_DIR,
     GEMINI_API_KEY,
-    VLM_MODEL
+    VLM_MODEL,
+    DEMO_MODE
 )
 from app.models.schemas import (
     QueryRequest as FrontendQueryRequest, 
@@ -304,36 +305,11 @@ async def query_documents_chat(request: FrontendQueryRequest):
             not_found=False
         )
 
-    # Fallback when no indexed documents exist yet (returns verified benchmark demo)
-    demo_obj = reasoning_engine._build_benchmark_demo_response(query=request.query, start_time=0)
-    for cit in demo_obj.citations:
-        c_type = cit.type if cit.type in ["text", "table", "chart"] else "image"
-        frontend_citations.append(FrontendCitation(
-            id=f"cite-{cit.citation_id}",
-            document_id=cit.doc_name,
-            document_name=cit.doc_name,
-            page_number=cit.page_number,
-            chunk_type=c_type,
-            label=f"{cit.section} (Page {cit.page_number})",
-            chunk_id=f"chunk-{cit.citation_id}",
-            similarity_score=cit.confidence,
-            bounding_box=FrontendBoundingBox(
-                id=f"bbox-{cit.citation_id}",
-                x=12.0,
-                y=25.0,
-                width=75.0,
-                height=35.0,
-                label=f"Evidence: {cit.title}",
-                type=c_type,
-                color="#f59e0b" if c_type == "chart" else ("#10b981" if c_type == "table" else "#6366f1")
-            )
-        ))
-
     return FrontendQueryResponse(
-        text=demo_obj.answer,
-        confidence_score=96,
-        citations=frontend_citations,
-        not_found=False
+        text="No relevant evidence was found for this query. Upload a document and wait for indexing before asking a question.",
+        confidence_score=0,
+        citations=[],
+        not_found=True
     )
 
 
@@ -343,12 +319,10 @@ async def query_documents_chat(request: FrontendQueryRequest):
 
 @app.post("/api/spatial/query")
 async def spatial_lasso_query(req: SpatialLassoQueryRequest):
-    """
-    NOVELTY FEATURE: Point-and-Ask Spatial Querying.
-    Allows user to draw a bounding box around any anomaly on a page image and ask
-    'Why is this bar lower?' or 'Explain this diagram node'.
-    Isolates the visual region and retrieves cross-document root causes.
-    """
+    """Spatial query is available only in explicit demo mode; production mode requires real evidence-backed analysis."""
+    if not DEMO_MODE:
+        raise HTTPException(status_code=403, detail="Spatial lasso is disabled in production mode. Enable DEMO_MODE to use demo content.")
+
     logger.info(f"Visual Lasso Query received on Doc {req.document_id}, Page {req.page_number}: {req.question}")
 
     # Find the corresponding rendered page image
@@ -388,11 +362,10 @@ async def spatial_lasso_query(req: SpatialLassoQueryRequest):
 
 @app.post("/api/charts/decompile")
 async def decompile_chart(req: ChartDecompileRequest):
-    """
-    NOVELTY FEATURE: Interactive Chart Decompiler.
-    Takes a static chart or plot from a PDF and decompiles the underlying data
-    into structured JSON, CSV table rows, and interactive Plotly visualization specs.
-    """
+    """Chart decompiler is demo-only and disabled in production mode."""
+    if not DEMO_MODE:
+        raise HTTPException(status_code=403, detail="Chart decompilation is disabled in production mode. Enable DEMO_MODE to use demo chart content.")
+
     logger.info(f"Decompiling chart for {req.chart_title} on Page {req.page_number}")
 
     # Extracted data structure reconstructed from pixels
@@ -433,11 +406,10 @@ async def decompile_chart(req: ChartDecompileRequest):
 
 @app.post("/api/simulate/counterfactual")
 async def simulate_counterfactual(req: CounterfactualSimRequest):
-    """
-    NOVELTY FEATURE: What-If Counterfactual Scenario Simulator.
-    Simulates operational sensitivity using a Python mathematical sandbox.
-    Example: 'What if downtime was 5 days instead of 18 days?'
-    """
+    """Counterfactual simulation is demo-only and disabled in production mode."""
+    if not DEMO_MODE:
+        raise HTTPException(status_code=403, detail="Counterfactual simulation is disabled in production mode. Enable DEMO_MODE for demo scenarios.")
+
     # Deterministic sensitivity calculation
     # Observed: 18 days downtime caused 11.7% efficiency drop -> ~0.65% loss per day
     baseline = req.baseline_value
@@ -472,10 +444,10 @@ async def simulate_counterfactual(req: CounterfactualSimRequest):
 
 @app.get("/api/documents/conflicts")
 async def get_document_conflicts():
-    """
-    NOVELTY FEATURE: Cross-Document Conflict & Discrepancy Detector.
-    Scans across documents and reports conflicting assertions with resolution hierarchy.
-    """
+    """Conflict detection is demo-only and disabled for production document analysis."""
+    if not DEMO_MODE:
+        return {"success": True, "conflict_count": 0, "conflicts": []}
+
     conflicts = [
         {
             "id": "conf-01",
@@ -582,7 +554,9 @@ def get_evidence_page_details(evidence_id: str = FastPath(..., description="Evid
 
 @app.get("/api/benchmark/demo")
 async def get_benchmark_demo():
-    """Returns official demo response for fast frontend testing."""
+    """Demo benchmark endpoint is available only when DEMO_MODE is explicitly enabled."""
+    if not DEMO_MODE:
+        raise HTTPException(status_code=403, detail="Benchmark demo is disabled in production mode.")
     return reasoning_engine._build_benchmark_demo_response(
         query="Compare production efficiency between Q2 and Q4, identify the three biggest reasons for the change, and show me the proof.",
         start_time=0

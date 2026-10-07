@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 # Try importing fitz (PyMuPDF)
 try:
-    import fitz
+    import pymupdf
     HAS_FITZ = True
 except ImportError:
     fitz = None

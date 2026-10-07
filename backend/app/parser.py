@@ -6,7 +6,7 @@ from typing import List, Dict, Any, Tuple
 from PIL import Image
 
 try:
-    import fitz  # PyMuPDF
+    import pymupdf  # PyMuPDF
 except ImportError:
     fitz = None
 

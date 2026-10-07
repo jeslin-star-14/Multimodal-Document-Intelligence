@@ -1,6 +1,6 @@
 import os
 import sys
-import fitz
+import pymupdf
 
 # Ensure backend directory in sys.path
 backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

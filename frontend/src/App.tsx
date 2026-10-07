@@ -46,6 +46,61 @@ export const App: React.FC = () => {
     }
   }, [chatSessions]);
 
+  const refreshDocuments = async () => {
+    try {
+      const response = await fetch('/api/documents');
+      if (!response.ok) {
+        return;
+      }
+
+      const data = await response.json();
+      const backendDocuments = Array.isArray(data.documents) ? data.documents : [];
+      const mappedDocuments: DocumentItem[] = backendDocuments.map((doc: any) => ({
+        id: doc.id || `doc-${Math.random().toString(16).slice(2)}`,
+        name: doc.name || 'Unnamed document',
+        size: 'Indexed',
+        type: 'pdf',
+        pageCount: Number(doc.page_count || doc.pageCount || 1),
+        uploadedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        status: 'Ready',
+        progress: 100,
+        currentStepDescription: 'Ready',
+        insights: {
+          summary: `Document "${doc.name || 'Unnamed document'}" is indexed and ready for Q&A.`,
+          keyEntities: [{ category: 'Metric', value: `${doc.evidence_count || 0} evidence points` }],
+          suggestedQuestions: [
+            `Summarize ${doc.name || 'this document'}`,
+            `Extract the main tables and figures from ${doc.name || 'this document'}`
+          ]
+        },
+        pageImages: []
+      }));
+
+      setDocuments((prev) => {
+        if (mappedDocuments.length === 0) return prev;
+        return mappedDocuments;
+      });
+
+      if (mappedDocuments.length > 0 && !selectedDocId) {
+        setSelectedDocId(mappedDocuments[0].id);
+      }
+    } catch {
+      // ignore reload hydration errors; the app can still operate with locally uploaded docs
+    }
+  };
+
+  useEffect(() => {
+    void refreshDocuments();
+  }, []);
+
+  useEffect(() => {
+    if (!documents.length) return;
+    const currentExists = documents.some((doc) => doc.id === selectedDocId);
+    if (!currentExists) {
+      setSelectedDocId(documents[0].id);
+    }
+  }, [documents, selectedDocId]);
+
   // Handle Starting a New Chat Conversation
   const handleNewChat = () => {
     setActiveSessionId(null);
@@ -273,25 +328,27 @@ export const App: React.FC = () => {
 
         if (response.ok) {
           const data = await response.json();
+          const backendDocId = data.document_id || data.id || fileId;
+          setSelectedDocId(backendDocId);
           setDocuments((prev) =>
             prev.map((d) =>
               d.id === fileId
                 ? {
                     ...d,
-                    id: data.id || fileId,
+                    id: backendDocId,
                     status: 'Ready',
                     progress: 100,
                     currentStepDescription: 'Ready',
                     pageCount: data.page_count || 1,
                     insights: {
-                      summary: `Document "${file.name}" indexed for visual RAG.`,
+                      summary: `Document "${file.name}" indexed for multimodal retrieval.`,
                       keyEntities: [
                         { category: 'Org', value: file.name.replace(/\.[^/.]+$/, '') },
-                        { category: 'Metric', value: '100% Parsed' }
+                        { category: 'Metric', value: 'Indexed' }
                       ],
                       suggestedQuestions: [
-                        `Summarize the contents of ${file.name}`,
-                        `Extract key tables and figures from ${file.name}`
+                        `Summarize ${file.name}`,
+                        `Extract the main tables and figures from ${file.name}`
                       ]
                     }
                   }
@@ -299,22 +356,22 @@ export const App: React.FC = () => {
             )
           );
         } else {
-          // Backend offline or error -> Mark ready for client view
+          const errorText = await response.text();
           setDocuments((prev) =>
             prev.map((d) =>
               d.id === fileId
                 ? {
                     ...d,
-                    status: 'Ready',
-                    progress: 100,
-                    currentStepDescription: 'Ready',
+                    status: 'Error',
+                    progress: 0,
+                    currentStepDescription: errorText || 'Server rejected the upload.',
                     insights: {
-                      summary: `Document "${file.name}" loaded.`,
+                      summary: `Upload failed for "${file.name}".`,
                       keyEntities: [
                         { category: 'Org', value: file.name.replace(/\.[^/.]+$/, '') }
                       ],
                       suggestedQuestions: [
-                        `What is the main topic of ${file.name}?`
+                        `Retry upload for ${file.name}`
                       ]
                     }
                   }
@@ -322,23 +379,22 @@ export const App: React.FC = () => {
             )
           );
         }
-      } catch {
-        // Fallback when backend is not running
+      } catch (error) {
         setDocuments((prev) =>
           prev.map((d) =>
             d.id === fileId
               ? {
                   ...d,
-                  status: 'Ready',
-                  progress: 100,
-                  currentStepDescription: 'Ready',
+                  status: 'Error',
+                  progress: 0,
+                  currentStepDescription: 'Backend is unavailable. Please start the FastAPI server.',
                   insights: {
-                    summary: `Document "${file.name}" loaded into workspace.`,
+                    summary: `Could not reach the backend for "${file.name}".`,
                     keyEntities: [
                       { category: 'Org', value: file.name.replace(/\.[^/.]+$/, '') }
                     ],
                     suggestedQuestions: [
-                      `What key figures are mentioned in ${file.name}?`
+                      `Retry upload for ${file.name}`
                     ]
                   }
                 }
@@ -397,7 +453,7 @@ export const App: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: queryText,
-          document_id: activeDocument?.name || null
+          document_id: activeDocument?.id || selectedDocId || null
         })
       });
 
@@ -460,13 +516,12 @@ export const App: React.FC = () => {
             : s
         )
       );
-    } catch {
-      // Clean fallback response if backend API is not running
+    } catch (error) {
       const fallbackMsg: ChatMessage = {
         id: `msg-${Date.now() + 1}`,
         sender: 'assistant',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        text: `Unable to connect to the backend engine at \`/api/chat/query\`. Please make sure the backend FastAPI service is running on port 8000 (\`python backend/main.py\`).`,
+        text: 'The backend is unavailable or the query failed. Please verify the FastAPI service is running and retry the request.',
         notFound: true
       };
       const finalMessages = [...updatedMessagesWithUser, fallbackMsg];

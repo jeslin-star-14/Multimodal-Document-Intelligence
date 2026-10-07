@@ -13,7 +13,8 @@ from app.config import (
     UPLOAD_DIR, 
     CROPS_DIR, 
     PAGES_DIR, 
-    BASE_DIR
+    BASE_DIR,
+    DEMO_MODE
 )
 from app.models import (
     QueryRequest, 
@@ -50,7 +51,10 @@ app.mount("/api/assets/demo", StaticFiles(directory=str(DEMO_DIR)), name="demo")
 
 
 def _generate_demo_visual_assets():
-    """Generates synthetic high-resolution demo chart and page assets so frontend can immediately test."""
+    """Generate demo assets only in explicit demo mode; production mode should never render mock visual evidence."""
+    if not DEMO_MODE:
+        return
+
     chart_path = DEMO_DIR / "q2_efficiency_chart.png"
     table_path = DEMO_DIR / "q4_metrics_table.png"
     page_q2_path = DEMO_DIR / "q2_page_4.png"
@@ -147,11 +151,9 @@ async def query_multimodal_rag(request: QueryRequest):
 
 @app.get("/api/benchmark/demo", response_model=QueryResponse)
 async def get_benchmark_demo():
-    """
-    Returns the official Hackathon benchmark demonstration:
-    'Compare production efficiency between Q2 and Q4, identify 3 biggest reasons, show proof.'
-    Used for instant UI integration and live demo backup.
-    """
+    """Demo benchmark endpoint is blocked unless DEMO_MODE is explicitly enabled."""
+    if not DEMO_MODE:
+        raise HTTPException(status_code=403, detail="Benchmark demo is disabled in production mode.")
     return reasoning_engine._build_benchmark_demo_response(
         query="Compare production efficiency between Q2 and Q4, identify the three biggest reasons for the change, and show me the proof.",
         start_time=0

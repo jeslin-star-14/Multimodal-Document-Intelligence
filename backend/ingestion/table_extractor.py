@@ -4,7 +4,7 @@ from typing import List, Dict, Any, Optional
 logger = logging.getLogger(__name__)
 
 try:
-    import fitz
+    import pymupdf
     HAS_FITZ = True
 except ImportError:
     fitz = None

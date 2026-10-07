@@ -170,8 +170,8 @@ export const App: React.FC = () => {
     }
   };
 
-  // Handle File Upload
-  const handleFileUpload = (files: FileList | File[]) => {
+  // Handle File Upload: sends to live backend with intelligent fallback
+  const handleFileUpload = async (files: FileList | File[]) => {
     const fileList = Array.from(files);
 
     // 1. Stage attachments directly in the chat box so the user sees them immediately
@@ -185,7 +185,8 @@ export const App: React.FC = () => {
     setStagedAttachments((prev) => [...prev, ...newAttachments]);
 
     // 2. Add to Workspace Documents List
-    fileList.forEach((file, index) => {
+    for (let index = 0; index < fileList.length; index++) {
+      const file = fileList[index];
       const fileId = `doc-${Date.now()}-${index}`;
       const ext = file.name.split('.').pop()?.toLowerCase() || 'pdf';
       const fileType = (['pdf', 'docx', 'pptx'].includes(ext) ? ext : 'image') as any;
@@ -199,7 +200,7 @@ export const App: React.FC = () => {
         uploadedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         status: 'Parsing',
         progress: 30,
-        currentStepDescription: 'Reading tables...',
+        currentStepDescription: 'Extracting text & visual tokens...',
         pageImages: [
           mockVerityPageSvg()
         ]
@@ -208,7 +209,57 @@ export const App: React.FC = () => {
       setDocuments((prev) => [newDoc, ...prev]);
       setSelectedDocId(fileId);
 
-      // Transition to Ready
+      // Attempt live backend upload
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        const res = await fetch('http://localhost:8000/api/documents/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const realDocId = data.document_id || fileId;
+          const pageCount = data.page_count || 1;
+          const realPageImages = Array.from({ length: pageCount }, (_, i) => 
+            `http://localhost:8000/data/pages/${realDocId}/page_${i+1}.png`
+          );
+
+          setDocuments((prev) =>
+            prev.map((d) =>
+              d.id === fileId
+                ? {
+                    ...d,
+                    id: realDocId,
+                    status: 'Ready',
+                    progress: 100,
+                    pageCount: pageCount,
+                    currentStepDescription: 'Ready',
+                    pageImages: realPageImages.length > 0 ? realPageImages : d.pageImages,
+                    insights: {
+                      summary: `Document ${file.name} successfully parsed with ${data.evidence_count || 0} visual & text chunks.`,
+                      keyEntities: [
+                        { category: 'Org', value: 'Enterprise Systems' },
+                        { category: 'Metric', value: `${data.evidence_count || 0} Grounded Chunks` }
+                      ],
+                      suggestedQuestions: [
+                        `What are the key findings in ${file.name}?`,
+                        `Compare and extract tables from ${file.name}`
+                      ]
+                    }
+                  }
+                : d
+            )
+          );
+          setSelectedDocId(realDocId);
+          continue;
+        }
+      } catch (err) {
+        console.log('Backend upload offline or error, using local fallback simulator:', err);
+      }
+
+      // Transition to Ready fallback
       setTimeout(() => {
         setDocuments((prev) =>
           prev.map((d) =>
@@ -234,7 +285,7 @@ export const App: React.FC = () => {
           )
         );
       }, 2500);
-    });
+    }
   };
 
   // Handle Query Submission and AI Response: calls live backend API with intelligent fallback

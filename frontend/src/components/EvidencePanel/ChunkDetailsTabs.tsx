@@ -22,6 +22,7 @@ export const ChunkDetailsTabs: React.FC<ChunkDetailsTabsProps> = ({
   language,
 }) => {
   const [selectedTab, setSelectedTab] = useState<ChunkType>('chart');
+  const [decompiledData, setDecompiledData] = useState<Record<string, any>>({});
   const t = translations[language];
 
   // Group chunks by type
@@ -154,9 +155,68 @@ export const ChunkDetailsTabs: React.FC<ChunkDetailsTabsProps> = ({
                       </table>
                     </div>
                   ) : (
-                    <p className="line-clamp-4 font-mono text-[11px] bg-slate-950/40 p-2 rounded-lg border border-slate-800/60 light:bg-slate-50 light:border-slate-200">
-                      {chunk.content}
-                    </p>
+                    <div>
+                      <p className="line-clamp-4 font-mono text-[11px] bg-slate-950/40 p-2 rounded-lg border border-slate-800/60 light:bg-slate-50 light:border-slate-200">
+                        {chunk.content}
+                      </p>
+
+                      {/* Decompile Chart Button for visual/chart chunks */}
+                      {(chunk.type === 'chart' || chunk.type === 'image') && (
+                        <div className="mt-2">
+                          {decompiledData[chunk.id] ? (
+                            <div className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-[11px]">
+                              <div className="flex items-center justify-between text-emerald-400 font-semibold mb-1">
+                                <span>AI Decompiled Spreadsheet</span>
+                                <span className="text-[10px] text-emerald-300/80 font-mono">6 data rows</span>
+                              </div>
+                              <div className="overflow-x-auto max-h-32">
+                                <table className="w-full text-left text-[10px] border-collapse font-mono">
+                                  <thead>
+                                    <tr className="border-b border-emerald-800/60">
+                                      {decompiledData[chunk.id].headers?.map((h: string, i: number) => (
+                                        <th key={i} className="p-1 text-emerald-200">{h}</th>
+                                      ))}
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {decompiledData[chunk.id].rows?.map((row: string[], ri: number) => (
+                                      <tr key={ri} className="border-b border-emerald-900/40">
+                                        {row.map((cell: string, ci: number) => (
+                                          <td key={ci} className="p-1 text-slate-300">{cell}</td>
+                                        ))}
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={async (e) => {
+                                e.stopPropagation();
+                                try {
+                                  const res = await fetch('http://localhost:8000/api/charts/decompile', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ chart_title: chunk.documentName, page_number: chunk.pageNumber })
+                                  });
+                                  if (res.ok) {
+                                    const d = await res.json();
+                                    setDecompiledData((prev) => ({ ...prev, [chunk.id]: d.decompiled }));
+                                  }
+                                } catch (err) {
+                                  console.log('Decompile error:', err);
+                                }
+                              }}
+                              className="px-2 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 text-[10px] font-semibold transition-all cursor-pointer flex items-center space-x-1"
+                            >
+                              <span>Decompile Chart to CSV / Table</span>
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   )}
                 </div>
 

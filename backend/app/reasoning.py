@@ -210,13 +210,13 @@ class MultimodalReasoningEngine:
             f"Provide your verified, factual, grounded answer with clear Markdown formatting, tables, math calculations, and exact source citations:"
         )
 
-        active_model = (os.getenv("VLM_MODEL") or os.getenv("GEMMA_MODEL") or self.model or "gemini-3.5-flash").strip()
+        active_model = (os.getenv("VLM_MODEL") or os.getenv("GEMMA_MODEL") or self.model or "gemini-3.1-flash-lite").strip()
         candidate_models = [
-            "gemini-3.5-flash",
-            active_model,
-            "gemini-3.7-flash",
             "gemini-3.1-flash-lite",
-            "gemini-flash-latest"
+            "gemini-3.5-flash",
+            "gemini-flash-latest",
+            "gemini-3.7-flash",
+            active_model
         ]
         candidate_models = list(dict.fromkeys(candidate_models))
 

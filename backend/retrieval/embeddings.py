@@ -23,7 +23,10 @@ class EmbeddingManager:
         try:
             from sentence_transformers import SentenceTransformer
             logger.info(f"Loading embedding model: {self.model_name}")
-            self.model = SentenceTransformer(self.model_name)
+            try:
+                self.model = SentenceTransformer(self.model_name, local_files_only=True)
+            except Exception:
+                self.model = SentenceTransformer(self.model_name)
             logger.info("SentenceTransformer model loaded successfully.")
         except Exception as e:
             logger.warning(f"Failed to load SentenceTransformer ({e}). Using lightweight hash fallback embedder.")

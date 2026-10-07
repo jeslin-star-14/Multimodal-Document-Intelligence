@@ -83,6 +83,17 @@ app.mount("/api/assets/crops", StaticFiles(directory=str(CROPS_DIR)), name="crop
 app.mount("/api/assets/pages", StaticFiles(directory=str(RENDERED_PAGES_DIR)), name="pages")
 app.mount("/api/assets/demo", StaticFiles(directory=str(DEMO_DIR)), name="demo")
 
+@app.on_event("startup")
+async def startup_event():
+    """Pre-warm index and embedding cache on backend boot."""
+    try:
+        get_vector_index(str(INDEX_DIR))
+        from retrieval.embeddings import get_embedding_manager
+        get_embedding_manager()
+        logger.info("[Startup] Vector index and embeddings pre-warmed successfully.")
+    except Exception as e:
+        logger.warning(f"[Startup] Pre-warm note: {e}")
+
 
 # -------------------------------------------------------------
 # Request & Response Schemas for Novel Features

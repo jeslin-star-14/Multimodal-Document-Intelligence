@@ -5,7 +5,7 @@
 An enterprise-grade multimodal document intelligence platform that allows users to upload documents (PDF, DOCX, PPTX, Images), query them through text or speech, and inspect exact visual evidence (bounding boxes, extracted tables, and charts) on original document page previews.
 
 ---
-
+#
 ## 📐 Architecture & Layout
 
 ```
